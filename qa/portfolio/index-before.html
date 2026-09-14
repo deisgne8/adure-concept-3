@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en" data-intro="pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#004789">
+  <title>ADURE — Beyond Property. Creating Value.</title>
+  <meta name="description" content="Abu Dhabi United Real Estate. End-to-end property solutions for buyers, sellers, tenants and owners across Abu Dhabi, Dubai and Al Ain.">
+  <link rel="icon" href="assets/adure-logo.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/fira-sans-300.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/source-sans-pro-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=journeys-rio-3">
+  <script>
+    window.adureOpening = {
+      timer: setTimeout(() => {
+        delete document.documentElement.dataset.intro;
+        document.querySelectorAll('.site-header, main, .footer, .skip-link').forEach(element => { element.inert = false; });
+      }, 8000)
+    };
+  </script>
+  <script defer src="hero-video.js"></script>
+  <script defer src="intro.js"></script>
+  <script type="module" src="app.js?v=journeys-rio-3"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-intro" id="site-intro" aria-label="ADURE opening sequence">
+    <div class="intro-lockup" aria-hidden="true">
+      <span class="intro-phrase intro-before">Beyond property.</span>
+      <span class="intro-image-slot"></span>
+      <span class="intro-phrase intro-after">Creating value.</span>
+    </div>
+    <div class="intro-media" aria-hidden="true">
+      <span class="intro-mask"></span><span class="intro-mask"></span><span class="intro-mask"></span><span class="intro-mask"></span>
+    </div>
+    <button class="intro-skip" type="button">Skip intro <span aria-hidden="true">↗</span></button>
+  </div>
+  <header class="site-header" id="site-header">
+    <a class="brand" href="#home" aria-label="ADURE home"><img src="assets/adure-logo-horizontal.svg" alt="ADURE — Abu Dhabi United Real Estate"></a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <a href="#perspective">About ADURE</a>
+      <a href="#management">Services</a>
+      <a href="#discover">Properties</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#trust">Our customers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="header-actions"><a class="nav-language" href="#" lang="ar" dir="rtl" aria-label="Switch to Arabic">العربية</a><button class="header-enquire" data-enquiry="sell">List your property <span aria-hidden="true">↗</span></button><button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button></div>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Mobile navigation"><a href="#perspective">About ADURE <span>01</span></a><a href="#management">Services <span>02</span></a><a href="#discover">Properties <span>03</span></a><a href="#portfolio">Portfolio <span>04</span></a><a href="#trust">Our customers <span>05</span></a><a href="#contact">Contact <span>06</span></a><a class="mobile-language" href="#" lang="ar" dir="rtl">العربية</a><button class="mobile-list-property" data-enquiry="sell">List your property <span aria-hidden="true">↗</span></button></nav>
+    <p>Abu Dhabi · Dubai · Al Ain</p>
+  </div>
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="hero-sticky">
+        <video class="hero-video" id="hero-video" poster="assets/adure-banner-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="ADURE architectural portfolio film"><source src="assets/adure-banner.mp4" type="video/mp4"></video>
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow hero-kicker"><span>Abu Dhabi United Real Estate</span></p>
+          <h1 id="hero-heading"><span class="hero-line">Creating value</span><span class="hero-line hero-line-offset">beyond property.</span></h1>
+          <div class="hero-bottom"><div class="hero-copy"><p>We're your end-to-end partner in real estate - bringing buying, selling, leasing, and property management together around one purpose: creating lasting value.</p><div class="hero-ctas"><a class="button button-white" href="#perspective">Explore ADURE <span aria-hidden="true">↗</span></a><a class="text-link hero-secondary" href="#discover">Find a property <span aria-hidden="true">↗</span></a></div></div></div>
+          <div class="hero-foot"><a href="#perspective"><span class="scroll-stroke" aria-hidden="true"></span> Scroll to see beyond</a></div>
+        </div>
+      </div>
+    </section>
+    <section class="perspective section-pad" id="perspective" aria-labelledby="perspective-heading">
+      <div class="chapter"><span>02 / Philosophy</span><span class="chapter-line"></span><span>What value means</span></div>
+      <div class="perspective-editorial">
+        <div class="perspective-copy-block">
+          <p class="perspective-intro">Beyond the transaction.<br>Into what follows.</p>
+          <h2 id="perspective-heading">A longer<br>view.</h2>
+          <p class="perspective-copy">For us, the transaction is one moment.<br>What follows matters just as much.</p>
+        </div>
+        <figure class="perspective-visual" id="philosophy-panel" role="tabpanel" aria-labelledby="philosophy-tab-0">
+          <img id="philosophy-image" src="assets/architecture-curves.webp" alt="Curved contemporary waterfront residences" width="900" height="488" loading="lazy">
+          <figcaption aria-hidden="true"><span id="philosophy-current">01</span><i></i><span>03</span></figcaption>
+        </figure>
+      </div>
+      <div class="value-pillars" role="tablist" aria-label="How ADURE creates value">
+        <button class="value-tab" type="button" role="tab" id="philosophy-tab-0" aria-controls="philosophy-panel" aria-selected="true" data-value-tab="0"><span class="value-progress" aria-hidden="true"><span></span></span><span class="value-number">01</span><span class="value-copy"><span class="value-title">Positioning</span><span class="value-description">Bringing your property to market<br>with clarity.</span></span><span class="value-arrow" aria-hidden="true">&#8594;</span></button>
+        <button class="value-tab" type="button" role="tab" id="philosophy-tab-1" aria-controls="philosophy-panel" aria-selected="false" tabindex="-1" data-value-tab="1"><span class="value-progress" aria-hidden="true"><span></span></span><span class="value-number">02</span><span class="value-copy"><span class="value-title">Performance</span><span class="value-description">Supporting occupancy, operations,<br>and day-to-day performance.</span></span><span class="value-arrow" aria-hidden="true">&#8594;</span></button>
+        <button class="value-tab" type="button" role="tab" id="philosophy-tab-2" aria-controls="philosophy-panel" aria-selected="false" tabindex="-1" data-value-tab="2"><span class="value-progress" aria-hidden="true"><span></span></span><span class="value-number">03</span><span class="value-copy"><span class="value-title">Stewardship</span><span class="value-description">Protecting the financial, legal and<br>operational interests around the asset.</span></span><span class="value-arrow" aria-hidden="true">&#8594;</span></button>
+      </div>
+      <p class="sr-only" id="philosophy-announcement" aria-live="polite"></p>
+    </section>
+    <section class="journeys section-pad" id="journeys" aria-labelledby="journey-heading">
+      <div class="chapter"><span>03 / End-to-end real estate</span><span class="chapter-line"></span><span>Primary journeys</span></div>
+      <div class="journey-heading"><h2 id="journey-heading">With you across<br>every stage.</h2><p>Whether you're buying, selling, renting or placing an asset under management, we bring the right expertise together so every stage feels connected and considered.</p></div>
+      <div class="journey-grid" aria-label="Choose your property journey">
+        <article class="journey-card" id="journey-buy">
+          <img class="journey-card-image" src="assets/architecture-courtyard.webp" alt="Landscaped walkway beside curved residential buildings" width="900" height="1050" loading="lazy">
+          <span class="journey-card-shade" aria-hidden="true"></span><span class="journey-card-wipe" aria-hidden="true"></span>
+          <a class="journey-card-link" href="#discover" data-journey-card="buy" aria-label="Explore buying with ADURE">
+            <span class="journey-card-content"><span class="journey-card-heading"><h3>Buy</h3><span aria-hidden="true">↗</span></span><span class="journey-card-detail"><span><span class="journey-card-spacer"></span><span class="journey-card-description">Find the right property with clear information and informed guidance.</span><span class="journey-card-cta">Buy with ADURE</span></span></span></span>
+          </a>
+        </article>
+        <article class="journey-card" id="journey-sell">
+          <img class="journey-card-image" src="assets/architecture-waterfront.webp" alt="Waterfront apartments in warm evening light" width="900" height="1050" loading="lazy">
+          <span class="journey-card-shade" aria-hidden="true"></span><span class="journey-card-wipe" aria-hidden="true"></span>
+          <a class="journey-card-link" href="#contact" data-journey-card="sell" aria-label="Explore selling with ADURE">
+            <span class="journey-card-content"><span class="journey-card-heading"><h3>Sell</h3><span aria-hidden="true">↗</span></span><span class="journey-card-detail"><span><span class="journey-card-spacer"></span><span class="journey-card-description">Bring your property to market with professional advice, strong exposure and access to qualified buyers.</span><span class="journey-card-cta">Sell with ADURE</span></span></span></span>
+          </a>
+        </article>
+        <article class="journey-card" id="journey-rent">
+          <img class="journey-card-image" src="assets/architecture-terraces.webp" alt="Sunlit terraces overlooking an open residential courtyard" width="900" height="1050" loading="lazy">
+          <span class="journey-card-shade" aria-hidden="true"></span><span class="journey-card-wipe" aria-hidden="true"></span>
+          <a class="journey-card-link" href="#discover" data-journey-card="rent" aria-label="Explore renting with ADURE">
+            <span class="journey-card-content"><span class="journey-card-heading"><h3>Rent</h3><span aria-hidden="true">↗</span></span><span class="journey-card-detail"><span><span class="journey-card-spacer"></span><span class="journey-card-description">Find a residential or commercial property that fits what you need next.</span><span class="journey-card-cta">Rent with ADURE</span></span></span></span>
+          </a>
+        </article>
+        <article class="journey-card" id="journey-manage">
+          <img class="journey-card-image" src="assets/architecture-palms.webp" alt="Sunlight through palms beside a carefully maintained facade" width="900" height="1050" loading="lazy">
+          <span class="journey-card-shade" aria-hidden="true"></span><span class="journey-card-wipe" aria-hidden="true"></span>
+          <a class="journey-card-link" href="#management" data-journey-card="manage" aria-label="Explore property management with ADURE">
+            <span class="journey-card-content"><span class="journey-card-heading"><h3>Manage</h3><span aria-hidden="true">↗</span></span><span class="journey-card-detail"><span><span class="journey-card-spacer"></span><span class="journey-card-description">Bring your asset under one connected management approach, with leasing, operations, facilities, finance and legal oversight working together.</span><span class="journey-card-cta">Property management</span></span></span></span>
+          </a>
+        </article>
+      </div>
+    </section>
+    <section class="discovery section-pad" id="discover" aria-labelledby="discovery-heading">
+      <div class="chapter"><span>04 / Property discovery</span><span class="chapter-line"></span><span>Search and enquiry</span></div>
+      <div class="discovery-heading"><h2 id="discovery-heading">Find your next<br><span class="blue">property.</span></h2><p>Explore available properties and start a buying or renting enquiry with us.</p></div>
+      <form id="property-search" class="search-form" aria-label="Search demonstration collections">
+        <fieldset class="search-intent"><legend class="sr-only">I want to</legend><label><input type="radio" name="intent" value="buy" checked><span>Buy</span></label><label><input type="radio" name="intent" value="rent"><span>Rent</span></label></fieldset>
+        <div class="search-fields">
+          <label class="search-field">Location<select name="location"><option value="any">All locations</option><option>Abu Dhabi</option><option>Dubai</option><option>Al Ain</option></select></label>
+          <label class="search-field">Property type<select name="type"><option value="any">All types</option><option>Apartment</option><option>Villa</option><option>Office</option></select></label>
+          <label class="search-field">Bedrooms<select name="beds"><option value="any">Any bedrooms</option><option value="1">1 bedroom</option><option value="2">2 bedrooms</option><option value="3">3 bedrooms</option><option value="4-plus">4+ bedrooms</option></select></label>
+          <label class="search-field budget-field">Price range<select name="budget" id="search-budget"><option value="any">Any price</option><option value="under-1m">Below AED 1m</option><option value="1m-3m">AED 1m–3m</option><option value="3m-plus">AED 3m+</option></select></label>
+          <button class="button button-blue search-submit" type="submit"><span class="search-button-label">Search properties</span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="1.4"/></svg></button>
+        </div>
+      </form>
+      <div class="results-toolbar"><p id="search-status" role="status" aria-live="polite">Three starting points</p><div class="results-tools"><button id="reset-search" class="reset-link" type="button">Reset filters <span aria-hidden="true">↺</span></button><button class="text-link" data-enquiry="sell">Have a property? Talk to ADURE <span aria-hidden="true">↗</span></button></div></div>
+      <p class="demo-note">Demonstration collections, not live listings. Locations and filter matches are examples; photography is from the ADURE portfolio.</p>
+      <div class="discovery-results" id="collection-results" aria-label="Demonstration property collections"></div>
+      <div class="search-empty" id="search-empty" hidden><span class="empty-index" aria-hidden="true">—</span><h3>A different starting point.</h3><p>No demonstration collections match these filters. Broaden your search, or tell us what you have in mind.</p><div><button class="text-link" id="empty-reset">Reset search <span aria-hidden="true">↗</span></button><button class="text-link" data-enquiry="buy">Share your brief <span aria-hidden="true">↗</span></button></div></div>
+    </section>
+
+    <section class="management section-pad" id="management" aria-labelledby="management-heading">
+      <div class="chapter"><span>05 / Property management</span><span class="chapter-line"></span><span>Core business depth</span></div>
+      <div class="management-layout">
+        <figure class="management-visual"><div class="management-image"><img id="management-image" src="assets/architecture-palms.webp" alt="Palm-lined facade in the supplied portfolio" width="900" height="488" loading="lazy"></div><figcaption><span class="detail-marker" aria-hidden="true">+</span><span id="management-outcome">A property that stays connected.</span></figcaption></figure>
+        <div class="management-content"><h2 id="management-heading">Your asset, looked after<br>as a whole.</h2><p class="management-intro">Long-term performance depends on more than one service. We bring leasing, operations, facilities, financial management and legal coordination together under one connected approach.</p><div class="management-index" id="management-index"></div><button class="text-link" data-enquiry="manage">Explore property management <span aria-hidden="true">↗</span></button></div>
+      </div>
+    </section>
+
+    <section class="proof section-pad" id="proof" aria-labelledby="proof-heading">
+      <div class="chapter"><span>06 / Proof</span><span class="chapter-line"></span><span>Key figures</span></div>
+      <div class="proof-composition"><div class="proof-secondary"><h2 id="proof-heading">A record that speaks<br>for itself.</h2></div></div>
+      <div class="proof-metrics" aria-label="ADURE key figures"><div><strong data-proof="established">2002</strong><span>Established</span></div><div><strong data-proof="units">3,000+</strong><span>Units managed</span></div><div><strong data-proof="team">200+</strong><span>Professionals</span></div><div><strong data-proof="occupancy">98%</strong><span>Occupancy rate</span></div><div><strong data-proof="vacancy">1-2 weeks</strong><span>Average vacancy</span></div></div>
+      <p class="proof-source">Figures from ADURE’s company profile.</p>
+    </section>
+
+    <section class="portfolio section-pad" id="portfolio" aria-labelledby="portfolio-heading">
+      <div class="chapter"><span>07 / Portfolio</span><span class="chapter-line"></span><span>Visual proof</span></div>
+      <div class="portfolio-heading"><h2 id="portfolio-heading">A portfolio that<br>reflects our range.</h2><div><p>From residential communities and commercial buildings to office towers, retail, hotels, government buildings, and mixed-use developments, we bring the same focus on performance and long-term value across the portfolio.</p><a class="text-link portfolio-cta" href="#portfolio">Explore our portfolio <span aria-hidden="true">↗</span></a></div></div>
+      <div class="portfolio-feature"><button class="portfolio-feature-image image-open" data-portfolio="0" aria-label="View Waterfront rhythm photograph"><img src="assets/architecture-waterfront.webp" srcset="assets/architecture-waterfront-small.webp 600w, assets/architecture-waterfront.webp 900w" sizes="(max-width:600px) 100vw, 80vw" width="900" height="488" alt="Curved waterfront balconies warmed by the evening sun" loading="lazy"><span class="image-expand" aria-hidden="true">↗</span></button><div class="portfolio-feature-caption"><span class="eyebrow">01 / 05</span><h3>Waterfront<br>rhythm.</h3><p>Architecture shaped by its surroundings.</p><span class="portfolio-source">From the ADURE portfolio</span></div></div>
+      <div class="portfolio-rail-head"><p>A closer look</p><div class="rail-controls"><span class="rail-counter" id="rail-counter" aria-live="polite">02 — 05</span><button id="portfolio-prev" class="arrow-button" aria-label="Previous portfolio images">←</button><button id="portfolio-next" class="arrow-button" aria-label="Next portfolio images">→</button></div></div>
+      <div class="portfolio-rail" id="portfolio-rail" role="region" aria-label="Portfolio photographs" tabindex="0"></div>
+      <p class="portfolio-note">Photographs from ADURE’s company profile. Titles describe the imagery.</p>
+    </section>
+
+    <section class="transition section-pad" id="transition" aria-labelledby="transition-heading">
+      <div class="chapter"><span>08 / Value in practice</span><span class="chapter-line"></span><span>30-day transition</span></div>
+      <div class="transition-heading"><h2 id="transition-heading">A considered start.</h2><div><p><span class="eyebrow">30-day transition plan</span><br>Our structured 30-day transition brings documentation, tenants, operations, and reporting into management step by step.</p><button class="text-link transition-cta" data-enquiry="manage">See how we manage <span aria-hidden="true">↗</span></button></div></div>
+      <div class="transition-layout">
+        <div class="transition-navigation"><div class="transition-tabs" role="tablist" aria-label="Choose a transition stage" aria-orientation="vertical">
+          <button role="tab" id="stage-tab-0" data-stage="0" aria-controls="stage-panel" aria-selected="true"><span>Week 1</span>Review<span aria-hidden="true">↗</span></button>
+          <button role="tab" id="stage-tab-1" data-stage="1" aria-controls="stage-panel" aria-selected="false" tabindex="-1"><span>Week 2</span>Inspect<span aria-hidden="true">↗</span></button>
+          <button role="tab" id="stage-tab-2" data-stage="2" aria-controls="stage-panel" aria-selected="false" tabindex="-1"><span>Week 3</span>Takeover<span aria-hidden="true">↗</span></button>
+          <button role="tab" id="stage-tab-3" data-stage="3" aria-controls="stage-panel" aria-selected="false" tabindex="-1"><span>Week 4+</span>Manage<span aria-hidden="true">↗</span></button>
+        </div><p class="transition-small">One continuous handover.<br>Clear responsibilities at every stage.</p></div>
+        <div class="stage-panel" id="stage-panel" role="tabpanel" aria-labelledby="stage-tab-0" tabindex="0">
+          <div class="stage-top"><span class="eyebrow" id="stage-week">Week 1 / The starting point</span><span id="stage-count">01 / 04</span></div>
+          <div class="stage-title"><span id="stage-number" aria-hidden="true">01</span><h3 id="stage-title">Review.</h3></div>
+          <p class="stage-body" id="stage-body">Property and document review, with a full handover audit.</p>
+          <div class="stage-evidence"><div><span class="eyebrow">The handover file</span><ul id="stage-evidence"><li>Property records</li><li>Lease documentation</li><li>Full handover audit</li></ul></div><div><span class="eyebrow">What you gain</span><p id="stage-gain">A clear starting point, with responsibilities understood from the beginning.</p></div></div>
+          <div class="stage-bottom"><span>Built around your property.</span><button class="text-link" id="next-stage">Next: Inspect <span aria-hidden="true">→</span></button></div>
+          <div class="stage-progress" aria-hidden="true"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust section-pad" id="trust" aria-labelledby="trust-heading">
+      <div class="chapter"><span>09 / Trust and clients</span><span class="chapter-line"></span><span>Institutional credibility</span></div>
+      <div class="trust-content"><p class="eyebrow">Our customers</p><h2 id="trust-heading">Trusted across sectors.</h2><p>We've worked with government, semi-government and private-sector organisations across the UAE.</p></div>
+      <ul class="trust-sectors"><li>Government &amp; semi-government</li><li>Private sector &amp; corporates</li></ul><button class="text-link trust-cta" data-enquiry="general">Our customers <span aria-hidden="true">↗</span></button><div class="client-logos" id="client-logos" hidden></div>
+    </section>
+
+    <section class="closing section-pad" id="contact" aria-labelledby="closing-heading">
+      <img class="closing-image" src="assets/architecture-horizon.webp" alt="The sea seen between sculptural residential buildings at sunset" width="900" height="488" loading="lazy">
+      <div class="closing-shade"></div>
+      <div class="chapter"><span>10 / Closing</span><span class="chapter-line"></span><span>Final conversion</span></div>
+      <div class="closing-content"><div><h2 id="closing-heading">We're here for<br>what comes next.</h2><p>Whether you're buying, selling, renting, or looking for a partner to manage your asset, start the conversation with ADURE.</p><div class="closing-utilities"><a href="tel:+97126457869">Call</a><a href="https://wa.me/971566805125">WhatsApp</a></div></div><div class="closing-actions"><a href="#discover">Find a property <span aria-hidden="true">↗</span></a><button data-enquiry="sell">Sell with ADURE <span aria-hidden="true">↗</span></button><button data-enquiry="manage">Property management <span aria-hidden="true">↗</span></button><button data-enquiry="general">Contact ADURE <span aria-hidden="true">↗</span></button></div></div>
+      <div class="closing-signoff">Beyond Property. Creating Value.</div>
+    </section>
+  </main>
+  <footer class="footer"><div class="footer-main"><a href="#home" class="footer-brand" aria-label="ADURE home"><img src="assets/adure-logo.svg" alt="ADURE — Abu Dhabi United Real Estate" width="99" height="142"></a><div><p>Abu Dhabi United Real Estate</p><strong>Beyond Property. Creating Value.</strong><div class="footer-contact"><a href="tel:+97126457869">02 6457869</a><a href="tel:+971566805125">0566805125</a><a href="mailto:Inquiries@adu-re.com" data-email>Inquiries@adu-re.com</a></div></div><div class="footer-cities">Abu Dhabi<br>Dubai<br>Al Ain</div><a class="back-top" href="#home">Back to top <span aria-hidden="true">↑</span></a></div><div class="footer-bottom"><span>© <span data-year>2026</span> ADURE. All rights reserved.</span><span>Beyond Property. Creating Value.</span></div></footer>
+  <dialog class="enquiry-dialog" id="enquiry-dialog" aria-labelledby="enquiry-heading">
+    <div class="dialog-head"><span class="eyebrow">Your next chapter</span><button class="dialog-close" data-close-dialog="enquiry-dialog" aria-label="Close enquiry">×</button></div>
+    <h2 id="enquiry-heading">Let’s see what’s possible.</h2><p class="dialog-intro">Tell us a little about your plans. Prepare an enquiry to review and send through your email app.</p>
+    <form id="enquiry-form"><div class="enquiry-fields"><label>Your interest<select id="enquiry-interest" name="interest"><option value="buy">Buying a property</option><option value="sell">Listing a property</option><option value="rent">Renting a property</option><option value="manage">Property management</option><option value="general">General enquiry</option></select></label><label>Location<select name="location"><option value="">Not decided yet</option><option>Abu Dhabi</option><option>Dubai</option><option>Al Ain</option></select></label><label>Your name<input name="name" autocomplete="name" required maxlength="100"></label><label>Email address<input name="email" type="email" autocomplete="email" required maxlength="150"></label><label class="full-field">What do you have in mind?<textarea name="message" rows="3" maxlength="1800" placeholder="Your property, priorities or next move…" required></textarea></label></div><button type="submit" class="button button-blue">Prepare email draft <span aria-hidden="true">↗</span></button></form>
+    <div class="enquiry-draft" id="enquiry-draft" hidden><p class="eyebrow">Review your enquiry</p><label class="sr-only" for="draft-preview">Email draft</label><textarea id="draft-preview" readonly rows="7"></textarea><div class="draft-actions"><a id="send-email" class="button button-blue" href="mailto:Inquiries@adu-re.com">Open email app <span aria-hidden="true">↗</span></a><button id="copy-draft" class="text-link">Copy draft <span aria-hidden="true">⧉</span></button><button id="edit-draft" class="reset-link">Edit enquiry</button></div><p id="draft-status" role="status"></p></div>
+    <p class="enquiry-note">This concept does not submit enquiries. Your draft stays in this browser until you copy it or open your email app.</p>
+  </dialog>
+  <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-caption"><button class="dialog-close" data-close-dialog="gallery-dialog" aria-label="Close photograph">×</button><img id="gallery-image" src="assets/architecture-waterfront.webp" alt="" width="900" height="488"><div class="gallery-caption"><div><p id="gallery-caption">Waterfront rhythm</p><span>From ADURE’s supplied portfolio · Descriptive image caption</span></div><div class="gallery-controls"><button class="arrow-button" id="gallery-prev" aria-label="Previous photograph">←</button><span id="gallery-count">01 / 05</span><button class="arrow-button" id="gallery-next" aria-label="Next photograph">→</button></div></div></dialog>
+  <div class="sr-only" id="journey-announcement" aria-live="polite"></div>
+  <noscript><p class="noscript-note">For interactive search and selectors, please enable JavaScript. To discuss buying, selling, renting or management, email <a href="mailto:Inquiries@adu-re.com">Inquiries@adu-re.com</a>.</p></noscript>
+</body>
+</html>

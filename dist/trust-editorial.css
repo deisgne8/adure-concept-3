@@ -1,0 +1,23 @@
+/* Image-led sector introduction, paired with the proof section. */
+#trust{padding:clamp(48px,5vw,88px) 0;color:var(--ink)}
+#trust .section-shell{max-width:1680px;width:100%;padding-inline:clamp(24px,4.5vw,88px)}
+#trust .trust-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,5.3vw,100px);align-items:stretch}
+#trust .trust-image{position:relative;min-height:580px;overflow:hidden}
+#trust .trust-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% center}
+#trust .trust-copy{padding:24px 0;align-self:center;min-width:0}
+#trust .trust-copy h2{margin:0;max-width:15ch;color:var(--accent);font:400 clamp(42px,4.2vw,70px)/1.08 var(--font-display);letter-spacing:-.045em;text-transform:uppercase}
+#trust .trust-copy h2 span{color:var(--accent)}
+#trust .trust-copy p{margin:24px 0 38px;max-width:38ch;color:var(--muted);font:400 clamp(18px,1.6vw,25px)/1.5 var(--font-body)}
+#trust .sector-list{margin:0 0 28px}
+#trust .sector{align-items:center;min-height:110px;padding:28px 0;gap:24px;border-top:1px solid #cbd0d6;color:var(--ink);font:400 clamp(22px,2vw,34px)/1.25 var(--font-display);letter-spacing:-.03em}
+#trust .sector:last-child{border-bottom:1px solid #cbd0d6}
+#trust .sector .sector-arrow{color:var(--accent);font-size:26px}
+#trust .trust-copy>.btn{font:400 16px/1.4 var(--font-body);text-transform:none;color:var(--accent);padding:12px 0}
+@media(max-width:800px){
+ #trust .trust-grid{grid-template-columns:1fr;gap:32px}
+ #trust .trust-image{min-height:0;aspect-ratio:4/3}
+ #trust .trust-copy{padding:0}
+ #trust .trust-copy h2{font-size:clamp(40px,7vw,56px);max-width:19ch}
+ #trust .trust-copy p{margin:22px 0 30px}
+ #trust .sector{min-height:90px;padding:24px 0;font-size:clamp(22px,4vw,28px)}
+}

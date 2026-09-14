@@ -1,0 +1,161 @@
+/* Values measured in docs/mira-design-system.md. rem is the audited base B. */
+@font-face{
+  font-family:"Fira Sans";
+  src:url('assets/fonts/fira-sans-400.ttf') format('truetype');
+  font-weight:400;
+  font-display:swap
+}
+
+@font-face{
+  font-family:"Source Sans Pro";
+  src:url('assets/fonts/source-sans-pro-400.ttf') format('truetype');
+  font-weight:400;
+  font-display:swap
+}
+
+:root{
+  
+ --font-display:"Fira Sans",sans-serif;
+  --font-body:"Source Sans Pro",sans-serif;
+  --weight-regular:400;
+  
+ --white:#fff;
+  --ink:#302e2d;
+  --muted:#606269;
+ --accent:#004789;
+  --accent-hover:#003660;
+  --surface:#f8f8f8;
+  --footer:#161616;
+  --border:#e7e6e3;
+  --line:rgba(34,34,34,.2);
+  --inverse-muted:rgba(255,255,255,.7);
+  --inverse-line:rgba(255,255,255,.2);
+  --error:#fe5639;
+  
+ --s025:.25rem;
+  --s05:.5rem;
+  --s075:.75rem;
+  --s1:1rem;
+  --s125:1.25rem;
+  --s15:1.5rem;
+  --s2:2rem;
+  --s225:2.25rem;
+  --s3:3rem;
+  --s35:3.5rem;
+  --s4:4rem;
+  --s45:4.5rem;
+  --s6:6rem;
+  --s9:9rem;
+  
+ --text-display:4.5rem;
+  --line-display:1.09722;
+  --text-h1:3.5rem;
+  --line-h1:1.19643;
+  --text-h2:2.75rem;
+  --line-h2:1.15909;
+  --text-h3:1.875rem;
+  --line-h3:1.13333;
+  --text-card:1.5rem; --line-card:1.16667; --hero-min:52.75rem; --media-short:20rem; --media-medium:25rem; --media-tall:46.75rem; --development-gap:24px; --text-h4:1.5rem;
+  --line-h4:1.16667;
+  --text-body-lg:1.125rem;
+  --line-body-lg:1.55556;
+  --text-body:1rem;
+  --line-body:1.5625;
+  --text-small:.875rem;
+  --line-small:1.57143;
+  --text-label:.8125rem;
+  --line-label:1.53846;
+  --text-nav:.9375rem;
+  --tracking-body:-.005em;
+  --tracking-display:.04em;
+  
+ --container:95rem;
+  --reading:46.75rem;
+  --gutter:0px;
+  --section-space:4rem;
+  --section-gap:3.5rem;
+  --grid-gap:1.5rem;
+  --image-radius:.5rem;
+  --control-radius:.25rem;
+  --border-width:1px;
+  
+ --button-height:3.25rem;
+  --button-small:2.75rem;
+  --button-padding:.9375rem 1.9375rem;
+  --nav-height:4.5rem;
+  --logo-height:2.5rem;
+  --icon:1.25rem;
+  
+ --motion-control:250ms;
+  --motion-image:300ms;
+  --ease:ease-in-out;
+  --image-scale:1.03;
+  --z-header:20;
+  --z-menu:30;
+  --z-dialog:40;
+  
+ /* CSS media-query boundaries: mobile768, desktop1024, scale-cap1600. */
+ font-size:16px;
+  color-scheme:light;
+  
+
+}
+
+@media(min-width:1024px) and (max-width:1599.98px){
+  :root{
+  font-size:1vw
+}
+
+}
+
+@media(min-width:768px) and (max-width:1023.98px){
+  :root{
+  font-size:2.083333vw
+}
+
+}
+
+@media(max-width:1023.98px){
+  :root{
+  --gutter:2rem;
+  --text-display:2.5rem;
+  --line-display:1;
+  --text-h1:2.5rem;
+  --line-h1:1.1;
+  --text-h2:1.75rem;
+  --line-h2:1.14286;
+  --text-h3:1.625rem;
+  --line-h3:1.15385;
+  --line-h4:1.20833;
+  --text-body-lg:1rem;
+  --line-body-lg:1.375;
+  --text-body:.9375rem;
+  --line-body:1.53333;
+  --section-space:2rem;
+  --section-gap:2rem;
+  --nav-height:4rem;
+  --logo-height:1.5rem;
+  --tracking-display:.02em
+}
+
+}
+
+@media(max-width:767.98px){
+  :root{
+  --text-card:1.125rem; --line-card:1.22222; --gutter:1rem
+}
+
+}
+
+@media(prefers-reduced-motion:reduce){
+  :root{
+  --motion-control:0ms;
+  --motion-image:0ms;
+  --image-scale:1
+}
+
+}
+
+
+
+

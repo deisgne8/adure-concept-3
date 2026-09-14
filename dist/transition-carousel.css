@@ -1,0 +1,50 @@
+/* Scoped specificity keeps the original timeline as the no-JavaScript fallback. */
+.transition-v2.has-transition-carousel{overflow:hidden;background:#fff}
+.has-transition-carousel .section-shell{max-width:1680px;width:calc(100% - 12vw);padding-inline:0}
+.has-transition-carousel .transition-head{align-items:start;margin-bottom:60px}
+.has-transition-carousel .transition-carousel{--stage-width:485px;--stage-height:530px;display:flex;position:relative;isolation:isolate}
+.has-transition-carousel .timeline-v2{position:relative;z-index:2;flex:0 0 var(--stage-width);width:var(--stage-width);height:var(--stage-height);margin:0;background:white;border-radius:20px 0 0 20px;overflow:hidden}
+.has-transition-carousel .timeline-step{display:block;position:absolute;inset:0;border:0;padding:0;opacity:0;transition:opacity 500ms ease;pointer-events:none}
+.has-transition-carousel .timeline-step.is-current{opacity:1;z-index:1;pointer-events:auto}
+.has-transition-carousel .transition-panel-inner{display:flex;flex-direction:column;justify-content:space-between;width:100%;height:100%;padding:32px 60px 32px 32px;background:#f3f4f6;border-radius:20px 0 0 20px;transform:translateX(100%);transition:transform 1000ms ease-in-out}
+.has-transition-carousel .is-current .transition-panel-inner{transform:translateX(0)}
+.has-transition-carousel .timeline-step h3{font-size:40px;line-height:1.3;text-transform:none;font-weight:400;margin:0}
+.has-transition-carousel .timeline-step p{font-size:16px;line-height:1.4;margin:0;color:var(--ink)}
+.has-transition-carousel .timeline-step .week{font-size:16px;color:var(--accent)}
+.has-transition-carousel .transition-image-rail{flex:0 0 var(--stage-width);width:var(--stage-width);height:var(--stage-height);touch-action:pan-y;cursor:grab}
+.has-transition-carousel .transition-image-track{display:flex;width:100%;height:100%;transition:transform 500ms ease;will-change:transform}
+.has-transition-carousel .transition-image-track.is-instant{transition:none}
+.has-transition-carousel .transition-image-card{position:relative;flex:0 0 100%;height:100%;padding:0 20px 0 0;border:0;background:none;overflow:hidden;cursor:pointer;text-align:left}
+.has-transition-carousel .transition-image-card img{width:100%;height:100%;object-fit:cover;border-radius:20px;user-select:none}
+.has-transition-carousel .transition-image-card.is-current img{border-radius:0 20px 20px 0}
+.has-transition-carousel .transition-image-wash{position:absolute;inset:0 20px 0 0;background:rgba(255,255,255,.5);border-radius:20px}
+.has-transition-carousel .transition-image-title{position:absolute;bottom:44px;left:40px;right:40px;font:400 40px/1.3 var(--font-display);color:white}
+.has-transition-carousel .transition-image-card.is-current .transition-image-wash,.has-transition-carousel .transition-image-card.is-current .transition-image-title{opacity:0}
+.has-transition-carousel .transition-controls{display:flex;justify-content:flex-end;align-items:center;gap:16px;margin-top:28px}
+.has-transition-carousel .transition-pagination{margin-right:16px;font-size:16px;font-variant-numeric:tabular-nums}
+.has-transition-carousel .transition-pagination b{font-weight:400}
+.has-transition-carousel .transition-pagination>span{color:#a1a6ae}
+.has-transition-carousel .transition-controls button{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--accent);border-radius:50%;font-size:24px;color:var(--accent);background:white;transition:background .2s,color .2s}
+.has-transition-carousel .transition-controls button:hover{background:var(--accent);color:white}
+.transition-v2.has-transition-carousel .section-shell>.btn{margin:0}
+@media(min-width:768px) and (max-width:1100px){
+ .has-transition-carousel .transition-carousel{--stage-width:calc((88vw - 20px) / 2)}
+ .has-transition-carousel .transition-panel-inner{padding:28px}
+}
+@media(max-width:767.98px){
+ .has-transition-carousel .section-shell{width:calc(100% - 40px)}
+ .has-transition-carousel .transition-head{margin-bottom:40px}
+ .has-transition-carousel .transition-carousel{--stage-width:100%;--stage-height:192px;flex-direction:column-reverse}
+ .has-transition-carousel .transition-image-rail{flex:none;overflow:hidden}
+ .has-transition-carousel .transition-image-card{padding:0}
+ .has-transition-carousel .transition-image-card img,.has-transition-carousel .transition-image-card.is-current img{border-radius:12px 12px 0 0}
+ .has-transition-carousel .transition-image-title,.has-transition-carousel .transition-image-wash{display:none}
+ .has-transition-carousel .timeline-v2{flex:none;width:100%;height:270px;border-radius:0 0 12px 12px}
+ .has-transition-carousel .transition-panel-inner{padding:20px;border-radius:0 0 12px 12px;transform:none}
+ .has-transition-carousel .timeline-step h3{font-size:28px}
+ .has-transition-carousel .transition-controls{margin-top:20px;gap:12px}
+ .transition-v2.has-transition-carousel .section-shell>.btn{margin-top:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .has-transition-carousel .timeline-step,.has-transition-carousel .transition-panel-inner,.has-transition-carousel .transition-image-track{transition:none}
+}

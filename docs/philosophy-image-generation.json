@@ -1,0 +1,43 @@
+{
+  "method": "Built-in image_gen",
+  "reference": "User-provided collage codex-clipboard-c40e79bd-86a2-44fe-a1d4-ed259f3b515d.png",
+  "note": "Generated editorial imagery; not documentary photographs of specific ADURE properties.",
+  "assets": [
+    {
+      "name": "clarity-stone",
+      "prompt": "Use case: photorealistic-natural. Create ONE standalone landscape 3:2 photograph for the ADURE real estate philosophy section. The attached image is a mood/subject reference only: do NOT reproduce its collage, overlapping frames, white margins, or layout. Full-bleed single photograph, no text, no logo, no watermark. Quiet premium editorial photography, natural warm sunlight, beige stone, restrained teal-blue shadows, realistic texture, sophisticated UAE setting. Inspired by the top-right photo: close architectural study of sweeping cream limestone balcony edges and reflective blue glass on a contemporary UAE building. Strong elegant diagonals and curved layered stone, low-angle close-up. Sun grazing textured stone, no entire skyscraper, no people.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-8a1bd07d-d8cd-40c0-9738-6899f5bb38e7.png",
+      "path": "dist/assets/philosophy/clarity-stone.webp"
+    },
+    {
+      "name": "clarity-skyline",
+      "prompt": "Use case: photorealistic-natural. Create ONE standalone landscape 3:2 photograph for the ADURE real estate philosophy section. The attached image is a mood/subject reference only: do NOT reproduce its collage, overlapping frames, white margins, or layout. Full-bleed single photograph, no text, no logo, no watermark. Quiet premium editorial photography, natural warm sunlight, beige stone, restrained teal-blue shadows, realistic texture, sophisticated UAE setting. Inspired by top-left: delicate date-palm fronds sharply detailed in the foreground, sun peeking softly through the leaves, Dubai skyline with Burj Khalifa in gentle distant atmospheric focus. Golden morning haze, natural photographic contrast, calm framing.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-3fa5a6df-d0cb-48eb-b3d7-73504a60a7f7.png",
+      "path": "dist/assets/philosophy/clarity-skyline.webp"
+    },
+    {
+      "name": "performance-stone",
+      "prompt": "Use case: photorealistic-natural. Create ONE standalone landscape 3:2 photograph for the ADURE real estate philosophy section. The attached image is a mood/subject reference only: do NOT reproduce its collage, overlapping frames, white margins, or layout. Full-bleed single photograph, no text, no logo, no watermark. Quiet premium editorial photography, natural warm sunlight, beige stone, restrained teal-blue shadows, realistic texture, sophisticated UAE setting. Inspired by middle-right: close-up of honed beige travertine wall at a premium property, dappled late-afternoon light and soft leaf shadows across rich natural stone texture, an out-of-focus olive branch at right foreground. Tactile, quiet, no buildings or people.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-ac1cd54a-c76d-4487-9701-aa5ad5c4a412.png",
+      "path": "dist/assets/philosophy/performance-stone.webp"
+    },
+    {
+      "name": "performance-advisory",
+      "prompt": "Use case: photorealistic-natural. Create ONE standalone landscape 3:2 photograph for the ADURE real estate philosophy section. The attached image is a mood/subject reference only: do NOT reproduce its collage, overlapping frames, white margins, or layout. Full-bleed single photograph, no text, no logo, no watermark. Quiet premium editorial photography, natural warm sunlight, beige stone, restrained teal-blue shadows, realistic texture, sophisticated UAE setting. Inspired by middle-left: close shot of a professional's hand holding a black pen and signing a property document on an elegant desk beside a window with a softly out-of-focus UAE skyline. Only hand and dark suit cuff visible, realistic anatomy, paper with indistinct unreadable lines, no readable text, warm natural daylight.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-8ade6b00-6d65-415e-9fb1-a1ea390ece82.png",
+      "path": "dist/assets/philosophy/performance-advisory.webp"
+    },
+    {
+      "name": "protection-sea",
+      "prompt": "Use case: photorealistic-natural. Create ONE standalone landscape 3:2 photograph for the ADURE real estate philosophy section. The attached image is a mood/subject reference only: do NOT reproduce its collage, overlapping frames, white margins, or layout. Full-bleed single photograph, no text, no logo, no watermark. Quiet premium editorial photography, natural warm sunlight, beige stone, restrained teal-blue shadows, realistic texture, sophisticated UAE setting. Inspired by bottom-right: high overhead aerial photograph of turquoise Arabian Gulf water meeting a pale sand shoreline on a diagonal. Gentle ripples, sunlight sparkling naturally through clear water, sweeping translucent wave patterns, tranquil and refined, no people.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-9a7911f9-4bd1-4cca-bae8-0b38f7a4f807.png",
+      "path": "dist/assets/philosophy/protection-sea.webp"
+    },
+    {
+      "name": "protection-coast",
+      "prompt": "Use case: photorealistic-natural. Create ONE standalone landscape 3:2 photograph for the ADURE real estate philosophy section. The attached image is a mood/subject reference only: do NOT reproduce its collage, overlapping frames, white margins, or layout. Full-bleed single photograph, no text, no logo, no watermark. Quiet premium editorial photography, natural warm sunlight, beige stone, restrained teal-blue shadows, realistic texture, sophisticated UAE setting. Inspired by bottom-left: wide drone photograph of Dubai coastal residences and a curving white-sand beach, calm turquoise sea in foreground and distant Dubai Marina skyline, soft warm morning light and atmospheric perspective, lush landscaping, premium waterfront setting, one tiny distant boat optional.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-6c5eee54-4d55-47f3-8e65-d984c81af137.png",
+      "path": "dist/assets/philosophy/protection-coast.webp"
+    }
+  ]
+}

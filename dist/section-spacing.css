@@ -1,0 +1,37 @@
+/* Shared chapter spacing, based on the generous portfolio reference. */
+#home {
+  --chapter-space:clamp(96px,15vw,192px);
+  --portfolio-motion-space:clamp(64px,5vw,100px);
+}
+
+#home > .section:not(.site-hero) {
+  padding-block:var(--chapter-space);
+  margin-block:0;
+}
+
+/* Count the carousel's existing movement clearance once, within the gap. */
+#home > #portfolio {
+  padding-bottom:calc(var(--chapter-space) - var(--portfolio-motion-space));
+}
+#home #portfolio .portfolio-mosaic {
+  padding-bottom:var(--portfolio-motion-space);
+}
+
+/* The sticky story already includes 32px of space below its imagery. */
+@media(min-width:801px) {
+  #home > #philosophy {
+    padding-bottom:calc(var(--chapter-space) - 32px);
+  }
+}
+
+/* Let the closing panel follow the same spacing rather than a viewport minimum. */
+#home > #conversation {
+  min-height:0;
+}
+
+@media(max-width:800px) {
+  #home {
+    --chapter-space:64px;
+    --portfolio-motion-space:48px;
+  }
+}

@@ -1,0 +1,80 @@
+/* One compact property-search panel: intent above, criteria in a single row. */
+#discovery #filter-home {
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:var(--image-radius);
+  background:var(--white);
+}
+
+#discovery #filter-home .tabs {
+  align-items:center;
+  min-height:44px;
+  margin:0;
+  padding:5px 8px;
+  border-bottom:1px solid var(--border);
+}
+
+#discovery #filter-home .tab {
+  min-height:32px;
+  padding:5px 18px;
+}
+
+#discovery #filter-home #property-search {
+  grid-template-columns:1.2fr 1.05fr .9fr 1fr auto;
+  gap:0;
+  align-items:stretch;
+  padding:8px 10px;
+  border:0;
+  border-radius:0;
+}
+
+#discovery #property-search .field {
+  justify-content:center;
+  gap:2px;
+  padding:4px 18px;
+  border-right:1px solid var(--border);
+}
+
+#discovery #property-search select {
+  min-height:30px;
+  padding:2px 0;
+  border-bottom:0;
+  color:var(--ink);
+}
+
+#discovery #property-search > .btn {
+  align-self:center;
+  grid-column:auto;
+  width:auto;
+  min-width:164px;
+  margin-left:16px;
+}
+
+@media(max-width:1023.98px) and (min-width:768px) {
+  #discovery #property-search .field { padding-inline:12px; }
+  #discovery #property-search > .btn {
+    min-width:138px;
+    margin-left:12px;
+    padding-inline:14px;
+  }
+}
+
+@media(max-width:767.98px) {
+  #discovery #filter-home {
+    overflow:visible;
+    margin-bottom:12px;
+    border:0;
+    border-radius:0;
+  }
+  #discovery #filter-home .tabs {
+    min-height:0;
+    padding:0;
+    border-bottom:0;
+  }
+  #discovery #filter-home .tab {
+    min-height:var(--button-small);
+    padding:var(--s075) var(--s2);
+  }
+  #discovery #filter-home #property-search { display:none; }
+  #filter-dialog #property-search { display:flex; }
+}

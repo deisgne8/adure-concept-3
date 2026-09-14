@@ -1,0 +1,10 @@
+{
+  "foundingYear": {"values": [2002, 2008], "status": "conflict", "publish": false},
+  "units": {"value": "3,000+", "source": "Company profile p2; discovery questionnaire", "status": "source-supported; refresh before launch", "publish": true},
+  "professionals": {"value": "200+", "source": "Company profile p2; discovery questionnaire", "status": "source-supported; refresh before launch", "publish": true},
+  "occupancy": {"value": "98%", "source": "Company profile p2", "status": "period and methodology unconfirmed", "publish": false},
+  "vacancy": {"value": "1–2 weeks", "source": "Company profile p2", "status": "period and methodology unconfirmed", "publish": false},
+  "clients": {"source": "Company profile pp5–6", "status": "website-use approval required", "publish": false},
+  "portfolio": {"source": "Company profile p11", "status": "photography supplied; identities not confirmed", "namedAssets": false},
+  "contact": {"email": "Inquiries@adu-re.com", "source": "Company profile p33", "status": "confirm category routing before launch", "phonePublished": false, "whatsappPublished": false}
+}

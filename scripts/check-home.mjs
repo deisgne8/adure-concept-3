@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import {readFileSync,existsSync} from 'node:fs';
+import {properties,matchProperties} from '../dist/home-data.js';
+const html=readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
+const source=readFileSync(new URL('../docs/reference-evidence/adure-v2-source.html',import.meta.url),'utf8');
+const referenceHome=source.slice(source.indexOf('<section class="page active home-v2"'),source.indexOf('<section class="page" id="properties"'));
+const textTags=s=>[...s.matchAll(/<(h[123]|p|figcaption)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/g)].map(m=>m[2].replace(/<[^>]+>/g,'').trim()).filter(Boolean);
+const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
+// Exclude added portfolio cards and normalize the requested Lease → Rent wording.
+const unchangedCopy=s=>s.replace(/<article class="portfolio-item-v2" data-portfolio-added>[\s\S]*?<\/article>/g,'').replace(/<section[^>]*class="journey-section[^>]*>[\s\S]*?<\/section>/,section=>section.replace(/renting/g,'leasing').replace(/>Rent</g,'>Lease<'));
+assert.deepEqual(textTags(unchangedCopy(localHome)),textTags(unchangedCopy(referenceHome)),'Unchanged reference headings, paragraphs and captions are preserved in order');
+const ids=[...localHome.matchAll(/<section class="[^"]* section" id="([^"]+)"/g)].map(m=>m[1]);
+assert.deepEqual(ids,['hero','philosophy','journeys','discovery','management','proof','portfolio','transition','trust','conversation']);
+assert.equal((html.match(/<select /g)||[]).length,4);
+assert.equal((html.match(/<h1>/g)||[]).length,1);
+for(const m of html.matchAll(/(?:src|href)="(assets\/[^"#]+|[a-z-]+\.(?:css|js))"/g))assert.ok(existsSync(new URL('../dist/'+m[1],import.meta.url)),m[1]);
+for(const p of properties)assert.ok(existsSync(new URL('../dist/assets/'+p.image,import.meta.url)));
+assert.equal(properties.length,6);
+assert.deepEqual(matchProperties({intent:'buy'}).map(p=>p.id),['ADU-004']);
+assert.equal(matchProperties({intent:'lease'}).length,5);
+assert.equal(matchProperties({intent:'lease',location:'Al Ain'}).length,0);
+assert.deepEqual(matchProperties({intent:'lease',bedrooms:'Studio',price:'Under AED 100K'}).map(p=>p.id),['ADU-006']);
+assert.deepEqual(matchProperties({intent:'lease',type:'Commercial',location:'Dubai'}).map(p=>p.id),['ADU-005']);
+assert.deepEqual(matchProperties({intent:'lease',bedrooms:'1–2 bedrooms',price:'AED 100K–200K'}).map(p=>p.id),['ADU-304']);
+assert.equal(matchProperties({intent:'buy',type:'Villa'}).length,0);
+for(const route of new Set([...referenceHome.matchAll(/data-route="([^"]+)"/g)].map(m=>m[1])))assert.ok(localHome.includes('#'+route),route+' destination retained');
+console.log('PASS: homepage copy/order with approved editorial changes, CTA destinations, assets, semantic heading and multi-field property matching.');

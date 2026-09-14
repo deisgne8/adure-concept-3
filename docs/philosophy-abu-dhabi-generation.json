@@ -1,0 +1,24 @@
+{
+  "method": "Built-in image_gen",
+  "note": "Generated Abu Dhabi-inspired editorial imagery, not documentary photographs of specific ADURE properties.",
+  "assets": [
+    {
+      "name": "clarity-skyline-abu-dhabi",
+      "prompt": "Use case: photorealistic-natural. Regenerate this single full-bleed landscape 3:2 editorial photograph for an Abu Dhabi real estate website. Input image is a composition and lighting reference. Keep its warm golden light, realistic materials and restrained blue-and-beige colour palette. REPLACE the Dubai setting with ABU DHABI, UAE. No Burj Khalifa, no Burj Al Arab, no Dubai Marina, no Palm Jumeirah. No text, logos, watermark, borders or collage. Date palm fronds at left foreground and soft sunlight filtering through them. Across calm blue water, the Abu Dhabi Corniche skyline, recognisable cluster of five curved blue-glass Etihad Towers with differing heights and slanted rooflines, and surrounding Corniche buildings in gentle atmospheric focus. No needle-like supertall towers. Preserve the calm palm-framed composition.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-b1d2e260-03f3-45ce-95ed-837daee4d3b6.png",
+      "path": "dist/assets/philosophy/clarity-skyline-abu-dhabi.webp"
+    },
+    {
+      "name": "performance-advisory-abu-dhabi",
+      "prompt": "Use case: photorealistic-natural. Regenerate this single full-bleed landscape 3:2 editorial photograph for an Abu Dhabi real estate website. Input image is a composition and lighting reference. Keep its warm golden light, realistic materials and restrained blue-and-beige colour palette. REPLACE the Dubai setting with ABU DHABI, UAE. No Burj Khalifa, no Burj Al Arab, no Dubai Marina, no Palm Jumeirah. No text, logos, watermark, borders or collage. Close shot of a professional's hand signing a property document on a desk, dark suit cuff, realistic hand and black pen. Beyond the floor-to-ceiling window is the Abu Dhabi Corniche and a softly blurred cluster of curved blue-glass Etihad Towers, with calm Gulf water and no needle-like supertall. Keep the hand as the focal point, natural indoor reflections, paper text indistinct and unreadable.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-bf1c55d1-1b70-4216-a3d8-bad048b59ac5.png",
+      "path": "dist/assets/philosophy/performance-advisory-abu-dhabi.webp"
+    },
+    {
+      "name": "protection-coast-abu-dhabi",
+      "prompt": "Use case: photorealistic-natural. Regenerate this single full-bleed landscape 3:2 editorial photograph for an Abu Dhabi real estate website. Input image is a composition and lighting reference. Keep its warm golden light, realistic materials and restrained blue-and-beige colour palette. REPLACE the Dubai setting with ABU DHABI, UAE. No Burj Khalifa, no Burj Al Arab, no Dubai Marina, no Palm Jumeirah. No text, logos, watermark, borders or collage. Wide aerial view of Abu Dhabi waterfront: turquoise Arabian Gulf water, a gentle crescent sandy beach and landscaped coastal residences in foreground; the Abu Dhabi Corniche skyline with recognisable curved Etihad Towers grouped at the western end across the water. An open coastal composition with natural sand islands and sea, no artificial palm-shaped island and no Dubai landmarks. Soft warm morning light; premium but believable editorial aerial photograph.",
+      "source": "/Users/designer/.codex/generated_images/01a09e82-6587-7692-b9fe-d9bb555739bc/exec-d1b71765-28e4-4a5a-95c2-66e09f4e740c.png",
+      "path": "dist/assets/philosophy/protection-coast-abu-dhabi.webp"
+    }
+  ]
+}
