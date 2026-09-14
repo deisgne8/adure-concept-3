@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "User-provided four-panel Buy/Sell/Rent/Manage reference",
+  "assets": [
+    {
+      "name": "buy",
+      "prompt": "Use case: photorealistic-natural. Reference image: supplied four-panel ADURE moodboard. Create ONE standalone portrait photograph, 1024x1536, matching closely the FIRST (leftmost BUY) panel: luxury Abu Dhabi waterfront apartment terrace, cream sofa and round stone table, glass railing, olive tree, Etihad Towers skyline across blue water. Preserve the reference panel's composition, warm natural light, materials and subdued premium editorial photography. Fill the entire canvas with that ONE scene only. Remove ALL typography, words, logos, labels, underlines, watermarks and panel dividers, including all lettering on walls and uniforms. No collage, no UI, no baked gradient. This is the clean photographic asset for the buy website card.",
+      "path": "dist/assets/journeys/buy.jpg"
+    },
+    {
+      "name": "sell",
+      "prompt": "Use case: photorealistic-natural. Reference image: supplied four-panel ADURE moodboard. Create ONE standalone portrait photograph, 1024x1536, matching closely the SECOND (SELL) panel: close-up of suited property advisor's hand with a pen reviewing property photography on a marble desk, client hand foreground, olive branches, shallow depth of field. Preserve the reference panel's composition, warm natural light, materials and subdued premium editorial photography. Fill the entire canvas with that ONE scene only. Remove ALL typography, words, logos, labels, underlines, watermarks and panel dividers, including all lettering on walls and uniforms. No collage, no UI, no baked gradient. This is the clean photographic asset for the sell website card.",
+      "path": "dist/assets/journeys/sell.jpg"
+    },
+    {
+      "name": "rent",
+      "prompt": "Use case: photorealistic-natural. Reference image: supplied four-panel ADURE moodboard. Create ONE standalone portrait photograph, 1024x1536, matching closely the THIRD (RENT) panel: warm elegant cream living room with round travertine coffee table, sofa, curtains and full-height window overlooking Abu Dhabi water and Etihad Towers. Preserve the reference panel's composition, warm natural light, materials and subdued premium editorial photography. Fill the entire canvas with that ONE scene only. Remove ALL typography, words, logos, labels, underlines, watermarks and panel dividers, including all lettering on walls and uniforms. No collage, no UI, no baked gradient. This is the clean photographic asset for the rent website card.",
+      "path": "dist/assets/journeys/rent.jpg"
+    },
+    {
+      "name": "manage",
+      "prompt": "Use case: photorealistic-natural. Reference image: supplied four-panel ADURE moodboard. Create ONE standalone portrait photograph, 1024x1536, matching closely the FOURTH (rightmost MANAGE) panel: property maintenance professional seen from behind in plain dark grey uniform and cap holding a tablet, landscaped modern limestone and glass residential entrance. Preserve the reference panel's composition, warm natural light, materials and subdued premium editorial photography. Fill the entire canvas with that ONE scene only. Remove ALL typography, words, logos, labels, underlines, watermarks and panel dividers, including all lettering on walls and uniforms. No collage, no UI, no baked gradient. This is the clean photographic asset for the manage website card.",
+      "path": "dist/assets/journeys/manage.jpg"
+    }
+  ]
+}

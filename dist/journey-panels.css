@@ -11,7 +11,7 @@
 #journeys .journey-media img{display:block;width:100%;height:100%;max-height:none;object-fit:cover;filter:none;transform:none;transition:transform .85s cubic-bezier(.22,.61,.36,1)}
 #journeys .journey-card::before,#journeys .journey-card::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:-1}
 #journeys .journey-card::before{background:linear-gradient(180deg,transparent 42%,rgba(4,28,45,.18) 65%,rgba(4,28,45,.85))}
-#journeys .journey-card::after{background:#194b8c;opacity:0;transition:opacity .4s ease}
+#journeys .journey-card::after{background:var(--accent);opacity:0;transition:opacity var(--motion-slow) var(--ease)}
 #journeys .journey-content{position:relative;padding:24px 20px;min-width:0}
 #journeys .journey-card h3{font:500 clamp(24px,2vw,30px)/1.12 var(--font-display);color:#fff;margin:0;letter-spacing:-.03em;transition:color .35s ease}
 #journeys .journey-details{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .5s cubic-bezier(.22,.61,.36,1),opacity .3s ease}
@@ -21,7 +21,7 @@
 #journeys .journey-card .btn:after{display:none}
 #journeys .journey-card:is(:hover,:focus-within)::after{opacity:.94}
 #journeys .journey-card:is(:hover,:focus-within) img{transform:scale(1.035);filter:none}
-#journeys .journey-card:is(:hover,:focus-within) h3{color:#45c4f3}
+#journeys .journey-card:is(:hover,:focus-within) h3{color:var(--brand-highlight)}
 #journeys .journey-card:is(:hover,:focus-within) .journey-details{grid-template-rows:1fr;opacity:1}
 #journeys .journey-card:is(:hover,:focus-within) .btn{pointer-events:auto}
 #journeys .journey-card .btn:focus-visible{outline:2px solid white;outline-offset:4px}

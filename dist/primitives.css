@@ -30,6 +30,9 @@ a{
   color:inherit;
   text-decoration:none
 }
+a:not([href]){
+  cursor:default
+}
 img{
   display:block;
   width:100%;
@@ -130,12 +133,14 @@ p{
   gap:var(--s075)
 }
 .btn.link:after{
-  content:'›';
+  content:'→';
   font-size:var(--s15);
   line-height:1;
   transition:transform var(--motion-control) var(--ease)
 }
 .btn.link:hover,.text-link:hover{
+  background:transparent;
+  border-color:transparent;
   color:var(--accent-hover)
 }
 .btn.link:hover:after{
@@ -342,7 +347,7 @@ dialog::backdrop{
 }
 
 .footer{
-  background:var(--footer);
+  background:var(--accent);
   color:white;
   padding:var(--s9) 0 var(--s2)
 }
@@ -356,9 +361,9 @@ dialog::backdrop{
   object-fit:contain;
   width:12rem;
   height:auto;
-  background:white;
-  padding:var(--s05);
-  border-radius:var(--control-radius)
+  background:transparent;
+  padding:0;
+  filter:brightness(0) invert(1)
 }
 .footer h3{
   font-family:var(--font-body);
@@ -401,8 +406,9 @@ dialog::backdrop{
 }
 .header-cta{
   margin-left:auto;
-  min-height:2.25rem;
-  padding:var(--s05);
+  height:var(--button-small);
+  min-height:var(--button-small);
+  padding:var(--space-xs) var(--space-sm);
   font-size:var(--text-label)
 }
 .menu-toggle{

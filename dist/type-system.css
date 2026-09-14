@@ -7,6 +7,7 @@
   --type-body-lg:18px;
   --type-body:16px;
   --type-label:14px;
+  --type-meta:14px;
 }
 
 #home #hero h1 {
@@ -33,14 +34,14 @@
 
 #home #philosophy .principle h3,
 #home #management .service-row h3,
-#home #transition .timeline-step h3,
-#home #transition .transition-image-title {
+#home #transition .timeline-step h3 {
   font:400 var(--type-feature)/1.12 var(--font-display);
   letter-spacing:-.025em;
   text-transform:uppercase;
 }
 
 #home #journeys .journey-card h3,
+#home #transition .transition-image-title,
 #home #discovery .property-card h3,
 #home #portfolio .portfolio-caption h3,
 #home #trust .sector {
@@ -137,6 +138,10 @@
   letter-spacing:0;
 }
 
+#home #proof .proof-about {
+  gap:var(--space-sm);
+}
+
 #home #trust .trust-copy h2 span {
   color:var(--accent);
 }
@@ -169,6 +174,23 @@
 #home #discovery .map-preview-price {
   color:var(--ink);
   font:400 18px/1.4 var(--font-display);
+}
+
+#home .discovery-title p,
+#home .portfolio-intro p,
+#home .transition-head p,
+#home .philosophy-lead p,
+#home #proof .proof-statement p,
+#home #trust .trust-copy > p,
+#home #conversation .final-layout p {
+  max-width:var(--reading);
+}
+
+#home #portfolio .portfolio-card-meta,
+#home #discovery .meta,
+#home #transition .week,
+#home #proof .proof-statistic dt {
+  font-size:var(--type-meta);
 }
 
 @media(max-width:767.98px) {

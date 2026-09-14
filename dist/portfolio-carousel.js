@@ -3,6 +3,21 @@ import './vendor/smooothy-0.0.35.min.js';
 const rail = document.querySelector('#portfolio .portfolio-mosaic');
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const cards = [...rail.children];
+const portfolioMedia = [
+  ['assets/portfolio-waterfront-tower-v2.png', 'Waterfront residential tower in Abu Dhabi'],
+  ['assets/portfolio-modern-villa-v2.png', 'Contemporary villa with landscaped pool'],
+  ['assets/portfolio-waterfront-plaza-v2.png', 'Waterfront mixed-use plaza at sunset'],
+  ['assets/portfolio-garden-community-v2.png', 'Landscaped residential community'],
+  ['assets/portfolio-curved-towers-v2.png', 'Curved mixed-use towers in Abu Dhabi']
+];
+
+cards.forEach((card, index) => {
+  const image = card.querySelector('img');
+  const media = portfolioMedia[index];
+  if (!image || !media) return;
+  image.src = media[0];
+  image.alt = media[1];
+});
 const layers = cards.map(card => ({
   inner: card.querySelector('.portfolio-card'),
   image: card.querySelector('img')

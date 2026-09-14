@@ -1,12 +1,14 @@
 /* Elyse-inspired philosophy: a quiet text column with two overlapping images. */
-#philosophy { background:var(--white); color:var(--ink); padding:clamp(56px,5vw,96px) 0 0; overflow:clip; }
+#home #philosophy { background:var(--white); color:var(--ink); padding:0; overflow:clip; }
 #philosophy .section-shell { width:min(90%,1560px); max-width:none; padding:0; display:block; }
-#philosophy .philosophy-lead { display:flex; align-items:start; justify-content:space-between; gap:32px; margin:0 0 24px; }
+#home #philosophy .philosophy-lead { display:flex; align-items:start; justify-content:space-between; gap:32px; margin:0; }
 #philosophy .philosophy-lead h2 { color:var(--ink); font-family:var(--font-display); margin:0; }
-#philosophy .philosophy-lead p { max-width:38ch; color:var(--muted); font:400 var(--text-body-lg)/var(--line-body-lg) var(--font-body); }
+#philosophy .philosophy-lead p { max-width:38ch; margin:0; color:var(--muted); font:400 var(--text-body-lg)/var(--line-body-lg) var(--font-body); }
 #philosophy .philosophy-stage { display:block; position:relative; min-height:0; }
-#philosophy.has-philosophy-story .philosophy-stage { min-height:210svh; }
-#philosophy .philosophy-sticky { display:grid; grid-template-columns:34% 52%; justify-content:space-between; align-items:center; position:sticky; top:var(--nav-height); height:clamp(420px,42vw,600px); min-height:0; padding:32px 0; }
+#philosophy.has-philosophy-story .philosophy-stage { min-height:calc(200svh - var(--nav-height)); }
+/* Pin the complete composition, including its introduction, in the viewport. */
+#philosophy .philosophy-sticky { display:flex; flex-direction:column; justify-content:center; gap:clamp(24px,4svh,48px); position:sticky; top:var(--nav-height); height:calc(100svh - var(--nav-height)); min-height:0; padding:32px 0; box-sizing:border-box; }
+#philosophy .philosophy-scene { display:grid; grid-template-columns:34% 52%; justify-content:space-between; align-items:center; height:clamp(280px,48svh,540px); flex-shrink:0; }
 #philosophy .philosophy-story-copy { position:relative; padding-left:32px; }
 #philosophy .philosophy-story-line { position:absolute; top:0; bottom:0; left:0; width:1px; background:var(--line); }
 #philosophy .philosophy-story-line span { display:block; width:100%; height:100%; background:var(--accent); transform:scaleY(var(--philosophy-fill,.3333)); transform-origin:top; transition:transform .8s cubic-bezier(.22,.61,.36,1); }
@@ -26,18 +28,19 @@
 #philosophy .is-active .philosophy-image-large,#philosophy .is-active .philosophy-image-small { clip-path:inset(0); transform:none; }
 @media(max-width:1100px) and (min-width:801px) {
   #philosophy .section-shell { width:90%; }
-  #philosophy .philosophy-sticky { grid-template-columns:36% 50%; }
+  #philosophy .philosophy-scene { grid-template-columns:36% 50%; }
   #philosophy .philosophy-story-copy { padding-left:24px; }
   #philosophy .principle h3 { font-size:clamp(36px,4.1vw,48px); }
   #philosophy .philosophy-image-small { left:-18%; width:50%; }
 }
 @media(max-width:800px) {
-  #philosophy { padding:48px 0 56px; }
+  #home #philosophy { padding:48px 0 56px; }
   #philosophy .section-shell { width:calc(100% - 40px); }
-  #philosophy .philosophy-lead { display:block; margin-bottom:36px; }
+  #home #philosophy .philosophy-lead { display:block; margin-bottom:36px; }
   #philosophy .philosophy-lead p { margin-top:16px; max-width:40ch; }
   #philosophy.has-philosophy-story .philosophy-stage { min-height:0; }
-  #philosophy .philosophy-sticky { position:relative; top:auto; height:auto; min-height:0; padding:0; display:flex; flex-direction:column; align-items:stretch; gap:48px; }
+  #philosophy .philosophy-sticky { position:relative; top:auto; height:auto; min-height:0; padding:0; gap:0; }
+  #philosophy .philosophy-scene { display:flex; flex-direction:column; align-items:stretch; gap:48px; height:auto; }
   #philosophy .philosophy-story-media { order:-1; height:clamp(240px,65vw,380px); width:82%; align-self:flex-end; }
   #philosophy .philosophy-image-small { left:-22%; width:52%; height:68%; top:20%; }
   #philosophy .philosophy-story-copy { padding-left:24px; }
@@ -47,6 +50,7 @@
   #philosophy .principle p { max-width:30ch; }
 }
 #philosophy.is-static .philosophy-sticky { height:auto; min-height:0; }
+#philosophy.is-static .philosophy-scene { height:auto; }
 #philosophy.is-static .principles { display:grid; gap:36px; min-height:0; }
 #philosophy.is-static .principle { position:relative; inset:auto; min-height:0; opacity:1; visibility:visible; pointer-events:auto; transform:none; transition:none; }
 @media(min-width:801px){

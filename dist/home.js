@@ -5,10 +5,23 @@ import './management-carousel.js';
 import {updatePropertyMap} from './property-map.js';
 import {properties,matchProperties,reference} from './home-data.js';
 const $=s=>document.querySelector(s);
+function removeHyperlinks(root=document){
+ const links=[];
+ if(root.matches?.('a[href]'))links.push(root);
+ root.querySelectorAll?.('a[href]').forEach(link=>links.push(link));
+ links.forEach(link=>{
+  link.removeAttribute('href');
+  link.removeAttribute('target');
+  link.removeAttribute('rel');
+ });
+}
+removeHyperlinks();
+new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{
+ if(node.nodeType===1)removeHyperlinks(node);
+}))).observe(document.body,{childList:true,subtree:true});
 const form=$('#property-search'),filterDialog=$('#filter-dialog'),menu=$('#mobile-menu');
 const header=$('.site-header'),hero=$('.site-hero');
 const filterHome=$('#filter-home'),intentTabs=$('.tabs'),filterOpen=$('.filter-open');
-filterHome.prepend(intentTabs);
 filterHome.after(filterOpen);
 function updateHeader(){header.classList.toggle('is-glass',scrollY>Math.max(24,hero.offsetHeight*.08));}
 updateHeader();

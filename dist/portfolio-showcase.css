@@ -107,8 +107,8 @@
 #portfolio .portfolio-card:focus-within h3,
 #portfolio .portfolio-card:hover .portfolio-card-arrow,
 #portfolio .portfolio-card:focus-within .portfolio-card-arrow { transform:translate(0,0); }
-#portfolio .portfolio-card:hover .portfolio-card-meta,
-#portfolio .portfolio-card:focus-within .portfolio-card-meta { background:var(--accent); color:white; }
+#home #portfolio .portfolio-card:hover .portfolio-card-meta,
+#home #portfolio .portfolio-card:focus-within .portfolio-card-meta { background:var(--accent); color:var(--white); }
 #portfolio .portfolio-card-link:focus-visible { outline:3px solid var(--accent); outline-offset:-3px; }
 @media(max-width:991px) { #portfolio .portfolio-item-v2 { flex-basis:50%; } }
 @media(max-width:767px) { #portfolio .portfolio-item-v2 { flex-basis:66%; } }

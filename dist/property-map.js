@@ -82,7 +82,7 @@ function select(id,move){
     marker.getElement()?.setAttribute('aria-pressed',String(key===p.id));
     marker.setZIndexOffset(key===p.id?1000:0);
   });
-  preview.innerHTML=`<img src="assets/${escape(p.image)}" alt="${escape(p.title)}" width="640" height="400"><div class="map-preview-copy"><span class="map-preview-place">${escape(p.place)}</span><h3>${escape(p.title)}</h3><div class="map-preview-price">${price(p)}</div><div class="map-preview-facts">${escape(p.facts)}</div><a class="btn primary" href="${reference}#property-detail">View property <span aria-hidden="true">↗</span></a></div>`;
+  preview.innerHTML=`<img src="assets/${escape(p.image)}" alt="${escape(p.title)}" width="640" height="400"><div class="map-preview-copy"><span class="map-preview-place">${escape(p.place)}</span><h3>${escape(p.title)}</h3><div class="map-preview-price">${price(p)}</div><div class="map-preview-facts">${escape(p.facts)}</div><a class="btn primary" href="${reference}#property-detail">View property <span aria-hidden="true">→</span></a></div>`;
   if(move&&map)map.flyTo(propertyLocations[p.id],12,{animate:!reduced(),duration:.8});
 }
 export function updatePropertyMap(results){

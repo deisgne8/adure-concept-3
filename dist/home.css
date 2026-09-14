@@ -6,15 +6,17 @@
 @import url('./property-map.css');
 @import url('./philosophy-story.css');
 @import url('./journey-panels.css');
+@import url('./sharp-edges.css');
 @import url('./section-spacing.css');
 @import url('./discovery-search.css');
 @import url('./type-system.css');
+@import url('./arrow-system.css');
 
 /* Quiet background changes separate the main chapters. */
 #home #journeys,
 #home #management,
 #home #transition{
-  background:#f3f6f7;
+  background:var(--surface-alt);
 }
 #home #philosophy,
 #home #discovery,
@@ -665,15 +667,7 @@ main{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center 48%;
-  filter:saturate(.72) contrast(.92)
-}
-.final-v2:after{
-  content:"";
-  position:absolute;
-  z-index:-1;
-  inset:0;
-  background:linear-gradient(90deg,rgba(5,22,45,.12),rgba(5,22,45,.34))
+  object-position:center 48%
 }
 .final-v2 .section-shell{
   position:relative;
@@ -736,7 +730,7 @@ main{
   line-height:var(--line-h4)
 }
 .final-links a:after{
-  content:'›'
+  content:'→'
 }
 .final-links a:hover{
   color:var(--accent)

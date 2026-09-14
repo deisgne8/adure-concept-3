@@ -4,14 +4,39 @@ if(root){
   const dots=[...root.querySelectorAll('.management-pagination button')];
   const visual=root.querySelector('.management-visual-v2');
   const image=visual.querySelector('img');
+  const serviceMedia=[
+    ['assets/management-leasing-v2.png','Property advisor presenting an Abu Dhabi waterfront residence to prospective tenants'],
+    ['assets/management-facility-v2.png','Facility manager inspecting a premium Abu Dhabi waterfront property'],
+    ['assets/management-financial-v2.png','Property advisor reviewing financial and legal documents overlooking the Abu Dhabi waterfront']
+  ];
+  slides.forEach((slide,index)=>{
+    const [source,alt]=serviceMedia[index];
+    slide.dataset.image=source;
+    slide.dataset.alt=alt;
+  });
+  image.src=slides[0].dataset.image;
+  image.alt=slides[0].dataset.alt;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let active=0;
-  let timer;
+  const layout=root.querySelector('.management-layout-v2');
+  const copy=root.querySelector('.management-carousel-copy');
+  const header=document.querySelector('.site-header');
+  const track=document.createElement('div');
+  track.className='management-scroll-track';
+  const sticky=document.createElement('div');
+  sticky.className='management-scroll-sticky';
+  layout.append(track);
+  track.append(sticky);
+  sticky.append(copy,visual);
+  root.classList.add('has-management-scroll');
+  let active=-1,frame=0,step=1,headerHeight=0,imageVersion=0;
 
-  slides.slice(1).forEach(slide=>{const preload=new Image();preload.src=slide.dataset.image;});
+  const preloads=slides.map(slide=>{const preload=new Image();preload.src=slide.dataset.image;return preload;});
 
   function select(index,focus=false){
-    active=(index+slides.length)%slides.length;
+    const nextIndex=(index+slides.length)%slides.length;
+    if(nextIndex===active){if(focus)dots[active].focus();return;}
+    active=nextIndex;
+    const version=++imageVersion;
     slides.forEach((slide,i)=>{
       const current=i===active;
       slide.classList.toggle('is-active',current);
@@ -26,34 +51,49 @@ if(root){
     const slide=slides[active];
     if(image.getAttribute('src')!==slide.dataset.image){
       visual.classList.add('is-changing');
-      const next=new Image();
-      next.src=slide.dataset.image;
-      next.alt=slide.dataset.alt;
+      image.src=slide.dataset.image;
+      image.alt=slide.dataset.alt;
       const reveal=()=>{
-        image.src=next.src;
-        image.alt=next.alt;
+        if(version!==imageVersion)return;
         requestAnimationFrame(()=>visual.classList.remove('is-changing'));
       };
-      next.complete?reveal():next.addEventListener('load',reveal,{once:true});
-    }
+      image.decode().then(reveal,reveal);
+    }else visual.classList.remove('is-changing');
     if(focus)dots[active].focus();
   }
 
-  function start(){if(!reduced&&!timer)timer=setInterval(()=>select(active+1),6500);}
-  function stop(){clearInterval(timer);timer=undefined;}
+  function syncScroll(){
+    frame=0;
+    const distance=headerHeight-track.getBoundingClientRect().top;
+    select(Math.max(0,Math.min(slides.length-1,Math.floor(distance/step))));
+  }
+  function queueScroll(){if(!frame)frame=requestAnimationFrame(syncScroll);}
+  function measure(){
+    headerHeight=header?.getBoundingClientRect().height||0;
+    const height=Math.max(1,window.innerHeight-headerHeight);
+    step=Math.max(320,height*.7);
+    root.style.setProperty('--management-top',`${headerHeight}px`);
+    root.style.setProperty('--management-stage-height',`${Math.min(780,height)}px`);
+    root.style.setProperty('--management-scroll-distance',`${step*slides.length}px`);
+    syncScroll();
+  }
+  function navigate(index,focus=false){
+    const next=(index+slides.length)%slides.length;
+    const top=scrollY+track.getBoundingClientRect().top-headerHeight+step*(next+.15);
+    if(focus){dots[next].tabIndex=0;dots[next].focus({preventScroll:true});}
+    window.scrollTo({top,behavior:reduced?'instant':'smooth'});
+  }
   dots.forEach((dot,index)=>{
-    dot.addEventListener('click',()=>{select(index);stop();start();});
+    dot.addEventListener('click',()=>navigate(index));
     dot.addEventListener('keydown',event=>{
-      if(event.key==='ArrowRight'||event.key==='ArrowDown'){event.preventDefault();select(active+1,true);}
-      if(event.key==='ArrowLeft'||event.key==='ArrowUp'){event.preventDefault();select(active-1,true);}
-      if(event.key==='Home'){event.preventDefault();select(0,true);}
-      if(event.key==='End'){event.preventDefault();select(slides.length-1,true);}
+      if(event.key==='ArrowRight'||event.key==='ArrowDown'){event.preventDefault();navigate(index+1,true);}
+      if(event.key==='ArrowLeft'||event.key==='ArrowUp'){event.preventDefault();navigate(index-1,true);}
+      if(event.key==='Home'){event.preventDefault();navigate(0,true);}
+      if(event.key==='End'){event.preventDefault();navigate(slides.length-1,true);}
     });
   });
-  root.addEventListener('mouseenter',stop);
-  root.addEventListener('mouseleave',start);
-  root.addEventListener('focusin',stop);
-  root.addEventListener('focusout',start);
-  select(0);
-  start();
+  addEventListener('scroll',queueScroll,{passive:true});
+  addEventListener('resize',measure,{passive:true});
+  if(header)new ResizeObserver(measure).observe(header);
+  measure();
 }

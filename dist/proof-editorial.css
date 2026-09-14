@@ -10,7 +10,7 @@
 #proof .proof-about:hover span{background:var(--accent);transform:translate(2px,-2px)}
 #proof .proof-about:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
 #proof .proof-statistics{margin:0}
-#proof .proof-statistic{display:flex;flex-direction:column;gap:14px;border-top:1px solid #cbd0d6;padding:16px 0 28px}
+#proof .proof-statistic{display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-strong);padding:16px 0 28px}
 #proof .proof-statistic dt{order:2;display:flex;align-items:baseline;gap:9px;margin:0;color:var(--muted);font:400 14px/1.5 var(--font-body);letter-spacing:.025em;text-transform:uppercase}
 #proof .proof-statistic dt:before{content:'';width:7px;height:7px;background:var(--accent);flex-shrink:0;align-self:center}
 #proof .proof-statistic dd{order:1;margin:0;color:var(--accent);font:400 clamp(64px,6.3vw,106px)/1 var(--font-display);letter-spacing:-.045em;font-variant-numeric:lining-nums;white-space:nowrap}

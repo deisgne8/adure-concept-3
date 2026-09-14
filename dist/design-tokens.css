@@ -25,9 +25,16 @@
  --accent:#004789;
   --accent-hover:#003660;
   --surface:#f8f8f8;
+  --surface-alt:#f3f6f7;
+  --map-surface:#eeede8;
+  --surface-selected:#f0f3f6;
+  --surface-hover:#f5f6f6;
   --footer:#161616;
   --border:#e7e6e3;
+  --border-strong:#cbd0d6;
   --line:rgba(34,34,34,.2);
+  --muted-light:#a1a6ae;
+  --brand-highlight:#45c4f3;
   --inverse-muted:rgba(255,255,255,.7);
   --inverse-line:rgba(255,255,255,.2);
   --error:#fe5639;
@@ -45,7 +52,20 @@
   --s4:4rem;
   --s45:4.5rem;
   --s6:6rem;
-  --s9:9rem;
+ --s9:9rem;
+
+ /* Shared design-system aliases. The legacy spacing names remain available to
+    preserve the existing component structure while new shared rules use one
+    readable scale. */
+ --space-2xs:.25rem;
+ --space-xs:.5rem;
+ --space-sm:.75rem;
+ --space-md:1rem;
+ --space-lg:1.5rem;
+ --space-xl:2rem;
+ --space-2xl:3rem;
+ --space-3xl:4rem;
+ --space-4xl:6rem;
   
  --text-display:4.5rem;
   --line-display:1.09722;
@@ -69,15 +89,25 @@
   --tracking-body:-.005em;
   --tracking-display:.04em;
   
- --container:95rem;
-  --reading:46.75rem;
-  --gutter:0px;
-  --section-space:4rem;
-  --section-gap:3.5rem;
+ --container-max:100rem;
+  --container:var(--container-max);
+  --reading:42rem;
+  --copy-narrow:36rem;
+  --page-gutter:clamp(2rem,4.5vw,4.5rem);
+  --gutter:var(--page-gutter);
+  --section-space:clamp(5.5rem,8vw,8rem);
+  --section-gap:clamp(3rem,4vw,4rem);
+  --heading-copy-gap:1.5rem;
   --grid-gap:1.5rem;
-  --image-radius:.5rem;
-  --control-radius:.25rem;
+  --grid-column-gap:clamp(3rem,7vw,8rem);
+  --radius-sm:0;
+  --radius-md:0;
+  --radius-lg:0;
+  --image-radius:var(--radius-md);
+  --control-radius:var(--radius-sm);
+  --panel-radius:var(--radius-lg);
   --border-width:1px;
+  --border-subtle:1px solid var(--border);
   
  --button-height:3.25rem;
   --button-small:2.75rem;
@@ -88,6 +118,9 @@
   
  --motion-control:250ms;
   --motion-image:300ms;
+  --motion-fast:180ms;
+  --motion-base:250ms;
+  --motion-slow:500ms;
   --ease:ease-in-out;
   --image-scale:1.03;
   --z-header:20;
@@ -101,23 +134,17 @@
 
 }
 
-@media(min-width:1024px) and (max-width:1599.98px){
-  :root{
-  font-size:1vw
-}
-
-}
-
 @media(min-width:768px) and (max-width:1023.98px){
   :root{
-  font-size:2.083333vw
+  --page-gutter:2rem;
+  --section-space:5rem;
+  --section-gap:3rem
 }
 
 }
 
 @media(max-width:1023.98px){
   :root{
-  --gutter:2rem;
   --text-display:2.5rem;
   --line-display:1;
   --text-h1:2.5rem;
@@ -142,7 +169,12 @@
 
 @media(max-width:767.98px){
   :root{
-  --text-card:1.125rem; --line-card:1.22222; --gutter:1rem
+  --text-card:1.125rem;
+  --line-card:1.22222;
+  --page-gutter:1.5rem;
+  --section-space:4rem;
+  --section-gap:2.5rem;
+  --grid-column-gap:2rem
 }
 
 }

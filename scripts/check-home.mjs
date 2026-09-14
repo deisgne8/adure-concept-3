@@ -4,7 +4,8 @@ import {properties,matchProperties} from '../dist/home-data.js';
 const html=readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
 const source=readFileSync(new URL('../docs/reference-evidence/adure-v2-source.html',import.meta.url),'utf8');
 const referenceHome=source.slice(source.indexOf('<section class="page active home-v2"'),source.indexOf('<section class="page" id="properties"'));
-const textTags=s=>[...s.matchAll(/<(h[123]|p|figcaption)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/g)].map(m=>m[2].replace(/<[^>]+>/g,'').trim()).filter(Boolean);
+// Main headings omit trailing full stops as requested; body punctuation is preserved.
+const textTags=s=>[...s.matchAll(/<(h[123]|p|figcaption)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/g)].map(m=>{const text=m[2].replace(/<[^>]+>/g,'').trim();return /^h[12]$/.test(m[1])?text.replace(/\.$/,''):text;}).filter(Boolean);
 const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
 // Exclude added portfolio cards and normalize the requested Lease → Rent wording.
 const unchangedCopy=s=>s.replace(/<article class="portfolio-item-v2" data-portfolio-added>[\s\S]*?<\/article>/g,'').replace(/<section[^>]*class="journey-section[^>]*>[\s\S]*?<\/section>/,section=>section.replace(/renting/g,'leasing').replace(/>Rent</g,'>Lease<'));

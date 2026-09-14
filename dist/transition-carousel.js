@@ -3,11 +3,12 @@ const section = document.querySelector('#transition');
 const timeline = section?.querySelector('.timeline-v2');
 if (timeline) {
   const panels = [...timeline.querySelectorAll('.timeline-step')];
-  const images = ['architecture-detail.webp', 'architecture-facade.webp', 'architecture-waterfront.webp', 'architecture-community.webp'];
+  // Display each supplied photograph separately, excluding the collage gutters.
+  const crops = ['0 0 764 507', '772 0 764 507', '0 516 764 508', '772 516 764 508'];
   const stages = panels.map((panel, index) => ({
     title: panel.querySelector('h3').textContent,
     week: panel.querySelector('.week').textContent,
-    image: images[index]
+    crop: crops[index]
   }));
   const count = panels.length;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -42,7 +43,7 @@ if (timeline) {
       card.dataset.position = String(cycle * count + index);
       card.setAttribute('aria-label', `Show ${stage.week}: ${stage.title}`);
       card.setAttribute('aria-controls', `transition-stage-${index}`);
-      card.innerHTML = `<img src="assets/${stage.image}" alt="" draggable="false"><span class="transition-image-wash"></span><span class="transition-image-title">${stage.title}</span>`;
+      card.innerHTML = `<svg class="transition-photo" viewBox="${stage.crop}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href="assets/transition-stages.png" width="1536" height="1024" /></svg><span class="transition-image-wash"></span><span class="transition-image-title">${stage.title}</span>`;
       track.append(card);
     });
   }
@@ -51,7 +52,12 @@ if (timeline) {
   const controls = document.createElement('div');
   controls.className = 'transition-controls';
   controls.innerHTML = `<span class="transition-pagination" aria-live="polite" aria-atomic="true"></span><button type="button" class="transition-prev" aria-label="Previous transition stage">←</button><button type="button" class="transition-next" aria-label="Next transition stage">→</button>`;
-  carousel.after(controls);
+  const footer = document.createElement('div');
+  footer.className = 'transition-footer';
+  const link = section.querySelector('.section-shell > .btn');
+  carousel.after(footer);
+  if (link) footer.append(link);
+  footer.append(controls);
   const cards = [...track.children];
   let current = 0, position = count, busy = false, settleTimer, pointer;
   function updateCards() {
