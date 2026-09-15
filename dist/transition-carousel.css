@@ -11,6 +11,9 @@
 .has-transition-carousel .transition-head{display:block;margin:0 0 clamp(44px,4vw,66px)}
 #home #transition.has-transition-carousel .transition-head h2{max-width:10ch;margin:0;color:var(--accent);font:400 var(--type-section)/1.08 var(--font-display);letter-spacing:-.035em;text-transform:uppercase}
 #home #transition.has-transition-carousel .transition-head p{max-width:470px;margin:24px 0 0;color:var(--muted);font:400 clamp(15px,1.1vw,18px)/1.55 var(--font-body)}
+@media(min-width:1000px){
+ #home #transition.has-transition-carousel .transition-head h2{max-width:none;white-space:nowrap;font-size:clamp(36px,3.5vw,46px)}
+}
 .has-transition-carousel .timeline-v2{position:relative;flex:1 1 auto;width:100%;min-height:300px;margin:0}
 .has-transition-carousel .timeline-step{position:absolute;inset:0;display:block;padding:0;border:0;opacity:0;transform:translateY(24px);pointer-events:none;transition:opacity 420ms var(--ease),transform 650ms var(--ease)}
 .has-transition-carousel .timeline-step.is-current{z-index:1;opacity:1;transform:translateY(0);pointer-events:auto}
