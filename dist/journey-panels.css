@@ -25,6 +25,42 @@
 #journeys .journey-card:is(:hover,:focus-within) .journey-details{grid-template-rows:1fr;opacity:1}
 #journeys .journey-card:is(:hover,:focus-within) .btn{pointer-events:auto}
 #journeys .journey-card .btn:focus-visible{outline:2px solid white;outline-offset:4px}
+
+/* Section entrance: copy leads, followed by the image panels and their labels. */
+#journeys.journey-reveal-ready .journey-heading h2,
+#journeys.journey-reveal-ready .journey-heading p,
+#journeys.journey-reveal-ready .journey-media,
+#journeys.journey-reveal-ready .journey-content{
+ opacity:0;
+ transform:translateY(24px)
+}
+#journeys.journey-reveal-ready .journey-heading h2,
+#journeys.journey-reveal-ready .journey-heading p{
+ transition:opacity .65s ease,transform .8s cubic-bezier(.22,.61,.36,1)
+}
+#journeys.journey-reveal-ready .journey-media{
+ transition:opacity .75s ease,transform .9s cubic-bezier(.22,.61,.36,1)
+}
+#journeys.journey-reveal-ready .journey-content{
+ transition:opacity .55s ease,transform .7s cubic-bezier(.22,.61,.36,1)
+}
+#journeys.journey-reveal-ready.is-visible .journey-heading h2,
+#journeys.journey-reveal-ready.is-visible .journey-heading p,
+#journeys.journey-reveal-ready.is-visible .journey-media,
+#journeys.journey-reveal-ready.is-visible .journey-content{
+ opacity:1;
+ transform:translateY(0)
+}
+#journeys.journey-reveal-ready.is-visible .journey-heading h2{transition-delay:.08s}
+#journeys.journey-reveal-ready.is-visible .journey-heading p{transition-delay:.22s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(1) .journey-media{transition-delay:.40s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(2) .journey-media{transition-delay:.49s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(3) .journey-media{transition-delay:.58s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(4) .journey-media{transition-delay:.67s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(1) .journey-content{transition-delay:.55s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(2) .journey-content{transition-delay:.64s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(3) .journey-content{transition-delay:.73s}
+#journeys.journey-reveal-ready.is-visible .journey-card:nth-child(4) .journey-content{transition-delay:.82s}
 @media(max-width:900px){
  #journeys .journey-heading{margin-bottom:40px}
  #journeys .journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -45,5 +81,5 @@
  #journeys .journey-card::before{background:linear-gradient(180deg,transparent,rgba(4,28,45,.92))}
 }
 @media(prefers-reduced-motion:reduce){
- #journeys .journey-details,#journeys .journey-card h3,#journeys .journey-card::after,#journeys .journey-media img{transition:none}
+ #journeys .journey-details,#journeys .journey-card h3,#journeys .journey-card::after,#journeys .journey-media img,#journeys .journey-heading h2,#journeys .journey-heading p,#journeys .journey-media,#journeys .journey-content{transition:none}
 }

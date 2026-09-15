@@ -8,10 +8,10 @@ const referenceHome=source.slice(source.indexOf('<section class="page active hom
 const textTags=s=>[...s.matchAll(/<(h[123]|p|figcaption)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/g)].map(m=>{const text=m[2].replace(/<[^>]+>/g,'').trim();return /^h[12]$/.test(m[1])?text.replace(/\.$/,''):text;}).filter(Boolean);
 const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
 // Exclude added portfolio cards and normalize the requested Lease → Rent wording.
-const unchangedCopy=s=>s.replace(/<article class="portfolio-item-v2" data-portfolio-added>[\s\S]*?<\/article>/g,'').replace(/<section[^>]*class="journey-section[^>]*>[\s\S]*?<\/section>/,section=>section.replace(/renting/g,'leasing').replace(/>Rent</g,'>Lease<'));
+const unchangedCopy=s=>s.replace(/<section[^>]*class="philosophy-section[^>]*>[\s\S]*?<\/section>/,'').replace(/<article class="portfolio-item-v2" data-portfolio-added>[\s\S]*?<\/article>/g,'').replace(/<section[^>]*class="journey-section[^>]*>[\s\S]*?<\/section>/,section=>section.replace(/renting/g,'leasing').replace(/>Rent</g,'>Lease<'));
 assert.deepEqual(textTags(unchangedCopy(localHome)),textTags(unchangedCopy(referenceHome)),'Unchanged reference headings, paragraphs and captions are preserved in order');
 const ids=[...localHome.matchAll(/<section class="[^"]* section" id="([^"]+)"/g)].map(m=>m[1]);
-assert.deepEqual(ids,['hero','philosophy','journeys','discovery','management','proof','portfolio','transition','trust','conversation']);
+assert.deepEqual(ids,['hero','journeys','discovery','management','proof','portfolio','transition','trust','conversation']);
 assert.equal((html.match(/<select /g)||[]).length,4);
 assert.equal((html.match(/<h1>/g)||[]).length,1);
 for(const m of html.matchAll(/(?:src|href)="(assets\/[^"#]+|[a-z-]+\.(?:css|js))"/g))assert.ok(existsSync(new URL('../dist/'+m[1],import.meta.url)),m[1]);

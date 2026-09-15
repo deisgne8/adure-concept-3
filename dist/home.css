@@ -1,4 +1,3 @@
-@import url('./transition-carousel.css');
 @import url('./management.css');
 @import url('./portfolio-showcase.css');
 @import url('./proof-editorial.css');
@@ -10,6 +9,7 @@
 @import url('./section-spacing.css');
 @import url('./discovery-search.css');
 @import url('./type-system.css');
+@import url('./transition-carousel.css');
 @import url('./arrow-system.css');
 
 /* Quiet background changes separate the main chapters. */

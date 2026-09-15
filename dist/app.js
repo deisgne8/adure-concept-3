@@ -150,7 +150,7 @@ function renderCollections(items, intent){
   $('#search-empty').hidden=items.length>0;
   results.hidden=items.length===0;
   $('#search-empty [data-enquiry]').dataset.enquiry=intent;
-  $('#search-status').textContent=items.length+' '+(items.length===1?'property':'properties')+' for '+(intent==='buy'?'buying':'renting');
+  $('#search-status').textContent=items.length+' '+(items.length===1?'property':'properties')+' for '+(intent==='buy'?'buying':'leasing');
   results.scrollLeft=0;
 }
 async function runSearch(){
@@ -220,7 +220,7 @@ function openEnquiry(intent='general',collection=null){
   closeMenu();
   $('#enquiry-interest').value=intent;$('#enquiry-heading').textContent=enquiryNames[intent];
   $('#enquiry-draft').hidden=true;enquiryForm.hidden=false;$('#draft-status').textContent='';
-  if(collection)enquiryForm.elements.message.value='I would like to discuss '+(intent==='rent'?'renting':'buying')+' options aligned with “'+collection.name+'”. My preferred location is '+collection.location+'.';
+  if(collection)enquiryForm.elements.message.value='I would like to discuss '+(intent==='rent'?'leasing':'buying')+' options aligned with “'+collection.name+'”. My preferred location is '+collection.location+'.';
   if(!enquiryDialog.open)enquiryDialog.showModal();
 }
 on($('#enquiry-interest'),'change',e=>$('#enquiry-heading').textContent=enquiryNames[e.target.value]);

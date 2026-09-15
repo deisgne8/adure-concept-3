@@ -4,11 +4,11 @@ const rail = document.querySelector('#portfolio .portfolio-mosaic');
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const cards = [...rail.children];
 const portfolioMedia = [
-  ['assets/portfolio-waterfront-tower-v2.png', 'Waterfront residential tower in Abu Dhabi'],
-  ['assets/portfolio-modern-villa-v2.png', 'Contemporary villa with landscaped pool'],
-  ['assets/portfolio-waterfront-plaza-v2.png', 'Waterfront mixed-use plaza at sunset'],
-  ['assets/portfolio-garden-community-v2.png', 'Landscaped residential community'],
-  ['assets/portfolio-curved-towers-v2.png', 'Curved mixed-use towers in Abu Dhabi']
+  ['assets/hidd-al-saadiyat/golden-waterfront.webp', 'Hidd Al Saadiyat waterfront residences in golden evening light'],
+  ['assets/hidd-al-saadiyat/landscaped-community.webp', 'Landscaped pedestrian setting at Hidd Al Saadiyat'],
+  ['assets/hidd-al-saadiyat/waterfront-view.webp', 'Hidd Al Saadiyat residences overlooking the beach and sea'],
+  ['assets/hidd-al-saadiyat/promenade-mixed-use.webp', 'Hidd Al Saadiyat mixed-use building and public promenade'],
+  ['assets/hidd-al-saadiyat/curved-residences.webp', 'Layered curved residences at Hidd Al Saadiyat']
 ];
 
 cards.forEach((card, index) => {

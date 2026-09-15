@@ -214,22 +214,35 @@ input,select{
   position:fixed;
   inset:0 0 auto;
   background:transparent;
-  color:var(--white);
+  color:var(--ink);
   z-index:var(--z-header);
   height:var(--nav-height);
   border-bottom:1px solid transparent;
   transition:background var(--motion-control) var(--ease),border-color var(--motion-control) var(--ease),color var(--motion-control) var(--ease),box-shadow var(--motion-control) var(--ease)
 }
+.site-header::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:calc(var(--nav-height) * 2);
+  background:linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.66) 42%,rgba(255,255,255,0) 100%);
+  pointer-events:none;
+  opacity:.5;
+  transition:opacity var(--motion-control) var(--ease)
+}
 
 .site-header.is-glass{
   color:var(--ink);
-  background:rgba(255,255,255,.78);
+  background:rgba(255,255,255,.5);
   border-bottom-color:rgba(231,230,227,.72);
   box-shadow:0 .25rem 2rem rgba(0,0,0,.06);
   -webkit-backdrop-filter:blur(.9375rem) saturate(130%);
   backdrop-filter:blur(.9375rem) saturate(130%)
 }
+.site-header.is-glass::before{opacity:0}
 .header-inner{
+  position:relative;
+  z-index:1;
   height:100%;
   display:flex;
   align-items:center;
@@ -246,13 +259,13 @@ input,select{
 }
 .site-header .site-logo img{
   height:3.5rem;
-  max-height:calc(var(--nav-height) - 1rem)
+  max-height:calc(var(--nav-height) - 1rem);
+  filter:none
 }
 @media(max-width:767.98px){
   .site-header .site-logo img{height:2.5rem}
 }
 
-.site-header:not(.is-glass) .site-logo img{filter:brightness(0) invert(1)}
 .desktop-nav{
   display:flex;
   align-items:center;

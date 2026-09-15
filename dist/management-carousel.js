@@ -5,9 +5,9 @@ if(root){
   const visual=root.querySelector('.management-visual-v2');
   const image=visual.querySelector('img');
   const serviceMedia=[
-    ['assets/management-leasing-v2.png','Property advisor presenting an Abu Dhabi waterfront residence to prospective tenants'],
-    ['assets/management-facility-v2.png','Facility manager inspecting a premium Abu Dhabi waterfront property'],
-    ['assets/management-financial-v2.png','Property advisor reviewing financial and legal documents overlooking the Abu Dhabi waterfront']
+    ['assets/hidd-al-saadiyat/waterfront-view.webp','Hidd Al Saadiyat residences opening toward the beach and sea'],
+    ['assets/hidd-al-saadiyat/promenade-mixed-use.webp','Hidd Al Saadiyat mixed-use building and landscaped promenade'],
+    ['assets/hidd-al-saadiyat/urban-mixed-use.webp','Hidd Al Saadiyat mixed-use property and active street frontage']
   ];
   slides.forEach((slide,index)=>{
     const [source,alt]=serviceMedia[index];

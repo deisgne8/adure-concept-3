@@ -142,8 +142,8 @@
   grid-row:1;
   max-width:760px;
   color:var(--accent);
-  font-size:clamp(42px,4.1vw,78px);
-  line-height:1.06;
+  font-size:var(--type-section);
+  line-height:1.08;
   letter-spacing:-.035em;
   margin:0;
 }
@@ -170,7 +170,7 @@
   }
   #portfolio .portfolio-intro h2 {
     max-width:700px;
-    font-size:clamp(38px,6vw,60px);
+    font-size:var(--type-section);
   }
   #portfolio .portfolio-intro p {
     grid-column:1;
@@ -184,5 +184,5 @@
 @media(max-width:767.98px) {
   #portfolio { padding-block:48px; }
   #portfolio .section-shell { width:calc(100% - 40px); }
-  #portfolio .portfolio-intro h2 { font-size:clamp(36px,8.5vw,54px); }
+  #portfolio .portfolio-intro h2 { font-size:var(--type-section); }
 }

@@ -11,7 +11,7 @@ export const site = {
 export const journeys = {
   buy: {image:'architecture-courtyard',alt:'Landscaped walkway beside curved residential buildings',body:'Find the right property with clear information and informed guidance.',cta:'Buy With ADURE',href:'#discover'},
   sell: {image:'architecture-waterfront',alt:'Waterfront apartments in warm evening light',body:'Bring your property to market with professional advice, strong exposure and access to qualified buyers.',cta:'Sell With ADURE',href:'#contact'},
-  rent: {image:'architecture-terraces',alt:'Sunlit terraces overlooking an open residential courtyard',body:'Find a residential or commercial property that fits what you need next.',cta:'Rent With ADURE',href:'#discover'},
+  rent: {image:'architecture-terraces',alt:'Sunlit terraces overlooking an open residential courtyard',body:'Find a residential or commercial property that fits what you need next.',cta:'Lease With ADURE',href:'#discover'},
   manage: {image:'architecture-palms',alt:'Sunlight through palms beside a carefully maintained facade',body:'Bring your asset under one connected management approach, with leasing, operations, facilities, finance and legal oversight working together.',cta:'Property Management',href:'#management'},
 };
 

@@ -1,125 +1,177 @@
-// RCU reference: image/fade 500ms ease; content reveal 1000ms ease-in-out.
 const section = document.querySelector('#transition');
+const shell = section?.querySelector('.section-shell');
+const heading = section?.querySelector('.transition-head');
 const timeline = section?.querySelector('.timeline-v2');
-if (timeline) {
+
+if (section && shell && heading && timeline) {
   const panels = [...timeline.querySelectorAll('.timeline-step')];
-  // Display each supplied photograph separately, excluding the collage gutters.
   const crops = ['0 0 764 507', '772 0 764 507', '0 516 764 508', '772 516 764 508'];
   const stages = panels.map((panel, index) => ({
-    title: panel.querySelector('h3').textContent,
-    week: panel.querySelector('.week').textContent,
+    title: panel.querySelector('h3').textContent.trim(),
+    week: panel.querySelector('.week').textContent.trim(),
     crop: crops[index]
   }));
-  const count = panels.length;
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const mobile = matchMedia('(max-width: 767.98px)');
+  const count = stages.length;
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const desktop = matchMedia('(min-width: 768px)');
+  const header = document.querySelector('.site-header');
+
   section.classList.add('has-transition-carousel');
+
   const carousel = document.createElement('div');
   carousel.className = 'transition-carousel';
   carousel.setAttribute('role', 'region');
   carousel.setAttribute('aria-roledescription', 'carousel');
   carousel.setAttribute('aria-label', '30-day transition stages');
-  timeline.before(carousel);
-  carousel.append(timeline);
+
+  const visual = document.createElement('div');
+  visual.className = 'transition-visual';
+  const visualSlides = stages.map((stage, index) => {
+    const figure = document.createElement('figure');
+    figure.className = 'transition-visual-slide';
+    figure.setAttribute('role', 'img');
+    figure.setAttribute('aria-label', `${stage.week}: ${stage.title}`);
+    figure.innerHTML = `
+      <svg viewBox="${stage.crop}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+        <image href="assets/transition-stages.png" width="1536" height="1024" />
+      </svg>`;
+    figure.dataset.stage = String(index);
+    visual.append(figure);
+    return figure;
+  });
+
+  const content = document.createElement('div');
+  content.className = 'transition-content';
+
   panels.forEach((panel, index) => {
     panel.id = `transition-stage-${index}`;
     panel.setAttribute('role', 'group');
+    panel.setAttribute('aria-roledescription', 'slide');
     panel.setAttribute('aria-label', `${index + 1} of ${count}`);
     const inner = document.createElement('div');
     inner.className = 'transition-panel-inner';
     inner.append(...panel.childNodes);
     panel.append(inner);
   });
-  const rail = document.createElement('div');
-  rail.className = 'transition-image-rail';
-  const track = document.createElement('div');
-  track.className = 'transition-image-track';
-  // Three cycles allow both directions to wrap without a visible rewind.
-  for (let cycle = 0; cycle < 3; cycle++) {
-    stages.forEach((stage, index) => {
-      const card = document.createElement('button');
-      card.type = 'button';
-      card.className = 'transition-image-card';
-      card.dataset.position = String(cycle * count + index);
-      card.setAttribute('aria-label', `Show ${stage.week}: ${stage.title}`);
-      card.setAttribute('aria-controls', `transition-stage-${index}`);
-      card.innerHTML = `<svg class="transition-photo" viewBox="${stage.crop}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><image href="assets/transition-stages.png" width="1536" height="1024" /></svg><span class="transition-image-wash"></span><span class="transition-image-title">${stage.title}</span>`;
-      track.append(card);
-    });
-  }
-  rail.append(track);
-  carousel.append(rail);
-  const controls = document.createElement('div');
-  controls.className = 'transition-controls';
-  controls.innerHTML = `<span class="transition-pagination" aria-live="polite" aria-atomic="true"></span><button type="button" class="transition-prev" aria-label="Previous transition stage">←</button><button type="button" class="transition-next" aria-label="Next transition stage">→</button>`;
+
+  const navigation = document.createElement('nav');
+  navigation.className = 'transition-step-nav';
+  navigation.setAttribute('aria-label', 'Transition stages');
+  const navigationButtons = stages.map((stage, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.setAttribute('aria-label', `Show ${stage.week}: ${stage.title}`);
+    button.setAttribute('aria-controls', `transition-stage-${index}`);
+    button.innerHTML = `<span>${stage.week}</span>`;
+    button.addEventListener('click', () => navigate(index));
+    navigation.append(button);
+    return button;
+  });
+
   const footer = document.createElement('div');
   footer.className = 'transition-footer';
-  const link = section.querySelector('.section-shell > .btn');
-  carousel.after(footer);
+  const link = shell.querySelector(':scope > .btn');
   if (link) footer.append(link);
-  footer.append(controls);
-  const cards = [...track.children];
-  let current = 0, position = count, busy = false, settleTimer, pointer;
-  function updateCards() {
-    const railRect = rail.getBoundingClientRect();
-    const step = railRect.width;
-    cards.forEach((card, index) => {
-      card.classList.toggle('is-current', index === position);
-      const left = railRect.left + (index - position) * step;
-      const visible = mobile.matches ? index === position : index !== position - 1 && left + step > 0 && left < document.documentElement.clientWidth;
-      card.setAttribute('aria-hidden', String(!visible));
-      card.tabIndex = visible && index !== position ? 0 : -1;
-    });
-  }
-  function place(instant = false) {
-    track.classList.toggle('is-instant', instant || reduced.matches);
-    track.style.transform = `translate3d(${-position * rail.getBoundingClientRect().width}px,0,0)`;
-    updateCards();
-  }
+
+  content.append(heading, timeline, footer, navigation);
+  carousel.append(visual, content);
+  shell.append(carousel);
+
+  let current = 0;
+  let pointer = null;
+  let scrollFrame = 0;
+  let scrollStep = 1;
+  let headerHeight = 0;
+
   function render() {
     panels.forEach((panel, index) => {
-      panel.classList.toggle('is-current', index === current);
-      panel.setAttribute('aria-hidden', String(index !== current));
-      panel.inert = index !== current;
+      const active = index === current;
+      panel.classList.toggle('is-current', active);
+      panel.setAttribute('aria-hidden', String(!active));
+      panel.inert = !active;
     });
-    controls.querySelector('.transition-pagination').innerHTML = `<b>${String(current + 1).padStart(2,'0')}</b><span> / ${String(count).padStart(2,'0')}</span>`;
+
+    visualSlides.forEach((slide, index) => {
+      const active = index === current;
+      slide.classList.toggle('is-current', active);
+      slide.setAttribute('aria-hidden', String(!active));
+    });
+
+    navigationButtons.forEach((button, index) => {
+      const active = index === current;
+      button.classList.toggle('is-current', active);
+      if (active) button.setAttribute('aria-current', 'step');
+      else button.removeAttribute('aria-current');
+    });
+
   }
-  function select(nextPosition) {
-    if (busy || nextPosition === position) return;
-    busy = true;
-    position = nextPosition;
-    current = ((position % count) + count) % count;
+
+  function select(index) {
+    const next = Math.max(0, Math.min(count - 1, index));
+    if (next === current) return;
+    current = next;
     render();
-    place();
-    clearTimeout(settleTimer);
-    settleTimer = setTimeout(() => {
-      position = count + current;
-      place(true);
-      busy = false;
-    }, reduced.matches ? 0 : 500);
   }
-  controls.querySelector('.transition-prev').addEventListener('click', () => select(position - 1));
-  controls.querySelector('.transition-next').addEventListener('click', () => select(position + 1));
-  rail.addEventListener('click', event => {
-    const card = event.target.closest('[data-position]');
-    if (card) select(Number(card.dataset.position));
-  });
-  function handleKeys(event) {
-    if (!['ArrowLeft','ArrowRight'].includes(event.key)) return;
+
+  function syncScroll() {
+    scrollFrame = 0;
+    if (!section.classList.contains('has-transition-scroll')) return;
+    const distance = headerHeight - section.getBoundingClientRect().top;
+    select(Math.floor((distance + scrollStep * .08) / scrollStep));
+  }
+
+  function queueScroll() {
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(syncScroll);
+  }
+
+  function measure() {
+    const enabled = desktop.matches;
+    section.classList.toggle('has-transition-scroll', enabled);
+    if (!enabled) {
+      section.style.removeProperty('--transition-top');
+      section.style.removeProperty('--transition-stage-height');
+      section.style.removeProperty('--transition-scroll-distance');
+      return;
+    }
+    headerHeight = header?.getBoundingClientRect().height || 0;
+    const stageHeight = Math.max(520, window.innerHeight - headerHeight);
+    scrollStep = Math.max(300, stageHeight * .72);
+    section.style.setProperty('--transition-top', `${headerHeight}px`);
+    section.style.setProperty('--transition-stage-height', `${stageHeight}px`);
+    section.style.setProperty('--transition-scroll-distance', `${scrollStep * count}px`);
+    syncScroll();
+  }
+
+  function navigate(index, focus = false) {
+    const next = Math.max(0, Math.min(count - 1, index));
+    if (section.classList.contains('has-transition-scroll')) {
+      const top = scrollY + section.getBoundingClientRect().top - headerHeight + scrollStep * (next + .12);
+      window.scrollTo({ top, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    } else select(next);
+    if (focus) navigationButtons[next].focus({ preventScroll: true });
+  }
+
+  carousel.addEventListener('keydown', event => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
     event.preventDefault();
-    select(position + (event.key === 'ArrowRight' ? 1 : -1));
-  }
-  carousel.addEventListener('keydown', handleKeys);
-  controls.addEventListener('keydown', handleKeys);
-  rail.addEventListener('pointerdown', event => { pointer = {x:event.clientX,y:event.clientY}; });
-  rail.addEventListener('pointerup', event => {
-    if (!pointer) return;
-    const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
-    pointer = null;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) select(position + (dx < 0 ? 1 : -1));
+    navigate(current + (event.key === 'ArrowRight' ? 1 : -1), true);
   });
-  rail.addEventListener('pointercancel', () => { pointer = null; });
-  new ResizeObserver(() => { position = count + current; place(true); }).observe(rail);
+  carousel.addEventListener('pointerdown', event => {
+    pointer = { x: event.clientX, y: event.clientY };
+  });
+  carousel.addEventListener('pointerup', event => {
+    if (!pointer) return;
+    const dx = event.clientX - pointer.x;
+    const dy = event.clientY - pointer.y;
+    pointer = null;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy)) navigate(current + (dx < 0 ? 1 : -1));
+  });
+  carousel.addEventListener('pointercancel', () => { pointer = null; });
+
   render();
-  place(true);
+  addEventListener('scroll', queueScroll, { passive: true });
+  addEventListener('resize', measure, { passive: true });
+  desktop.addEventListener('change', measure);
+  if (header) new ResizeObserver(measure).observe(header);
+  measure();
 }

@@ -2,6 +2,7 @@ import './portfolio-carousel.js';
 import './transition-carousel.js';
 import './philosophy-story.js';
 import './management-carousel.js';
+import './proof-counter.js';
 import {updatePropertyMap} from './property-map.js';
 import {properties,matchProperties,reference} from './home-data.js';
 const $=s=>document.querySelector(s);
@@ -22,6 +23,19 @@ new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(
 const form=$('#property-search'),filterDialog=$('#filter-dialog'),menu=$('#mobile-menu');
 const header=$('.site-header'),hero=$('.site-hero');
 const filterHome=$('#filter-home'),intentTabs=$('.tabs'),filterOpen=$('.filter-open');
+
+// Reveal the journey narrative in sequence when it enters the viewport.
+const journeySection=$('#journeys');
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+if(journeySection&&!reducedMotion.matches){
+  journeySection.classList.add('journey-reveal-ready');
+  const journeyObserver=new IntersectionObserver(entries=>{
+    if(!entries.some(entry=>entry.isIntersecting))return;
+    journeySection.classList.add('is-visible');
+    journeyObserver.disconnect();
+  },{threshold:.16,rootMargin:'0px 0px -8%'});
+  journeyObserver.observe(journeySection);
+}
 filterHome.after(filterOpen);
 function updateHeader(){header.classList.toggle('is-glass',scrollY>Math.max(24,hero.offsetHeight*.08));}
 updateHeader();
