@@ -1,5 +1,5 @@
 /* DTRE-inspired statement and vertical statistics, using ADURE's own content. */
-#proof{background:#fff;color:var(--ink);padding:clamp(64px,6vw,112px) 0;overflow:visible}
+#proof{background:#f1f5f6;color:var(--ink);padding:clamp(64px,6vw,112px) 0;overflow:visible}
 #proof .section-shell{max-width:1680px;width:100%;padding-inline:clamp(24px,4.5vw,88px)}
 #proof .proof-editorial-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:clamp(56px,8vw,150px);align-items:start}
 #proof .proof-statement{position:sticky;top:calc(var(--nav-height) + 48px)}

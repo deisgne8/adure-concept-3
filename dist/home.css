@@ -11,6 +11,8 @@
 @import url('./type-system.css');
 @import url('./transition-carousel.css');
 @import url('./arrow-system.css');
+@import url('./section-copy-reveal.css');
+@import url('./hero-transition.css');
 
 /* Quiet background changes separate the main chapters. */
 #home #journeys,

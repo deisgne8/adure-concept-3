@@ -3,6 +3,7 @@ import './transition-carousel.js';
 import './philosophy-story.js';
 import './management-carousel.js';
 import './proof-counter.js';
+import './hero-transition.js';
 import {updatePropertyMap} from './property-map.js';
 import {properties,matchProperties,reference} from './home-data.js';
 const $=s=>document.querySelector(s);
@@ -35,6 +36,38 @@ if(journeySection&&!reducedMotion.matches){
     journeyObserver.disconnect();
   },{threshold:.16,rootMargin:'0px 0px -8%'});
   journeyObserver.observe(journeySection);
+}
+
+// Keep section introductions consistent: title first, supporting copy second.
+const sectionCopyGroups=[
+  ['#discovery','.discovery-title h2','.discovery-title p'],
+  ['#proof','.proof-statement h2','.proof-statement p'],
+  ['#portfolio','.portfolio-intro h2','.portfolio-intro p'],
+  ['#transition','.transition-head h2','.transition-head p'],
+  ['#trust','.trust-copy h2','.trust-copy p'],
+  ['#conversation','.final-layout h2','.final-layout p']
+].map(([sectionSelector,titleSelector,copySelector])=>{
+  const section=$(sectionSelector);
+  const title=section?.querySelector(titleSelector);
+  const copy=section?.querySelector(copySelector);
+  return section&&title&&copy?{section,title,copy}:null;
+}).filter(Boolean);
+
+if(!reducedMotion.matches&&'IntersectionObserver' in window){
+  const sectionCopyObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      entry.target.classList.add('is-copy-visible');
+      sectionCopyObserver.unobserve(entry.target);
+    });
+  },{threshold:.14,rootMargin:'0px 0px -10% 0px'});
+
+  sectionCopyGroups.forEach(({section,title,copy})=>{
+    section.classList.add('section-copy-reveal-ready');
+    title.classList.add('section-copy-title');
+    copy.classList.add('section-copy-intro');
+    sectionCopyObserver.observe(section);
+  });
 }
 filterHome.after(filterOpen);
 function updateHeader(){header.classList.toggle('is-glass',scrollY>Math.max(24,hero.offsetHeight*.08));}

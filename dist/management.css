@@ -37,22 +37,70 @@
  #management .management-visual-v2 img,#management .service-row,#management .management-pagination button{transition:none}
 }
 
-/* Native page scrolling holds each service in view, then releases the section. */
-#management.has-management-scroll{overflow:clip}
-#management.has-management-scroll .management-layout-v2{grid-template-rows:auto auto}
-#management .management-scroll-track{grid-column:1/-1;grid-row:2;height:calc(var(--management-stage-height) + var(--management-scroll-distance));min-width:0}
-#management .management-scroll-sticky{position:sticky;top:var(--management-top);height:var(--management-stage-height);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);background:var(--surface-alt)}
-#management .management-scroll-sticky .management-carousel-copy{grid-column:1;grid-row:1;padding:clamp(28px,5vh,70px) clamp(24px,5vw,96px)}
-#management .management-scroll-sticky .management-visual-v2{grid-column:2;grid-row:1;min-height:0;aspect-ratio:auto}
+/* Full-viewport editorial scene with service cards that rise and stack over it. */
+#home #management.has-management-stack{padding:0;overflow:clip;background:#06152b;color:#fff}
+#management.has-management-stack .management-layout-v2{display:block;min-height:0}
+#management .management-stack-track{position:relative;min-height:calc(var(--management-card-offset,84svh) + 238svh);isolation:isolate}
+#management .management-stack-sticky{position:sticky;z-index:1;top:var(--management-top,0px);height:var(--management-stage-height,100svh);overflow:hidden;background:radial-gradient(85% 58% at 16% 110%,transparent 67%,rgba(255,255,255,.14) 67.2%,transparent 67.5%),radial-gradient(80% 70% at 103% -8%,transparent 72%,rgba(255,255,255,.12) 72.2%,transparent 72.5%),#06152b}
+#management .management-stack-sticky::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(6,21,43,.18),transparent 38%,rgba(6,21,43,.16));opacity:.275}
+#home #management .management-stack-sticky>h2{position:absolute;z-index:4;top:clamp(44px,8vh,92px);left:var(--page-gutter);display:flex;flex-direction:column;width:min(44vw,680px);max-width:15ch;margin:0;padding:0;color:#fff}
+#management .management-title-lead{font-size:.56em;line-height:1.15;letter-spacing:-.02em;margin-bottom:.18em}
+#management .management-title-main{display:block}
+#home #management .management-stack-sticky>.intro{position:absolute;z-index:4;top:calc(clamp(44px,8vh,92px) + var(--management-title-height,150px) + clamp(18px,2.4vh,28px));left:var(--page-gutter);width:min(38vw,560px);max-width:46ch;margin:0;padding:0;color:rgba(255,255,255,.76);font:400 var(--type-body-lg)/1.6 var(--font-body)}
+#management .management-stack-sticky .management-visual-v2{position:absolute;z-index:1;inset:0;width:100%;height:100%;margin:0;overflow:hidden;background:#10243d;transform:none;will-change:auto}
+#management .management-stack-sticky .management-visual-v2::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,14,30,.39) 0%,rgba(3,14,30,.21) 44%,rgba(3,14,30,.29) 100%),linear-gradient(180deg,rgba(3,14,30,.1),rgba(3,14,30,.25))}
+#management .management-stack-sticky .management-visual-v2 img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:center;transform:scale(1.14) translate3d(0,var(--management-image-y,0px),0);border-radius:0;will-change:transform}
+#management .management-stack-sticky .management-visual-v2 figcaption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#management.management-intro-ready .management-visual-v2 img{opacity:0;transform:scale(1.22) translate3d(0,var(--management-image-y,0px),0);transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1.55s cubic-bezier(.22,.61,.36,1)}
+#management.management-intro-ready .management-title-lead,#management.management-intro-ready .management-title-main{opacity:0;transform:translate3d(0,30px,0);transition:opacity .72s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+#home #management.management-intro-ready .management-stack-sticky>.intro{opacity:0;transform:translate3d(0,24px,0);transition:opacity .72s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+#management.management-intro-ready.is-intro-visible .management-visual-v2 img{opacity:1;transform:scale(1.14) translate3d(0,var(--management-image-y,0px),0)}
+#management.management-intro-ready.is-intro-visible .management-title-lead,#management.management-intro-ready.is-intro-visible .management-title-main{opacity:1;transform:none}
+#home #management.management-intro-ready.is-intro-visible .management-stack-sticky>.intro{opacity:1;transform:none}
+#management.management-intro-ready.is-intro-visible .management-title-lead{transition-delay:.16s}
+#management.management-intro-ready.is-intro-visible .management-title-main{transition-delay:.28s}
+#home #management.management-intro-ready.is-intro-visible .management-stack-sticky>.intro{transition-delay:.46s}
+#management.has-management-stack .management-carousel-copy{position:relative;z-index:3;display:block;width:min(46vw,760px);margin-left:auto;padding:var(--management-card-offset,84svh) var(--page-gutter) clamp(72px,10vh,128px) 0;text-align:left}
+#management.has-management-stack .service-rows{display:flex;flex-direction:column;width:100%;max-width:none;min-height:0;gap:0;place-items:initial}
+#management.has-management-stack .service-row{position:sticky;z-index:calc(var(--service-index,0) + 3);top:calc(var(--management-top,0px) + clamp(32px,7vh,72px));width:100%;min-height:min(560px,64vh);margin:0 0 clamp(28px,4vh,44px);padding:0;overflow:hidden;visibility:visible;opacity:1;transform:scale(var(--service-scale,1));transform-origin:50% 50%;border:1px solid rgba(0,71,137,.12);background:#fff;box-shadow:0 24px 80px rgba(0,5,18,.22);will-change:transform;transition:box-shadow .45s ease}
+#management.has-management-stack .service-row::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:#06152b;opacity:var(--service-overlay-opacity,0)}
+#management.has-management-stack .service-row.is-current{box-shadow:0 30px 96px rgba(0,5,18,.3)}
+#management.has-management-stack .service-row>div{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;min-height:inherit;padding:clamp(28px,3.2vw,46px)}
+#home #management.has-management-stack .service-row h3{grid-column:1;grid-row:1;max-width:none;margin:0;color:var(--accent);font:400 var(--type-card)/1.2 var(--font-display);letter-spacing:-.02em;text-transform:uppercase}
+#management .service-card-media{grid-column:1;grid-row:2;width:78%;aspect-ratio:16/9;margin:clamp(24px,3.5vh,38px) auto;overflow:hidden;background:var(--surface-alt)}
+#management .service-card-media img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(var(--service-image-scale,1.3));transform-origin:50% 50%;will-change:transform}
+#home #management.has-management-stack .service-row p{grid-column:1;grid-row:3;max-width:48ch;margin:0 auto;color:var(--muted);text-align:center;font:400 var(--type-body)/1.55 var(--font-body)}
+#management.has-management-stack .management-pagination{display:none}
+#management.has-management-stack .management-carousel-copy>.btn{display:inline-flex;margin:var(--space-xl) 0 0;color:#fff;border-color:rgba(255,255,255,.55)}
+@media(min-width:1600px){
+ #home #management .management-stack-sticky>h2{left:max(var(--page-gutter),calc((100vw - var(--container-max))/2 + var(--page-gutter)))}
+ #home #management .management-stack-sticky>.intro{left:max(var(--page-gutter),calc((100vw - var(--container-max))/2 + var(--page-gutter)));right:auto}
+ #management.has-management-stack .management-carousel-copy{padding-right:max(var(--page-gutter),calc((100vw - var(--container-max))/2 + var(--page-gutter)))}
+}
+@media(max-width:1100px) and (min-width:801px){
+ #home #management .management-stack-sticky>h2{width:44vw;max-width:15ch;font-size:clamp(38px,4.4vw,52px)}
+ #home #management .management-stack-sticky>.intro{width:35vw;font-size:16px}
+ #management.has-management-stack .management-carousel-copy{width:50vw}
+}
 @media(max-width:800px){
- #management.has-management-scroll .management-layout-v2{grid-template-rows:auto auto auto}
- #management .management-scroll-track{grid-row:3}
- #management .management-scroll-sticky{grid-template-columns:1fr;grid-template-rows:36% 64%}
- #management .management-scroll-sticky .management-visual-v2{grid-column:1;grid-row:1}
- #management .management-scroll-sticky .management-carousel-copy{grid-column:1;grid-row:2;padding:18px 24px}
- #management .management-scroll-sticky .service-rows{min-height:0}
- #home #management .management-scroll-sticky .service-row h3{font-size:clamp(26px,4vh,38px);margin-bottom:12px}
- #home #management .management-scroll-sticky .service-row p{font-size:15px;line-height:1.45}
- #management .management-scroll-sticky .management-pagination{margin-top:20px}
- #management .management-scroll-sticky .management-carousel-copy>.btn{margin-top:20px}
+ #home #management.has-management-stack{overflow:hidden}
+ #management.has-management-stack .management-layout-v2{display:block}
+ #management .management-stack-track{min-height:0}
+ #management .management-stack-sticky{position:relative;top:auto;height:auto;min-height:calc(100svh - var(--management-top,0px));padding:64px var(--page-gutter);overflow:hidden}
+ #home #management .management-stack-sticky>h2,#home #management .management-stack-sticky>.intro{position:relative;inset:auto;width:100%;max-width:none;transform:none}
+ #home #management .management-stack-sticky>h2{max-width:12ch;font-size:clamp(38px,10vw,52px)}
+ #home #management .management-stack-sticky>.intro{margin-top:24px;color:rgba(255,255,255,.76);font-size:17px}
+ #management .management-stack-sticky .management-visual-v2{position:absolute;inset:0;width:100%;height:100%;margin:0;transform:none}
+ #management.has-management-stack .management-carousel-copy{width:100%;margin:0;padding:32px var(--page-gutter) 72px}
+ #management.has-management-stack .service-rows{gap:20px}
+ #management.has-management-stack .service-row{position:relative;top:auto;min-height:0;margin:0;transform:none;will-change:auto}
+ #management.has-management-stack .service-row>div{display:grid;min-height:0;padding:28px 24px}
+ #management .service-card-media{width:100%;margin:28px 0;aspect-ratio:4/3}
+ #home #management.has-management-stack .service-row h3{font-size:clamp(25px,7vw,34px)}
+ #management.has-management-stack .management-carousel-copy>.btn{margin-top:32px}
+}
+@media(prefers-reduced-motion:reduce){
+ #management.has-management-stack .service-row,#management.has-management-stack .service-row::after,#management .service-card-media img,#management.management-intro-ready .management-visual-v2 img,#management.management-intro-ready .management-title-lead,#management.management-intro-ready .management-title-main,#home #management.management-intro-ready .management-stack-sticky>.intro{transition:none;will-change:auto}
+ #management.has-management-stack .service-row,#management .service-card-media img{transform:none}
+ #management.management-intro-ready .management-visual-v2 img,#management.management-intro-ready .management-title-lead,#management.management-intro-ready .management-title-main,#home #management.management-intro-ready .management-stack-sticky>.intro{opacity:1}
 }
