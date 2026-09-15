@@ -4,12 +4,33 @@ import {properties,matchProperties} from '../dist/home-data.js';
 const html=readFileSync(new URL('../dist/index.html',import.meta.url),'utf8');
 const source=readFileSync(new URL('../docs/reference-evidence/adure-v2-source.html',import.meta.url),'utf8');
 const referenceHome=source.slice(source.indexOf('<section class="page active home-v2"'),source.indexOf('<section class="page" id="properties"'));
-// Main headings omit trailing full stops as requested; body punctuation is preserved.
-const textTags=s=>[...s.matchAll(/<(h[123]|p|figcaption)(?:\s[^>]*)?>([\s\S]*?)<\/\1>/g)].map(m=>{const text=m[2].replace(/<[^>]+>/g,'').trim();return /^h[12]$/.test(m[1])?text.replace(/\.$/,''):text;}).filter(Boolean);
 const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
-// Exclude added portfolio cards and normalize the requested Lease → Rent wording.
-const unchangedCopy=s=>s.replace(/<section[^>]*class="philosophy-section[^>]*>[\s\S]*?<\/section>/,'').replace(/<article class="portfolio-item-v2" data-portfolio-added>[\s\S]*?<\/article>/g,'').replace(/<section[^>]*class="journey-section[^>]*>[\s\S]*?<\/section>/,section=>section.replace(/renting/g,'leasing').replace(/>Rent</g,'>Lease<'));
-assert.deepEqual(textTags(unchangedCopy(localHome)),textTags(unchangedCopy(referenceHome)),'Unchanged reference headings, paragraphs and captions are preserved in order');
+const approvedCopy=[
+  'Beyond property. Creating value.',
+  'A connected approach to real estate, shaped in Abu Dhabi.',
+  'Real estate, connected',
+  'One partner for every property move.',
+  'Choose with clarity.',
+  'Position for the right value.',
+  'Connect people with place.',
+  'Protect what comes next.',
+  'Property search',
+  'Find the place that fits what comes next.',
+  'Property management',
+  'Value lies in how a property is cared for.',
+  'The ADURE record',
+  'Success proven in numbers.',
+  'Our portfolio',
+  'From places to performance.',
+  'Your 30-day transition journey',
+  'Good management starts with getting the beginning right.',
+  'Trusted relationships',
+  'Rooted in trust and transparency.',
+  'Start a conversation',
+  'Every next move begins with the right partner.'
+];
+approvedCopy.forEach(copy=>assert.ok(localHome.includes(copy),`Approved copy missing: ${copy}`));
+['With You Across Every Stage','A Record That Speaks For Itself','A Considered Start','Trusted Across Sectors.'].forEach(copy=>assert.ok(!localHome.includes(copy),`Superseded copy remains: ${copy}`));
 const ids=[...localHome.matchAll(/<section class="[^"]* section" id="([^"]+)"/g)].map(m=>m[1]);
 assert.deepEqual(ids,['hero','journeys','discovery','management','proof','portfolio','transition','trust','conversation']);
 assert.equal((html.match(/<select /g)||[]).length,4);
@@ -25,4 +46,4 @@ assert.deepEqual(matchProperties({intent:'lease',type:'Commercial',location:'Dub
 assert.deepEqual(matchProperties({intent:'lease',bedrooms:'1–2 bedrooms',price:'AED 100K–200K'}).map(p=>p.id),['ADU-304']);
 assert.equal(matchProperties({intent:'buy',type:'Villa'}).length,0);
 for(const route of new Set([...referenceHome.matchAll(/data-route="([^"]+)"/g)].map(m=>m[1])))assert.ok(localHome.includes('#'+route),route+' destination retained');
-console.log('PASS: homepage copy/order with approved editorial changes, CTA destinations, assets, semantic heading and multi-field property matching.');
+console.log('PASS: revised homepage copy, section order, CTA destinations, assets, semantic heading and multi-field property matching.');

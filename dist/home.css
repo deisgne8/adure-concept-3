@@ -1,3 +1,4 @@
+@import url('./image-parallax.css');
 @import url('./management.css');
 @import url('./portfolio-showcase.css');
 @import url('./proof-editorial.css');
@@ -1319,4 +1320,13 @@ main{
 }
 @media(prefers-reduced-motion:reduce){
   .proof-tile,.proof-focus,.proof-focus>img,.proof-carousel-head,.proof-focus .proof-metrics-v2,.proof-focus .proof-metrics-v2>div{transition:none}
+}
+
+/* Sentence case is the site-wide editorial casing. Preserve authored acronyms. */
+.site-header *,
+.mobile-menu *,
+#home *,
+.footer *,
+.filter-dialog *{
+  text-transform:none!important
 }

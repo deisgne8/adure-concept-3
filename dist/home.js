@@ -4,6 +4,7 @@ import './philosophy-story.js';
 import './management-carousel.js';
 import './proof-counter.js';
 import './hero-transition.js';
+import './image-parallax.js';
 import {updatePropertyMap} from './property-map.js';
 import {properties,matchProperties,reference} from './home-data.js';
 const $=s=>document.querySelector(s);
@@ -68,6 +69,20 @@ if(!reducedMotion.matches&&'IntersectionObserver' in window){
     copy.classList.add('section-copy-intro');
     sectionCopyObserver.observe(section);
   });
+}
+
+// Reveal the trust introduction and client marks as one paced sequence.
+const trustSection=$('#trust');
+if(trustSection&&!reducedMotion.matches&&'IntersectionObserver' in window){
+  const trustLogos=[...trustSection.querySelectorAll('.client-logo')];
+  trustSection.classList.add('trust-reveal-ready');
+  trustLogos.forEach((logo,index)=>logo.style.setProperty('--logo-delay',`${440+index*55}ms`));
+  const trustObserver=new IntersectionObserver(entries=>{
+    if(!entries.some(entry=>entry.isIntersecting))return;
+    trustSection.classList.add('is-trust-visible');
+    trustObserver.disconnect();
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  trustObserver.observe(trustSection);
 }
 filterHome.after(filterOpen);
 function updateHeader(){header.classList.toggle('is-glass',scrollY>Math.max(24,hero.offsetHeight*.08));}

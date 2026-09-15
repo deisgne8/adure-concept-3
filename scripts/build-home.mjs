@@ -38,25 +38,66 @@ const fields = ['location','type','bedrooms','price']; let fi = 0;
 home = home.replace(/<label>([^<]+)<\/label><select>/g, (_, label) => { const id=fields[fi++]; return `<label for="filter-${id}">${label}</label><select id="filter-${id}" name="${id}">`; });
 // The philosophy uses the approved short copy in its own editorial template.
 home = home.replace(/<section class="philosophy-section[^>]*>[\s\S]*?<\/section>/, readFileSync(new URL('../docs/philosophy-section.html',import.meta.url),'utf8').trim());
+const managementIntro = '<p class="intro">Long-term performance depends on more than one service. We bring leasing, operations, facilities, financial management and legal coordination together under one connected approach.</p>';
+home = home.replace(
+  managementIntro,
+  `${managementIntro}<button class="btn link management-main-cta" data-route="services">Explore Property Management</button>`
+).replace(
+  '<button class="btn primary" data-route="services">Explore Property Management</button></div></div></div></section>',
+  '</div></div></div></section>'
+);
+const approvedCopy = [
+  ['Creating Value Beyond Property','Beyond Property. Creating Value.'],
+  ["We're your end-to-end partner in real estate — bringing buying, selling, leasing, and property management together around one purpose: creating lasting value.",'A connected approach to real estate, shaped in Abu Dhabi.'],
+  ['With You Across Every Stage','Real Estate, Connected'],
+  ["Whether you're buying, selling, leasing or placing an asset under management, we bring the right expertise together so every stage feels connected and considered.",'One partner for every property move. Real estate rarely begins and ends with one decision. ADURE brings the expertise at every stage, so each move builds naturally into the next.'],
+  ['Find the right property with clear information and informed guidance.','Choose with clarity. Discover opportunities with guidance grounded in the market.'],
+  ['Bring your property to market with professional advice, strong exposure and access to qualified buyers.','Position for the right value. Bring your property to market with considered positioning and the right audience.'],
+  ['Find a residential or commercial property that fits what you need next.','Connect people with place. Create the right match between properties, owners and occupants.'],
+  ['Bring your asset under one connected management approach, with leasing, operations, facilities, finance and legal oversight working together.','Protect what comes next. Keep assets performing through connected, long-term management.'],
+  ['Find Your Next Property','Property Search'],
+  ['Explore available properties and start a buying or leasing enquiry with us.','Find the place that fits what comes next. Explore available properties across our locations and communities.'],
+  ['Have a Property? Talk To ADURE','Thinking of Selling? Sell Your Property'],
+  ['Your Asset, Looked After As A Whole','Property Management'],
+  ['Long-term performance depends on more than one service. We bring leasing, operations, facilities, financial management and legal coordination together under one connected approach.','Value lies in how a property is cared for. Long after a property is bought, leased or occupied, its performance depends on what happens every day. ADURE brings leasing, operations, facilities, financial oversight and legal coordination together through one accountable approach.'],
+  ['From market assessment and tenant sourcing to administration, renewals and regulatory compliance.','Keeping occupancy, tenant relationships and everyday performance moving forward.'],
+  ['Technical, operational and support services that keep properties safe, efficient and reliable.','Maintaining spaces with the consistency, care and attention they require.'],
+  ['Structured financial oversight, reporting and legal coordination that give owners greater visibility and control.','Clear oversight, structured reporting and coordinated support around every asset.'],
+  ['A Record That Speaks For Itself','The ADURE Record'],
+  ['Experience, scale and operational performance across a connected UAE portfolio.','Success proven in numbers. The strongest measure of experience is what it continues to deliver.'],
+  ['A Portfolio That Reflects Our Range','Our Portfolio'],
+  ['From residential communities and commercial buildings to office towers, retail, hotels, government buildings, and mixed-use developments, we bring the same focus on performance and long-term value across the portfolio.','From places to performance. Every asset has its own character, purpose and potential. Across the portfolio, ADURE brings the same long-term attention to how each place performs, evolves and serves the people around it.'],
+  ['A Considered Start','Your 30-Day Transition Journey'],
+  ['Our structured 30-day transition brings documentation, tenants, operations, and reporting into management step by step.','Good management starts with getting the beginning right. Over four clear stages, ADURE brings documentation, people, operations and reporting into one organised management structure, with continuity built into every step.'],
+  ['Property and document review, with a full handover audit.','Understand the asset, its documentation and existing requirements.'],
+  ['Asset inspection and tenant communication.','Assess the property, operations and tenant needs.'],
+  ['Operational takeover and reporting setup.','Bring responsibilities, communication and reporting into alignment.'],
+  ['Full management, reporting and performance monitoring.','Move into ongoing oversight with clear accountability and visibility.'],
+  ['Week 4+','Week 4'],
+  ['See How We Manage','Explore Property Management'],
+  ["We're Here For What Comes Next",'Start a Conversation'],
+  ["Whether you're buying, selling, leasing, or looking for a partner to manage your asset, start the conversation with ADURE.",'Every next move begins with the right partner. Whether you are finding a place, bringing a property to market or placing an asset under management, ADURE brings clarity to what comes next.']
+];
+approvedCopy.forEach(([from,to])=>{home=home.replaceAll(from,to)});
 const clientLogos = [
   ['adnoc.png','ADNOC'],
   ['taqa-distribution.png','TAQA Distribution'],
-  ['adco.png','ADCO'],
+  ['ministry-interior.png','Ministry of Interior'],
   ['mubadala.png','Mubadala'],
   ['abu-dhabi-police.png','Abu Dhabi Police'],
-  ['gasco.png','GASCO'],
-  ['takaful-emarat.png','Takaful Emarat'],
+  ['total.png','Total'],
+  ['schlumberger.png','Schlumberger'],
+  ['samsung.png','Samsung'],
+  ['british-council.png','British Council'],
+  ['oxy.png','Oxy'],
   ['brighton-college.png','Brighton College Abu Dhabi'],
   ['embassy-japan.png','Embassy of Japan'],
   ['unicorp.png','Unicorp'],
-  ['punj-lloyd.png','Punj Lloyd'],
-  ['gulf-piping.png','Gulf Piping Company'],
-  ['lifeline-medicare.png','Lifeline Medicare Hospitals'],
-  ['higher-colleges.png','Higher Colleges of Technology']
+  ['punj-lloyd.png','Punj Lloyd']
 ].map(([file,name]) => `<div class="client-logo"><img src="assets/clients/${file}" alt="${name}" loading="lazy" decoding="async"></div>`).join('');
 home = home.replace(
   /<section class="trust-v2 section" id="trust">[\s\S]*?<\/section>/,
-  `<section class="trust-v2 section" id="trust"><div class="section-shell"><h2 class="sr-only">Trusted Across Sectors</h2><p class="trust-logo-intro">We've worked with government, semi-government and private-sector organisations across the UAE.</p><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
+  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><span class="trust-logo-eyebrow">Customers</span><h2 class="trust-logo-title">Trusted Relationships</h2><p class="trust-logo-intro">Rooted in trust and transparency. ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
 );
 // Footer copy and link hierarchy remain the supplied v2 version.
 let footer = source.slice(source.indexOf('<footer class="footer">'),source.indexOf('<div class="toast"'));
@@ -71,9 +112,44 @@ const html=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta nam
 const origin = new URL(process.env.SITE_ORIGIN || 'http://127.0.0.1:4180');
 if (!['http:','https:'].includes(origin.protocol)) throw new Error('SITE_ORIGIN must use HTTP(S)');
 const social = `<meta property="og:image" content="${origin.origin}/assets/adure-social-preview.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ADURE — Beyond Property. Creating Value."><meta name="twitter:description" content="End-to-end real estate across Abu Dhabi, Dubai and Al Ain."><meta name="twitter:image" content="${origin.origin}/assets/adure-social-preview.png">`;
-const opening=`<div class="site-intro" id="site-intro" hidden aria-label="ADURE introduction"><button class="intro-skip" type="button">Skip intro <span aria-hidden="true">→</span></button><div class="intro-lockup"><span class="intro-ring intro-ring-a" aria-hidden="true"></span><span class="intro-ring intro-ring-b" aria-hidden="true"></span><div class="intro-brand" aria-hidden="true"><img src="assets/adure-logo-horizontal.svg" alt=""></div><p class="intro-caption"><span>Beyond Property …</span><span>Creating Value !</span></p></div></div>`;
-const openingHead=`<link rel="stylesheet" href="hero-opening.css"><script>if((!location.hash||location.hash==='#home')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.dataset.opening='pending';window.adureOpeningTimer=setTimeout(()=>{if(window.adureFinishOpening)window.adureFinishOpening();else{delete document.documentElement.dataset.opening;document.querySelector('#site-intro')?.setAttribute('hidden','');document.querySelectorAll('[inert]').forEach(e=>e.inert=false)}},8000)}</script><script type="module" src="hero-opening.js"></script>`;
-const output=html.replace('</head>',social+openingHead+'</head>').replace('<body>','<body>'+opening).replace('<img src="assets/architecture-horizon.webp" alt="Contemporary waterfront real estate in Abu Dhabi">','<video class="hero-video" id="hero-video" muted loop playsinline preload="auto" poster="assets/architecture-horizon.webp" aria-label="Hidd Al Saadiyat architectural film"><source src="assets/hidd-al-saadiyat-hero.mp4" type="video/mp4"></video>');
-writeFileSync(new URL('../dist/index.html',import.meta.url),output.replace('content="#933637"','content="#004789"').replace('href="home.css"','href="home.css?v=rio-transition-1"').replace('src="home.js"','src="home.js?v=management-images-1"'));
+const opening=`<div class="site-intro" id="site-intro" hidden aria-label="Loading ADURE"><button class="intro-skip" type="button">Skip intro <span aria-hidden="true">→</span></button><div class="intro-lockup"><div class="intro-brand" aria-hidden="true"><img src="assets/adure-logo-horizontal.svg" alt=""></div><p class="intro-caption"><span>BEYOND PROPERTY… CREATING VALUE!</span></p></div></div>`;
+const openingHead=`<link rel="stylesheet" href="hero-opening.css?v=opening-8"><script>if((!location.hash||location.hash==='#home')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.dataset.opening='pending';window.adureOpeningTimer=setTimeout(()=>{if(window.adureFinishOpening)window.adureFinishOpening();else{delete document.documentElement.dataset.opening;document.querySelector('#site-intro')?.setAttribute('hidden','');document.querySelectorAll('[inert]').forEach(e=>e.inert=false)}},8000)}</script><script type="module" src="hero-opening.js?v=opening-9"></script>`;
+let output=html.replace('</head>',social+openingHead+'</head>').replace('<body>','<body>'+opening).replace('<img src="assets/architecture-horizon.webp" alt="Contemporary waterfront real estate in Abu Dhabi">','<video class="hero-video" id="hero-video" muted loop playsinline preload="auto" poster="assets/architecture-horizon.webp" aria-label="Hidd Al Saadiyat architectural film"><source src="assets/hidd-al-saadiyat-hero.mp4" type="video/mp4"></video>');
+const sentenceCaseCopy = [
+  ['BEYOND PROPERTY… CREATING VALUE!','Beyond property… creating value!'],
+  ['Beyond Property. Creating Value.','Beyond property. Creating value.'],
+  ['Real Estate, Connected','Real estate, connected'],
+  ['Show Leasing and Operations','Show leasing and operations'],
+  ['Show Facility Management','Show facility management'],
+  ['Show Financial and Legal Management','Show financial and legal management'],
+  ['Thinking of Selling? Sell Your Property','Thinking of selling? Sell your property'],
+  ['Financial & Legal Management','Financial & legal management'],
+  ['Your 30-Day Transition Journey','Your 30-day transition journey'],
+  ['Explore Property Management','Explore property management'],
+  ['Explore Our Portfolio','Explore our portfolio'],
+  ['Trusted Relationships','Trusted relationships'],
+  ['Start a Conversation','Start a conversation'],
+  ['Leasing &amp; Operations','Leasing &amp; operations'],
+  ['Financial &amp; Legal Management','Financial &amp; legal management'],
+  ['Leasing & Operations','Leasing & operations'],
+  ['Facility Management','Facility management'],
+  ['The ADURE Record','The ADURE record'],
+  ['Property Management','Property management'],
+  ['Property Search','Property search'],
+  ['Search Properties','Search properties'],
+  ['View All Properties','View all properties'],
+  ['Buy With ADURE','Buy with ADURE'],
+  ['Sell With ADURE','Sell with ADURE'],
+  ['Lease With ADURE','Lease with ADURE'],
+  ['List Your Property','List your property'],
+  ['Find a Property','Find a property'],
+  ['Our Customers','Our customers'],
+  ['Our Portfolio','Our portfolio'],
+  ['Property Type','Property type'],
+  ['Price Range','Price range'],
+  ['Media and Gallery','Media and gallery'],
+  ['All Filters','All filters']
+];
+sentenceCaseCopy.forEach(([from,to])=>{output=output.replaceAll(from,to)});
+writeFileSync(new URL('../dist/index.html',import.meta.url),output.replace('content="#933637"','content="#004789"').replace('href="home.css"','href="home.css?v=sentence-case-1"').replace('src="home.js"','src="home.js?v=management-images-1"'));
 console.log('Built ADURE v2 homepage: '+section+' sections, '+fi+' filters.');
-

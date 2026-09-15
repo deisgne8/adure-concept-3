@@ -9,7 +9,7 @@ if(root){
   const serviceRows=root.querySelector('.service-rows');
   const slides=[...root.querySelectorAll('.service-row')];
   const pagination=root.querySelector('.management-pagination');
-  const cta=stack?.querySelector(':scope > .btn');
+  const cta=copyParent?.querySelector('.management-main-cta');
   const visual=root.querySelector('.management-visual-v2');
   const image=visual?.querySelector('img');
   const header=document.querySelector('.site-header');
@@ -27,8 +27,8 @@ if(root){
     const titleMain=document.createElement('span');
     titleLead.className='management-title-lead';
     titleMain.className='management-title-main';
-    titleLead.textContent='Your Asset,';
-    titleMain.textContent='Looked After As A Whole';
+    titleLead.textContent='Property';
+    titleMain.textContent='management';
     title.setAttribute('aria-label',titleLabel);
     title.replaceChildren(titleLead,titleMain);
 
@@ -39,7 +39,9 @@ if(root){
 
     layout.append(track);
     track.append(sticky,stack);
-    sticky.append(title,intro,visual);
+    sticky.append(title,intro);
+    if(cta)sticky.append(cta);
+    sticky.append(visual);
     copyParent.remove();
     if(pagination)pagination.hidden=true;
 
@@ -63,47 +65,80 @@ if(root){
         cardImage.decoding='async';
         media.append(cardImage);
         inner.insertBefore(media,body);
-        if(cta){
-          const cardCta=cta.cloneNode(true);
-          cardCta.classList.add('service-card-cta');
-          inner.append(cardCta);
-        }
       }
     });
-    cta?.remove();
 
-    image.src='assets/management-beachfront-community.webp';
-    image.alt='Beachfront residential community with palm-lined gardens in Abu Dhabi';
-    root.classList.add('has-management-stack','management-intro-ready');
-
-    if(reduced||!('IntersectionObserver' in window)){
-      root.classList.add('is-intro-visible');
-    }else{
-      const introObserver=new IntersectionObserver(entries=>{
-        if(entries.some(entry=>entry.isIntersecting)){
-          root.classList.add('is-intro-visible');
-          introObserver.disconnect();
-        }
-      },{rootMargin:'0px 0px -12% 0px',threshold:.12});
-      introObserver.observe(root);
-    }
+    image.src='assets/management-beachfront-photo.webp';
+    image.alt='Beachfront residences, palm-lined promenade and turquoise sea at Hidd Al Saadiyat';
+    root.classList.add('has-management-stack','has-scroll-entrance');
 
     let frame=0;
     let headerHeight=0;
     let stageHeight=0;
+    let entranceDistance=0;
+    const clamp=value=>Math.max(0,Math.min(1,value));
+    const copyItems=[title,intro,cta].filter(Boolean);
+    let entranceFrame=0;
+    let entranceTarget=0;
+    let entrancePosition=null;
+    let entranceTime=0;
+
+    function entrance(progress){
+      // Clingr: rise for half a viewport without resizing, then expand at
+      // the center over another three-quarters of a viewport.
+      const rise=clamp(progress/.4);
+      const expansion=clamp((progress-.4)/.6);
+      root.style.setProperty('--management-scene-width',`${36.11111+expansion*63.88889}%`);
+      root.style.setProperty('--management-scene-height',`${62.22222+expansion*37.77778}%`);
+      root.style.setProperty('--management-scene-y',`${((1-rise)*stageHeight*.3).toFixed(2)}px`);
+      root.style.setProperty('--management-scene-radius',`${(1-expansion)*30}px`);
+      root.style.setProperty('--management-scene-border',`${(1-expansion)*8}px`);
+      const showCopy=progress>=.9999;
+      root.classList.toggle('is-scene-expanded',showCopy);
+      copyItems.forEach(item=>{item.inert=!showCopy});
+    }
+
+    function renderEntrance(now){
+      const elapsed=entranceTime?Math.min(64,now-entranceTime):1000/60;
+      entranceTime=now;
+      // Match the reference's 0.1 interpolation at 60 Hz at any refresh rate.
+      entrancePosition+=(entranceTarget-entrancePosition)*(1-Math.pow(.9,elapsed/(1000/60)));
+      if(Math.abs(entranceTarget-entrancePosition)<.0001)entrancePosition=entranceTarget;
+      entrance(entrancePosition);
+      if(entrancePosition!==entranceTarget)entranceFrame=requestAnimationFrame(renderEntrance);
+      else{entranceFrame=0;entranceTime=0}
+    }
+
+    function updateEntrance(progress){
+      entranceTarget=progress;
+      if(entrancePosition===null||reduced){
+        entrancePosition=progress;
+        entrance(progress);
+      }else if(!entranceFrame){
+        entranceTime=0;
+        entranceFrame=requestAnimationFrame(renderEntrance);
+      }
+    }
 
     function measure(){
       headerHeight=header?.getBoundingClientRect().height||0;
       stageHeight=Math.max(1,innerHeight-headerHeight);
       root.style.setProperty('--management-top',`${headerHeight}px`);
       root.style.setProperty('--management-stage-height',`${stageHeight}px`);
-      root.style.setProperty('--management-card-offset',`${stageHeight*.84}px`);
+      entranceDistance=reduced||compact.matches?0:stageHeight*1.25;
+      root.style.setProperty('--management-card-offset',`${stageHeight*.84+entranceDistance}px`);
       root.style.setProperty('--management-title-height',`${title.getBoundingClientRect().height}px`);
+      root.style.setProperty('--management-intro-height',`${intro.getBoundingClientRect().height}px`);
       sync();
     }
 
     function sync(){
       frame=0;
+      const trackRect=track.getBoundingClientRect();
+      const introProgress=reduced?1:compact.matches
+        ?clamp((innerHeight-trackRect.top)/(stageHeight*.95))
+        :clamp((headerHeight-trackRect.top)/entranceDistance);
+      updateEntrance(introProgress);
       if(compact.matches||reduced){
         root.style.setProperty('--management-image-y','0px');
         slides.forEach(slide=>{
@@ -114,7 +149,6 @@ if(root){
         return;
       }
 
-      const trackRect=track.getBoundingClientRect();
       const travel=Math.max(1,trackRect.height-stageHeight);
       const progress=Math.max(0,Math.min(1,(headerHeight-trackRect.top)/travel));
       root.style.setProperty('--management-image-y',`${Math.round((1-progress)*stageHeight*.025)}px`);
@@ -144,6 +178,8 @@ if(root){
     addEventListener('resize',measure,{passive:true});
     compact.addEventListener?.('change',measure);
     if(header)new ResizeObserver(measure).observe(header);
+    document.fonts?.ready.then(measure);
+    addEventListener('pageshow',measure);
     measure();
   }
 }

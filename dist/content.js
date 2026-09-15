@@ -9,16 +9,16 @@ export const site = {
 };
 
 export const journeys = {
-  buy: {image:'architecture-courtyard',alt:'Landscaped walkway beside curved residential buildings',body:'Find the right property with clear information and informed guidance.',cta:'Buy With ADURE',href:'#discover'},
-  sell: {image:'architecture-waterfront',alt:'Waterfront apartments in warm evening light',body:'Bring your property to market with professional advice, strong exposure and access to qualified buyers.',cta:'Sell With ADURE',href:'#contact'},
-  rent: {image:'architecture-terraces',alt:'Sunlit terraces overlooking an open residential courtyard',body:'Find a residential or commercial property that fits what you need next.',cta:'Lease With ADURE',href:'#discover'},
-  manage: {image:'architecture-palms',alt:'Sunlight through palms beside a carefully maintained facade',body:'Bring your asset under one connected management approach, with leasing, operations, facilities, finance and legal oversight working together.',cta:'Property Management',href:'#management'},
+  buy: {image:'architecture-courtyard',alt:'Landscaped walkway beside curved residential buildings',body:'Choose with clarity. Discover opportunities with guidance grounded in the market.',cta:'Buy with ADURE',href:'#discover'},
+  sell: {image:'architecture-waterfront',alt:'Waterfront apartments in warm evening light',body:'Position for the right value. Bring your property to market with considered positioning and the right audience.',cta:'Sell with ADURE',href:'#contact'},
+  rent: {image:'architecture-terraces',alt:'Sunlit terraces overlooking an open residential courtyard',body:'Connect people with place. Create the right match between properties, owners and occupants.',cta:'Lease with ADURE',href:'#discover'},
+  manage: {image:'architecture-palms',alt:'Sunlight through palms beside a carefully maintained facade',body:'Protect what comes next. Keep assets performing through connected, long-term management.',cta:'Property management',href:'#management'},
 };
 
 export const management = [
-  {id:'leasing',title:'Leasing & Operations',image:'architecture-palms',alt:'Palm-lined facade in the supplied portfolio',body:'From market assessment and tenant sourcing to administration, renewals and regulatory compliance.',examples:['Leasing management','Lease administration & renewals','Rental assessment & market research','Regulatory compliance'],outcome:'A property that stays connected.'},
-  {id:'facility',title:'Facility Management',image:'architecture-windows',alt:'Rhythmic windows and sunshades on a residential facade',body:'Technical, operational and support services that keep properties safe, efficient and reliable.',examples:['Integrated facility management','Hard & soft FM','Maintenance & asset management','HSE, engineering & digital FM'],outcome:'Every detail, working together.'},
-  {id:'financial',title:'Financial & Legal Management',image:'architecture-facade',alt:'Precisely arranged balconies and windows on a modern building',body:'Structured financial oversight, reporting and legal coordination that give owners greater visibility and control.',examples:['Financial strategy & operations','Budgeting & forecasting','Periodic financial reporting','Legal & regulatory coordination'],outcome:'Clarity behind every decision.'},
+  {id:'leasing',title:'Leasing & operations',image:'architecture-palms',alt:'Palm-lined facade in the supplied portfolio',body:'Keeping occupancy, tenant relationships and everyday performance moving forward.',examples:['Leasing management','Lease administration & renewals','Rental assessment & market research','Regulatory compliance'],outcome:'A property that stays connected.'},
+  {id:'facility',title:'Facility management',image:'architecture-windows',alt:'Rhythmic windows and sunshades on a residential facade',body:'Maintaining spaces with the consistency, care and attention they require.',examples:['Integrated facility management','Hard & soft FM','Maintenance & asset management','HSE, engineering & digital FM'],outcome:'Every detail, working together.'},
+  {id:'financial',title:'Financial & legal management',image:'architecture-facade',alt:'Precisely arranged balconies and windows on a modern building',body:'Clear oversight, structured reporting and coordinated support around every asset.',examples:['Financial strategy & operations','Budgeting & forecasting','Periodic financial reporting','Legal & regulatory coordination'],outcome:'Clarity behind every decision.'},
 ];
 
 // Editorial property directions that begin a conversation rather than claim availability.
@@ -44,10 +44,10 @@ export const portfolio = [
   {id:'horizon',caption:'An open outlook',detail:'A view beyond the everyday.',image:'architecture-horizon',alt:'A glimpse of the sea between two residential buildings'},
 ];
 export const transition = [
-  {title:'Review',week:'Week 1',body:'Property and document review, with a full handover audit.',gain:'A clear starting point, with responsibilities understood from the beginning.',evidence:['Property records','Lease documentation','Full handover audit'],next:'Inspect'},
-  {title:'Inspect',week:'Week 2',body:'Asset inspection and tenant communication.',gain:'Visibility into the property’s condition and the needs of its tenants.',evidence:['Asset inspection','Tenant communication','Condition review'],next:'Takeover'},
-  {title:'Takeover',week:'Week 3',body:'Operational takeover and reporting setup.',gain:'An organised handover and a clear line of sight into operations.',evidence:['Operational takeover','Reporting setup','Service coordination'],next:'Manage'},
-  {title:'Manage',week:'Week 4+',body:'Full management, reporting and performance monitoring.',gain:'Ongoing oversight that keeps your property and its performance in view.',evidence:['Full management','Performance monitoring','Periodic reporting'],next:null},
+  {title:'Review',week:'Week 1',body:'Understand the asset, its documentation and existing requirements.',gain:'A clear starting point, with responsibilities understood from the beginning.',evidence:['Property records','Lease documentation','Full handover audit'],next:'Inspect'},
+  {title:'Inspect',week:'Week 2',body:'Assess the property, operations and tenant needs.',gain:'Visibility into the property’s condition and the needs of its tenants.',evidence:['Asset inspection','Tenant communication','Condition review'],next:'Takeover'},
+  {title:'Takeover',week:'Week 3',body:'Bring responsibilities, communication and reporting into alignment.',gain:'An organised handover and a clear line of sight into operations.',evidence:['Operational takeover','Reporting setup','Service coordination'],next:'Manage'},
+  {title:'Manage',week:'Week 4',body:'Move into ongoing oversight with clear accountability and visibility.',gain:'Ongoing oversight that keeps your property and its performance in view.',evidence:['Full management','Performance monitoring','Periodic reporting'],next:null},
 ];
 // Add only logos with explicit website-use approval.
 export const clients = [];
