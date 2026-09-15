@@ -62,7 +62,7 @@ if (section && shell && heading && timeline) {
     button.type = 'button';
     button.setAttribute('aria-label', `Show ${stage.week}: ${stage.title}`);
     button.setAttribute('aria-controls', `transition-stage-${index}`);
-    button.innerHTML = `<span>${stage.week}</span>`;
+    button.innerHTML = `<span>${stage.week}</span><strong>${stage.title}</strong>`;
     button.addEventListener('click', () => navigate(index));
     navigation.append(button);
     return button;

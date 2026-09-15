@@ -65,13 +65,15 @@
 #management.has-management-stack .service-row{position:sticky;z-index:calc(var(--service-index,0) + 3);top:calc(var(--management-top,0px) + clamp(32px,7vh,72px));width:100%;min-height:min(560px,64vh);margin:0 0 clamp(28px,4vh,44px);padding:0;overflow:hidden;visibility:visible;opacity:1;transform:scale(var(--service-scale,1));transform-origin:50% 50%;border:1px solid rgba(0,71,137,.12);background:#fff;box-shadow:0 24px 80px rgba(0,5,18,.22);will-change:transform;transition:box-shadow .45s ease}
 #management.has-management-stack .service-row::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:#06152b;opacity:var(--service-overlay-opacity,0)}
 #management.has-management-stack .service-row.is-current{box-shadow:0 30px 96px rgba(0,5,18,.3)}
-#management.has-management-stack .service-row>div{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;min-height:inherit;padding:clamp(28px,3.2vw,46px)}
+#management.has-management-stack .service-row>div{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto auto;min-height:inherit;padding:clamp(28px,3.2vw,46px)}
 #home #management.has-management-stack .service-row h3{grid-column:1;grid-row:1;max-width:none;margin:0;color:var(--accent);font:400 var(--type-card)/1.2 var(--font-display);letter-spacing:-.02em;text-transform:uppercase}
 #management .service-card-media{grid-column:1;grid-row:2;width:78%;aspect-ratio:16/9;margin:clamp(24px,3.5vh,38px) auto;overflow:hidden;background:var(--surface-alt)}
 #management .service-card-media img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(var(--service-image-scale,1.3));transform-origin:50% 50%;will-change:transform}
 #home #management.has-management-stack .service-row p{grid-column:1;grid-row:3;max-width:48ch;margin:0 auto;color:var(--muted);text-align:center;font:400 var(--type-body)/1.55 var(--font-body)}
+#management.has-management-stack .service-card-cta{grid-column:1;grid-row:4;justify-self:center;margin:22px 0 0;color:var(--accent);border-color:transparent;font:600 var(--type-label)/1.4 var(--font-body);letter-spacing:.045em;text-transform:uppercase}
+#management.has-management-stack .service-card-cta::after{content:'→';margin-left:12px}
 #management.has-management-stack .management-pagination{display:none}
-#management.has-management-stack .management-carousel-copy>.btn{display:inline-flex;margin:var(--space-xl) 0 0;color:#fff;border-color:rgba(255,255,255,.55)}
+#management.has-management-stack .management-carousel-copy>.btn{display:none}
 @media(min-width:1600px){
  #home #management .management-stack-sticky>h2{left:max(var(--page-gutter),calc((100vw - var(--container-max))/2 + var(--page-gutter)))}
  #home #management .management-stack-sticky>.intro{left:max(var(--page-gutter),calc((100vw - var(--container-max))/2 + var(--page-gutter)));right:auto}

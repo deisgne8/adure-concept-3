@@ -38,6 +38,26 @@ const fields = ['location','type','bedrooms','price']; let fi = 0;
 home = home.replace(/<label>([^<]+)<\/label><select>/g, (_, label) => { const id=fields[fi++]; return `<label for="filter-${id}">${label}</label><select id="filter-${id}" name="${id}">`; });
 // The philosophy uses the approved short copy in its own editorial template.
 home = home.replace(/<section class="philosophy-section[^>]*>[\s\S]*?<\/section>/, readFileSync(new URL('../docs/philosophy-section.html',import.meta.url),'utf8').trim());
+const clientLogos = [
+  ['adnoc.png','ADNOC'],
+  ['taqa-distribution.png','TAQA Distribution'],
+  ['adco.png','ADCO'],
+  ['mubadala.png','Mubadala'],
+  ['abu-dhabi-police.png','Abu Dhabi Police'],
+  ['gasco.png','GASCO'],
+  ['takaful-emarat.png','Takaful Emarat'],
+  ['brighton-college.png','Brighton College Abu Dhabi'],
+  ['embassy-japan.png','Embassy of Japan'],
+  ['unicorp.png','Unicorp'],
+  ['punj-lloyd.png','Punj Lloyd'],
+  ['gulf-piping.png','Gulf Piping Company'],
+  ['lifeline-medicare.png','Lifeline Medicare Hospitals'],
+  ['higher-colleges.png','Higher Colleges of Technology']
+].map(([file,name]) => `<div class="client-logo"><img src="assets/clients/${file}" alt="${name}" loading="lazy" decoding="async"></div>`).join('');
+home = home.replace(
+  /<section class="trust-v2 section" id="trust">[\s\S]*?<\/section>/,
+  `<section class="trust-v2 section" id="trust"><div class="section-shell"><h2 class="sr-only">Trusted Across Sectors</h2><p class="trust-logo-intro">We've worked with government, semi-government and private-sector organisations across the UAE.</p><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
+);
 // Footer copy and link hierarchy remain the supplied v2 version.
 let footer = source.slice(source.indexOf('<footer class="footer">'),source.indexOf('<div class="toast"'));
 footer = footer.replace(/\sstyle="[^"]*"/g, '').replace('assets/adure-logo.png', 'assets/adure-logo-horizontal.svg');

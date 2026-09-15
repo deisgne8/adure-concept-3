@@ -22,7 +22,9 @@
 #home #transition.has-transition-carousel .timeline-step h3{max-width:16ch;margin:clamp(32px,3vw,48px) 0 20px;color:var(--accent);font:400 var(--type-feature)/1.08 var(--font-display);letter-spacing:-.035em;text-transform:uppercase}
 #home #transition.has-transition-carousel .timeline-step p{grid-column:auto;max-width:440px;margin:0;color:var(--muted);font:400 clamp(16px,1.15vw,19px)/1.55 var(--font-body)}
 .has-transition-carousel .transition-step-nav{position:absolute;top:clamp(44px,4vw,68px);right:clamp(28px,3vw,52px);bottom:clamp(42px,4vw,68px);display:flex;flex-direction:column;justify-content:space-around;width:118px;border-right:1px solid var(--border-strong)}
-.has-transition-carousel .transition-step-nav button{position:relative;display:flex;align-items:center;justify-content:flex-end;gap:8px;width:100%;padding:12px 22px 12px 0;border:0;background:transparent;color:var(--muted-light);font:400 12px/1 var(--font-body);letter-spacing:.07em;text-transform:uppercase;transition:color var(--motion-base) var(--ease)}
+.has-transition-carousel .transition-step-nav button{position:relative;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:5px;width:100%;padding:12px 22px 12px 0;border:0;background:transparent;color:var(--muted-light);font:400 12px/1 var(--font-body);letter-spacing:.07em;text-transform:uppercase;transition:color var(--motion-base) var(--ease)}
+.has-transition-carousel .transition-step-nav button span{font-size:10px;letter-spacing:.09em}
+.has-transition-carousel .transition-step-nav button strong{font:400 13px/1.1 var(--font-display);letter-spacing:.025em;color:inherit}
 .has-transition-carousel .transition-step-nav button::after{content:'';position:absolute;right:-5px;width:9px;height:9px;border-radius:50%;background:var(--surface-alt);border:1px solid var(--muted-light);transition:background var(--motion-base) var(--ease),border-color var(--motion-base) var(--ease),transform var(--motion-base) var(--ease)}
 .has-transition-carousel .transition-step-nav button.is-current{color:var(--accent)}
 .has-transition-carousel .transition-step-nav button.is-current::after{background:var(--accent);border-color:var(--accent);transform:scale(1.12)}
@@ -46,7 +48,7 @@
  #home #transition.has-transition-carousel .timeline-step h3{font-size:var(--type-feature);margin:28px 0 18px}
  #home #transition.has-transition-carousel .timeline-step p{font-size:16px}
  .has-transition-carousel .transition-step-nav{position:relative;inset:auto;order:3;display:grid;grid-template-columns:repeat(4,1fr);width:100%;margin-top:20px;border:0;border-top:1px solid var(--border-strong)}
- .has-transition-carousel .transition-step-nav button{justify-content:center;padding:18px 4px 8px;font-size:11px}
+ .has-transition-carousel .transition-step-nav button{align-items:center;justify-content:center;padding:18px 4px 8px;font-size:11px}
  .has-transition-carousel .transition-step-nav button::after{top:-5px;right:calc(50% - 4px)}
  .has-transition-carousel .transition-footer{order:4;margin-top:25px}
  .has-transition-carousel .transition-footer>.btn{font-size:13px}

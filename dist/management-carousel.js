@@ -9,6 +9,7 @@ if(root){
   const serviceRows=root.querySelector('.service-rows');
   const slides=[...root.querySelectorAll('.service-row')];
   const pagination=root.querySelector('.management-pagination');
+  const cta=stack?.querySelector(':scope > .btn');
   const visual=root.querySelector('.management-visual-v2');
   const image=visual?.querySelector('img');
   const header=document.querySelector('.site-header');
@@ -62,8 +63,14 @@ if(root){
         cardImage.decoding='async';
         media.append(cardImage);
         inner.insertBefore(media,body);
+        if(cta){
+          const cardCta=cta.cloneNode(true);
+          cardCta.classList.add('service-card-cta');
+          inner.append(cardCta);
+        }
       }
     });
+    cta?.remove();
 
     image.src='assets/management-beachfront-community.webp';
     image.alt='Beachfront residential community with palm-lined gardens in Abu Dhabi';
