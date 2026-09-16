@@ -4,11 +4,11 @@ const rail = document.querySelector('#portfolio .portfolio-mosaic');
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const cards = [...rail.children];
 const portfolioMedia = [
-  ['assets/hidd-al-saadiyat/golden-waterfront.webp', 'Hidd Al Saadiyat waterfront residences in golden evening light'],
-  ['assets/hidd-al-saadiyat/landscaped-community.webp', 'Landscaped pedestrian setting at Hidd Al Saadiyat'],
-  ['assets/hidd-al-saadiyat/waterfront-view.webp', 'Hidd Al Saadiyat residences overlooking the beach and sea'],
-  ['assets/hidd-al-saadiyat/promenade-mixed-use.webp', 'Hidd Al Saadiyat mixed-use building and public promenade'],
-  ['assets/hidd-al-saadiyat/curved-residences.webp', 'Layered curved residences at Hidd Al Saadiyat']
+  ['assets/portfolio-reference/sunrise-residence-3-v2.webp', 'Sunrise Residence 3 at Qaryat Al Hidd, Saadiyat Island'],
+  ['assets/portfolio-reference/48-burj-gate-v2.webp', '48 Burj Gate on Sheikh Zayed Road in Dubai'],
+  ['assets/portfolio-reference/qaryat-al-hidd-v2.webp', 'Qaryat Al Hidd waterfront community on Saadiyat Island'],
+  ['assets/portfolio-reference/al-mushrif-villas-v2.webp', 'Al Mushrif Villas in Abu Dhabi'],
+  ['assets/portfolio-reference/ghantoot-complex-v2.webp', 'Ghantoot Complex residential community in Abu Dhabi']
 ];
 
 cards.forEach((card, index) => {
@@ -19,7 +19,6 @@ cards.forEach((card, index) => {
   image.alt = media[1];
 });
 const layers = cards.map(card => ({
-  inner: card.querySelector('.portfolio-card'),
   image: card.querySelector('img')
 }));
 
@@ -41,8 +40,6 @@ const carousel = new window.Smooothy(rail, {
       const box = card.getBoundingClientRect();
       const distance = Math.max(-1, Math.min(1,
         (box.left + box.width / 2 - center) / (rect.width / 2)));
-      layers[index].inner.style.transform = motion.matches ? 'none'
-        : `translate3d(0, ${20 * Math.abs(distance) - 10}%, 0)`;
       layers[index].image.style.transform = motion.matches ? 'none'
         : `translate3d(${-12 * distance}%, 0, 0)`;
     });

@@ -6,9 +6,16 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 let done=false,visible=true;
 const animations=[],background=[...document.querySelectorAll('.site-header,main,.footer,.skip-link')];
 const previous=background.map(element=>element.inert);
-const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const OPENING_DURATION_SCALE=1;
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms*OPENING_DURATION_SCALE));
 const clamp=(min,value,max)=>Math.max(min,Math.min(max,value));
-const animate=(element,frames,options)=>{const animation=element.animate(frames,{fill:'both',...options});animations.push(animation);return animation.finished.catch(()=>{});};
+const animate=(element,frames,options)=>{
+  const timing={...options,duration:options.duration*OPENING_DURATION_SCALE};
+  if(options.delay!=null)timing.delay=options.delay*OPENING_DURATION_SCALE;
+  const animation=element.animate(frames,{fill:'both',...timing});
+  animations.push(animation);
+  return animation.finished.catch(()=>{});
+};
 const once=(target,event)=>new Promise(resolve=>target.addEventListener(event,resolve,{once:true}));
 
 function criticalAssetsReady(){
@@ -65,7 +72,9 @@ async function open(){
   const brand=intro.querySelector('.intro-brand');
   const caption=[...intro.querySelectorAll('.intro-caption span')];
   const rings=[...intro.querySelectorAll('.intro-ring')];
-  video.style.cssText='inset:0;width:100%;height:100%;opacity:1;transform:translate3d(0,25%,0) scale(1.075);transform-origin:50% 50%;clip-path:inset(100% 0 0 0)';
+  const revealDuration=3600;
+  const handoffDuration=420;
+  video.style.cssText='inset:0;width:100%;height:100%;opacity:1;object-fit:cover;transform-origin:50% 50%;clip-path:inset(100% 0 0 0);border:0;border-radius:0';
   root.dataset.opening='brand';
 
   rings.forEach((ring,index)=>animate(ring,[
@@ -100,30 +109,33 @@ async function open(){
   brand.style.transformOrigin='top left';
   animate(brand,[
     {opacity:1,transform:'translate3d(0,0,0) scale(1)'},
-    {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`,offset:.72},
     {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`}
-  ],{duration:1375,easing:'cubic-bezier(.55,0,.1,1)'});
+  ],{duration:revealDuration,easing:'cubic-bezier(.55,0,.1,1)'});
   animate(brand.querySelector('img'),[
     {filter:'none',offset:0},
     {filter:'none',offset:.45},
     {filter:'brightness(0) invert(1)',offset:.78},
     {filter:'brightness(0) invert(1)',offset:1}
-  ],{duration:1375,easing:'linear'});
+  ],{duration:revealDuration,easing:'linear'});
   animate(intro.querySelector('.intro-caption'),[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-14px)'}],{duration:480,easing:'ease-in'});
   rings.forEach(ring=>animate(ring,[{opacity:.22},{opacity:0}],{duration:420,easing:'ease-in'}));
   const heroScale=getComputedStyle(hero).getPropertyValue('--hero-media-scale').trim()||'1';
-  // Full-width hero reveal: the reference's 1.375s easing, mirrored upward.
-  // The media remains in the hero so playback stays continuous at handoff.
-  await animate(video,[
-    {opacity:1,transform:`translate3d(0,25%,0) scale(${heroScale})`,clipPath:'inset(100% 0 0 0)'},
-    {opacity:1,transform:`translate3d(0,0,0) scale(${heroScale})`,clipPath:'inset(0 0 0 0)'}
-  ],{duration:1375,easing:'cubic-bezier(.55,0,.1,1)'});
+  const revealStartScale=(Number.parseFloat(heroScale)||1)+.08;
+  // Reveal the full-size playing film in one continuous movement, without a
+  // contained-card hold or a second expansion phase.
+  const videoReveal=animate(video,[
+    {transform:`scale(${revealStartScale})`,clipPath:'inset(100% 0 0 0)'},
+    {transform:`scale(${heroScale})`,clipPath:'inset(0 0 0 0)'}
+  ],{duration:revealDuration,easing:'cubic-bezier(.4,0,.2,1)'});
+  // Crossfade to the real navigation during the final part of the reveal so
+  // the handoff does not add another pause after the video fills the screen.
+  await wait(revealDuration-handoffDuration);
   if(done)return;
-
-  // The playing video never leaves the hero. Reveal the real navigation behind
-  // the aligned intro logo, then remove only the branding layer.
   root.dataset.opening='handoff';
-  await animate(intro.querySelector('.intro-lockup'),[{opacity:1},{opacity:0}],{duration:420,easing:'ease-out'});
+  await Promise.all([
+    videoReveal,
+    animate(intro.querySelector('.intro-lockup'),[{opacity:1},{opacity:0}],{duration:handoffDuration,easing:'ease-out'})
+  ]);
   if(done)return;
   finish();
   document.querySelectorAll('.hero-inner').forEach((element,index)=>element.animate([

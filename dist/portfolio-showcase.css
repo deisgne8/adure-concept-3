@@ -1,14 +1,14 @@
-/* Oversized, staggered architecture inspired by the supplied RIO reference. */
+/* Oversized architecture cards on a shared bottom baseline. */
 #portfolio {
   background:var(--white);
   padding-block:clamp(64px,6vw,112px);
   overflow:hidden;
 }
 
-/* The item owns horizontal movement; its inner card owns the vertical arc. */
+/* The item owns horizontal movement; cards stay aligned while images pan. */
 #portfolio .portfolio-mosaic {
   display:flex;
-  align-items:flex-start;
+  align-items:flex-end;
   gap:0;
   margin:clamp(56px,5vw,100px) -8px 0;
   padding:0 0 clamp(64px,5vw,100px);
@@ -35,7 +35,6 @@
   flex-direction:column;
   aspect-ratio:4/5;
   width:100%;
-  will-change:transform;
 }
 #portfolio .portfolio-card-link {
   position:relative;
@@ -56,6 +55,7 @@
   height:100%;
   aspect-ratio:auto;
   object-fit:cover;
+  object-position:center top;
   border-radius:0;
   transition:filter .75s cubic-bezier(.625,.05,0,1);
   will-change:transform;

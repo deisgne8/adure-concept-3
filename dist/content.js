@@ -37,11 +37,11 @@ export function matchCollections(filters) {
   );
 }
 export const portfolio = [
-  {id:'waterfront',caption:'Waterfront rhythm',detail:'Architecture shaped by its surroundings.',image:'architecture-waterfront',alt:'Curved waterfront balconies warmed by the evening sun'},
-  {id:'curves',caption:'A different perspective',detail:'Sculptural forms, seen from the ground.',image:'architecture-curves',alt:'Curved residential building with layered white terraces'},
-  {id:'facade',caption:'Order in the detail',detail:'A closer look at the building fabric.',image:'architecture-facade',width:1333,height:723,alt:'Repeating windows and balconies create a geometric facade'},
-  {id:'courtyard',caption:'Space to connect',detail:'Landscape and architecture in conversation.',image:'architecture-courtyard',alt:'A landscaped pedestrian route through a residential development'},
-  {id:'horizon',caption:'An open outlook',detail:'A view beyond the everyday.',image:'architecture-horizon',alt:'A glimpse of the sea between two residential buildings'},
+  {id:'sunrise-residence-3',caption:'Sunrise Residence 3',detail:'Residential · Qaryat Al Hidd, Saadiyat Island',image:'portfolio-reference/sunrise-residence-3-v2',alt:'Sunrise Residence 3 at Qaryat Al Hidd, Saadiyat Island'},
+  {id:'48-burj-gate',caption:'48 Burj Gate',detail:'Retail · Sheikh Zayed Road, Dubai',image:'portfolio-reference/48-burj-gate-v2',alt:'48 Burj Gate on Sheikh Zayed Road in Dubai'},
+  {id:'qaryat-al-hidd',caption:'Qaryat Al Hidd',detail:'Residential · Saadiyat Island',image:'portfolio-reference/qaryat-al-hidd-v2',alt:'Qaryat Al Hidd waterfront community on Saadiyat Island'},
+  {id:'al-mushrif-villas',caption:'Al Mushrif Villas',detail:'Residential · Al Mushrif, Abu Dhabi',image:'portfolio-reference/al-mushrif-villas-v2',alt:'Al Mushrif Villas in Abu Dhabi'},
+  {id:'ghantoot-complex',caption:'Ghantoot Complex',detail:'Residential · Mohammed Bin Zayed City',image:'portfolio-reference/ghantoot-complex-v2',alt:'Ghantoot Complex residential community in Abu Dhabi'}
 ];
 export const transition = [
   {title:'Review',week:'Week 1',body:'Understand the asset, its documentation and existing requirements.',gain:'A clear starting point, with responsibilities understood from the beginning.',evidence:['Property records','Lease documentation','Full handover audit'],next:'Inspect'},

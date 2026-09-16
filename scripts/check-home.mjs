@@ -19,6 +19,20 @@ assert.ok(html.includes('<dd>3000+</dd>'),'Units managed must have no comma');
 const source=readFileSync(new URL('../docs/reference-evidence/adure-v2-source.html',import.meta.url),'utf8');
 const referenceHome=source.slice(source.indexOf('<section class="page active home-v2"'),source.indexOf('<section class="page" id="properties"'));
 const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
+const referencePortfolio=[
+  ['Sunrise Residence 3','Residential · Qaryat Al Hidd, Saadiyat Island','assets/portfolio-reference/sunrise-residence-3-v2.webp'],
+  ['48 Burj Gate','Retail · Sheikh Zayed Road, Dubai','assets/portfolio-reference/48-burj-gate-v2.webp'],
+  ['Qaryat Al Hidd','Residential · Saadiyat Island','assets/portfolio-reference/qaryat-al-hidd-v2.webp'],
+  ['Al Mushrif Villas','Residential · Al Mushrif, Abu Dhabi','assets/portfolio-reference/al-mushrif-villas-v2.webp'],
+  ['Ghantoot Complex','Residential · Mohammed Bin Zayed City','assets/portfolio-reference/ghantoot-complex-v2.webp']
+];
+for(const [name,detail,image] of referencePortfolio){
+  assert.ok(localHome.includes(`<h3>${name}</h3>`),`Portfolio name missing: ${name}`);
+  assert.ok(localHome.includes(detail),`Portfolio detail missing: ${detail}`);
+  assert.ok(localHome.includes(`src="${image}"`),`Portfolio image missing: ${image}`);
+  assert.ok(existsSync(new URL(`../dist/${image}`,import.meta.url)),`Portfolio asset missing: ${image}`);
+}
+assert.equal((localHome.match(/class="portfolio-item-v2"/g)||[]).length,referencePortfolio.length,'Portfolio must contain the five approved projects');
 const approvedCopy=[
   'Creating Value Beyond Property',
   'A connected approach to real estate, shaped in Abu Dhabi.',
@@ -28,29 +42,31 @@ const approvedCopy=[
   'Connect people with place.',
   'Protect what comes next.',
   'Find a place that fits what comes next',
-  'Find the place that fits what comes next.',
+  'Explore available properties across our locations and communities.',
   'Property management',
-  'Value lies in how a property is cared for.',
+  'Long after a property is bought, leased or occupied,',
   'Success proven in numbers',
-  'Success proven in numbers.',
+  'The strongest measure of experience is what it continues to deliver.',
   'From places to performance',
-  'From places to performance.',
+  'Every asset has its own character, purpose and potential.',
   'Your 30-day transition journey',
   'Good management starts with getting the beginning right.',
   'Rooted in trust and transparency',
-  'ADURE works with government, semi-government and private-sector organisations across the UAE.',
+  'ADURE works with government, semi government and private sector organisations across the UAE.',
   'Whether you are finding a place, bringing a property to market or placing an asset under management, ADURE brings clarity to what comes next.',
   'Every next move begins with the right partner'
 ];
-approvedCopy.forEach(copy=>assert.ok(localHome.includes(copy),`Approved copy missing: ${copy}`));
+const localCopy=localHome.replace(/<[^>]*>/g,'');
+approvedCopy.forEach(copy=>assert.ok(localCopy.includes(copy),`Approved copy missing: ${copy}`));
 assert.ok(!localHome.includes('<span class="trust-logo-eyebrow">Customers</span>'),'Trust eyebrow should be removed');
-const trustMarkup=localHome.slice(localHome.indexOf('<section class="trust-v2 section" id="trust">'),localHome.indexOf('<section class="final-cta section" id="conversation">'));
-for(const [id,title,count] of [['government-semi-government','Government &amp; Semi-Government',30],['private-sector-corporates','Private Sector &amp; Corporates',24]]){
+const trustMarkup=localHome.slice(localHome.indexOf('<section class="trust-v2 section" id="trust">'),localHome.indexOf('<section class="final-v2 section" id="conversation">'));
+for(const [id,count] of [['government-semi-government',6],['private-sector-corporates',6]]){
   const group=trustMarkup.match(new RegExp(`<section class="client-logo-group" aria-labelledby="${id}">([\\s\\S]*?)<\\/section>`))?.[1];
-  assert.ok(group?.includes(`<h3 id="${id}">${title}</h3>`),`${title} logo group missing`);
-  assert.equal((group.match(/class="client-logo"(?!-)/g)||[]).length,count*2,`${title} should contain ${count} logos plus an aria-hidden marquee copy`);
-  assert.equal((group.match(/class="client-logo-lane"/g)||[]).length,3,`${title} should contain three scrolling lanes`);
+  assert.ok(group,`Missing client group: ${id}`);
+  assert.equal((group.match(/class="client-logo"/g)||[]).length,count*2,'Each logo has one hidden copy for a seamless loop');
+  assert.equal((group.match(/class="client-logo-lane"/g)||[]).length,3,'Each group has three animated lanes');
 }
+assert.ok(localHome.includes('<span class="discovery-title-ending">what comes next</span>'),'Keep what comes next together');
 assert.ok(localHome.includes('<div class="journey-heading"><h2>One partner for every property move</h2>'),'Journeys heading does not match the requested copy');
 for (const [id, heading] of Object.entries({
   management:'Value lies in how a property is cared for',

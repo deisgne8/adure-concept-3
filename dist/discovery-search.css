@@ -108,3 +108,6 @@
   #discovery #filter-home #property-search { display:none; }
   #filter-dialog #property-search { display:flex; }
 }
+
+/* Keep the final phrase together as the discovery heading wraps. */
+#discovery .discovery-title-ending{display:inline-block;white-space:nowrap}
