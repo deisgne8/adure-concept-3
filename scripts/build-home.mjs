@@ -97,7 +97,7 @@ const clientLogos = [
 ].map(([file,name]) => `<div class="client-logo"><img src="assets/clients/${file}" alt="${name}" loading="lazy" decoding="async"></div>`).join('');
 home = home.replace(
   /<section class="trust-v2 section" id="trust">[\s\S]*?<\/section>/,
-  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><h2 class="trust-logo-title">Rooted in trust and transparency</h2><p class="trust-logo-intro">Rooted in trust and transparency. ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
+  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><h2 class="trust-logo-title">Rooted in trust and transparency</h2><p class="trust-logo-intro">ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
 );
 // Footer copy and link hierarchy remain the supplied v2 version.
 let footer = source.slice(source.indexOf('<footer class="footer">'),source.indexOf('<div class="toast"'));

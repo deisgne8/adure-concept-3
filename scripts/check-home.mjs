@@ -24,7 +24,7 @@ const approvedCopy=[
   'Your 30-day transition journey',
   'Good management starts with getting the beginning right.',
   'Rooted in trust and transparency',
-  'Rooted in trust and transparency.',
+  'ADURE works with government, semi-government and private-sector organisations across the UAE.',
   'Start a conversation',
   'Every next move begins with the right partner.'
 ];
