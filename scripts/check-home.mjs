@@ -8,28 +8,37 @@ const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf
 const approvedCopy=[
   'Beyond property. Creating value.',
   'A connected approach to real estate, shaped in Abu Dhabi.',
-  'Real estate, connected',
   'One partner for every property move.',
   'Choose with clarity.',
   'Position for the right value.',
   'Connect people with place.',
   'Protect what comes next.',
-  'Property search',
+  'Find a place that fits what comes next.',
   'Find the place that fits what comes next.',
   'Property management',
   'Value lies in how a property is cared for.',
-  'The ADURE record',
+  'Success proven in numbers',
   'Success proven in numbers.',
-  'Our portfolio',
+  'From places to performance:',
   'From places to performance.',
   'Your 30-day transition journey',
   'Good management starts with getting the beginning right.',
-  'Trusted relationships',
+  'Rooted in trust and transparency',
   'Rooted in trust and transparency.',
   'Start a conversation',
   'Every next move begins with the right partner.'
 ];
 approvedCopy.forEach(copy=>assert.ok(localHome.includes(copy),`Approved copy missing: ${copy}`));
+assert.ok(localHome.includes('<div class="journey-heading"><h2>One partner for every property move.</h2>'),'Journeys heading does not match the requested copy');
+for (const [id, heading] of Object.entries({
+  management:'Value lies in how a property is cared for',
+  proof:'Success proven in numbers',
+  portfolio:'From places to performance:',
+  trust:'Rooted in trust and transparency'
+})) {
+  const section=localHome.match(new RegExp(`<section class="[^"]*" id="${id}">([\\s\\S]*?)<\\/section>`))?.[1];
+  assert.equal(section?.match(/<h2[^>]*>([^<]*)<\/h2>/)?.[1],heading,`${id} heading`);
+}
 ['With You Across Every Stage','A Record That Speaks For Itself','A Considered Start','Trusted Across Sectors.'].forEach(copy=>assert.ok(!localHome.includes(copy),`Superseded copy remains: ${copy}`));
 const ids=[...localHome.matchAll(/<section class="[^"]* section" id="([^"]+)"/g)].map(m=>m[1]);
 assert.deepEqual(ids,['hero','journeys','discovery','management','proof','portfolio','transition','trust','conversation']);

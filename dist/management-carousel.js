@@ -27,8 +27,8 @@ if(root){
     const titleMain=document.createElement('span');
     titleLead.className='management-title-lead';
     titleMain.className='management-title-main';
-    titleLead.textContent='Property';
-    titleMain.textContent='management';
+    titleLead.textContent='Value lies in how a ';
+    titleMain.textContent='property is cared for';
     title.setAttribute('aria-label',titleLabel);
     title.replaceChildren(titleLead,titleMain);
 

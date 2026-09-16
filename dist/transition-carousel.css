@@ -7,6 +7,7 @@
 .has-transition-carousel .transition-visual-slide{position:absolute;inset:0;margin:0;opacity:0;transform:scale(1.035);transition:opacity 650ms var(--ease),transform 950ms var(--ease);pointer-events:none}
 .has-transition-carousel .transition-visual-slide.is-current{z-index:1;opacity:1;transform:scale(1)}
 .has-transition-carousel .transition-visual-slide>svg{display:block;width:100%;height:100%}
+.has-transition-carousel .transition-visual-slide>img{display:block;width:100%;height:100%;object-fit:cover;object-position:65% center}
 .has-transition-carousel .transition-content{position:relative;display:flex;flex-direction:column;min-width:0;padding:clamp(48px,4.5vw,78px) clamp(158px,11vw,205px) clamp(42px,4vw,68px) clamp(40px,4.5vw,82px);background:var(--surface-alt);color:var(--ink)}
 .has-transition-carousel .transition-head{display:block;margin:0 0 clamp(44px,4vw,66px)}
 #home #transition.has-transition-carousel .transition-head h2{max-width:10ch;margin:0;color:var(--accent);font:400 var(--type-section)/1.08 var(--font-display);letter-spacing:-.035em;text-transform:uppercase}

@@ -49,23 +49,23 @@ home = home.replace(
 const approvedCopy = [
   ['Creating Value Beyond Property','Beyond Property. Creating Value.'],
   ["We're your end-to-end partner in real estate — bringing buying, selling, leasing, and property management together around one purpose: creating lasting value.",'A connected approach to real estate, shaped in Abu Dhabi.'],
-  ['With You Across Every Stage','Real Estate, Connected'],
+  ['With You Across Every Stage.','One partner for every property move.'],
   ["Whether you're buying, selling, leasing or placing an asset under management, we bring the right expertise together so every stage feels connected and considered.",'One partner for every property move. Real estate rarely begins and ends with one decision. ADURE brings the expertise at every stage, so each move builds naturally into the next.'],
   ['Find the right property with clear information and informed guidance.','Choose with clarity. Discover opportunities with guidance grounded in the market.'],
   ['Bring your property to market with professional advice, strong exposure and access to qualified buyers.','Position for the right value. Bring your property to market with considered positioning and the right audience.'],
   ['Find a residential or commercial property that fits what you need next.','Connect people with place. Create the right match between properties, owners and occupants.'],
   ['Bring your asset under one connected management approach, with leasing, operations, facilities, finance and legal oversight working together.','Protect what comes next. Keep assets performing through connected, long-term management.'],
-  ['Find Your Next Property','Property Search'],
+  ['Find Your Next Property.','Find a place that fits what comes next.'],
   ['Explore available properties and start a buying or leasing enquiry with us.','Find the place that fits what comes next. Explore available properties across our locations and communities.'],
   ['Have a Property? Talk To ADURE','Thinking of Selling? Sell Your Property'],
-  ['Your Asset, Looked After As A Whole','Property Management'],
+  ['Your Asset, Looked After As A Whole.','Value lies in how a property is cared for'],
   ['Long-term performance depends on more than one service. We bring leasing, operations, facilities, financial management and legal coordination together under one connected approach.','Value lies in how a property is cared for. Long after a property is bought, leased or occupied, its performance depends on what happens every day. ADURE brings leasing, operations, facilities, financial oversight and legal coordination together through one accountable approach.'],
   ['From market assessment and tenant sourcing to administration, renewals and regulatory compliance.','Keeping occupancy, tenant relationships and everyday performance moving forward.'],
   ['Technical, operational and support services that keep properties safe, efficient and reliable.','Maintaining spaces with the consistency, care and attention they require.'],
   ['Structured financial oversight, reporting and legal coordination that give owners greater visibility and control.','Clear oversight, structured reporting and coordinated support around every asset.'],
-  ['A Record That Speaks For Itself','The ADURE Record'],
+  ['A Record That Speaks For Itself.','Success proven in numbers'],
   ['Experience, scale and operational performance across a connected UAE portfolio.','Success proven in numbers. The strongest measure of experience is what it continues to deliver.'],
-  ['A Portfolio That Reflects Our Range','Our Portfolio'],
+  ['A Portfolio That Reflects Our Range.','From places to performance:'],
   ['From residential communities and commercial buildings to office towers, retail, hotels, government buildings, and mixed-use developments, we bring the same focus on performance and long-term value across the portfolio.','From places to performance. Every asset has its own character, purpose and potential. Across the portfolio, ADURE brings the same long-term attention to how each place performs, evolves and serves the people around it.'],
   ['A Considered Start','Your 30-Day Transition Journey'],
   ['Our structured 30-day transition brings documentation, tenants, operations, and reporting into management step by step.','Good management starts with getting the beginning right. Over four clear stages, ADURE brings documentation, people, operations and reporting into one organised management structure, with continuity built into every step.'],
@@ -97,7 +97,7 @@ const clientLogos = [
 ].map(([file,name]) => `<div class="client-logo"><img src="assets/clients/${file}" alt="${name}" loading="lazy" decoding="async"></div>`).join('');
 home = home.replace(
   /<section class="trust-v2 section" id="trust">[\s\S]*?<\/section>/,
-  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><span class="trust-logo-eyebrow">Customers</span><h2 class="trust-logo-title">Trusted Relationships</h2><p class="trust-logo-intro">Rooted in trust and transparency. ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
+  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><span class="trust-logo-eyebrow">Customers</span><h2 class="trust-logo-title">Rooted in trust and transparency</h2><p class="trust-logo-intro">Rooted in trust and transparency. ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
 );
 // Footer copy and link hierarchy remain the supplied v2 version.
 let footer = source.slice(source.indexOf('<footer class="footer">'),source.indexOf('<div class="toast"'));

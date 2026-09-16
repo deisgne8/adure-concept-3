@@ -31,7 +31,9 @@ if (section && shell && heading && timeline) {
     figure.className = 'transition-visual-slide';
     figure.setAttribute('role', 'img');
     figure.setAttribute('aria-label', `${stage.week}: ${stage.title}`);
-    figure.innerHTML = `
+    figure.innerHTML = index === 2
+      ? '<img src="assets/hidd-al-saadiyat/transition-takeover-pool.jpg" width="2000" height="1333" alt="" decoding="async">'
+      : `
       <svg viewBox="${stage.crop}" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
         <image href="assets/transition-stages.png" width="1536" height="1024" />
       </svg>`;
