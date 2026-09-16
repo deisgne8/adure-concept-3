@@ -19,7 +19,7 @@ const approvedCopy=[
   'Value lies in how a property is cared for.',
   'Success proven in numbers',
   'Success proven in numbers.',
-  'From places to performance:',
+  'From places to performance',
   'From places to performance.',
   'Your 30-day transition journey',
   'Good management starts with getting the beginning right.',
@@ -29,11 +29,12 @@ const approvedCopy=[
   'Every next move begins with the right partner.'
 ];
 approvedCopy.forEach(copy=>assert.ok(localHome.includes(copy),`Approved copy missing: ${copy}`));
+assert.ok(!localHome.includes('<span class="trust-logo-eyebrow">Customers</span>'),'Trust eyebrow should be removed');
 assert.ok(localHome.includes('<div class="journey-heading"><h2>One partner for every property move.</h2>'),'Journeys heading does not match the requested copy');
 for (const [id, heading] of Object.entries({
   management:'Value lies in how a property is cared for',
   proof:'Success proven in numbers',
-  portfolio:'From places to performance:',
+  portfolio:'From places to performance',
   trust:'Rooted in trust and transparency'
 })) {
   const section=localHome.match(new RegExp(`<section class="[^"]*" id="${id}">([\\s\\S]*?)<\\/section>`))?.[1];

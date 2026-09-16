@@ -28,7 +28,7 @@ if(root){
     titleLead.className='management-title-lead';
     titleMain.className='management-title-main';
     titleLead.textContent='Value lies in how a ';
-    titleMain.textContent='property is cared for';
+    titleMain.textContent='property is cared\u00a0for';
     title.setAttribute('aria-label',titleLabel);
     title.replaceChildren(titleLead,titleMain);
 

@@ -65,7 +65,7 @@ const approvedCopy = [
   ['Structured financial oversight, reporting and legal coordination that give owners greater visibility and control.','Clear oversight, structured reporting and coordinated support around every asset.'],
   ['A Record That Speaks For Itself.','Success proven in numbers'],
   ['Experience, scale and operational performance across a connected UAE portfolio.','Success proven in numbers. The strongest measure of experience is what it continues to deliver.'],
-  ['A Portfolio That Reflects Our Range.','From places to performance:'],
+  ['A Portfolio That Reflects Our Range.','From places to performance'],
   ['From residential communities and commercial buildings to office towers, retail, hotels, government buildings, and mixed-use developments, we bring the same focus on performance and long-term value across the portfolio.','From places to performance. Every asset has its own character, purpose and potential. Across the portfolio, ADURE brings the same long-term attention to how each place performs, evolves and serves the people around it.'],
   ['A Considered Start','Your 30-Day Transition Journey'],
   ['Our structured 30-day transition brings documentation, tenants, operations, and reporting into management step by step.','Good management starts with getting the beginning right. Over four clear stages, ADURE brings documentation, people, operations and reporting into one organised management structure, with continuity built into every step.'],
@@ -97,7 +97,7 @@ const clientLogos = [
 ].map(([file,name]) => `<div class="client-logo"><img src="assets/clients/${file}" alt="${name}" loading="lazy" decoding="async"></div>`).join('');
 home = home.replace(
   /<section class="trust-v2 section" id="trust">[\s\S]*?<\/section>/,
-  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><span class="trust-logo-eyebrow">Customers</span><h2 class="trust-logo-title">Rooted in trust and transparency</h2><p class="trust-logo-intro">Rooted in trust and transparency. ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
+  `<section class="trust-v2 section" id="trust"><div class="section-shell"><header class="trust-logo-head"><h2 class="trust-logo-title">Rooted in trust and transparency</h2><p class="trust-logo-intro">Rooted in trust and transparency. ADURE works with government, semi-government and private-sector organisations across the UAE. Relationships of this scale are built through consistency, discretion and accountability — delivered over time.</p></header><div class="client-logo-grid">${clientLogos}</div><button class="btn link trust-logo-cta" data-route="customers">Our Customers</button></div></section>`
 );
 // Footer copy and link hierarchy remain the supplied v2 version.
 let footer = source.slice(source.indexOf('<footer class="footer">'),source.indexOf('<div class="toast"'));
