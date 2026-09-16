@@ -84,13 +84,13 @@ if(root){
     let entranceTime=0;
 
     function entrance(progress){
-      // Clingr: rise for half a viewport without resizing, then expand at
-      // the center over another three-quarters of a viewport.
-      const rise=clamp(progress/.4);
-      const expansion=clamp((progress-.4)/.6);
-      root.style.setProperty('--management-scene-width',`${36.11111+expansion*63.88889}%`);
-      root.style.setProperty('--management-scene-height',`${62.22222+expansion*37.77778}%`);
-      root.style.setProperty('--management-scene-y',`${((1-rise)*stageHeight*.3).toFixed(2)}px`);
+      // Start enlarging as soon as the landscape card enters the viewport,
+      // reaching the full management stage as the section reaches the header.
+      const rise=clamp(progress);
+      const expansion=clamp(progress);
+      root.style.setProperty('--management-scene-width',`${68+expansion*32}%`);
+      root.style.setProperty('--management-scene-height',`${74+expansion*26}%`);
+      root.style.setProperty('--management-scene-y',`${((1-rise)*stageHeight*.03).toFixed(2)}px`);
       root.style.setProperty('--management-scene-radius',`${(1-expansion)*30}px`);
       root.style.setProperty('--management-scene-border',`${(1-expansion)*8}px`);
       const showCopy=progress>=.9999;
@@ -137,7 +137,7 @@ if(root){
       const trackRect=track.getBoundingClientRect();
       const introProgress=reduced?1:compact.matches
         ?clamp((innerHeight-trackRect.top)/(stageHeight*.95))
-        :clamp((headerHeight-trackRect.top)/entranceDistance);
+        :clamp((innerHeight-trackRect.top)/stageHeight);
       updateEntrance(introProgress);
       if(compact.matches||reduced){
         root.style.setProperty('--management-image-y','0px');
@@ -151,7 +151,7 @@ if(root){
 
       const travel=Math.max(1,trackRect.height-stageHeight);
       const progress=Math.max(0,Math.min(1,(headerHeight-trackRect.top)/travel));
-      root.style.setProperty('--management-image-y',`${Math.round((1-progress)*stageHeight*.025)}px`);
+      root.style.setProperty('--management-image-y',`${Math.round((1-progress)*stageHeight*.045)}px`);
 
       let active=0;
       const cardTop=headerHeight+Math.max(32,Math.min(stageHeight*.07,72));

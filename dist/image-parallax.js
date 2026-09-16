@@ -1,4 +1,4 @@
-// Gentle image-only drift, composed with the existing reveal and carousel transforms.
+// Visible, smoothed image drift, composed with existing reveal and carousel transforms.
 const scope=document.querySelector('#home');
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const items=new Map();
@@ -15,7 +15,7 @@ const observer=new IntersectionObserver(entries=>{
 },{rootMargin:'80px'});
 
 function register(){
-  scope.querySelectorAll('img').forEach(image=>{
+  scope.querySelectorAll('img,.transition-visual-slide>svg').forEach(image=>{
     if(items.has(image)||image.closest('.leaflet-container,.property-map,.site-logo'))return;
     const logo=Boolean(image.closest('.client-logo'));
     image.classList.add(logo?'image-parallax-logo':'image-parallax-photo');
@@ -48,7 +48,8 @@ function update(now){
     if(!sections.has(section))sections.set(section,section.getBoundingClientRect());
     const rect=sections.get(section);
     const progress=clamp((innerHeight-rect.top)/(innerHeight+rect.height)*2-1);
-    const distance=item.logo?3:Math.min(14,image.clientHeight*.023);
+    const strength=innerWidth<768?.7:1;
+    const distance=(item.logo?4:item.section?.id==='conversation'?Math.min(44,image.clientHeight*.075):Math.min(28,image.clientHeight*.05))*strength;
     const target=-progress*distance;
     item.value+=(target-item.value)*smoothing;
     if(Math.abs(target-item.value)>.04)moving=true;else item.value=target;

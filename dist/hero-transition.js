@@ -15,11 +15,12 @@ if(hero&&nextSection&&!reducedMotion.matches){
     const panelTop=nextSection.getBoundingClientRect().top;
     const progress=clamp(1-(panelTop/window.innerHeight));
     const eased=1-Math.pow(1-progress,2.2);
-    const mediaTravel=Math.min(window.innerHeight*.105,96)*eased;
+    const mediaTravel=Math.min(window.innerHeight*.13,120)*eased;
     const copyTravel=Math.min(window.innerHeight*.06,54)*eased;
 
     hero.style.setProperty('--hero-media-y',`${mediaTravel.toFixed(2)}px`);
-    hero.style.setProperty('--hero-media-scale',(1.075-eased*.025).toFixed(4));
+    // Extra image coverage prevents exposed edges as the film moves down.
+    hero.style.setProperty('--hero-media-scale',(1.09+eased*.18).toFixed(4));
     hero.style.setProperty('--hero-copy-y',`${(-copyTravel).toFixed(2)}px`);
     hero.style.setProperty('--hero-copy-opacity',Math.max(0,1-eased*1.18).toFixed(3));
   };

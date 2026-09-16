@@ -420,13 +420,31 @@ main{
 }
 .search-box{
   display:grid;
-  grid-template-columns:repeat(4,1fr) auto;
-  gap:var(--s15);
+  grid-template-columns:repeat(4,minmax(0,1fr)) 3rem 11rem;
+  gap:var(--s1);
   align-items:end;
   padding:var(--s2);
   border:1px solid var(--border);
-  border-radius:var(--image-radius)
+  border-radius:var(--image-radius);
+  transition:grid-template-columns .28s cubic-bezier(.22,1,.36,1)
 }
+.more-filters{position:relative;min-width:0}
+.more-filters-toggle{display:flex;align-items:center;justify-content:center;width:100%;min-height:var(--button-small);padding:0;border:0;background:transparent;color:var(--accent);cursor:pointer}
+.more-filters-toggle svg{width:1.25rem;height:1.25rem;flex:none;color:var(--accent)}
+.search-box.is-more-open{grid-template-columns:repeat(4,minmax(0,1fr)) 3rem 0}
+.search-box>.search-primary{overflow:hidden;transition:opacity .16s ease,padding .28s cubic-bezier(.22,1,.36,1)}
+.search-box.is-more-open>.search-primary{visibility:hidden;padding-inline:0;opacity:0;pointer-events:none}
+.more-filters-panel{grid-column:1/-1;display:flex;align-items:center;gap:var(--s1);width:100%;max-height:0;overflow:hidden;padding:0 var(--s075);border-top:1px solid transparent;background:var(--white);opacity:0;transform:translateY(-.35rem);transition:max-height .3s cubic-bezier(.22,1,.36,1),padding .3s cubic-bezier(.22,1,.36,1),opacity .18s ease,transform .3s cubic-bezier(.22,1,.36,1),border-color .18s ease}
+.more-filters-panel.is-visible{max-height:6rem;padding:var(--s1) var(--s075) var(--s075);border-top-color:var(--border);opacity:1;transform:none}
+.more-filters-panel[hidden]{display:none}
+.more-filters-panel>p{margin:0;color:var(--muted);font-size:var(--type-label);font-weight:400;line-height:1.45;white-space:nowrap}
+.amenity-grid{display:flex;flex:1;flex-wrap:wrap;align-items:center;gap:var(--s075)}
+.amenity-grid label{display:flex;align-items:center;gap:var(--s05);color:var(--ink);font-size:var(--text-label);white-space:nowrap;cursor:pointer}
+.amenity-grid input[type="checkbox"]{appearance:none;width:1rem;height:1rem;min-height:0;margin:0;padding:0;flex:none;border:1px solid var(--muted);border-radius:0;background:var(--white);cursor:pointer}
+.amenity-grid input[type="checkbox"]:checked{border-color:var(--accent);background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 10l4 4 8-8' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/100% no-repeat}
+.amenity-grid input[type="checkbox"]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.amenity-actions{display:flex;justify-content:flex-end;align-items:center;gap:var(--s1);margin-left:auto}
+.amenity-search{min-height:var(--button-small);white-space:nowrap}
 .clear-filters{
   grid-column:1/-1;
   min-height:0;
@@ -666,11 +684,11 @@ main{
   display:block;
   position:absolute;
   z-index:-2;
-  inset:0;
+  inset:-5% 0;
   width:100%;
-  height:100%;
+  height:110%;
   object-fit:cover;
-  object-position:center 48%
+  object-position:center 54%
 }
 .final-v2 .section-shell{
   position:relative;
@@ -738,6 +756,48 @@ main{
 .final-links a:hover{
   color:var(--accent)
 }
+.conversation-reveal-ready .section-shell{
+  opacity:0;
+  transform:translate3d(0,32px,0) scale(.988);
+  backdrop-filter:blur(0);
+  -webkit-backdrop-filter:blur(0)
+}
+.conversation-reveal-ready .final-layout h2,
+.conversation-reveal-ready .final-layout p,
+.conversation-reveal-ready .final-links a{
+  opacity:0;
+  transform:translate3d(0,22px,0)
+}
+.conversation-reveal-ready.is-conversation-visible .section-shell{
+  opacity:1;
+  transform:none;
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  transition:opacity .72s ease .38s,transform .9s cubic-bezier(.22,.61,.36,1) .38s,backdrop-filter .9s ease .38s,-webkit-backdrop-filter .9s ease .38s
+}
+.conversation-reveal-ready.is-conversation-visible .final-layout h2,
+.conversation-reveal-ready.is-conversation-visible .final-layout p,
+.conversation-reveal-ready.is-conversation-visible .final-links a{
+  opacity:1;
+  transform:none;
+  transition:opacity .62s ease,transform .82s cubic-bezier(.22,.61,.36,1)
+}
+.conversation-reveal-ready.is-conversation-visible .final-layout h2{transition-delay:.94s}
+.conversation-reveal-ready.is-conversation-visible .final-layout p{transition-delay:1.08s}
+.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(1){transition-delay:1.20s}
+.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(2){transition-delay:1.29s}
+.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(3){transition-delay:1.38s}
+.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(4){transition-delay:1.47s}
+@media(prefers-reduced-motion:reduce){
+  .conversation-reveal-ready .section-shell,
+  .conversation-reveal-ready .final-layout h2,
+  .conversation-reveal-ready .final-layout p,
+  .conversation-reveal-ready .final-links a{
+    opacity:1;
+    transform:none;
+    transition:none
+  }
+}
 .final-v2+.footer{
   padding-top:var(--s35)
 }
@@ -773,6 +833,14 @@ main{
 .filter-dialog .search-box>.btn{
   width:100%
 }
+.filter-dialog .more-filters{align-self:flex-end;width:3rem}
+.filter-dialog .more-filters-panel{order:1;display:block;width:100%;padding:0;}
+.filter-dialog .more-filters-panel.is-visible{max-height:30rem;padding:var(--s1) 0}
+.filter-dialog .more-filters-panel[hidden]{display:none}
+.filter-dialog .amenity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s1)}
+.filter-dialog .amenity-actions{justify-content:space-between;margin-top:var(--s15);padding-top:var(--s15);border-top:1px solid var(--line)}
+.filter-dialog .search-box>.btn{order:2}
+@media(prefers-reduced-motion:reduce){.search-box,.search-box>.search-primary,.more-filters-panel{transition:none}}
 .empty-results{
   grid-column:1/-1;
   padding:var(--s2);
@@ -819,6 +887,7 @@ main{
 .search-box{
   grid-template-columns:repeat(2,1fr)
 }
+.more-filters{grid-column:1/-1}
 .search-box>.btn{
   width:100%;
   grid-column:1/-1

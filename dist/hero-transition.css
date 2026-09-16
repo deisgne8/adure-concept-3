@@ -13,7 +13,7 @@
   height:100svh;
   min-height:max(42rem,100svh);
   --hero-media-y:0px;
-  --hero-media-scale:1.075;
+  --hero-media-scale:1.09;
   --hero-copy-y:0px;
   --hero-copy-opacity:1;
 }

@@ -44,7 +44,7 @@ const carousel = new window.Smooothy(rail, {
       layers[index].inner.style.transform = motion.matches ? 'none'
         : `translate3d(0, ${20 * Math.abs(distance) - 10}%, 0)`;
       layers[index].image.style.transform = motion.matches ? 'none'
-        : `translate3d(${-10 * distance}%, 0, 0)`;
+        : `translate3d(${-12 * distance}%, 0, 0)`;
     });
   }
 });

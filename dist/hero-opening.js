@@ -103,6 +103,12 @@ async function open(){
     {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`,offset:.72},
     {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`}
   ],{duration:1375,easing:'cubic-bezier(.55,0,.1,1)'});
+  animate(brand.querySelector('img'),[
+    {filter:'none',offset:0},
+    {filter:'none',offset:.45},
+    {filter:'brightness(0) invert(1)',offset:.78},
+    {filter:'brightness(0) invert(1)',offset:1}
+  ],{duration:1375,easing:'linear'});
   animate(intro.querySelector('.intro-caption'),[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-14px)'}],{duration:480,easing:'ease-in'});
   rings.forEach(ring=>animate(ring,[{opacity:.22},{opacity:0}],{duration:420,easing:'ease-in'}));
   const heroScale=getComputedStyle(hero).getPropertyValue('--hero-media-scale').trim()||'1';

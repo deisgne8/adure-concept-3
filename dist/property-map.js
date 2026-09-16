@@ -36,16 +36,31 @@ const price=p=>'AED '+p.price.toLocaleString('en-US')+(p.intent==='lease'?' / ye
 const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 const small=()=>matchMedia('(max-width: 800px)').matches;
 
+async function loadEnglishBasemap(){
+  const message=panel.querySelector('.map-load-message');
+  try{
+    await import('./vendor/maplibre-gl-5.6.2.js');
+    await import('./vendor/leaflet-maplibre-gl-0.1.3.js');
+    const basemap=window.L.maplibreGL({
+      style:new URL('./vendor/openfreemap-positron-en.json',import.meta.url).href,
+      attributionControl:{customAttribution:'<a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> &copy; <a href="https://openmaptiles.org/" target="_blank" rel="noopener">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'}
+    }).addTo(map);
+    const backgroundMap=basemap.getMaplibreMap();
+    backgroundMap.on('error',()=>{message.hidden=false;});
+    backgroundMap.on('idle',()=>{message.hidden=true;});
+  }catch(error){
+    message.hidden=false;
+    console.warn('English basemap could not load',error);
+  }
+}
+
 function initMap(){
   if(map||view!=='map')return;
   const L=window.L;
   map=L.map('property-map-canvas',{zoomControl:false,scrollWheelZoom:false,minZoom:5,maxZoom:18}).setView([24.5,54.41],11);
   map.on('click',()=>{previewVisible=false;preview.hidden=true;});
   L.control.zoom({position:'bottomright'}).addTo(map);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
-  }).on('tileerror',()=>{panel.querySelector('.map-load-message').hidden=false;})
-    .on('tileload',()=>{panel.querySelector('.map-load-message').hidden=true;}).addTo(map);
+  loadEnglishBasemap();
   layer=L.layerGroup().addTo(map);
   refreshMarkers();
   new ResizeObserver(()=>{if(view==='map'){map.invalidateSize();}}).observe(panel);

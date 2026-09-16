@@ -16,8 +16,12 @@ Then visit <http://127.0.0.1:4174/>. Do not open the HTML with a `file:` URL.
 
 ## Editing
 
+The current homepage source is **`src/homepage.html`**. Edit its layout and copy, then run `npm run build` to update `dist/index.html`, followed by `npm test`. The build no longer recreates the page from the older reference wireframe. Homepage styles and interactions live in `dist/home.css`, `dist/home.js`, and their section modules. `SITE_ORIGIN` optionally sets the social-image URL during the build.
+
+The remaining files below also include earlier concept assets:
+
 - `dist/content.js`: journeys, management, figures, demonstration collections, budget options, portfolio, transition stages and approved client logos.
-- `dist/index.html`: chapter copy, semantic page structure, navigation and enquiry form.
+- `dist/index.html`: generated homepage; update `src/homepage.html` rather than editing this output directly.
 - `dist/styles.css`: brand tokens, composition, responsive layouts and motion preferences.
 - `dist/app.js`: interactive indexes, filtering, portfolio browsing and enquiry drafts.
 - `dist/assets`: supplied-image WebP derivatives, vector logo and self-hosted Fira Sans / Source Sans Pro.

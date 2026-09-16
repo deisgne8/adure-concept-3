@@ -105,8 +105,8 @@
 #management.has-scroll-entrance .management-stack-sticky::after{display:none}
 #management.has-scroll-entrance .management-stack-sticky .management-visual-v2{
  inset:auto;left:50%;top:50%;
- width:var(--management-scene-width,36.11111%);height:var(--management-scene-height,62.22222%);
- transform:translate(-50%,-50%) translate3d(0,var(--management-scene-y,50vh),0);
+ width:var(--management-scene-width,68%);height:var(--management-scene-height,74%);
+ transform:translate(-50%,-50%) translate3d(0,var(--management-scene-y,3vh),0);
  transform-origin:center center;
  border-radius:var(--management-scene-radius,28px);
  border:var(--management-scene-border,8px) solid #fff;
