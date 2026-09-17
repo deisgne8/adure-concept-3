@@ -1,7 +1,7 @@
 import './portfolio-carousel.js';
 import './transition-carousel.js';
 import './philosophy-story.js';
-import './management-carousel.js';
+import './management-carousel.js?v=title-case-1';
 import './proof-counter.js';
 import './hero-transition.js';
 import './image-parallax.js';
@@ -112,7 +112,8 @@ function setMoreFiltersOpen(open){
   clearTimeout(moreFiltersTimer);
   form.classList.toggle('is-more-open',open);
   moreFiltersToggle.setAttribute('aria-expanded',String(open));
-  moreFiltersToggle.querySelector('svg path').setAttribute('d',open?'M5 5l10 10M15 5L5 15':'M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4m-4 1v4');
+  const iconPath=moreFiltersToggle.querySelector('svg path');
+  if(iconPath)iconPath.setAttribute('d',open?'M5 5l10 10M15 5L5 15':'M3 5h14M3 10h14M3 15h14M7 3v4m6 1v4');
   updateAmenitySummary();
   if(open){
     moreFiltersPanel.hidden=false;
@@ -144,3 +145,20 @@ document.addEventListener('click',async e=>{if(!e.target.closest('.nav-disclosur
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){setMoreFiltersOpen(false);if(!servicesMenu.hidden)closeServices(true);}});
 // Preserve meaningful image crop and avoid an unnecessary intro or scroll animation.
 document.querySelectorAll('main img:not(.site-hero img)').forEach(img=>{img.loading='lazy';img.decoding='async';});
+
+// Prepare a property enquiry in the visitor's email app without storing form data.
+const sellForm=document.querySelector('[data-sell-form]');
+if(sellForm)sellForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!sellForm.reportValidity())return;
+  const details=new FormData(sellForm);
+  const subject='Sell with ADURE — property enquiry';
+  const body=[
+    `Property location: ${details.get('location')}`,
+    `Property type: ${details.get('type')}`,
+    `Name: ${details.get('name')}`,
+    `Phone: ${details.get('phone')}`,
+    `Email: ${details.get('email')}`
+  ].join('\n');
+  location.href=`mailto:Inquiries@adu-re.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});

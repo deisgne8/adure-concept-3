@@ -2,7 +2,6 @@
    section copy and controls share the same edges. */
 #home {
   --chapter-space:var(--section-space);
-  --portfolio-motion-space:clamp(3rem,5vw,5rem);
 }
 
 #home > .section:not(.site-hero) {
@@ -47,13 +46,9 @@
   column-gap:var(--grid-column-gap);
 }
 
-/* The portfolio cards retain their movement clearance inside the shared gap. */
-#home > #portfolio {
-  padding-bottom:calc(var(--chapter-space) - var(--portfolio-motion-space));
-}
-#home #portfolio .portfolio-mosaic {
-  padding-bottom:var(--portfolio-motion-space);
-}
+/* The static portfolio grid follows the same chapter padding as its neighbours. */
+#home > #portfolio {padding-block:var(--chapter-space)}
+#home #portfolio .portfolio-mosaic {padding-bottom:0}
 
 /* The management composition stays full bleed while its outer copy edges
    follow the same centered container as the header. */

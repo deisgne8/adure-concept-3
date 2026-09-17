@@ -1,113 +1,93 @@
-import './vendor/smooothy-0.0.35.min.js';
-
-const rail = document.querySelector('#portfolio .portfolio-mosaic');
-const motion = matchMedia('(prefers-reduced-motion: reduce)');
-const cards = [...rail.children];
-const portfolioMedia = [
-  ['assets/portfolio-reference/sunrise-residence-3-v2.webp', 'Sunrise Residence 3 at Qaryat Al Hidd, Saadiyat Island'],
-  ['assets/portfolio-reference/48-burj-gate-v2.webp', '48 Burj Gate on Sheikh Zayed Road in Dubai'],
-  ['assets/portfolio-reference/qaryat-al-hidd-v2.webp', 'Qaryat Al Hidd waterfront community on Saadiyat Island'],
-  ['assets/portfolio-reference/al-mushrif-villas-v2.webp', 'Al Mushrif Villas in Abu Dhabi'],
-  ['assets/portfolio-reference/ghantoot-complex-v2.webp', 'Ghantoot Complex residential community in Abu Dhabi']
-];
-
-cards.forEach((card, index) => {
-  const image = card.querySelector('img');
-  const media = portfolioMedia[index];
-  if (!image || !media) return;
-  image.src = media[0];
-  image.alt = media[1];
-});
-const layers = cards.map(card => ({
-  image: card.querySelector('img')
-}));
-
-// Same Smooothy settings and center-distance movement as RIO's featured projects.
-const carousel = new window.Smooothy(rail, {
-  infinite: false,
-  snap: true,
-  scrollInput: false,
-  bounceLimit: 0,
-  setOffset: ({wrapperWidth}) => wrapperWidth,
-  onResize(instance) {
-    instance.target = Math.max(instance.maxScroll, Math.min(0, instance.target));
-    instance.current = Math.max(instance.maxScroll, Math.min(0, instance.current));
-  },
-  onUpdate() {
-    const rect = rail.getBoundingClientRect();
-    const center = rect.left + rect.width / 2;
-    cards.forEach((card, index) => {
-      const box = card.getBoundingClientRect();
-      const distance = Math.max(-1, Math.min(1,
-        (box.left + box.width / 2 - center) / (rect.width / 2)));
-      layers[index].image.style.transform = motion.matches ? 'none'
-        : `translate3d(${-12 * distance}%, 0, 0)`;
-    });
-  }
-});
-rail.classList.add('is-carousel');
-
-let frame = 0;
-let visible = false;
-function tick() {
-  if (!visible || document.hidden) { frame = 0; return; }
-  if (motion.matches) carousel.current = carousel.target;
-  carousel.update();
-  frame = requestAnimationFrame(tick);
-}
-function resume() {
-  if (visible && !document.hidden && !frame) frame = requestAnimationFrame(tick);
-}
-new IntersectionObserver(entries => {
-  visible = entries[0].isIntersecting;
-  resume();
-}).observe(rail);
-document.addEventListener('visibilitychange', resume);
-
-rail.addEventListener('wheel', event => {
-  if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+const rail=document.querySelector('#portfolio .portfolio-mosaic');
+const previous=document.querySelector('#portfolio .portfolio-prev');
+const next=document.querySelector('#portfolio .portfolio-next');
+if(rail){
+ const cards=[...rail.children];
+ const filters=[...document.querySelectorAll('#portfolio .portfolio-filters button')];
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ let autoTimer=0;
+ let paused=false;
+ let drag=null;
+ let dragged=false;
+ const step=()=>{
+  const first=cards.find(card=>!card.hidden);
+  if(!first)return rail.clientWidth;
+  const gap=parseFloat(getComputedStyle(rail).columnGap)||0;
+  return first.getBoundingClientRect().width+gap;
+ };
+ const update=()=>{
+  const end=Math.max(0,rail.scrollWidth-rail.clientWidth);
+  if(previous)previous.disabled=rail.scrollLeft<=2;
+  if(next)next.disabled=rail.scrollLeft>=end-2;
+ };
+ const move=direction=>rail.scrollBy({left:direction*step(),behavior:reduced.matches?'auto':'smooth'});
+ const stopAuto=()=>{clearInterval(autoTimer);autoTimer=0};
+ const startAuto=()=>{
+  stopAuto();
+  if(reduced.matches||paused||document.hidden)return;
+  autoTimer=setInterval(()=>{
+   const end=Math.max(0,rail.scrollWidth-rail.clientWidth);
+   if(end<=2)return;
+   if(rail.scrollLeft>=end-2)rail.scrollTo({left:0,behavior:'smooth'});
+   else move(1);
+  },3200);
+ };
+ if(previous)previous.addEventListener('click',()=>move(-1));
+ if(next)next.addEventListener('click',()=>move(1));
+ rail.addEventListener('scroll',update,{passive:true});
+ rail.addEventListener('keydown',event=>{
+  if(event.key!=='ArrowLeft'&&event.key!=='ArrowRight')return;
   event.preventDefault();
-  carousel.target = Math.max(carousel.maxScroll,
-    Math.min(0, carousel.target - event.deltaX * .005));
-}, {passive:false});
-
-window.addEventListener('keydown', event => {
-  if (!visible || event.altKey || event.metaKey || event.ctrlKey ||
-      event.target.closest('input, textarea, select, [contenteditable="true"], dialog')) return;
-  const bounds = rail.getBoundingClientRect();
-  if (bounds.bottom < 100 || bounds.top > innerHeight * .85) return;
-  if (event.key === 'ArrowLeft') carousel.goToPrev();
-  else if (event.key === 'ArrowRight') carousel.goToNext();
-  else if (rail.contains(event.target) && event.key === 'Home') carousel.target = 0;
-  else if (rail.contains(event.target) && event.key === 'End') carousel.target = carousel.maxScroll;
-  else return;
+  move(event.key==='ArrowRight'?1:-1);
+ });
+ filters.forEach(button=>button.addEventListener('click',()=>{
+  const selected=button.dataset.filter;
+  filters.forEach(filter=>{
+   const active=filter===button;
+   filter.classList.toggle('is-active',active);
+   filter.setAttribute('aria-pressed',String(active));
+  });
+  cards.forEach(card=>{card.hidden=selected!=='all'&&card.dataset.type!==selected});
+  rail.scrollTo({left:0,behavior:reduced.matches?'auto':'smooth'});
+  requestAnimationFrame(()=>{update();startAuto()});
+ }));
+ rail.addEventListener('pointerenter',()=>{paused=true;stopAuto()});
+ rail.addEventListener('pointerleave',()=>{paused=false;startAuto()});
+ rail.addEventListener('pointerdown',event=>{
+  if(event.pointerType!=='mouse'||event.button!==0)return;
+  drag={id:event.pointerId,x:event.clientX,left:rail.scrollLeft};
+  dragged=false;
+  paused=true;
+  stopAuto();
+  rail.setPointerCapture(event.pointerId);
+  rail.classList.add('is-dragging');
+ });
+ rail.addEventListener('pointermove',event=>{
+  if(!drag||event.pointerId!==drag.id)return;
+  const distance=event.clientX-drag.x;
+  if(Math.abs(distance)>5)dragged=true;
+  rail.scrollLeft=drag.left-distance;
+ });
+ const finishDrag=event=>{
+  if(!drag||event.pointerId!==drag.id)return;
+  if(rail.hasPointerCapture(event.pointerId))rail.releasePointerCapture(event.pointerId);
+  drag=null;
+  rail.classList.remove('is-dragging');
+  paused=rail.matches(':hover');
+  if(!paused)startAuto();
+ };
+ rail.addEventListener('pointerup',finishDrag);
+ rail.addEventListener('pointercancel',finishDrag);
+ rail.addEventListener('click',event=>{
+  if(!dragged)return;
   event.preventDefault();
-});
-
-// Keep links usable with a keyboard; distinguish a short click from a drag.
-let gesture = null;
-rail.addEventListener('pointerdown', event => {
-  gesture = {x:event.clientX, y:event.clientY, at:performance.now(), moved:false};
-});
-window.addEventListener('pointermove', event => {
-  if (gesture && (Math.abs(event.clientX - gesture.x) > 5 ||
-      Math.abs(event.clientY - gesture.y) > 5)) gesture.moved = true;
-});
-rail.addEventListener('click', event => {
-  if (event.detail && gesture && (gesture.moved || performance.now() - gesture.at >= 200)) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-  gesture = null;
-}, true);
-rail.addEventListener('pointercancel', () => { gesture = null; });
-rail.addEventListener('focusin', event => {
-  const card = event.target.closest('.portfolio-item-v2');
-  if (!card) return;
-  const box = card.getBoundingClientRect(), viewport = rail.getBoundingClientRect();
-  if (box.left < viewport.left - 1 || box.right > viewport.right + 1) {
-    carousel.target = Math.max(carousel.maxScroll, Math.min(0, -cards.indexOf(card)));
-  }
-});
-
-motion.addEventListener('change', () => carousel.update());
+  event.stopPropagation();
+  dragged=false;
+ },true);
+ rail.addEventListener('focusin',()=>{paused=true;stopAuto()});
+ rail.addEventListener('focusout',event=>{if(!rail.contains(event.relatedTarget)){paused=false;startAuto()}});
+ document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
+ reduced.addEventListener('change',startAuto);
+ new ResizeObserver(update).observe(rail);
+ requestAnimationFrame(()=>{update();startAuto()});
+}

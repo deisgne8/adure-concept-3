@@ -1,0 +1,57 @@
+/* Heading scale measured from Concept 5. Keep the approved page composition. */
+#home{
+ --type-section:clamp(36px,3.2vw,54px);
+ --type-section-large:clamp(42px,4vw,64px);
+ --type-feature:clamp(26px,2vw,34px);
+ --type-card:clamp(20px,1.4vw,24px);
+ --heading-leading:1.08;
+}
+#home#home #hero h1{
+ font-size:clamp(44px,5.5vw,78px);
+ font-weight:500;
+ line-height:.96;
+ letter-spacing:-.035em;
+}
+#home#home .section h2,
+#home#home #management .management-stack-sticky>h2,
+#home#home #transition.has-transition-carousel .transition-head h2,
+#home#home #trust .trust-logo-title{
+ font-size:var(--type-section);
+ font-weight:500;
+ line-height:var(--heading-leading);
+ letter-spacing:-.025em;
+}
+#home#home #management .management-stack-sticky>h2,
+#home#home #portfolio .portfolio-intro h2,
+#home#home #proof .proof-statement h2,
+#home#home #transition.has-transition-carousel .transition-head h2{
+ font-size:var(--type-section-large);
+}
+#home#home #philosophy .principle h3,
+#home#home #management.has-management-stack .service-row h3,
+#home#home #transition.has-transition-carousel .timeline-step h3{
+ font-size:var(--type-feature);
+ font-weight:500;
+ line-height:1.2;
+ letter-spacing:-.025em;
+}
+#home#home #journeys .journey-card h3,
+#home#home #discovery .property-card h3,
+#home#home #portfolio .portfolio-caption h3{
+ font-size:var(--type-card);
+ font-weight:500;
+ line-height:1.2;
+ letter-spacing:-.025em;
+}
+#home#home #trust .client-logo-group h3{
+ font-weight:500;
+}
+@media(max-width:620px){
+ #home{
+  --type-section:clamp(30px,8.5vw,38px);
+  --type-section-large:clamp(34px,10vw,44px);
+  --type-feature:clamp(22px,6.5vw,28px);
+  --type-card:clamp(19px,5.5vw,22px);
+  --heading-leading:1.1;
+ }
+}
