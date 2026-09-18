@@ -1,0 +1,35 @@
+/* Concept 5 client presentation: two full-width horizontal marquee rows. */
+#trust{padding:clamp(72px,8vw,128px) 0;background:#fff;color:var(--ink);overflow:hidden}
+#trust .trust-logo-head{display:flex;flex-direction:column;align-items:center;max-width:800px;margin:0 auto clamp(52px,6vw,88px);padding-inline:var(--gutter);text-align:center}
+#home #trust .trust-logo-title{max-width:none;margin:0;color:var(--accent);white-space:nowrap}
+#trust .trust-logo-intro{max-width:680px;margin:24px auto 0;color:var(--muted);font:400 clamp(18px,1.35vw,22px)/1.55 var(--font-body)}
+#trust .client-logo-groups{display:block;width:100%}
+#trust .client-logo-group+ .client-logo-group{margin-top:34px}
+#home #trust .client-logo-group h3{margin:0 auto 14px;padding-inline:var(--gutter);color:var(--accent);font:600 var(--type-label)/1.4 var(--font-body);letter-spacing:.18em;text-align:center;text-transform:uppercase!important}
+#trust .client-logo-viewport{width:100%;height:auto;overflow:hidden;padding:0;border:0;border-radius:0;background:#fff;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+#trust .client-logo-track{display:flex;width:max-content;gap:18px;animation:client-logo-marquee 42s linear infinite;will-change:transform}
+#trust .client-logo-viewport.reverse .client-logo-track{animation-direction:reverse;animation-duration:48s}
+#trust .client-logo-run{display:flex;flex-direction:row;gap:18px}
+#trust .client-logo{display:grid;place-items:center;width:188px;height:104px;min-width:188px;min-height:104px;padding:18px 22px;border:1px solid #dce5eb;border-radius:0;background:#fff}
+#trust .client-logo img{display:block;width:auto;max-width:100%;height:auto;max-height:62px;object-fit:contain;filter:none;opacity:1;mix-blend-mode:multiply;transition:transform .4s var(--ease)}
+#trust .client-logo:hover img{transform:scale(1.03)}
+#trust .client-logo-viewport:hover .client-logo-track{animation-play-state:paused}
+@keyframes client-logo-marquee{to{transform:translateX(calc(-50% - 9px))}}
+#trust .trust-logo-cta{display:flex;width:max-content;margin:clamp(42px,5vw,68px) auto 0;padding-left:0;color:var(--accent)}
+.trust-reveal-ready .trust-logo-title,.trust-reveal-ready .trust-logo-intro,.trust-reveal-ready .client-logo-group h3,.trust-reveal-ready .client-logo-viewport,.trust-reveal-ready .trust-logo-cta{opacity:0;transform:translate3d(0,22px,0)}
+.trust-reveal-ready.is-trust-visible .trust-logo-title,.trust-reveal-ready.is-trust-visible .trust-logo-intro,.trust-reveal-ready.is-trust-visible .client-logo-group h3,.trust-reveal-ready.is-trust-visible .client-logo-viewport,.trust-reveal-ready.is-trust-visible .trust-logo-cta{opacity:1;transform:none;transition:opacity .62s ease,transform .84s cubic-bezier(.22,.61,.36,1)}
+.trust-reveal-ready.is-trust-visible .trust-logo-title{transition-delay:.08s}.trust-reveal-ready.is-trust-visible .trust-logo-intro{transition-delay:.18s}.trust-reveal-ready.is-trust-visible .client-logo-group h3{transition-delay:.28s}.trust-reveal-ready.is-trust-visible .client-logo-viewport{transition-delay:.38s}.trust-reveal-ready.is-trust-visible .client-logo-group:nth-child(2) h3{transition-delay:.48s}.trust-reveal-ready.is-trust-visible .client-logo-group:nth-child(2) .client-logo-viewport{transition-delay:.58s}.trust-reveal-ready.is-trust-visible .trust-logo-cta{transition-delay:.68s}
+@media(max-width:767.98px){
+ #trust{padding:64px 0}
+ #trust .trust-logo-head{margin-bottom:42px}
+ #home #trust .trust-logo-title{white-space:normal}
+ #trust .trust-logo-intro{margin-top:20px;font-size:17px}
+ #trust .client-logo{width:150px;min-width:150px;height:88px;min-height:88px;padding:14px 18px}
+ #trust .client-logo img{max-height:54px}
+}
+@media(prefers-reduced-motion:reduce){
+ #trust .client-logo-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}
+ #trust .client-logo-run[aria-hidden="true"]{display:none}
+ #trust .client-logo-viewport{-webkit-mask:none;mask:none;padding-inline:var(--gutter)}
+ #trust .client-logo,#trust .client-logo-group h3,#trust .client-logo-viewport,.trust-logo-title,.trust-logo-intro,.trust-logo-cta{opacity:1;transform:none;transition:none}
+}
