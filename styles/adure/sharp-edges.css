@@ -1,0 +1,38 @@
+/* A single sharp-edge rule across the ADURE interface. */
+:root{
+  --image-radius:0;
+  --control-radius:0;
+}
+
+button,
+.btn,
+input,
+select,
+textarea,
+dialog,
+img,
+.image-frame,
+.property-map-view,
+.timeline-v2,
+.transition-panel-inner,
+.transition-image-card,
+.transition-image-wash,
+.leaflet-bar,
+.leaflet-bar a,
+.leaflet-control,
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+[class*="card"],
+[class*="panel"],
+[class*="box"]{
+  border-radius:0!important;
+}
+
+/* These are position/progress markers rather than rectangular controls. */
+.management-pagination button,
+.adure-map-marker>span,
+.adure-map-marker>span:after,
+.pm-marker>span,
+.pm-key{
+  border-radius:999px!important;
+}

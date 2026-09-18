@@ -1,0 +1,54 @@
+#sell{
+ position:relative;
+ isolation:isolate;
+ min-height:clamp(560px,62vw,720px);
+ display:flex;
+ align-items:center;
+ padding-block:clamp(64px,6vw,92px);
+ overflow:hidden;
+ background:#0d427d;
+ color:#fff;
+}
+#sell::before,#sell::after{content:"";position:absolute;inset:0;z-index:-2}
+#sell::before{background:url("assets/sell-sunset.jpg") right top/cover no-repeat}
+#sell::after{
+ z-index:-1;
+ background:linear-gradient(90deg,rgba(3,19,38,.68) 0%,rgba(3,28,55,.46) 42%,rgba(6,48,92,.2) 72%,rgba(5,40,76,.16) 100%),linear-gradient(180deg,rgba(0,18,40,.08),rgba(0,19,42,.38));
+}
+#sell .sell-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(460px,.9fr);align-items:center;gap:clamp(48px,7vw,120px)}
+#sell .sell-copy{padding:0}
+#home#home #sell .sell-copy h2{
+ max-width:12ch;margin:0;color:#fff;font-size:var(--type-section-large);font-weight:500;line-height:1.08;letter-spacing:-.025em;text-shadow:0 2px 22px rgba(0,20,45,.32)
+}
+#sell .sell-copy p{max-width:560px;margin-top:24px;color:rgba(255,255,255,.84);font:400 var(--type-body-lg)/1.6 var(--font-body);text-shadow:0 1px 14px rgba(0,20,45,.35)}
+#sell .sell-form{
+ padding:clamp(26px,3vw,42px);border:1px solid rgba(255,255,255,.42);border-radius:0;background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(255,255,255,.12));box-shadow:0 28px 70px -34px rgba(0,14,35,.72),inset 0 1px 0 rgba(255,255,255,.2);-webkit-backdrop-filter:blur(20px) saturate(125%);backdrop-filter:blur(20px) saturate(125%)
+}
+#sell .sell-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 16px}
+#sell .sell-fields label{display:flex;flex-direction:column;gap:8px;color:#fff;font:400 var(--type-label)/1.45 var(--font-body)}
+#sell .sell-fields input,#sell .sell-fields select{
+ width:100%;height:52px;min-height:52px;padding:0 16px;border:1px solid rgba(255,255,255,.55);border-radius:0;background:rgba(255,255,255,.88);color:var(--ink);font:400 var(--text-body)/1 var(--font-body);outline:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.35);transition:border-color .2s ease,box-shadow .2s ease,background .2s ease
+}
+#sell .sell-fields input::placeholder{color:#858c94}
+#sell .sell-fields input:focus,#sell .sell-fields select:focus{border-color:#fff;background:#fff;box-shadow:0 0 0 3px rgba(69,196,243,.34)}
+#sell .sell-fields .btn{
+ align-self:end;justify-content:space-between;width:100%;height:52px;min-height:52px;margin:0;padding:0 18px;border:1px solid var(--accent);border-radius:0;background:var(--accent);color:#fff;font-size:var(--text-small);font-weight:600;text-transform:none
+}
+#sell .sell-fields .btn:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:#fff}
+#sell .sell-fields .btn span{font-size:20px;line-height:1}
+#sell .sell-form-note{margin-top:10px;color:rgba(255,255,255,.72);font-size:var(--text-small)}
+@media(max-width:900px){
+ #sell{min-height:auto;background:#0d427d}
+ #sell::before{background-position:right top}
+ #sell::after{background:linear-gradient(90deg,rgba(2,20,43,.7),rgba(7,47,87,.38))}
+ #sell .sell-layout{grid-template-columns:1fr;gap:34px}
+ #home#home #sell .sell-copy h2{max-width:18ch}
+ #sell .sell-copy p{margin-top:18px}
+}
+@media(max-width:620px){
+ #sell{padding-block:56px}
+ #sell::before{background-position:right top}
+ #sell .sell-fields{grid-template-columns:1fr}
+ #sell .sell-form{padding:24px 20px;border-radius:0}
+}
+@media(prefers-reduced-transparency:reduce){#sell .sell-form{background:rgba(15,65,121,.96);backdrop-filter:none}}

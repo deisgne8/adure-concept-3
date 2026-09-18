@@ -1,0 +1,116 @@
+/* Concept 5 portfolio structure, adapted to the approved ADURE projects. */
+#portfolio{background:var(--white);padding-block:clamp(64px,6vw,112px);overflow:hidden}
+#portfolio .section-shell{width:calc(100% - 2 * clamp(24px,3vw,60px));max-width:none}
+#portfolio .portfolio-intro{display:grid;grid-template-columns:1.1fr 1fr;gap:24px clamp(48px,8vw,160px);align-items:start;margin-bottom:0}
+#portfolio .portfolio-intro>div{display:contents}
+#portfolio .portfolio-intro h2{grid-column:1;grid-row:1;max-width:760px;margin:0;color:var(--accent)}
+#portfolio .portfolio-intro p{grid-column:2;grid-row:1;max-width:560px;margin:6px 0 0;color:var(--muted);font-size:16px;line-height:1.6}
+#portfolio .portfolio-intro .btn{grid-column:1;grid-row:2;justify-self:start;color:var(--accent);font-size:16px;min-height:44px}
+#portfolio .portfolio-filters{grid-column:1;grid-row:3;display:inline-flex;justify-self:start;align-items:center;gap:4px;margin-top:8px;padding:5px;border:1px solid #d9e1ea;border-radius:999px;background:#eef3f8}
+#portfolio .portfolio-filters button{min-height:42px;padding:0 22px;border:0;border-radius:999px;background:transparent;color:#555b64;font:600 13px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;transition:background .2s ease,color .2s ease}
+#portfolio .portfolio-filters button:hover{color:var(--accent)}
+#portfolio .portfolio-filters button.is-active{background:var(--accent);color:#fff}
+#portfolio .portfolio-filters button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#portfolio .portfolio-mosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:0;padding:0;overflow:visible}
+#portfolio .portfolio-item-v2{min-width:0;margin:0;padding:0}
+#portfolio .portfolio-card{display:flex;flex-direction:column;width:100%;height:100%;aspect-ratio:auto}
+#portfolio .portfolio-card-link{display:flex;flex-direction:column;color:inherit;overflow:visible}
+#portfolio .portfolio-image{position:relative;inset:auto;aspect-ratio:4/5;overflow:hidden;background:var(--surface-alt);border-radius:0}
+#portfolio .portfolio-item-v2 img{position:static;display:block;width:100%;max-width:100%;height:100%;object-fit:cover;object-position:center;border-radius:0;transform:none;transition:transform .8s var(--ease)}
+#portfolio .portfolio-card:hover img,#portfolio .portfolio-card:focus-within img{transform:scale(1.045)}
+#portfolio .portfolio-caption{position:static;display:block;padding:18px 0 0;background:none;opacity:1}
+#portfolio .portfolio-caption h3{margin:0;color:var(--accent);font-size:var(--type-card);font-weight:500;line-height:1.2;letter-spacing:-.025em;transform:none}
+#portfolio .portfolio-card-arrow{display:none}
+#portfolio .portfolio-card-meta{padding:6px 0 0;color:var(--muted);font-size:var(--type-meta);line-height:1.45;background:none}
+#home #portfolio .portfolio-card:hover .portfolio-card-meta,#home #portfolio .portfolio-card:focus-within .portfolio-card-meta{background:none;color:var(--muted)}
+#portfolio .portfolio-card-link:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media(max-width:1023.98px){
+ #portfolio .portfolio-intro{grid-template-columns:1fr;gap:20px}
+ #portfolio .portfolio-intro p{grid-column:1;grid-row:2;margin:0}
+ #portfolio .portfolio-intro .btn{grid-row:3}
+ #portfolio .portfolio-filters{grid-row:4}
+ #portfolio .portfolio-mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:767.98px){
+ #portfolio{padding-block:48px}
+ #portfolio .section-shell{width:calc(100% - 40px)}
+ #portfolio .portfolio-mosaic{grid-template-columns:1fr;gap:34px}
+ #portfolio .portfolio-image{aspect-ratio:4/3}
+ #portfolio .portfolio-filters{width:100%;justify-content:space-between}
+ #portfolio .portfolio-filters button{flex:1;padding-inline:10px;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){#portfolio .portfolio-item-v2 img{transition:none}}
+
+/* Portfolio toolbar follows the square listing-view segmented control. */
+#home#home #portfolio .portfolio-toolbar{
+ display:flex;
+ align-items:flex-end;
+ justify-content:flex-end;
+ gap:24px;
+ margin-top:0;
+}
+#home#home #portfolio .portfolio-carousel-controls{display:none}
+#home#home #portfolio .portfolio-filters{
+ display:inline-flex;
+ align-items:stretch;
+ gap:0;
+ width:auto;
+ margin:0;
+ padding:4px;
+ border:1px solid #d6d9dd;
+ border-radius:0;
+ background:#fff;
+}
+#home#home #portfolio .portfolio-filters button{
+ min-height:44px;
+ padding:0 24px;
+ border:0;
+ border-radius:0;
+ background:#fff;
+ color:#3f4349;
+ font-size:13px;
+ font-weight:500;
+ letter-spacing:.1em;
+}
+#home#home #portfolio .portfolio-filters button.is-active{
+ background:var(--accent);
+ color:#fff;
+}
+#home#home #portfolio .portfolio-carousel-controls{
+ margin:0;
+ align-self:flex-end;
+}
+#home#home #portfolio .portfolio-carousel-controls button{
+ border-radius:0;
+}
+@media(max-width:767.98px){
+ #home#home #portfolio .portfolio-toolbar{align-items:flex-end;gap:16px;margin-top:24px}
+ #home#home #portfolio .portfolio-filters{flex:1;min-width:0}
+ #home#home #portfolio .portfolio-filters button{flex:1;min-width:0;padding-inline:8px;font-size:10px}
+ #home#home #portfolio .portfolio-carousel-controls{flex:0 0 auto}
+ #home#home #portfolio .portfolio-carousel-controls button{width:44px;height:44px}
+}
+
+#home#home #portfolio .portfolio-mosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:var(--space-xl);padding:0;overflow:visible}
+#home#home #portfolio .portfolio-item-v2{min-width:0;margin:0;padding:0;transform:none!important}
+@media(max-width:1023.98px){#home#home #portfolio .portfolio-mosaic{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767.98px){#home#home #portfolio .portfolio-mosaic{grid-template-columns:1fr;gap:34px}}
+
+/* Horizontal card carousel with four complete cards visible on desktop. */
+#home#home #portfolio .portfolio-intro h2,
+#home#home #portfolio .portfolio-caption h3{color:var(--accent)!important}
+#home#home #portfolio .portfolio-carousel-controls{display:none}
+#home#home #portfolio .portfolio-carousel-controls button{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--accent);border-radius:0;background:#fff;color:var(--accent);font-size:20px;line-height:1}
+#home#home #portfolio .portfolio-carousel-controls button:hover:not(:disabled){background:var(--accent);color:#fff}
+#home#home #portfolio .portfolio-carousel-controls button:disabled{opacity:.3;cursor:default}
+#home#home #portfolio .portfolio-mosaic{--portfolio-gap:clamp(16px,2vw,28px);display:flex;flex-wrap:nowrap;gap:var(--portfolio-gap);margin-top:var(--space-xl);padding:0 0 8px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;overscroll-behavior-inline:contain}
+#home#home #portfolio .portfolio-mosaic{cursor:grab;user-select:none}
+#home#home #portfolio .portfolio-mosaic.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
+#home#home #portfolio .portfolio-mosaic::-webkit-scrollbar{display:none}
+#home#home #portfolio .portfolio-item-v2{flex:0 0 calc((100% - 3 * var(--portfolio-gap))/4);scroll-snap-align:start;transform:none!important}
+@media(max-width:1023.98px){#home#home #portfolio .portfolio-item-v2{flex-basis:calc((100% - var(--portfolio-gap))/2)}}
+@media(max-width:767.98px){
+ #home#home #portfolio .portfolio-toolbar{margin-top:0}
+ #home#home #portfolio .portfolio-mosaic{display:flex;gap:16px;margin-top:var(--space-xl)}
+ #home#home #portfolio .portfolio-item-v2{flex-basis:82vw}
+}

@@ -1,0 +1,88 @@
+/* One thin line-arrow language for every directional control. */
+#home .btn.link::after,
+#home #conversation .final-links a::after {
+  content:'→';
+  flex:0 0 auto;
+  color:currentColor;
+  font:400 22px/1 var(--font-body);
+  letter-spacing:0;
+  transform:none;
+}
+
+#home #proof .proof-about > span,
+#home #portfolio .portfolio-card-arrow,
+#home #trust .sector-arrow {
+  color:var(--accent);
+  font-size:0;
+  font-family:var(--font-body);
+  font-weight:400;
+}
+
+#home #proof .proof-about > span::before,
+#home #portfolio .portfolio-card-arrow::before,
+#home #trust .sector-arrow::before {
+  content:'→';
+  font-size:26px;
+  line-height:1;
+}
+
+#home #proof .proof-about > span {
+  order:2;
+  width:34px;
+  height:34px;
+  background:transparent;
+}
+
+#home #portfolio .portfolio-card-arrow::before {
+  font-size:30px;
+}
+
+#home #transition .transition-controls button {
+  width:44px;
+  height:44px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--accent);
+  font:400 26px/1 var(--font-body);
+}
+
+#home #transition .transition-controls button:hover,
+#home #transition .transition-controls button:focus-visible {
+  background:transparent;
+  color:var(--accent-hover);
+}
+
+#home .btn.link:hover::after,
+#home .btn.link:focus-visible::after,
+#home #conversation .final-links a:hover::after,
+#home #conversation .final-links a:focus-visible::after {
+  transform:translateX(var(--space-2xs));
+}
+
+#home #proof .proof-about:hover > span,
+#home #proof .proof-about:focus-visible > span,
+#home #trust .sector:hover .sector-arrow {
+  transform:translateX(var(--space-2xs));
+}
+
+#home #proof .proof-about > span,
+#home #trust .sector-arrow {
+  transition:transform var(--motion-base) var(--ease),color var(--motion-base) var(--ease);
+}
+
+#home #discovery .map-location-action span,
+#home #discovery .map-preview-copy .btn span {
+  color:currentColor;
+  font:400 20px/1 var(--font-body);
+}
+
+.site-header #services-toggle > span {
+  color:currentColor;
+  font-size:0;
+}
+
+.site-header #services-toggle > span::before {
+  content:'↓';
+  font:400 16px/1 var(--font-body);
+}

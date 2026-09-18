@@ -1,0 +1,87 @@
+/* One page rhythm and one content grid. Full-bleed media remains full bleed;
+   section copy and controls share the same edges. */
+#home {
+  --chapter-space:var(--section-space);
+}
+
+#home > .section:not(.site-hero) {
+  padding-block:var(--chapter-space);
+  margin-block:0;
+}
+
+#home > #management {
+  padding-block:0;
+}
+
+#home > #philosophy .section-shell,
+#home > #journeys .section-shell,
+#home > #discovery .section-shell,
+#home > #proof .section-shell,
+#home > #portfolio .section-shell,
+#home > #transition .section-shell,
+#home > #trust .section-shell {
+  width:100%;
+  max-width:var(--container-max);
+  padding-inline:var(--page-gutter);
+  margin-inline:auto;
+}
+
+#home .philosophy-lead,
+#home .journey-heading,
+#home .discovery-title,
+#home .portfolio-intro,
+#home .transition-head {
+  margin-bottom:var(--section-gap);
+}
+
+#home .journey-heading p,
+#home .proof-statement p,
+#home .trust-copy > p {
+  margin-top:var(--heading-copy-gap);
+}
+
+#home .discovery-title,
+#home .portfolio-intro,
+#home .transition-head {
+  column-gap:var(--grid-column-gap);
+}
+
+/* The static portfolio grid follows the same chapter padding as its neighbours. */
+#home > #portfolio {padding-block:var(--chapter-space)}
+#home #portfolio .portfolio-mosaic {padding-bottom:0}
+
+/* The management composition stays full bleed while its outer copy edges
+   follow the same centered container as the header. */
+@media(min-width:801px) {
+  #home > #management {
+    container-type:inline-size;
+    --management-grid-edge:max(
+      var(--page-gutter),
+      calc((100cqw - var(--container-max))/2 + var(--page-gutter))
+    );
+  }
+
+  #home #management .management-copy-v2 h2 {
+    padding-left:var(--management-grid-edge);
+    padding-right:var(--page-gutter);
+  }
+
+  #home #management .management-copy-v2 .intro {
+    padding-left:var(--page-gutter);
+    padding-right:var(--management-grid-edge);
+  }
+}
+
+#home > #conversation {
+  min-height:0;
+}
+
+@media(max-width:767.98px) {
+  #home .philosophy-lead,
+  #home .journey-heading,
+  #home .discovery-title,
+  #home .portfolio-intro,
+  #home .transition-head {
+    margin-bottom:var(--section-gap);
+  }
+}

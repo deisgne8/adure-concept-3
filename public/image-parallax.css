@@ -1,0 +1,12 @@
+/* Individual transforms preserve each image's existing animation/hover transform. */
+#home .image-parallax-photo{
+ translate:0 var(--image-parallax-y,0px);
+ scale:1.12;
+}
+#home #conversation>.image-parallax-photo{scale:1.18}
+#home .image-parallax-logo{
+ translate:0 var(--image-parallax-y,0px);
+}
+@media(prefers-reduced-motion:reduce){
+ #home .image-parallax-photo,#home .image-parallax-logo,#home #conversation>.image-parallax-photo{translate:none;scale:none}
+}

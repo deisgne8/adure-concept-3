@@ -1,0 +1,18 @@
+/* Shared title-then-introduction reveal for every homepage chapter. */
+.section-copy-reveal-ready .section-copy-title,
+.section-copy-reveal-ready .section-copy-intro{
+ opacity:0;
+ transform:translate3d(0,24px,0);
+ transition:opacity .68s ease,transform .86s cubic-bezier(.22,.61,.36,1)
+}
+.section-copy-reveal-ready.is-copy-visible .section-copy-title,
+.section-copy-reveal-ready.is-copy-visible .section-copy-intro{
+ opacity:1;
+ transform:none
+}
+.section-copy-reveal-ready.is-copy-visible .section-copy-title{transition-delay:.08s}
+.section-copy-reveal-ready.is-copy-visible .section-copy-intro{transition-delay:.28s}
+@media(prefers-reduced-motion:reduce){
+ .section-copy-reveal-ready .section-copy-title,
+ .section-copy-reveal-ready .section-copy-intro{opacity:1;transform:none;transition:none}
+}

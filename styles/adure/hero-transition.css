@@ -1,0 +1,80 @@
+/* Rio-inspired hero handoff: the film holds while the first white chapter
+   travels over it from the bottom of the viewport. */
+#home{
+  position:relative;
+  background:#04182a;
+}
+
+#home > .site-hero{
+  position:sticky;
+  top:0;
+  z-index:0;
+  width:100%;
+  height:100svh;
+  min-height:max(42rem,100svh);
+  --hero-media-y:0px;
+  --hero-media-scale:1.09;
+  --hero-copy-y:0px;
+  --hero-copy-opacity:1;
+}
+
+#home > .site-hero .hero-video{
+  transform:translate3d(0,var(--hero-media-y),0) scale(var(--hero-media-scale));
+  transform-origin:center center;
+  will-change:transform;
+}
+
+#home > .site-hero .hero-inner{
+  transform:translate3d(0,var(--hero-copy-y),0);
+  opacity:var(--hero-copy-opacity);
+  will-change:transform,opacity;
+}
+
+/* The extra runway gives the hero a short held beat before this panel arrives. */
+#home > #journeys{
+  position:relative;
+  z-index:2;
+  margin-top:58svh;
+  background:#fff;
+  box-shadow:0 -1px 0 rgba(255,255,255,.45);
+}
+
+/* Once the white chapter covers the hero, every later chapter stays above it. */
+#home > .section:not(.site-hero){
+  position:relative;
+  z-index:2;
+}
+
+@media(max-width:900px){
+  #home > .site-hero{
+    min-height:100svh;
+  }
+
+  #home > #journeys{
+    margin-top:42svh;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #home{
+    background:#fff;
+  }
+
+  #home > .site-hero{
+    position:relative;
+    height:auto;
+    min-height:100svh;
+  }
+
+  #home > .site-hero .hero-video,
+  #home > .site-hero .hero-inner{
+    transform:none;
+    opacity:1;
+    will-change:auto;
+  }
+
+  #home > #journeys{
+    margin-top:0;
+    box-shadow:none;
+  }
+}

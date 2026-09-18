@@ -1,0 +1,26 @@
+/* DTRE-inspired statement and vertical statistics, using ADURE's own content. */
+#proof{background:#f1f5f6;color:var(--ink);padding:clamp(64px,6vw,112px) 0;overflow:visible}
+#proof .section-shell{max-width:1680px;width:100%;padding-inline:clamp(24px,4.5vw,88px)}
+#proof .proof-editorial-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:clamp(56px,8vw,150px);align-items:start}
+#proof .proof-statement{position:sticky;top:calc(var(--nav-height) + 48px)}
+#proof .proof-statement h2{font:400 clamp(42px,4.6vw,78px)/1.08 var(--font-display);letter-spacing:-.045em;text-transform:uppercase;color:var(--accent);max-width:17ch;margin:0}
+#proof .proof-statement p{max-width:44ch;margin:28px 0 36px;font:400 clamp(16px,1.3vw,20px)/1.6 var(--font-body);color:var(--muted)}
+#proof .proof-about{display:inline-flex;align-items:center;gap:20px;color:var(--accent);font:400 18px/1.4 var(--font-body);text-decoration:none}
+#proof .proof-about span{display:grid;place-items:center;width:52px;height:52px;background:var(--accent);color:#fff;font-size:25px;transition:background .25s,transform .25s}
+#proof .proof-about:hover span{background:var(--accent);transform:translate(2px,-2px)}
+#proof .proof-about:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
+#proof .proof-statistics{margin:0}
+#proof .proof-statistic{display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--border-strong);padding:16px 0 28px}
+#proof .proof-statistic dt{order:2;display:flex;align-items:baseline;gap:9px;margin:0;color:var(--muted);font:400 14px/1.5 var(--font-body);letter-spacing:.025em;text-transform:uppercase}
+#proof .proof-statistic dt:before{content:'';width:7px;height:7px;background:var(--accent);flex-shrink:0;align-self:center}
+#proof .proof-statistic dd{order:1;margin:0;color:var(--accent);font:400 clamp(64px,6.3vw,106px)/1 var(--font-display);letter-spacing:-.045em;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+#proof .proof-statistic dd small{font:400 .42em/1.2 var(--font-display);letter-spacing:-.025em}
+@media(max-width:800px){
+ #proof .proof-editorial-layout{grid-template-columns:1fr;gap:48px}
+ #proof .proof-statement{position:static}
+ #proof .proof-statement h2{font-size:clamp(40px,7vw,60px);max-width:20ch}
+ #proof .proof-statement p{margin:22px 0 28px}
+ #proof .proof-statistic{padding:20px 0 28px}
+ #proof .proof-statistic dd{font-size:clamp(64px,12vw,88px)}
+}
+@media(prefers-reduced-motion:reduce){#proof .proof-about span{transition:none}}
