@@ -1,0 +1,5 @@
+{
+  "id": "sell",
+  "label": "Sell your property",
+  "form": ["Name", "Email", "Phone", "Property details"]
+}

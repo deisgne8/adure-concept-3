@@ -1,0 +1,5 @@
+{
+  "id": "management",
+  "label": "Property management",
+  "services": ["Asset care", "Tenant support", "Performance"]
+}

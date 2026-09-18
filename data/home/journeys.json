@@ -1,0 +1,5 @@
+{
+  "id": "journeys",
+  "label": "Journeys",
+  "items": ["Buying", "Selling", "Leasing", "Property management"]
+}

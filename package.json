@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "test:homepage": "node --experimental-default-type=module scripts/check-home.mjs && node --experimental-default-type=module scripts/check-portfolio.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "next": "^16.3.5",

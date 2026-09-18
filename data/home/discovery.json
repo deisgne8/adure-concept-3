@@ -1,0 +1,5 @@
+{
+  "id": "discovery",
+  "label": "Property discovery",
+  "filters": ["Purpose", "Property type", "Location", "Price"]
+}
