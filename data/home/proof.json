@@ -1,5 +1,6 @@
 {
   "id": "proof",
   "label": "Proof",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "metrics": ["Properties", "Years of experience", "Markets"]
 }

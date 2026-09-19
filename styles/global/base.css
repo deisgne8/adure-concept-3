@@ -87,8 +87,89 @@ p {
   padding-inline: var(--gutter);
   margin-inline: auto;
 }
-.section {
-  padding-block: var(--section-space);
+.pt_0 {
+  padding-top: 0;
+}
+.pt_25 {
+  padding-top: var(--section-space-25);
+}
+.pt_50 {
+  padding-top: var(--section-space-50);
+}
+.pt_75 {
+  padding-top: var(--section-space-75);
+}
+.pt_100 {
+  padding-top: var(--section-space-100);
+}
+.pt_125 {
+  padding-top: var(--section-space-125);
+}
+.pt_150 {
+  padding-top: var(--section-space-150);
+}
+.pb_0 {
+  padding-bottom: 0;
+}
+.pb_25 {
+  padding-bottom: var(--section-space-25);
+}
+.pb_50 {
+  padding-bottom: var(--section-space-50);
+}
+.pb_75 {
+  padding-bottom: var(--section-space-75);
+}
+.pb_100 {
+  padding-bottom: var(--section-space-100);
+}
+.pb_125 {
+  padding-bottom: var(--section-space-125);
+}
+.pb_150 {
+  padding-bottom: var(--section-space-150);
+}
+.mt_0 {
+  margin-top: 0;
+}
+.mt_25 {
+  margin-top: var(--section-space-25);
+}
+.mt_50 {
+  margin-top: var(--section-space-50);
+}
+.mt_75 {
+  margin-top: var(--section-space-75);
+}
+.mt_100 {
+  margin-top: var(--section-space-100);
+}
+.mt_125 {
+  margin-top: var(--section-space-125);
+}
+.mt_150 {
+  margin-top: var(--section-space-150);
+}
+.mb_0 {
+  margin-bottom: 0;
+}
+.mb_25 {
+  margin-bottom: var(--section-space-25);
+}
+.mb_50 {
+  margin-bottom: var(--section-space-50);
+}
+.mb_75 {
+  margin-bottom: var(--section-space-75);
+}
+.mb_100 {
+  margin-bottom: var(--section-space-100);
+}
+.mb_125 {
+  margin-bottom: var(--section-space-125);
+}
+.mb_150 {
+  margin-bottom: var(--section-space-150);
 }
 .section-index,
 .eyebrow {
@@ -293,7 +374,31 @@ select {
 }
 .desktop-nav a:hover,
 .desktop-nav button:hover {
-  color: var(--accent);
+  color: inherit;
+}
+.desktop-nav > a,
+.nav-disclosure > button {
+  position: relative;
+}
+.desktop-nav > a::after,
+.nav-disclosure > button::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.375rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--ease);
+}
+.desktop-nav > a:hover::after,
+.desktop-nav > a:focus-visible::after,
+.nav-disclosure > button:hover::after,
+.nav-disclosure > button:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 .nav-disclosure {
   position: relative;
@@ -301,20 +406,77 @@ select {
 .nav-disclosure > button {
   border: 0;
   background: none;
-  padding: var(--s075) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0;
   font-size: inherit;
+  line-height: inherit;
+  transition:
+    background-color 180ms var(--ease),
+    color 180ms var(--ease);
+}
+.services-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 180ms var(--ease);
+}
+#services-toggle[aria-expanded="true"] .services-arrow {
+  transform: rotate(180deg);
+}
+#services-toggle[aria-expanded="true"] {
+  background-color: var(--accent);
+  color: var(--white);
+}
+#services-toggle[aria-expanded="true"]::after {
+  transform: scaleX(0);
 }
 #services-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + var(--s075));
   left: 0;
   min-width: 16rem;
   border: 1px solid var(--border);
   background: white;
   color: var(--ink);
-  padding: var(--s1);
+  padding: 0;
   display: grid;
-  gap: var(--s1);
+  gap: 0;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  visibility: hidden;
+  transition:
+    opacity 180ms var(--ease),
+    transform 180ms var(--ease),
+    visibility 180ms step-end;
+}
+#services-menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    opacity 180ms var(--ease),
+    transform 180ms var(--ease);
+}
+#services-menu a {
+  display: grid;
+  gap: 0.125rem;
+  padding: var(--s075) var(--s1);
+  transition:
+    background-color 180ms var(--ease),
+    color 180ms var(--ease);
+}
+#services-menu a:hover,
+#services-menu a:focus-visible {
+  background-color: var(--accent);
+  color: var(--white);
+}
+#services-menu a:hover small,
+#services-menu a:focus-visible small {
+  color: currentColor;
 }
 .header-cta {
   min-height: var(--button-small);

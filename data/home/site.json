@@ -1,5 +1,77 @@
 {
   "brand": "ADURE",
   "tagline": "Creating Value Beyond Property",
-  "markets": ["Abu Dhabi", "Dubai", "Al Ain"]
+  "markets": ["Abu Dhabi", "Dubai", "Al Ain"],
+  "header": {
+    "logo": {
+      "href": "#home",
+      "ariaLabel": "ADURE home",
+      "alt": "ADURE - Abu Dhabi United Real Estate"
+    },
+    "navigation": {
+      "beforeServices": [
+        {
+          "label": "About ADURE",
+          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about"
+        }
+      ],
+      "services": {
+        "label": "Services",
+        "items": [
+          {
+            "label": "Overview",
+            "description": "All connected capabilities",
+            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services"
+          },
+          {
+            "label": "Buy",
+            "description": "Find your next property",
+            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
+          },
+          {
+            "label": "Sell",
+            "description": "Bring a property to market",
+            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
+          },
+          {
+            "label": "Leasing",
+            "description": "Explore available properties",
+            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
+          },
+          {
+            "label": "Property management",
+            "description": "Protect long-term asset value",
+            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services"
+          }
+        ]
+      },
+      "afterServices": [
+        {
+          "label": "Properties",
+          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
+        },
+        {
+          "label": "Portfolio",
+          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#portfolio"
+        },
+        {
+          "label": "Our customers",
+          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers"
+        },
+        {
+          "label": "Contact",
+          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#contact"
+        }
+      ]
+    },
+    "cta": {
+      "label": "List your property",
+      "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
+    },
+    "contact": {
+      "markets": "Abu Dhabi - Dubai - Al Ain",
+      "phone": "02 6457869",
+      "phoneHref": "tel:+97126457869"
+    }
+  }
 }

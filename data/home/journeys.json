@@ -1,5 +1,6 @@
 {
   "id": "journeys",
   "label": "Journeys",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "items": ["Buying", "Selling", "Leasing", "Property management"]
 }

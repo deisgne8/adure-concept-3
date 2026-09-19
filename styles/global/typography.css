@@ -1,3 +1,81 @@
+/* The single source of truth for global typography. */
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/assets/fonts/fira-sans-400.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
+  src: url("/assets/fonts/fira-sans-500.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("/assets/fonts/source-sans-pro-400.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --font-display: "Fira Sans", sans-serif;
+  --font-body: "Source Sans Pro", sans-serif;
+  --weight-regular: 400;
+
+  --text-display: 4.5rem;
+  --line-display: 1.09722;
+  --text-h1: 3.5rem;
+  --line-h1: 1.19643;
+  --text-h2: 2.75rem;
+  --line-h2: 1.15909;
+  --text-h3: 1.875rem;
+  --line-h3: 1.13333;
+  --text-h4: 1.5rem;
+  --line-h4: 1.16667;
+  --text-card: 1.5rem;
+  --line-card: 1.16667;
+  --text-body-lg: 1.125rem;
+  --line-body-lg: 1.55556;
+  --text-body: 1rem;
+  --line-body: 1.5625;
+  --text-small: 0.875rem;
+  --line-small: 1.57143;
+  --text-label: 0.8125rem;
+  --line-label: 1.53846;
+  --text-nav: 0.9375rem;
+  --tracking-body: -0.005em;
+  --tracking-display: 0.04em;
+}
+
+@media (max-width: 1023.98px) {
+  :root {
+    --text-display: 2.5rem;
+    --line-display: 1;
+    --text-h1: 2.5rem;
+    --line-h1: 1.1;
+    --text-h2: 1.75rem;
+    --line-h2: 1.14286;
+    --text-h3: 1.625rem;
+    --line-h3: 1.15385;
+    --line-h4: 1.20833;
+    --text-body-lg: 1rem;
+    --line-body-lg: 1.375;
+    --text-body: 0.9375rem;
+    --line-body: 1.53333;
+    --tracking-display: 0.02em;
+  }
+}
+
+@media (max-width: 767.98px) {
+  :root {
+    --text-card: 1.125rem;
+    --line-card: 1.22222;
+  }
+}
+
 /* A single editorial hierarchy across every ADURE homepage section. */
 #home {
   --type-hero: clamp(56px, 6vw, 88px);

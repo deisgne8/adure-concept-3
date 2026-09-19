@@ -1,16 +1,7 @@
 /* One page rhythm and one content grid. Full-bleed media remains full bleed;
    section copy and controls share the same edges. */
-#home {
-  --chapter-space: var(--section-space);
-}
-
 #home > .section:not(.site-hero) {
-  padding-block: var(--chapter-space);
   margin-block: 0;
-}
-
-#home > #management {
-  padding-block: 0;
 }
 
 #home > #philosophy .section-shell,
@@ -46,10 +37,6 @@
   column-gap: var(--grid-column-gap);
 }
 
-/* The static portfolio grid follows the same chapter padding as its neighbours. */
-#home > #portfolio {
-  padding-block: var(--chapter-space);
-}
 #home #portfolio .portfolio-mosaic {
   padding-bottom: 0;
 }

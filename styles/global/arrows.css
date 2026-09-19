@@ -79,12 +79,11 @@
   font: 400 20px/1 var(--font-body);
 }
 
-.site-header #services-toggle > span {
-  color: currentColor;
-  font-size: 0;
-}
-
-.site-header #services-toggle > span::before {
-  content: "↓";
-  font: 400 16px/1 var(--font-body);
+.site-header .services-arrow::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-0.1rem, -0.1rem);
 }

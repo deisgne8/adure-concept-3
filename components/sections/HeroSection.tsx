@@ -1,9 +1,20 @@
-import content from "../../data/home/hero.json";
+import { Fragment } from "react";
+import Button, { type ButtonVariant } from "../ui/Button";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function HeroSection() {
+type HeroSectionProps = {
+  content: HomeContent["hero"];
+};
+
+const heroButtonVariants = ["primary", "link"] satisfies ButtonVariant[];
+
+export default function HeroSection({ content }: HeroSectionProps) {
+  const heroButtons = content.buttons.slice(0, heroButtonVariants.length);
+
   return (
     <>
-      <section className="site-hero section" id={content.id}>
+      <Section className="site-hero section" id={content.id} fullViewport>
         <video
           className="hero-video"
           id="hero-video"
@@ -11,40 +22,43 @@ export default function HeroSection() {
           loop
           playsInline
           preload="auto"
-          poster="assets/hidd-al-saadiyat/hero-wave-facade.webp"
+          poster={content.media.poster}
           aria-label="Hidd Al Saadiyat architectural film"
         >
-          <source src="assets/hidd-al-saadiyat-hero.mp4" type="video/mp4" />
+          <source src={content.media.video} type="video/mp4" />
         </video>
         <div className="hero-inner">
           <div className="hero-lockup">
             <div>
-              {/* prettier-ignore */}
-              <h1>
-                <span>Creating Value</span>{" "}
-                <span>Beyond Property</span>
+              <h1 data-aos="fade-up">
+                {content.heading.map((line, index) => (
+                  <Fragment key={line}>
+                    {index > 0 && <br />}
+                    {line}
+                  </Fragment>
+                ))}
               </h1>
             </div>
             <div className="hero-side">
-              <p>A connected approach to real estate, shaped in Abu Dhabi.</p>
-              <div className="hero-actions">
-                <a
-                  className="btn primary"
-                  href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about"
-                >
-                  Explore ADURE
-                </a>
-                <a
-                  className="btn link"
-                  href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
-                >
-                  Find a property
-                </a>
+              <p data-aos="fade-up" data-aos-delay="100">
+                {content.description}
+              </p>
+              <div className="hero-actions" data-aos="zoom-in" data-aos-delay="200">
+                {heroButtons.map((button, index) => (
+                  <Button
+                    key={button.href}
+                    className="hero-action"
+                    href={button.href}
+                    variant={heroButtonVariants[index]}
+                  >
+                    <span className="button-action-label">{button.label}</span>
+                  </Button>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

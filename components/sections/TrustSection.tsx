@@ -1,9 +1,18 @@
-import content from "../../data/home/trust.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function TrustSection() {
+type TrustSectionProps = {
+  content: HomeContent["trust"];
+};
+
+export default function TrustSection({ content }: TrustSectionProps) {
   return (
     <>
-      <section className="trust-v2 section" id={content.id}>
+      <Section
+        className="trust-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <header className="trust-logo-head">
           <h2 className="trust-logo-title">Rooted in Trust and Transparency</h2>
           <p className="trust-logo-intro">
@@ -245,7 +254,7 @@ export default function TrustSection() {
         >
           Our customers
         </a>
-      </section>
+      </Section>
     </>
   );
 }

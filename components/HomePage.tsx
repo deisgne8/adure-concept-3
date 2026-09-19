@@ -13,25 +13,30 @@ import SiteChrome from "./sections/SiteChrome";
 import SiteFooter from "./sections/SiteFooter";
 import TransitionSection from "./sections/TransitionSection";
 import TrustSection from "./sections/TrustSection";
+import type { HomeContent } from "../lib/home/load-home-content";
 
-export default function HomePage() {
+type HomePageProps = {
+  content: HomeContent;
+};
+
+export default function HomePage({ content }: HomePageProps) {
   return (
     <>
       <HomeClient />
       <SmoothScroll />
-      <SiteChrome />
+      <SiteChrome content={content.site} />
       <main id="main">
         <section className="home-v2" id="home">
-          <HeroSection />
-          <JourneysSection />
-          <DiscoverySection />
-          <ManagementSection />
-          <ProofSection />
-          <PortfolioSection />
-          <TransitionSection />
-          <SellSection />
-          <TrustSection />
-          <ConversationSection />
+          <HeroSection content={content.hero} />
+          <JourneysSection content={content.journeys} />
+          <DiscoverySection content={content.discovery} />
+          <ManagementSection content={content.management} />
+          <ProofSection content={content.proof} />
+          <PortfolioSection content={content.portfolio} />
+          <TransitionSection content={content.transition} />
+          <SellSection content={content.sell} />
+          <TrustSection content={content.trust} />
+          <ConversationSection content={content.conversation} />
         </section>
       </main>
       <SiteFooter />

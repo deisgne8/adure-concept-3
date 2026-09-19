@@ -1,9 +1,18 @@
-import content from "../../data/home/proof.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function ProofSection() {
+type ProofSectionProps = {
+  content: HomeContent["proof"];
+};
+
+export default function ProofSection({ content }: ProofSectionProps) {
   return (
     <>
-      <section className="proof-v2 section" id={content.id}>
+      <Section
+        className="proof-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <div className="section-shell">
           <div className="proof-editorial-layout">
             <div className="proof-statement">
@@ -45,7 +54,7 @@ export default function ProofSection() {
             </dl>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

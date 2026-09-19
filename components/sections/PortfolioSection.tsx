@@ -1,9 +1,18 @@
-import content from "../../data/home/portfolio.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function PortfolioSection() {
+type PortfolioSectionProps = {
+  content: HomeContent["portfolio"];
+};
+
+export default function PortfolioSection({ content }: PortfolioSectionProps) {
   return (
     <>
-      <section className="portfolio-v2 section" id={content.id}>
+      <Section
+        className="portfolio-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <div className="section-shell">
           <div className="portfolio-intro">
             <h2>From Places to Performance</h2>
@@ -191,7 +200,7 @@ export default function PortfolioSection() {
             </article>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

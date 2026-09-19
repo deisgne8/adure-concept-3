@@ -1,5 +1,6 @@
 {
   "id": "conversation",
   "label": "Start a conversation",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "contact": { "phone": "02 6457869", "email": "Inquiries@adu-re.com" }
 }

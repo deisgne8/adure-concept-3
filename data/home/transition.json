@@ -1,5 +1,6 @@
 {
   "id": "transition",
   "label": "Philosophy",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "theme": "Creating value beyond property"
 }

@@ -1,9 +1,18 @@
-import content from "../../data/home/discovery.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function DiscoverySection() {
+type DiscoverySectionProps = {
+  content: HomeContent["discovery"];
+};
+
+export default function DiscoverySection({ content }: DiscoverySectionProps) {
   return (
     <>
-      <section className="discovery-v2 section" id={content.id}>
+      <Section
+        className="discovery-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <div className="section-shell">
           <div className="discovery-title">
             <h2>
@@ -167,7 +176,7 @@ export default function DiscoverySection() {
             </a>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

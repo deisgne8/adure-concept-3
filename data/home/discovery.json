@@ -1,5 +1,6 @@
 {
   "id": "discovery",
   "label": "Property discovery",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "filters": ["Purpose", "Property type", "Location", "Price"]
 }

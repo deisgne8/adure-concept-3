@@ -1,5 +1,6 @@
 {
   "id": "portfolio",
   "label": "Portfolio",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "categories": ["Residential", "Commercial", "Mixed-use"]
 }

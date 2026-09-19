@@ -1,9 +1,20 @@
-import content from "../../data/home/conversation.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function ConversationSection() {
+type ConversationSectionProps = {
+  content: HomeContent["conversation"];
+};
+
+export default function ConversationSection({
+  content,
+}: ConversationSectionProps) {
   return (
     <>
-      <section className="final-v2 section" id={content.id}>
+      <Section
+        className="final-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <img
           src="assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp"
           alt="Aerial view of the Hidd Al Saadiyat beach and waterfront"
@@ -37,7 +48,7 @@ export default function ConversationSection() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

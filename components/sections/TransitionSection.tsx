@@ -1,9 +1,18 @@
-import content from "../../data/home/transition.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function TransitionSection() {
+type TransitionSectionProps = {
+  content: HomeContent["transition"];
+};
+
+export default function TransitionSection({ content }: TransitionSectionProps) {
   return (
     <>
-      <section className="transition-v2 section" id={content.id}>
+      <Section
+        className="transition-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <div className="section-shell">
           <div className="transition-head">
             <h2>Your 30-Day Transition Journey</h2>
@@ -52,7 +61,7 @@ export default function TransitionSection() {
             Explore property management
           </a>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

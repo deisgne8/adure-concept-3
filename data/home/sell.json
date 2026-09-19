@@ -1,5 +1,6 @@
 {
   "id": "sell",
   "label": "Sell your property",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "form": ["Name", "Email", "Phone", "Property details"]
 }

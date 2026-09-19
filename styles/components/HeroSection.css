@@ -31,6 +31,110 @@
   will-change: transform, opacity;
 }
 
+#home > .site-hero .hero-actions .hero-action,
+.site-header .header-cta {
+  --hero-button-wipe-duration: 700ms;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: transparent;
+  transition:
+    color var(--motion-control) var(--ease),
+    border-color var(--motion-control) var(--ease),
+    box-shadow var(--motion-base) var(--ease);
+}
+
+#home > .site-hero .hero-actions .hero-action::before,
+.site-header .header-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--accent);
+  transition: width var(--hero-button-wipe-duration) cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+#home > .site-hero .hero-actions .button-action-label,
+#home > .site-hero .hero-actions .hero-action::after,
+.site-header .header-cta .button-action-label {
+  position: relative;
+  z-index: 1;
+}
+
+#home > .site-hero .hero-actions .hero-action.primary {
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.site-header .header-cta {
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+#home > .site-hero .hero-actions .hero-action.primary::before {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+
+.site-header .header-cta::before {
+  left: auto;
+  right: 0;
+  width: 100%;
+}
+
+#home > .site-hero .hero-actions .hero-action.link {
+  padding: var(--button-padding);
+  border: 1px solid var(--inverse-line);
+  border-radius: var(--control-radius);
+  color: var(--white);
+}
+
+#home > .site-hero .hero-actions .hero-action:hover,
+#home > .site-hero .hero-actions .hero-action:focus-visible,
+.site-header .header-cta:hover,
+.site-header .header-cta:focus-visible {
+  background-color: transparent;
+  box-shadow: 0 1rem 2.5rem rgba(0, 18, 40, 0.24);
+}
+
+#home > .site-hero .hero-actions .hero-action.primary:hover,
+#home > .site-hero .hero-actions .hero-action.primary:focus-visible {
+  border-color: var(--inverse-line);
+  color: var(--white);
+}
+
+.site-header .header-cta:hover,
+.site-header .header-cta:focus-visible {
+  border-color: var(--inverse-line);
+  color: var(--white);
+}
+
+#home > .site-hero .hero-actions .hero-action.primary:hover::before,
+#home > .site-hero .hero-actions .hero-action.primary:focus-visible::before {
+  width: 0;
+}
+
+.site-header .header-cta:hover::before,
+.site-header .header-cta:focus-visible::before {
+  width: 0;
+}
+
+#home > .site-hero .hero-actions .hero-action.link:hover,
+#home > .site-hero .hero-actions .hero-action.link:focus-visible {
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+#home > .site-hero .hero-actions .hero-action.link:hover::before,
+#home > .site-hero .hero-actions .hero-action.link:focus-visible::before {
+  width: 100%;
+}
+
 /* The extra runway gives the hero a short held beat before this panel arrives. */
 #home > #journeys {
   position: relative;

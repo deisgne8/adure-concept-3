@@ -1,5 +1,6 @@
 {
   "id": "management",
   "label": "Property management",
+  "spacing": { "pt": "pt_0", "pb": "pb_0" },
   "services": ["Asset care", "Tenant support", "Performance"]
 }

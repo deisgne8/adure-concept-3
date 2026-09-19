@@ -1,12 +1,16 @@
-export default function SiteChrome() {
+import type { HomeContent } from "../../lib/home/load-home-content";
+import Button from "../ui/Button";
+
+type SiteChromeProps = {
+  content: HomeContent["site"];
+};
+
+export default function SiteChrome({ content }: SiteChromeProps) {
+  const { header } = content;
+
   return (
     <>
-      <div
-        className="site-intro"
-        id="site-intro"
-        hidden
-        aria-label="Loading ADURE"
-      >
+      <div className="site-intro" id="site-intro" hidden aria-label={`Loading ${content.brand}`}>
         <button className="intro-skip" type="button">
           Skip intro <span aria-hidden="true">→</span>
         </button>
@@ -15,7 +19,7 @@ export default function SiteChrome() {
             <img src="assets/adure-logo-horizontal.svg" alt="" />
           </div>
           <p className="intro-caption">
-            <span>Creating Value Beyond Property</span>
+            <span>{content.tagline}</span>
           </p>
         </div>
       </div>
@@ -24,138 +28,67 @@ export default function SiteChrome() {
       </a>
       <header className="site-header">
         <div className="container header-inner">
-          <a href="#home" className="site-logo" aria-label="ADURE home">
-            <img
-              src="assets/adure-logo-horizontal.svg"
-              alt="ADURE — Abu Dhabi United Real Estate"
-              width="230"
-              height="62"
-            />
+          <a href={header.logo.href} className="site-logo" aria-label={header.logo.ariaLabel}>
+            <img src="assets/adure-logo-horizontal.svg" alt={header.logo.alt} width="230" height="62" />
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about">
-              About ADURE
-            </a>
+            {header.navigation.beforeServices.map((item) => (
+              <a key={item.href} href={item.href}>{item.label}</a>
+            ))}
             <div className="nav-disclosure">
-              <button
-                id="services-toggle"
-                aria-expanded="false"
-                aria-controls="services-menu"
-              >
-                Services
+              <button id="services-toggle" aria-expanded="false" aria-controls="services-menu">
+                {header.navigation.services.label}
+                <span className="services-arrow" aria-hidden="true" />
               </button>
               <div id="services-menu" hidden>
-                <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services">
-                  <span>Overview</span>
-                  <small>All connected capabilities</small>
-                </a>
-                <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
-                  <span>Buy</span>
-                  <small>Find your next property</small>
-                </a>
-                <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property">
-                  <span>Sell</span>
-                  <small>Bring a property to market</small>
-                </a>
-                <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
-                  <span>Leasing</span>
-                  <small>Explore available properties</small>
-                </a>
-                <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services">
-                  <span>Property management</span>
-                  <small>Protect long-term asset value</small>
-                </a>
+                {header.navigation.services.items.map((item) => (
+                  <a key={item.label} href={item.href}>
+                    <span>{item.label}</span>
+                    <small>{item.description}</small>
+                  </a>
+                ))}
               </div>
             </div>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
-              Properties
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#portfolio">
-              Portfolio
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers">
-              Our customers
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#contact">
-              Contact
-            </a>
+            {header.navigation.afterServices.map((item) => (
+              <a key={item.href} href={item.href}>{item.label}</a>
+            ))}
           </nav>
-          <a
-            className="btn primary header-cta"
-            href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
-          >
-            List your property
-          </a>
-          <button
-            className="menu-toggle"
-            aria-label="Open menu"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
+          <Button className="header-cta" href={header.cta.href} variant="primary">
+            <span className="button-action-label">{header.cta.label}</span>
+          </Button>
+          <button className="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span />
+            <span />
+            <span />
           </button>
         </div>
       </header>
-      <dialog
-        className="mobile-menu"
-        id="mobile-menu"
-        aria-label="Main navigation"
-      >
+      <dialog className="mobile-menu" id="mobile-menu" aria-label="Main navigation">
         <div className="menu-top">
-          <a href="#home" className="site-logo">
-            <img src="assets/adure-logo-horizontal.svg" alt="ADURE home" />
+          <a href={header.logo.href} className="site-logo">
+            <img src="assets/adure-logo-horizontal.svg" alt={header.logo.alt} />
           </a>
-          <button className="icon-button menu-close" aria-label="Close menu">
-            ×
-          </button>
+          <button className="icon-button menu-close" aria-label="Close menu">×</button>
         </div>
         <nav aria-label="Mobile navigation">
-          <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about">
-            About ADURE
-          </a>
+          {header.navigation.beforeServices.map((item) => (
+            <a key={item.href} href={item.href}>{item.label}</a>
+          ))}
           <details>
-            <summary>Services</summary>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services">
-              Overview
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
-              Buy
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property">
-              Sell
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
-              Leasing
-            </a>
-            <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services">
-              Property management
-            </a>
+            <summary>{header.navigation.services.label}</summary>
+            {header.navigation.services.items.map((item) => (
+              <a key={item.label} href={item.href}>{item.label}</a>
+            ))}
           </details>
-          <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
-            Properties
-          </a>
-          <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#portfolio">
-            Portfolio
-          </a>
-          <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers">
-            Our customers
-          </a>
-          <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#contact">
-            Contact
-          </a>
+          {header.navigation.afterServices.map((item) => (
+            <a key={item.href} href={item.href}>{item.label}</a>
+          ))}
         </nav>
-        <a
-          className="btn primary"
-          href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
-        >
-          List your property
-        </a>
+        <Button href={header.cta.href} variant="primary">{header.cta.label}</Button>
         <p className="menu-contact">
-          Abu Dhabi · Dubai · Al Ain
+          {header.contact.markets}
           <br />
-          <a href="tel:+97126457869">02 6457869</a>
+          <a href={header.contact.phoneHref}>{header.contact.phone}</a>
         </p>
       </dialog>
     </>

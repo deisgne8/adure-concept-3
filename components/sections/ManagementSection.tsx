@@ -1,9 +1,18 @@
-import content from "../../data/home/management.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function ManagementSection() {
+type ManagementSectionProps = {
+  content: HomeContent["management"];
+};
+
+export default function ManagementSection({ content }: ManagementSectionProps) {
   return (
     <>
-      <section className="management-v2 section" id={content.id}>
+      <Section
+        className="management-v2 section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <div className="section-shell">
           <div className="management-layout-v2">
             <figure className="management-visual-v2">
@@ -103,7 +112,7 @@ export default function ManagementSection() {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

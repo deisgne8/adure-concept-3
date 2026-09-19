@@ -1,12 +1,18 @@
-import content from "../../data/home/sell.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function SellSection() {
+type SellSectionProps = {
+  content: HomeContent["sell"];
+};
+
+export default function SellSection({ content }: SellSectionProps) {
   return (
     <>
-      <section
+      <Section
         className="sell-v2 section"
         id={content.id}
         aria-labelledby="sell-title"
+        spacing={content.spacing}
       >
         <div className="section-shell sell-layout">
           <div className="sell-copy">
@@ -83,7 +89,7 @@ export default function SellSection() {
             </p>
           </form>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

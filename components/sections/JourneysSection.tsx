@@ -1,9 +1,18 @@
-import content from "../../data/home/journeys.json";
+import Section from "../ui/Section";
+import type { HomeContent } from "../../lib/home/load-home-content";
 
-export default function JourneysSection() {
+type JourneysSectionProps = {
+  content: HomeContent["journeys"];
+};
+
+export default function JourneysSection({ content }: JourneysSectionProps) {
   return (
     <>
-      <section className="journey-section section" id={content.id}>
+      <Section
+        className="journey-section section"
+        id={content.id}
+        spacing={content.spacing}
+      >
         <div className="section-shell">
           <div className="journey-heading">
             <h2>One Partner for Every Property Move</h2>
@@ -124,7 +133,7 @@ export default function JourneysSection() {
             </article>
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

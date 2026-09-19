@@ -1,5 +1,6 @@
 {
   "id": "trust",
   "label": "Trusted by clients",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "groups": ["Government", "Private sector and corporates"]
 }
