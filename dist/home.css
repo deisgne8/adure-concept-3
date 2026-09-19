@@ -2656,3 +2656,141 @@ main{
   color:#1f2933!important;
   background:#fff!important;
 }
+
+
+/* Keep expanded homepage filters aligned inside the search pill. */
+@media(min-width:901px){
+  .home-v2 #filter-home .search-box.is-more-open{
+    grid-template-rows:auto auto!important;
+    align-items:center!important;
+    row-gap:0!important;
+    border-radius:42px!important;
+    overflow:hidden!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open>.tabs,
+  .home-v2 #filter-home .search-box.is-more-open>.field,
+  .home-v2 #filter-home .search-box.is-more-open>.more-filters,
+  .home-v2 #filter-home .search-box.is-more-open>.search-primary{
+    grid-row:1!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open>.search-primary{
+    justify-self:stretch!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    padding-inline:1rem!important;
+    overflow:visible!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open>.more-filters-panel{
+    grid-column:1/-1!important;
+    grid-row:2!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:1rem!important;
+    max-height:none!important;
+    width:100%!important;
+    padding:1rem 1rem 1.05rem!important;
+    border-top:1px solid #d8e4f0!important;
+    opacity:1!important;
+    visibility:visible!important;
+    transform:none!important;
+    overflow:visible!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open .more-filters-panel>p{
+    flex:0 0 auto!important;
+    margin:0!important;
+    white-space:nowrap!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open .amenity-grid{
+    flex:1 1 auto!important;
+    display:flex!important;
+    align-items:center!important;
+    flex-wrap:wrap!important;
+    gap:.85rem 1rem!important;
+    min-width:0!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open .amenity-actions{
+    display:none!important;
+  }
+}
+
+/* Let the open amenities panel span the full search bar instead of the More Filters column. */
+@media(min-width:901px){
+  .home-v2 #filter-home .search-box.is-more-open>.more-filters{
+    display:contents!important;
+    height:auto!important;
+    border:0!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open>.more-filters>.more-filters-toggle{
+    grid-column:6!important;
+    grid-row:1!important;
+    width:100%!important;
+    border-right:1px solid #d8e4f0!important;
+  }
+  .home-v2 #filter-home .search-box.is-more-open>.more-filters>.more-filters-panel{
+    grid-column:1/-1!important;
+    grid-row:2!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+}
+
+/* Prevent the homepage search grid from overflowing at common desktop widths. */
+@media(min-width:901px){
+  .home-v2 #filter-home .search-box,
+  .home-v2 #filter-home .search-box.is-more-open{
+    grid-template-columns:minmax(10rem,.78fr) repeat(4,minmax(8.5rem,1fr)) minmax(8.5rem,.82fr) minmax(12rem,.92fr)!important;
+  }
+}
+
+/* Browser comment: align homepage section headings with the One Partner reference size and weight. */
+.home-v2 :is(
+  .journey-heading h2,
+  .discovery-title h2,
+  .management-copy-v2 h2.management-context,
+  .proof-statement h2,
+  .portfolio-intro h2,
+  .transition-head h2,
+  .sell-copy h2,
+  .trust-logo-title,
+  .final-layout h2
+){
+  font-size:clamp(38px,3.7vw,62px)!important;
+  line-height:1.05!important;
+  font-weight:700!important;
+  letter-spacing:-.035em!important;
+}
+@media(max-width:767.98px){
+  .home-v2 :is(
+    .journey-heading h2,
+    .discovery-title h2,
+    .management-copy-v2 h2.management-context,
+    .proof-statement h2,
+    .portfolio-intro h2,
+    .transition-head h2,
+    .sell-copy h2,
+    .trust-logo-title,
+    .final-layout h2
+  ){
+    font-size:clamp(36px,10vw,48px)!important;
+  }
+}
+
+/* Browser comment: add supporting hero belief paragraph below the service line. */
+.hero-side .hero-belief{
+  max-width:36rem;
+  margin:.95rem 0 0;
+  color:rgba(255,255,255,.9);
+  font-size:clamp(1rem,1.2vw,1.18rem);
+  line-height:1.48;
+  letter-spacing:-.01em;
+}
+.hero-side .hero-belief + .hero-actions{
+  margin-top:1.6rem;
+}
+@media(max-width:767.98px){
+  .hero-side .hero-belief{
+    max-width:100%;
+    font-size:1rem;
+  }
+}
