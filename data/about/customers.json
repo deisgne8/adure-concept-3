@@ -1,0 +1,20 @@
+{
+  "title": "Rooted In Abu Dhabi Trusted Across The UAE",
+  "description": "From Abu Dhabi and Saadiyat to Al Ain and Dubai, ADURE brings local understanding and one consistent standard of service to the markets we serve.",
+  "link": {
+    "label": "Our Customers",
+    "href": "/#trust"
+  },
+  "sectors": [
+    {
+      "title": "Government & Semi-Government",
+      "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg",
+      "alt": "ADURE team advising institutional clients"
+    },
+    {
+      "title": "Private Sector & Corporates",
+      "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp",
+      "alt": "Modern UAE corporate property entrance"
+    }
+  ]
+}

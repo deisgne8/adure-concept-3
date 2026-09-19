@@ -624,6 +624,19 @@
 }
 
 /* Story section: Tilton-inspired dark timeline composition using ADURE type system. */
+.about-page .story-swiper-shell{position:relative}
+.about-page .story-swiper{overflow:hidden}
+.about-page .story-carousel-top{position:relative;padding-inline:clamp(4.5rem,7vw,6.5rem)}
+.about-page .story-carousel-viewport{overflow:hidden}
+.about-page .story-carousel-top .story-swiper{overflow:visible}
+.about-page .story-carousel-top .story-tilton-arrow{position:absolute;z-index:3;top:50%;transform:translateY(-50%)}
+.about-page .story-carousel-prev{left:clamp(.75rem,2.5vw,3rem)}
+.about-page .story-carousel-next{right:clamp(.75rem,2.5vw,3rem)}
+.about-page .story-carousel-bottom{padding-inline:clamp(4.5rem,7vw,6.5rem)}
+.about-page .story-swiper-controls{position:absolute;z-index:3;top:50%;left:clamp(.75rem,2.5vw,3rem);right:clamp(.75rem,2.5vw,3rem);display:flex;justify-content:space-between;align-items:center;transform:translateY(-50%);pointer-events:none}
+.about-page .story-swiper-controls button{width:58px;height:58px;border:1px solid rgba(255,255,255,.72);border-radius:50%;background:rgba(10,63,57,.54);color:#fff;font-size:1.5rem;cursor:pointer;transition:background var(--motion-control) var(--ease),color var(--motion-control) var(--ease)}
+.about-page .story-swiper-controls button{pointer-events:auto}
+.about-page .story-swiper-controls button:hover,.about-page .story-swiper-controls button:focus-visible{background:#fff;color:#0a3f39}
 .about-page .story-tilton-section{
   position:relative;
   overflow:hidden;
@@ -697,6 +710,7 @@
   min-height:clamp(360px,48vh,520px);
   padding:clamp(2rem,4.5vw,4.4rem);
   background:#135a52;
+  border-top-right-radius:16px;
   border-bottom-right-radius:16px;
   color:#fff;
 }
@@ -829,27 +843,32 @@
   }
 }
 
-/* Refine story carousel proportions to match the wide Tilton panels. */
+/* Keep each Swiper slide centered while preserving the original panel layout. */
 .about-page .story-tilton-stage{
-  width:max(1180px,calc(100vw + 320px))!important;
-  margin-left:clamp(4.5rem,8vw,6rem)!important;
-  margin-right:0!important;
-  grid-template-columns:clamp(420px,34vw,560px) clamp(420px,34vw,560px) clamp(420px,34vw,560px)!important;
+  width:100%!important;
+  max-width:none;
+  margin-inline:0!important;
+  grid-template-columns:minmax(320px,1.08fr) minmax(360px,.92fr)!important;
+  min-height:clamp(260px,30vh,340px);
 }
 .about-page .story-tilton-image,
 .about-page .story-tilton-card{
-  min-height:clamp(380px,46vh,520px)!important;
+  min-height:clamp(260px,30vh,340px)!important;
 }
+.about-page .story-tilton-image{position:relative;height:auto!important}
+.about-page .story-tilton-image img{position:absolute;inset:0;display:block}
+.about-page .story-swiper .swiper-slide{display:flex;height:auto}
+.about-page .story-swiper .story-tilton-stage{flex:1}
 .about-page .story-tilton-card{
   padding:clamp(2rem,3.4vw,3.4rem)!important;
 }
 .about-page .story-tilton-card h2{
   max-width:11em;
+  font-size:clamp(30px,2.9vw,42px)!important;
 }
 .about-page .story-tilton-years{
-  width:max(1180px,calc(100vw + 320px))!important;
-  margin-left:clamp(4.5rem,8vw,6rem)!important;
-  margin-right:0!important;
+  width:100%!important;
+  margin-inline:0!important;
   padding-left:0!important;
 }
 @media(max-width:1100px){
@@ -858,6 +877,16 @@
     width:min(100% - 2rem,760px)!important;
     margin-inline:auto!important;
   }
+}
+@media(max-width:640px){
+  .about-page .story-tilton-stage,
+  .about-page .story-tilton-years{width:min(100% - 2rem,760px)!important}
+  .about-page .story-swiper-controls{left:1.25rem;right:1.25rem}
+  .about-page .story-swiper-controls button{width:46px;height:46px}
+  .about-page .story-carousel-top,
+  .about-page .story-carousel-bottom{padding-inline:3.75rem}
+  .about-page .story-carousel-prev{left:.75rem}
+  .about-page .story-carousel-next{right:.75rem}
 }
 
 /* Story carousel animation controls. */
@@ -889,8 +918,8 @@
 .about-page .story-tilton-controls{
   position:absolute;
   z-index:3;
-  left:0;
-  right:0;
+  left:clamp(.75rem,2.5vw,3rem);
+  right:clamp(.75rem,2.5vw,3rem);
   top:50%;
   display:flex;
   justify-content:space-between;
@@ -903,26 +932,30 @@
   display:grid;
   place-items:center;
   border:1px solid rgba(255,255,255,.58);
-  border-radius:50%;
+  border-radius:50%!important;
   background:rgba(10,63,57,.54);
   color:#fff;
   font-size:1.35rem;
   transition:opacity .25s,background .25s,border-color .25s,transform .25s;
   pointer-events:auto;
 }
-.about-page .story-tilton-prev{margin-left:-29px}
-.about-page .story-tilton-next{margin-right:-29px}
+.about-page .story-tilton-prev,
+.about-page .story-tilton-next{margin:0}
 .about-page .story-tilton-arrow:hover:not(:disabled){
   background:#fff;
   color:#0a3f39;
   border-color:#fff;
   transform:scale(1.04);
 }
+.about-page .story-carousel-top .story-tilton-arrow:hover:not(:disabled){transform:translateY(-50%) scale(1.04)}
+.about-page .story-carousel-prev .button-arrow{transform:rotate(180deg)}
 .about-page .story-tilton-arrow:disabled{
   opacity:.18;
   cursor:not-allowed;
 }
 .about-page .story-tilton-years button{
+  display:block;
+  width:100%;
   appearance:none;
   border:0;
   padding:0 0 1.2rem;
@@ -943,21 +976,23 @@
   right:0;
   bottom:0;
   height:1px;
-  background:rgba(255,255,255,.2);
+  background:#fff;
+  transform:scaleX(0);
+  transform-origin:left center;
 }
-.about-page .story-tilton-years li:after{display:none}
+.about-page .story-tilton-years li:after{display:block}
 .about-page .story-tilton-years li.is-active button:after{
-  background:rgba(255,255,255,.48);
+  background:#fff;
+  animation:story-timeline-progress 4.5s linear forwards;
+}
+@keyframes story-timeline-progress{
+  to{transform:scaleX(1)}
 }
 @media(max-width:1100px){
   .about-page .story-tilton-controls{
-    top:auto;
-    left:auto;
+    left:1rem;
     right:1rem;
-    bottom:7rem;
-    width:132px;
-    gap:16px;
-    transform:none;
+    width:auto;
   }
   .about-page .story-tilton-prev,
   .about-page .story-tilton-next{margin:0}

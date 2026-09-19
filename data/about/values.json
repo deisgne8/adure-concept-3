@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Values",
+  "title": "Principles That Shape Every Relationship.",
+  "items": [
+    {
+      "title": "Customer Centric",
+      "description": "We listen closely, understand what matters and shape our service around the people and organisations we serve.",
+      "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp"
+    },
+    {
+      "title": "Integrity",
+      "description": "We act with honesty, transparency and accountability, building trust through every decision.",
+      "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg"
+    },
+    {
+      "title": "Excellence",
+      "description": "We set high standards for our service, our properties and the way we work.",
+      "image": "/assets/hidd-al-saadiyat/golden-waterfront.webp"
+    },
+    {
+      "title": "Partnership",
+      "description": "We build lasting relationships with owners, tenants, clients and communities through shared commitment.",
+      "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp"
+    },
+    {
+      "title": "Innovation",
+      "description": "We use technology, insight and better ways of working to improve service and performance.",
+      "image": "/assets/hidd-al-saadiyat/management-facility-facade.jpg"
+    },
+    {
+      "title": "Sustainability",
+      "description": "We consider the long-term environmental, social and economic impact of the assets we manage.",
+      "image": "/assets/hidd-al-saadiyat/landscaped-community.webp"
+    }
+  ]
+}

@@ -1,112 +1,151 @@
-import { useEffect, useRef } from "react";
-import aboutContent from "../../data/about.json";
+import { useEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperInstance } from "swiper";
+import { Autoplay } from "swiper/modules";
+import { ArrowRight } from "lucide-react";
+import useBannerEntrance from "../ui/useBannerEntrance";
+type InnerBannerContent = (typeof import("../../data/about/inner-banner.json"));
+type IntroductionContent = (typeof import("../../data/about/introduction.json"));
+type StoryContent = (typeof import("../../data/about/story.json"));
+type ScaleContent = (typeof import("../../data/about/scale.json"));
+type BusinessContent = (typeof import("../../data/about/business.json"));
+type VisionContent = (typeof import("../../data/about/vision.json"));
+type ValuesContent = (typeof import("../../data/about/values.json"));
+type LeadershipContent = (typeof import("../../data/about/leadership.json"));
+type CustomersContent = (typeof import("../../data/about/customers.json"));
+type ContactContent = (typeof import("../../data/about/contact.json"));
 
-const content = aboutContent;
-
-export function AboutHero() {
+export function InnerBanner({ innerBanner }: { innerBanner: InnerBannerContent }) {
+  const bannerRef = useRef<HTMLDivElement>(null);
+  useBannerEntrance(bannerRef);
   return (
     <section className="about-hero" aria-labelledby="about-title">
-      <img src={content.hero.image} alt={content.hero.alt} />
+      <img
+        src={innerBanner.backgroundImage}
+        alt=""
+        style={{ objectPosition: innerBanner.backgroundPosition }}
+      />
       <div className="about-hero-shade" />
-      <div className="section-shell about-hero-inner">
-        <span className="about-eyebrow"><b>01</b> {content.hero.eyebrow}</span>
+      <div ref={bannerRef} className="section-shell about-hero-inner page-banner-enter">
         <h1 id="about-title">
-          {content.hero.title.map((line) => <span key={line}>{line}<br /></span>)}
+          {innerBanner.heading.map((line) => <span key={line}>{line}<br /></span>)}
         </h1>
-        <p>{content.hero.description}</p>
-        <a className="about-scroll-link" href={content.hero.link.href}>
-          {content.hero.link.label} <span aria-hidden="true">↓</span>
-        </a>
+        <p>{innerBanner.description}</p>
       </div>
     </section>
   );
 }
 
-export function AboutIntroductionSection() {
+export function AboutIntroductionSection({ introduction }: { introduction: IntroductionContent }) {
+  useEffect(() => {
+    void import("aos").then(({ default: AOS }) => {
+      AOS.init({
+        duration: 850,
+        easing: "ease-out-cubic",
+        offset: 80,
+        once: true,
+      });
+      AOS.refreshHard();
+    });
+  }, []);
+
   return (
-    <section className="about-section who-section" id={content.who.id} aria-labelledby="who-title">
+    <section className="about-section who-section" id={introduction.id} aria-labelledby="who-title">
       <div className="section-shell about-split">
-        <div data-reveal><h2 id="who-title">{content.who.title}</h2></div>
-        <div className="about-copy-stack" data-reveal>
-          {content.who.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+        <div data-aos="fade-right"><h2 id="who-title">{introduction.title}</h2></div>
+        <div className="about-copy-stack" data-aos="fade-left">
+          {introduction.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
       </div>
     </section>
   );
 }
 
-export function AboutStorySection() {
-  const storyLead = content.story.milestones[0];
-  const sectionRef = useRef<HTMLElement>(null);
+export function AboutStorySection({ story }: { story: StoryContent }) {
+  const swiperRef = useRef<SwiperInstance | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section ref={sectionRef} className="story-section story-tilton-section" aria-labelledby="story-title">
-      <StoryAnimation sectionRef={sectionRef} />
-      <div className="story-tilton-shell">
-        <div className="story-tilton-stage" data-reveal>
-          <figure className="story-tilton-image story-tilton-image-left about-image-scale">
-            <img src={storyLead.left} alt="Managed waterfront residences" />
-          </figure>
-          <article className="story-tilton-card">
-            <span className="about-eyebrow"><b>03</b> {content.story.eyebrow}</span>
-            <p className="story-tilton-year">{storyLead.year}</p>
-            <h2 id="story-title">{storyLead.title}</h2>
-            {storyLead.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          </article>
-          <figure className="story-tilton-image story-tilton-image-right about-image-scale">
-            <img src={storyLead.right} alt="Landscaped Abu Dhabi residential community" />
-          </figure>
+    <section className="story-section story-tilton-section" aria-labelledby="story-title">
+      <div className="story-tilton-shell story-carousel">
+        <div className="story-carousel-top" aria-label="Story carousel controls">
+          <button className="story-tilton-arrow story-carousel-prev" type="button" aria-label="Previous story" onClick={() => swiperRef.current?.slidePrev()}><ArrowRight aria-hidden="true" className="button-arrow" /></button>
+          <div className="story-carousel-viewport">
+            <Swiper
+              className="story-swiper"
+              modules={[Autoplay]}
+              slidesPerView={1.1}
+              spaceBetween={24}
+              loop
+              speed={800}
+              autoplay={{ delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              onSwiper={(instance) => { swiperRef.current = instance; }}
+              onSlideChange={(instance) => setActiveIndex(instance.realIndex)}
+            >
+              {story.milestones.map((milestone, index) => (
+                <SwiperSlide key={milestone.year}>
+                  <article className="story-tilton-stage">
+                    <figure className="story-tilton-image story-tilton-image-left about-image-scale"><img src={milestone.image} alt="" /></figure>
+                    <div className="story-tilton-card">
+                      <p className="story-tilton-year">{milestone.year}</p>
+                      <h2 id={index === 0 ? "story-title" : undefined}>{milestone.heading}</h2>
+                      {milestone.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                    </div>
+                  </article>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <button className="story-tilton-arrow story-carousel-next" type="button" aria-label="Next story" onClick={() => swiperRef.current?.slideNext()}><ArrowRight aria-hidden="true" className="button-arrow" /></button>
         </div>
-        <div className="story-tilton-controls" aria-label="Timeline controls">
-          <button className="story-tilton-arrow story-tilton-prev" type="button" aria-label="Previous timeline card" disabled><span aria-hidden="true">←</span></button>
-          <button className="story-tilton-arrow story-tilton-next" type="button" aria-label="Next timeline card"><span aria-hidden="true">→</span></button>
+        <div className="story-carousel-bottom">
+          <ol className="story-tilton-years" aria-label="Story milestones">
+            {story.milestones.map((milestone, index) => (
+              <li key={milestone.year} className={index === activeIndex ? "is-active" : undefined}>
+                <button type="button" onClick={() => swiperRef.current?.slideToLoop(index)}>{milestone.year}</button>
+              </li>
+            ))}
+          </ol>
         </div>
-        <ol className="story-tilton-years" aria-label="ADURE timeline milestones" data-reveal>
-          {content.story.milestones.map((milestone, index) => (
-            <li key={milestone.year} className={index === 0 ? "is-active" : undefined}>
-              <button type="button" data-story-index={index}><span>{milestone.year}</span></button>
-            </li>
-          ))}
-        </ol>
       </div>
     </section>
   );
 }
 
-export function AboutScaleSection() {
+export function AboutScaleSection({ scale }: { scale: ScaleContent }) {
   const sectionRef = useRef<HTMLElement>(null);
   return (
     <section ref={sectionRef} className="scale-section scale-impact-section" aria-labelledby="scale-title">
       <ScaleAnimation sectionRef={sectionRef} />
       <div className="section-shell scale-impact-shell">
         <div className="scale-impact-metrics" data-reveal>
-          {content.scale.metrics.map((metric) => <article key={metric.label}><p>{metric.label}</p><strong>{metric.value}</strong></article>)}
+          {scale.metrics.map((metric) => <article key={metric.label}><p>{metric.label}</p><strong>{metric.value}</strong></article>)}
         </div>
         <div className="scale-impact-lower" data-reveal>
           <div className="scale-impact-copy">
-            <h2 id="scale-title">{content.scale.title}</h2>
-            <p>{content.scale.description}</p>
+            <h2 id="scale-title">{scale.title}</h2>
+            <p>{scale.description}</p>
             <div className="scale-city-chips" aria-label="Cities of operation">
-              {content.scale.cities.map((city) => <span key={city}>{city}</span>)}
+              {scale.cities.map((city) => <span key={city}>{city}</span>)}
             </div>
           </div>
-          <figure className="scale-impact-image about-image-scale"><img src={content.scale.image} alt={content.scale.alt} /></figure>
+          <figure className="scale-impact-image about-image-scale"><img src={scale.image} alt={scale.alt} /></figure>
         </div>
       </div>
     </section>
   );
 }
 
-export function AboutBusinessSection() {
+export function AboutBusinessSection({ business }: { business: BusinessContent }) {
   return (
-    <section className="business-section" id={content.business.id} aria-labelledby="business-title">
+    <section className="business-section" id={business.id} aria-labelledby="business-title">
       <div className="section-shell business-layout">
         <div data-reveal>
-          <span className="about-eyebrow"><b>06</b> {content.business.eyebrow}</span>
-          <h2 id="business-title">{content.business.title}</h2>
-          <p>{content.business.description}</p>
+          <span className="about-eyebrow"><b>06</b> {business.eyebrow}</span>
+          <h2 id="business-title">{business.title}</h2>
+          <p>{business.description}</p>
         </div>
         <div className="business-grid" data-reveal>
-          {content.business.items.map((item, index) => (
+          {business.items.map((item, index) => (
             <a key={item.label} href={item.href}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.label}</strong><p>{item.description}</p></a>
           ))}
         </div>
@@ -115,21 +154,21 @@ export function AboutBusinessSection() {
   );
 }
 
-export function AboutVisionSection() {
+export function AboutVisionSection({ vision }: { vision: VisionContent }) {
   const sectionRef = useRef<HTMLElement>(null);
   return (
     <section ref={sectionRef} className="vision-section vision-scroll-section" id="vision-scroll" aria-label="ADURE vision and mission">
       <VisionAnimation sectionRef={sectionRef} />
       <div className="vision-scroll-sticky">
         <div className="vision-scroll-media" aria-hidden="true">
-          {content.vision.panels.map((panel, index) => <img key={panel.title} className={`vision-scroll-image${index === 0 ? " is-active" : ""}`} src={panel.image} alt="" />)}
+          {vision.panels.map((panel, index) => <img key={panel.title} className={`vision-scroll-image${index === 0 ? " is-active" : ""}`} src={panel.image} alt="" />)}
         </div>
         <div className="vision-scroll-shade" />
-        <h2 className="vision-scroll-title">{content.vision.title}</h2>
+        <h2 className="vision-scroll-title">{vision.title}</h2>
         <div className="section-shell vision-scroll-inner">
           <div className="vision-scroll-kicker" aria-hidden="true">OUR</div>
           <div className="vision-scroll-panels">
-            {content.vision.panels.map((panel, index) => (
+            {vision.panels.map((panel, index) => (
               <article key={panel.title} className={`vision-scroll-panel${index === 0 ? " is-active" : ""}`} data-vision-panel aria-hidden={index === 0 ? "false" : "true"}>
                 <h2>{panel.title}</h2><p>{panel.description}</p>
               </article>
@@ -141,37 +180,37 @@ export function AboutVisionSection() {
   );
 }
 
-export function AboutValuesSection() {
+export function AboutValuesSection({ values }: { values: ValuesContent }) {
   const sectionRef = useRef<HTMLElement>(null);
   return (
     <section ref={sectionRef} className="values-section values-expedition-section" aria-labelledby="values-title">
       <ValuesAnimation sectionRef={sectionRef} />
       <div className="values-expedition-grid" data-reveal>
-        <div className="values-expedition-intro"><span className="about-eyebrow"><b>08</b> {content.values.eyebrow}</span><h2 id="values-title">{content.values.title}</h2></div>
+        <div className="values-expedition-intro"><span className="about-eyebrow"><b>08</b> {values.eyebrow}</span><h2 id="values-title">{values.title}</h2></div>
         <div className="values-expedition-list">
-          {content.values.items.map((item, index) => <article key={item.title} className={index === 0 ? "is-active" : undefined}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></article>)}
+          {values.items.map((item, index) => <article key={item.title} className={index === 0 ? "is-active" : undefined}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{item.title}</h3><p>{item.description}</p></div></article>)}
         </div>
         <figure className="values-expedition-visual" aria-hidden="true">
-          {content.values.items.map((item, index) => <img key={item.image} className={index === 0 ? "is-active" : undefined} src={item.image} alt="" />)}
+          {values.items.map((item, index) => <img key={item.image} className={index === 0 ? "is-active" : undefined} src={item.image} alt="" />)}
         </figure>
       </div>
     </section>
   );
 }
 
-export function AboutLeadershipSection() {
+export function AboutLeadershipSection({ leadership }: { leadership: LeadershipContent }) {
   return (
     <>
       <section className="ceo-message-section" aria-labelledby="ceo-message-title">
         <div className="section-shell ceo-message-layout" data-reveal>
-          <div className="ceo-message-copy"><span className="ceo-quote-mark" aria-hidden="true">“</span><h2 id="ceo-message-title">{content.ceo.title}</h2><p>{content.ceo.description}</p><div className="ceo-signature"><strong>{content.ceo.name}</strong><span>{content.ceo.role}</span></div></div>
+          <div className="ceo-message-copy"><span className="ceo-quote-mark" aria-hidden="true">“</span><h2 id="ceo-message-title">{leadership.ceo.title}</h2><p>{leadership.ceo.description}</p><div className="ceo-signature"><strong>{leadership.ceo.name}</strong><span>{leadership.ceo.role}</span></div></div>
         </div>
       </section>
       <section className="leadership-section team-section" aria-labelledby="leadership-title">
         <div className="section-shell team-layout" data-reveal>
-          <div className="team-intro"><h2 id="leadership-title">{content.leadership.title}</h2><div className="team-controls" aria-hidden="true"><button type="button" tabIndex={-1}>←</button><button type="button" tabIndex={-1}>→</button></div></div>
+          <div className="team-intro"><h2 id="leadership-title">{leadership.leadership.title}</h2><div className="team-controls" aria-hidden="true"><button type="button" tabIndex={-1}>←</button><button type="button" tabIndex={-1}>→</button></div></div>
           <div className="team-card-grid">
-            {content.leadership.people.map((person) => <article className="team-card" key={person.name}><figure className="about-image-scale"><img src={person.image} alt={person.name} /></figure><h3>{person.name}</h3><p>{person.role}</p></article>)}
+            {leadership.leadership.people.map((person) => <article className="team-card" key={person.name}><figure className="about-image-scale"><img src={person.image} alt={person.name} /></figure><h3>{person.name}</h3><p>{person.role}</p></article>)}
           </div>
         </div>
       </section>
@@ -179,119 +218,32 @@ export function AboutLeadershipSection() {
   );
 }
 
-export function AboutCustomersSection() {
+export function AboutCustomersSection({ customers }: { customers: CustomersContent }) {
   return (
     <section className="customers-bridge customers-showcase" aria-labelledby="customers-title">
       <div className="section-shell customers-showcase-layout" data-reveal>
-        <div className="customers-showcase-copy"><h2 id="customers-title">{content.customers.title}</h2><p>{content.customers.description}</p><a className="customers-pill" href={content.customers.link.href}>{content.customers.link.label}</a></div>
+        <div className="customers-showcase-copy"><h2 id="customers-title">{customers.title}</h2><p>{customers.description}</p><a className="customers-pill" href={customers.link.href}>{customers.link.label}</a></div>
         <div className="customers-showcase-cards" aria-label="Customer sectors">
-          {content.customers.sectors.map((sector) => <article className="customers-sector-card" key={sector.title}><div className="about-image-scale"><img src={sector.image} alt={sector.alt} /></div><h3>{sector.title}</h3></article>)}
+          {customers.sectors.map((sector) => <article className="customers-sector-card" key={sector.title}><div className="about-image-scale"><img src={sector.image} alt={sector.alt} /></div><h3>{sector.title}</h3></article>)}
         </div>
       </div>
     </section>
   );
 }
 
-export function AboutContactSection() {
+export function AboutContactSection({ contact }: { contact: ContactContent }) {
   return (
     <section className="about-cta final-v2 about-home-banner section" aria-labelledby="contact-title">
-      <img src={content.cta.image} alt={content.cta.alt} width="2400" height="1600" loading="lazy" />
+      <img src={contact.image} alt={contact.alt} width="2400" height="1600" loading="lazy" />
       <div className="section-shell" data-reveal>
         <span className="section-index">11 · Contact ADURE</span>
-        <div className="final-layout"><div><h2 id="contact-title">{content.cta.title}</h2><p>{content.cta.description}</p></div><div className="final-links" aria-label="Contact actions">{content.cta.links.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
+        <div className="final-layout"><div><h2 id="contact-title">{contact.title}</h2><p>{contact.description}</p></div><div className="final-links" aria-label="Contact actions">{contact.links.map((link) => <a key={link.label} href={link.href}>{link.label}</a>)}</div></div>
       </div>
     </section>
   );
 }
 
 type SectionRef = { current: HTMLElement | null };
-
-function StoryAnimation({ sectionRef }: { sectionRef: SectionRef }) {
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const milestones = content.story.milestones;
-    const stage = section.querySelector<HTMLElement>(".story-tilton-stage");
-    const previous = section.querySelector<HTMLButtonElement>(".story-tilton-prev");
-    const next = section.querySelector<HTMLButtonElement>(".story-tilton-next");
-    const year = section.querySelector<HTMLElement>(".story-tilton-year");
-    const title = section.querySelector<HTMLElement>("#story-title");
-    const card = section.querySelector<HTMLElement>(".story-tilton-card");
-    const paragraphs = card
-      ? Array.from(card.querySelectorAll<HTMLParagraphElement>("p:not(.story-tilton-year)"))
-      : [];
-    const leftImage = section.querySelector<HTMLImageElement>(".story-tilton-image-left img");
-    const rightImage = section.querySelector<HTMLImageElement>(".story-tilton-image-right img");
-    const railItems = Array.from(section.querySelectorAll<HTMLLIElement>(".story-tilton-years li"));
-    const railButtons = Array.from(section.querySelectorAll<HTMLButtonElement>(".story-tilton-years button"));
-    let activeIndex = 0;
-    let locked = false;
-    let paintTimer: number | undefined;
-    let unlockTimer: number | undefined;
-
-    milestones.forEach((milestone) => [milestone.left, milestone.right].forEach((src) => {
-      const image = new Image();
-      image.src = src;
-    }));
-
-    const paint = (index: number) => {
-      const milestone = milestones[index];
-      if (!milestone) return;
-      if (year) year.textContent = milestone.year;
-      if (title) title.textContent = milestone.title;
-      milestone.body.forEach((copy, copyIndex) => {
-        if (paragraphs[copyIndex]) paragraphs[copyIndex].textContent = copy;
-      });
-      if (leftImage) { leftImage.src = milestone.left; leftImage.alt = milestone.alt; }
-      if (rightImage) { rightImage.src = milestone.right; rightImage.alt = milestone.alt; }
-      railItems.forEach((item, indexAtItem) => item.classList.toggle("is-active", indexAtItem === index));
-      railButtons.forEach((button, indexAtButton) => button.setAttribute("aria-current", indexAtButton === index ? "true" : "false"));
-      if (previous) previous.disabled = index === 0;
-      if (next) next.disabled = index === milestones.length - 1;
-      activeIndex = index;
-    };
-    const go = (index: number) => {
-      if (locked || index === activeIndex || index < 0 || index >= milestones.length) return;
-      locked = true;
-      const direction = index > activeIndex ? "next" : "prev";
-      section.classList.add(direction === "next" ? "is-moving-next" : "is-moving-prev");
-      paintTimer = window.setTimeout(() => {
-        paint(index);
-        section.classList.remove("is-moving-next", "is-moving-prev");
-        stage?.animate(
-          [{ transform: `translateX(${direction === "next" ? "10vw" : "-10vw"})`, opacity: 0.62 }, { transform: "translateX(0)", opacity: 1 }],
-          { duration: 620, easing: "cubic-bezier(.22,1,.36,1)" },
-        );
-        unlockTimer = window.setTimeout(() => { locked = false; }, 640);
-      }, 360);
-    };
-    const onPrevious = () => go(activeIndex - 1);
-    const onNext = () => go(activeIndex + 1);
-    const onKeydown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") go(activeIndex + 1);
-      if (event.key === "ArrowLeft") go(activeIndex - 1);
-    };
-    const onRailClick = (event: Event) => go(Number((event.currentTarget as HTMLButtonElement).dataset.storyIndex));
-
-    previous?.addEventListener("click", onPrevious);
-    next?.addEventListener("click", onNext);
-    railButtons.forEach((button) => button.addEventListener("click", onRailClick));
-    section.addEventListener("keydown", onKeydown);
-    paint(0);
-
-    return () => {
-      window.clearTimeout(paintTimer);
-      window.clearTimeout(unlockTimer);
-      previous?.removeEventListener("click", onPrevious);
-      next?.removeEventListener("click", onNext);
-      railButtons.forEach((button) => button.removeEventListener("click", onRailClick));
-      section.removeEventListener("keydown", onKeydown);
-    };
-  }, [sectionRef]);
-
-  return null;
-}
 
 function ScaleAnimation({ sectionRef }: { sectionRef: SectionRef }) {
   useEffect(() => {

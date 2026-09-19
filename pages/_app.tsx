@@ -1,5 +1,6 @@
 import type { AppProps } from "next/app";
 import "aos/dist/aos.css";
+import "swiper/css";
 import "../styles/tailwind.css";
 import "../styles/lenis.css";
 import "../styles/global/common.css";

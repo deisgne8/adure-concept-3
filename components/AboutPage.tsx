@@ -2,7 +2,7 @@ import {
   AboutBusinessSection,
   AboutContactSection,
   AboutCustomersSection,
-  AboutHero,
+  InnerBanner,
   AboutIntroductionSection,
   AboutLeadershipSection,
   AboutScaleSection,
@@ -12,27 +12,29 @@ import {
 } from "./about/AboutSections";
 import SiteChrome from "./sections/SiteChrome";
 import SiteFooter from "./sections/SiteFooter";
+import type { AboutContent } from "../lib/about/load-about-content";
 import { loadHomeContent } from "../lib/home/load-home-content";
 
 type AboutPageProps = {
   siteContent: Awaited<ReturnType<typeof loadHomeContent>>["site"];
+  content: AboutContent;
 };
 
-export default function AboutPage({ siteContent }: AboutPageProps) {
+export default function AboutPage({ siteContent, content }: AboutPageProps) {
   return (
     <div className="about-page">
       <SiteChrome content={siteContent} homeHref="/" currentPath="/about" standalone />
       <main id="main">
-        {/* <AboutHero /> */}
-        <AboutIntroductionSection />
-        <AboutStorySection />
-        <AboutScaleSection />
-        <AboutBusinessSection />
-        <AboutVisionSection />
-        <AboutValuesSection />
-        <AboutLeadershipSection />
-        <AboutCustomersSection />
-        <AboutContactSection />
+        <InnerBanner innerBanner={content.innerBanner} />
+        <AboutIntroductionSection introduction={content.introduction} />
+        <AboutStorySection story={content.story} />
+        <AboutScaleSection scale={content.scale} />
+        <AboutBusinessSection business={content.business} />
+        <AboutVisionSection vision={content.vision} />
+        <AboutValuesSection values={content.values} />
+        <AboutLeadershipSection leadership={content.leadership} />
+        <AboutCustomersSection customers={content.customers} />
+        <AboutContactSection contact={content.contact} />
       </main>
       <SiteFooter homeHref="/" />
     </div>

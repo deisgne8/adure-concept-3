@@ -1,0 +1,28 @@
+{
+  "ceo": {
+    "title": "Real Estate Creates Lasting Value When Every Stage Of The Asset Journey Is Connected.",
+    "description": "At ADURE, our responsibility goes beyond individual transactions. We bring the right expertise together to protect performance, support the people who use our properties and build relationships that endure.",
+    "name": "Rashed Aldhaheri",
+    "role": "Group Chief Executive Officer"
+  },
+  "leadership": {
+    "title": "Experience Behind Every Decision.",
+    "people": [
+      {
+        "name": "Eyad Eid",
+        "role": "Group Chief Finance Officer",
+        "image": "/assets/about/leadership/eyad-eid.jpg"
+      },
+      {
+        "name": "Ali Tawalbeh",
+        "role": "Group Finance Manager",
+        "image": "/assets/about/leadership/ali-tawalbeh.jpg"
+      },
+      {
+        "name": "Ahmed Qasim",
+        "role": "Facility Management & Operations Manager",
+        "image": "/assets/about/leadership/ahmed-qasim.jpg"
+      }
+    ]
+  }
+}
