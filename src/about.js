@@ -71,17 +71,20 @@ if(storySection){
   const milestones=[
     {
       year:'2002',
-      title:'Over Two Decades Of Excellence.',
+      title:'Over Two Decades Of Excellence',
+      summary:'ADURE established',
       body:[
         'Since 2002, ADURE has built its real estate experience around the professional management of properties and the day-to-day disciplines that protect their performance.',
-        'That foundation now brings together leasing and operations, facility management, and financial and legal management, alongside buying and selling.'
+        'That foundation now brings together leasing and operations, facility management, and financial and legal management, alongside buying and selling.',
+        'Across Abu Dhabi, Dubai and Al Ain, we have grown around one consistent idea: understand the asset and create value across its journey through the way it is managed, occupied and positioned.'
       ],
       left:'assets/hidd-al-saadiyat/curved-residences.webp',
       right:'assets/hidd-al-saadiyat/landscaped-community.webp'
     },
     {
       year:'2009',
-      title:'A growing UAE footprint.',
+      title:'A Growing UAE Footprint',
+      summary:'UAE footprint expands',
       body:[
         'ADURE expanded its operating experience across more communities, strengthening the systems and service standards behind every managed asset.',
         'The portfolio grew around the same principle: protect quality, improve continuity and support the people using each place.'
@@ -91,7 +94,8 @@ if(storySection){
     },
     {
       year:'2010',
-      title:'Integrated property support.',
+      title:'Integrated Property Support',
+      summary:'Integrated property support',
       body:[
         'The business continued building joined-up capability across leasing, operations, facilities coordination and owner support.',
         'Each discipline strengthened ADURE’s ability to look at a property as a complete long-term asset.'
@@ -101,7 +105,8 @@ if(storySection){
     },
     {
       year:'2018',
-      title:'Performance through management.',
+      title:'Performance Through Management',
+      summary:'Performance through management',
       body:[
         'Operational oversight, reporting and service coordination became a stronger part of the ADURE management approach.',
         'This period shaped the company’s focus on occupancy, asset care and better experiences for owners and occupiers.'
@@ -111,7 +116,8 @@ if(storySection){
     },
     {
       year:'2020',
-      title:'A connected real estate model.',
+      title:'A Connected Real Estate Model',
+      summary:'Connected real estate model',
       body:[
         'ADURE’s offer evolved into a clearer real estate model connecting buying, selling, leasing and management through one operating view.',
         'That wider perspective allows each property decision to support what comes next.'
@@ -121,7 +127,8 @@ if(storySection){
     },
     {
       year:'2021',
-      title:'Built for what comes next.',
+      title:'Built For What Comes Next',
+      summary:'Built for what comes next',
       body:[
         'ADURE continues to bring long-term thinking to every property relationship across Abu Dhabi, Dubai and Al Ain.',
         'The focus remains consistent: create value through clarity, accountability and everyday care.'
@@ -137,24 +144,20 @@ if(storySection){
   const title=$('#story-title',storySection);
   const card=$('.story-tilton-card',storySection);
   const paragraphs=$$('p:not(.story-tilton-year)',card).filter(p=>!p.classList.contains('about-eyebrow'));
-  const leftImage=$('.story-tilton-image-left img',storySection);
-  const rightImage=$('.story-tilton-image-right img',storySection);
   const railItems=$$('.story-tilton-years li',storySection);
   const railButtons=$$('.story-tilton-years button',storySection);
   let index=0;
   let locked=false;
-  function preload(item){[item.left,item.right].forEach(src=>{const image=new Image();image.src=src;});}
-  milestones.forEach(preload);
   function paint(nextIndex){
     const item=milestones[nextIndex];
     year.textContent=item.year;
     title.textContent=item.title;
-    item.body.forEach((copy,i)=>{if(paragraphs[i])paragraphs[i].textContent=copy;});
-    leftImage.src=item.left;
-    rightImage.src=item.right;
-    leftImage.alt=item.title;
-    rightImage.alt=item.title;
-    railItems.forEach((li,i)=>li.classList.toggle('is-active',i===nextIndex));
+    paragraphs.forEach((paragraph,i)=>{paragraph.textContent=item.body[i]||''; paragraph.hidden=!item.body[i];});
+    railItems.forEach((li,i)=>{
+      li.classList.toggle('is-active',i===nextIndex);
+      const small=li.querySelector('small');
+      if(small&&milestones[i]?.summary)small.textContent=milestones[i].summary;
+    });
     railButtons.forEach((button,i)=>button.setAttribute('aria-current',i===nextIndex?'true':'false'));
     prev.disabled=nextIndex===0;
     next.disabled=nextIndex===milestones.length-1;
@@ -177,7 +180,16 @@ if(storySection){
   }
   prev?.addEventListener('click',()=>go(index-1));
   next?.addEventListener('click',()=>go(index+1));
-  railButtons.forEach(button=>button.addEventListener('click',()=>go(Number(button.dataset.storyIndex))));
+  function activateStoryButton(button){
+    go(Number(button.dataset.storyIndex));
+  }
+  railButtons.forEach(button=>{
+    button.addEventListener('click',()=>activateStoryButton(button));
+    button.addEventListener('pointerdown',event=>{
+      event.preventDefault();
+      activateStoryButton(button);
+    });
+  });
   storySection.addEventListener('keydown',event=>{
     if(event.key==='ArrowRight')go(index+1);
     if(event.key==='ArrowLeft')go(index-1);
@@ -269,4 +281,99 @@ if(valuesScrubSection){
   addEventListener('scroll',requestValuesScrub,{passive:true});
   addEventListener('resize',requestValuesScrub);
   updateValuesScrub();
+}
+
+
+const teamCarousel=$('.team-section');
+if(teamCarousel){
+  const track=$('.team-card-grid',teamCarousel);
+  const cards=$$('.team-card',teamCarousel);
+  const prev=$('.team-prev',teamCarousel);
+  const next=$('.team-next',teamCarousel);
+  let activeTeamIndex=0;
+  function maxTeamIndex(){
+    if(!track||!cards.length)return 0;
+    const visible=Math.max(1,Math.round(track.clientWidth/(cards[0].getBoundingClientRect().width||track.clientWidth)));
+    return Math.max(0,cards.length-visible);
+  }
+  function setTeamIndex(index,behavior='smooth'){
+    if(!track||!cards.length)return;
+    activeTeamIndex=Math.min(Math.max(index,0),maxTeamIndex());
+    const target=cards[activeTeamIndex];
+    track.scrollTo({left:target.offsetLeft-track.offsetLeft,behavior});
+    updateTeamButtons();
+  }
+  function updateTeamButtons(){
+    const max=maxTeamIndex();
+    prev.disabled=activeTeamIndex<=0;
+    next.disabled=activeTeamIndex>=max;
+    cards.forEach((card,index)=>card.classList.toggle('is-active',index===activeTeamIndex));
+  }
+  prev?.addEventListener('click',()=>setTeamIndex(activeTeamIndex-1));
+  next?.addEventListener('click',()=>setTeamIndex(activeTeamIndex+1));
+  track?.addEventListener('scroll',()=>{
+    if(!cards.length)return;
+    const current=[...cards].reduce((closest,card,index)=>{
+      const distance=Math.abs((card.offsetLeft-track.offsetLeft)-track.scrollLeft);
+      return distance<closest.distance?{index,distance}:closest;
+    },{index:0,distance:Infinity});
+    activeTeamIndex=Math.min(current.index,maxTeamIndex());
+    updateTeamButtons();
+  },{passive:true});
+  addEventListener('resize',()=>setTeamIndex(activeTeamIndex,'auto'));
+  setTeamIndex(0,'auto');
+}
+
+const guidesValuesCarousel=$('.guides-values');
+if(guidesValuesCarousel){
+  const track=$('.guides-values-grid',guidesValuesCarousel);
+  const cards=$$('.guides-values-grid article',guidesValuesCarousel);
+  const prefersReducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let valuesAutoTimer=0;
+  let valuesAutoPaused=false;
+  let activeValuesIndex=0;
+  function maxValuesIndex(){
+    if(!track||!cards.length)return 0;
+    const cardWidth=cards[0].getBoundingClientRect().width||track.clientWidth;
+    const visible=Math.max(1,Math.floor(track.clientWidth/cardWidth));
+    return Math.max(0,cards.length-visible);
+  }
+  function setValuesIndex(index,behavior='smooth'){
+    if(!track||!cards.length)return;
+    const max=maxValuesIndex();
+    activeValuesIndex=index>max?0:Math.max(0,index);
+    const target=cards[activeValuesIndex];
+    track.scrollTo({left:target.offsetLeft-track.offsetLeft,behavior});
+    cards.forEach((card,cardIndex)=>card.classList.toggle('is-active',cardIndex===activeValuesIndex));
+  }
+  function syncValuesIndex(){
+    if(!track||!cards.length)return;
+    const current=cards.reduce((closest,card,index)=>{
+      const distance=Math.abs((card.offsetLeft-track.offsetLeft)-track.scrollLeft);
+      return distance<closest.distance?{index,distance}:closest;
+    },{index:0,distance:Infinity});
+    activeValuesIndex=Math.min(current.index,maxValuesIndex());
+    cards.forEach((card,cardIndex)=>card.classList.toggle('is-active',cardIndex===activeValuesIndex));
+  }
+  function startValuesAuto(){
+    if(prefersReducedMotion||!track||cards.length<2||valuesAutoTimer)return;
+    valuesAutoTimer=window.setInterval(()=>{
+      if(valuesAutoPaused||document.hidden)return;
+      setValuesIndex(activeValuesIndex+1);
+    },3200);
+  }
+  function pauseValuesAuto(){valuesAutoPaused=true;}
+  function resumeValuesAuto(){valuesAutoPaused=false;}
+  track?.addEventListener('scroll',syncValuesIndex,{passive:true});
+  guidesValuesCarousel.addEventListener('mouseenter',pauseValuesAuto);
+  guidesValuesCarousel.addEventListener('mouseleave',resumeValuesAuto);
+  guidesValuesCarousel.addEventListener('focusin',pauseValuesAuto);
+  guidesValuesCarousel.addEventListener('focusout',resumeValuesAuto);
+  guidesValuesCarousel.addEventListener('pointerdown',pauseValuesAuto);
+  guidesValuesCarousel.addEventListener('pointerup',resumeValuesAuto);
+  guidesValuesCarousel.addEventListener('pointercancel',resumeValuesAuto);
+  addEventListener('resize',()=>setValuesIndex(activeValuesIndex,'auto'));
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncValuesIndex();});
+  setValuesIndex(0,'auto');
+  startValuesAuto();
 }

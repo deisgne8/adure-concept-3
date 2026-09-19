@@ -10,10 +10,10 @@
   <link rel="preload" href="assets/fonts/fira-sans-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/fira-sans-500.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/source-sans-pro-400.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="design-tokens.css">
-  <link rel="stylesheet" href="primitives.css">
-  <link rel="stylesheet" href="about.css?v=eyebrows-titlecase-1">
-  <script type="module" src="about.js?v=eyebrows-titlecase-1"></script>
+  <link rel="stylesheet" href="design-tokens.css?v=visual-cohesion-1">
+  <link rel="stylesheet" href="primitives.css?v=inner-nav-1">
+  <link rel="stylesheet" href="about.css?v=timeline-reference-4">
+  <script type="module" src="about.js?v=timeline-reference-4"></script>
 </head>
 <body class="about-page">
   <a class="skip-link" href="#about-main">Skip to content</a>
@@ -21,10 +21,20 @@
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="site-logo" aria-label="ADURE home"><img src="assets/adure-logo-horizontal.svg" alt="ADURE — Abu Dhabi United Real Estate" width="230" height="62"></a>
-      <nav class="desktop-nav" aria-label="Main navigation">
-        <a class="is-current" href="about.html" aria-current="page">About ADURE</a>
+      <nav class="desktop-nav" aria-label="Main navigation"><div class="nav-dropdown about-nav-dropdown">
+          <a class="nav-dropdown-toggle is-current" href="about.html" aria-current="page">About ADURE</a>
+          <div class="nav-dropdown-menu" aria-label="About ADURE sections">
+            <a href="about.html#story-title">Our Story</a>
+            <a href="about.html#who-we-are">Our UAE Footprint</a>
+            <a href="about.html#guides-title">Vision, Mission &amp; Values</a>
+            <a href="about.html#ceo-message-title">CEO Message</a>
+            <a href="about.html#leadership-title">Leadership</a>
+            <a href="about.html#contact-title">Contact Us</a>
+          </div>
+        </div>
         <a href="properties.html">Properties</a>
-        <span>Our Customers</span>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="customers.html">Our Customers</a>
         <span>Contact</span>
       </nav>
       <a class="btn primary header-cta" href="index.html#sell">List your property</a>
@@ -34,7 +44,15 @@
 
   <dialog class="mobile-menu" id="about-mobile-menu" aria-label="Main navigation">
     <div class="menu-top"><a href="index.html" class="site-logo"><img src="assets/adure-logo-horizontal.svg" alt="ADURE home"></a><button class="icon-button menu-close" type="button" aria-label="Close menu">×</button></div>
-    <nav aria-label="Mobile navigation"><a href="about.html" aria-current="page">About ADURE</a><a href="properties.html">Properties</a><span>Our Customers</span><span>Contact</span></nav>
+    <nav aria-label="Mobile navigation"><details class="mobile-nav-group" open>
+        <summary>About ADURE</summary>
+        <a href="about.html#story-title">Our Story</a>
+        <a href="about.html#who-we-are">Our UAE Footprint</a>
+        <a href="about.html#guides-title">Vision, Mission &amp; Values</a>
+        <a href="about.html#ceo-message-title">CEO Message</a>
+        <a href="about.html#leadership-title">Leadership</a>
+        <a href="about.html#contact-title">Contact Us</a>
+      </details><a href="properties.html">Properties</a><a href="portfolio.html">Portfolio</a><a href="customers.html">Our Customers</a><span>Contact</span></nav>
     <a class="btn primary" href="index.html#sell">List your property</a>
     <p class="menu-contact">Abu Dhabi · Dubai · Al Ain<br>Inquiries@adu-re.com</p>
   </dialog>
@@ -45,8 +63,8 @@
       <div class="about-hero-shade"></div>
       <div class="section-shell about-hero-inner">
         <span class="about-eyebrow"><b>01</b> About ADURE</span>
-        <h1 id="about-title">Real Estate,<br>End-To-End.</h1>
-        <p>ADURE brings the essential disciplines of real estate together around one clear purpose: creating lasting value.</p>
+        <h1 id="about-title">Creating Value<br>Beyond Property</h1>
+        <p>Abu Dhabi United Real Estate ‘ADURE’ brings integrated services of real estate together around one clear purpose: creating lasting value.</p>
         <a class="about-scroll-link" href="#what-we-do">Explore What We Do <span aria-hidden="true">↓</span></a>
       </div>
     </section>
@@ -65,120 +83,60 @@
     </section>
 
     <section class="story-section story-tilton-section" aria-labelledby="story-title">
-      <div class="story-tilton-shell">
+      <div class="section-shell story-tilton-shell">
         <div class="story-tilton-stage" data-reveal>
           <figure class="story-tilton-image story-tilton-image-left"><img src="assets/hidd-al-saadiyat/curved-residences.webp" alt="Managed waterfront residences"></figure>
           <article class="story-tilton-card">
-            <span class="about-eyebrow"><b>03</b> Our Story</span>
+            <span class="about-eyebrow">Our Story</span>
             <p class="story-tilton-year">2002</p>
-            <h2 id="story-title">Over Two Decades Of Excellence.</h2>
+            <h2 id="story-title">Over Two Decades Of Excellence</h2>
             <p>Since 2002, ADURE has built its real estate experience around the professional management of properties and the day-to-day disciplines that protect their performance.</p>
             <p>That foundation now brings together leasing and operations, facility management, and financial and legal management, alongside buying and selling.</p>
+            <p>Across Abu Dhabi, Dubai and Al Ain, we have grown around one consistent idea: understand the asset and create value across its journey through the way it is managed, occupied and positioned.</p>
           </article>
-          <figure class="story-tilton-image story-tilton-image-right"><img src="assets/hidd-al-saadiyat/landscaped-community.webp" alt="Landscaped Abu Dhabi residential community"></figure>
         </div>
         <div class="story-tilton-controls" aria-label="Timeline controls">
           <button class="story-tilton-arrow story-tilton-prev" type="button" aria-label="Previous timeline card" disabled><span aria-hidden="true">←</span></button>
           <button class="story-tilton-arrow story-tilton-next" type="button" aria-label="Next timeline card"><span aria-hidden="true">→</span></button>
         </div>
         <ol class="story-tilton-years" aria-label="ADURE timeline milestones" data-reveal>
-          <li class="is-active"><button type="button" data-story-index="0"><span>2002</span></button></li>
-          <li><button type="button" data-story-index="1"><span>2009</span></button></li>
-          <li><button type="button" data-story-index="2"><span>2010</span></button></li>
-          <li><button type="button" data-story-index="3"><span>2018</span></button></li>
-          <li><button type="button" data-story-index="4"><span>2020</span></button></li>
-          <li><button type="button" data-story-index="5"><span>2021</span></button></li>
+          <li class="is-active"><button type="button" data-story-index="0"><span class="story-thumb"><img src="assets/hidd-al-saadiyat/curved-residences.webp" alt=""></span><strong>2002</strong><small>ADURE established</small></button></li>
+          <li><button type="button" data-story-index="1"><span class="story-thumb"><img src="assets/portfolio-reference/al-mushrif-villas-v2.webp" alt=""></span><strong>2009</strong><small>UAE footprint expands</small></button></li>
+          <li><button type="button" data-story-index="2"><span class="story-thumb"><img src="assets/hidd-al-saadiyat/promenade-mixed-use.webp" alt=""></span><strong>2010</strong><small>Integrated property support</small></button></li>
+          <li><button type="button" data-story-index="3"><span class="story-thumb"><img src="assets/hidd-al-saadiyat/management-facility-facade.jpg" alt=""></span><strong>2018</strong><small>Performance through management</small></button></li>
+          <li><button type="button" data-story-index="4"><span class="story-thumb"><img src="assets/journeys/sell.jpg" alt=""></span><strong>2020</strong><small>Connected real estate model</small></button></li>
+          <li><button type="button" data-story-index="5"><span class="story-thumb"><img src="assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp" alt=""></span><strong>2021</strong><small>Built for what comes next</small></button></li>
         </ol>
       </div>
     </section>
 
-    <section class="scale-section scale-impact-section" aria-labelledby="scale-title">
-      <div class="section-shell scale-impact-shell">
-        <div class="scale-impact-metrics" data-reveal>
-          <article><p>Units managed</p><strong>3000+</strong></article>
-          <article><p>Professionals</p><strong>200+</strong></article>
-          <article><p>Occupancy rate</p><strong>98%</strong></article>
-          <article><p>Cities of operation</p><strong>3</strong></article>
+    <section class="guides-section" aria-labelledby="guides-title">
+      <div class="section-shell guides-shell" data-reveal>
+        <div class="guides-head">
+          <span class="about-eyebrow">Vision, Mission &amp; Values</span>
+          <h2 id="guides-title">What Guides Us</h2>
         </div>
-        <div class="scale-impact-lower" data-reveal>
-          <div class="scale-impact-copy">
-            <h2 id="scale-title">A UAE Portfolio With Operating Depth.</h2>
-            <p>ADURE operates across three key UAE markets, managing a portfolio that spans residential, commercial and mixed-use environments.</p>
-            <div class="scale-city-chips" aria-label="Cities of operation">
-              <span>Abu Dhabi</span>
-              <span>Dubai</span>
-              <span>Al Ain</span>
-            </div>
-          </div>
-          <figure class="scale-impact-image">
-            <img src="assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp" alt="Aerial view of Abu Dhabi waterfront communities">
-          </figure>
+        <div class="guides-beliefs" aria-label="ADURE vision and mission">
+          <article>
+            <span>Our Vision</span>
+            <p>To be the most trusted real estate partner in the UAE, setting the benchmark for occupancy, transparency and long-term asset value.</p>
+          </article>
+          <article>
+            <span>Our Mission</span>
+            <p>To deliver specialist, technology-driven property solutions that protect every owner’s investment and earns every tenant’s loyalty.</p>
+          </article>
         </div>
-      </div>
-    </section>
-
-    <section class="business-section" id="what-we-do" aria-labelledby="business-title">
-      <div class="section-shell business-layout">
-        <div data-reveal>
-          <span class="about-eyebrow"><b>06</b> Four Business Lines</span>
-          <h2 id="business-title">One Connected Real Estate Model.</h2>
-          <p>ADURE connects buying, selling, leasing and management through one operating view of the asset and the people it serves.</p>
-        </div>
-        <div class="business-grid" data-reveal>
-          <a href="properties.html?intent=buy"><span>01</span><strong>Buy</strong><p>Discover selected properties across key UAE communities.</p></a>
-          <a href="index.html#sell"><span>02</span><strong>Sell</strong><p>Position your property with a team that understands its market.</p></a>
-          <a href="properties.html?intent=lease"><span>03</span><strong>Lease</strong><p>Connect spaces with qualified tenants and clear leasing support.</p></a>
-          <a href="index.html#management"><span>04</span><strong>Manage</strong><p>Protect performance through operations, facilities, finance and legal oversight.</p></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="vision-section vision-scroll-section" id="vision-scroll" aria-label="ADURE vision and mission">
-      <div class="vision-scroll-sticky">
-        <div class="vision-scroll-media" aria-hidden="true">
-          <img class="vision-scroll-image is-active" src="assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp" alt="">
-          <img class="vision-scroll-image" src="assets/hidd-al-saadiyat/management-leasing-lobby.jpg" alt="">
-        </div>
-        <div class="vision-scroll-shade"></div>
-        <h2 class="vision-scroll-title">Built For The Long Term.</h2>
-        <div class="section-shell vision-scroll-inner">
-          <div class="vision-scroll-kicker" aria-hidden="true">OUR</div>
-          <div class="vision-scroll-panels">
-            <article class="vision-scroll-panel is-active" data-vision-panel>
-              <h2 id="vision-title">Vision</h2>
-              <p>To be the most trusted real estate partner in the UAE, setting the benchmark for occupancy, transparency and long-term asset value.</p>
-            </article>
-            <article class="vision-scroll-panel" data-vision-panel aria-hidden="true">
-              <h2>Mission</h2>
-              <p>To deliver specialist, technology-driven property solutions that protect every owner’s investment and earns every tenant’s loyalty.</p>
-            </article>
+        <div class="guides-values" aria-labelledby="guides-values-title">
+          <span class="guides-values-kicker" id="guides-values-title">Our Values</span>
+          <div class="guides-values-grid">
+            <article class="is-featured"><span>01</span><figure class="guides-value-image"><img src="assets/hidd-al-saadiyat/curved-residences.webp" alt=""></figure><div><h3>Customer Centric</h3><p>We listen closely, understand what matters and shape our service around the people and organisations we serve.</p></div></article>
+            <article><span>02</span><figure class="guides-value-image"><img src="assets/hidd-al-saadiyat/management-leasing-lobby.jpg" alt=""></figure><div><h3>Integrity</h3><p>We act with honesty, transparency and accountability, building trust through every decision.</p></div></article>
+            <article><span>03</span><figure class="guides-value-image"><img src="assets/hidd-al-saadiyat/management-leasing-lobby.jpg" alt=""></figure><div><h3>Excellence</h3><p>We set high standards for our service, our properties and the way we work.</p></div></article>
+            <article><span>04</span><figure class="guides-value-image"><img src="assets/portfolio-reference/qaryat-al-hidd-v2.webp" alt=""></figure><div><h3>Partnership</h3><p>We build lasting relationships with owners, tenants, clients and communities through shared commitment.</p></div></article>
+            <article><span>05</span><figure class="guides-value-image"><img src="assets/hidd-al-saadiyat/urban-mixed-use.webp" alt=""></figure><div><h3>Innovation</h3><p>We use technology, insight and better ways of working to improve service and performance.</p></div></article>
+            <article><span>06</span><figure class="guides-value-image"><img src="assets/hidd-al-saadiyat/saadiyat-beach.webp" alt=""></figure><div><h3>Sustainability</h3><p>We consider the long-term environmental, social and economic impact of the assets we manage.</p></div></article>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="values-section values-expedition-section" aria-labelledby="values-title">
-      <div class="values-expedition-grid" data-reveal>
-        <div class="values-expedition-intro">
-          <span class="about-eyebrow"><b>08</b> Values</span>
-          <h2 id="values-title">Principles That Shape Every Relationship.</h2>
-        </div>
-        <div class="values-expedition-list">
-          <article><span>01</span><div><h3>Customer Centric</h3><p>We listen closely, understand what matters and shape our service around the people and organisations we serve.</p></div></article>
-          <article><span>02</span><div><h3>Integrity</h3><p>We act with honesty, transparency and accountability, building trust through every decision.</p></div></article>
-          <article><span>03</span><div><h3>Excellence</h3><p>We set high standards for our service, our properties and the way we work.</p></div></article>
-          <article><span>04</span><div><h3>Partnership</h3><p>We build lasting relationships with owners, tenants, clients and communities through shared commitment.</p></div></article>
-          <article><span>05</span><div><h3>Innovation</h3><p>We use technology, insight and better ways of working to improve service and performance.</p></div></article>
-          <article><span>06</span><div><h3>Sustainability</h3><p>We consider the long-term environmental, social and economic impact of the assets we manage.</p></div></article>
-        </div>
-        <figure class="values-expedition-visual" aria-hidden="true">
-          <img class="is-active" src="assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp" alt="">
-          <img src="assets/hidd-al-saadiyat/management-leasing-lobby.jpg" alt="">
-          <img src="assets/hidd-al-saadiyat/golden-waterfront.webp" alt="">
-          <img src="assets/hidd-al-saadiyat/promenade-mixed-use.webp" alt="">
-          <img src="assets/hidd-al-saadiyat/management-facility-facade.jpg" alt="">
-          <img src="assets/hidd-al-saadiyat/landscaped-community.webp" alt="">
-        </figure>
       </div>
     </section>
 
@@ -186,8 +144,8 @@
       <div class="section-shell ceo-message-layout" data-reveal>
         <div class="ceo-message-copy">
           <span class="ceo-quote-mark" aria-hidden="true">“</span>
-          <h2 id="ceo-message-title">Real Estate Creates Lasting Value When Every Stage Of The Asset Journey Is Connected.</h2>
-          <p>At ADURE, our responsibility goes beyond individual transactions. We bring the right expertise together to protect performance, support the people who use our properties and build relationships that endure.</p>
+          <span id="ceo-message-title" class="ceo-message-anchor" aria-hidden="true"></span>
+          <p>Real Estate Creates Lasting Value When Every Stage Of The Asset Journey Is Connected. At ADURE, our responsibility goes beyond individual transactions. We bring the right expertise together to protect performance, support the people who use our properties and build relationships that endure.</p>
           <div class="ceo-signature">
             <strong>Rashed Aldhaheri</strong>
             <span>Group Chief Executive Officer</span>
@@ -200,26 +158,31 @@
       <div class="section-shell team-layout" data-reveal>
         <div class="team-intro">
           <h2 id="leadership-title">Experience Behind Every Decision.</h2>
-          <div class="team-controls" aria-hidden="true">
-            <button type="button" tabindex="-1">←</button>
-            <button type="button" tabindex="-1">→</button>
+          <div class="team-controls" aria-label="Leadership carousel controls">
+            <button class="team-prev" type="button" aria-label="Previous leader">←</button>
+            <button class="team-next" type="button" aria-label="Next leader">→</button>
           </div>
         </div>
         <div class="team-card-grid">
           <article class="team-card">
-            <figure><img src="assets/about/leadership/eyad-eid.jpg" alt="Eyad Eid"></figure>
+            <figure><img src="assets/about/leadership/eyad-eid.jpg?v=team-carousel-1" alt="Eyad Eid"></figure>
             <h3>Eyad Eid</h3>
             <p>Group Chief Finance Officer</p>
           </article>
           <article class="team-card">
-            <figure><img src="assets/about/leadership/ali-tawalbeh.jpg" alt="Ali Tawalbeh"></figure>
+            <figure><img src="assets/about/leadership/ali-tawalbeh.jpg?v=team-carousel-1" alt="Ali Tawalbeh"></figure>
             <h3>Ali Tawalbeh</h3>
             <p>Group Finance Manager</p>
           </article>
           <article class="team-card">
-            <figure><img src="assets/about/leadership/ahmed-qasim.jpg" alt="Ahmed Qasim"></figure>
+            <figure><img src="assets/about/leadership/ahmed-qasim.jpg?v=team-carousel-1" alt="Ahmed Qasim"></figure>
             <h3>Ahmed Qasim</h3>
             <p>Facility Management &amp; Operations Manager</p>
+          </article>
+          <article class="team-card">
+            <figure><img src="assets/about/leadership/amira-mamdouh.jpg?v=team-carousel-1" alt="Amira Mamdouh"></figure>
+            <h3>Amira Mamdouh</h3>
+            <p>Leasing Manager</p>
           </article>
         </div>
       </div>
@@ -263,6 +226,6 @@
     </section>
   </main>
 
-  <footer class="footer"><div class="container"><div class="footer-grid"><div><a class="logo" href="index.html" aria-label="ADURE home"><img src="assets/adure-logo-horizontal.svg" alt="ADURE — Abu Dhabi United Real Estate"></a><p>Creating Value Beyond Property</p><p>Inquiries@adu-re.com</p></div><div><h3>Company</h3><a href="about.html">About ADURE</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#customers">Our Customers</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#media">Media and gallery</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#careers">Careers</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#contact">Contact</a></div><div><h3>Properties</h3><a href="properties.html?intent=buy">Buy</a><a href="properties.html?intent=lease">Lease</a><a href="index.html#sell">List your property</a><a href="index.html#portfolio">Portfolio</a></div><div><h3>Services</h3><a href="properties.html?intent=buy">Buy</a><a href="index.html#sell">Sell</a><a href="properties.html?intent=lease">Leasing</a><a href="index.html#management">Property management</a></div><div><h3>Explore</h3><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#projects">Upcoming projects</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#project-detail">Qaryat Al Hidd</a></div></div><div class="footer-bottom"><span>© 2026 ADURE. All rights reserved.</span><span>Privacy · Terms · Accessibility</span></div></div></footer>
+  <footer class="footer"><div class="container"><div class="footer-grid"><div><a class="logo" href="index.html" aria-label="ADURE home"><img src="assets/adure-logo-vertical.svg" alt="ADURE — Abu Dhabi United Real Estate"></a></div><div><h3>Company</h3><a href="about.html">About ADURE</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#customers">Our Customers</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#media">Media and gallery</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#careers">Careers</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#contact">Contact</a></div><div><h3>Properties</h3><a href="properties.html?intent=buy">Buy</a><a href="properties.html?intent=lease">Lease</a><a href="index.html#sell">List your property</a><a href="portfolio.html">Portfolio</a></div><div><h3>Services</h3><a href="properties.html?intent=buy">Buy</a><a href="index.html#sell">Sell</a><a href="properties.html?intent=lease">Leasing</a><a href="index.html#management">Property management</a></div><div><h3>Explore</h3><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#projects">Upcoming projects</a><a href="https://deisgne8.github.io/adure-wireframe-v3.0/wireframe/index.html#project-detail">Qaryat Al Hidd</a></div></div><div class="footer-bottom"><span>© 2026 ADURE. All rights reserved.</span><span>Privacy · Terms · Accessibility</span></div></div></footer>
 </body>
 </html>

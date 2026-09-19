@@ -1408,7 +1408,6 @@ main{
 }
 
 /* Global image radius update. */
-:root{--image-radius:16px}
 .home-v2 .journey-media,
 .home-v2 .journey-media img,
 .home-v2 .management-visual-v2,
@@ -1421,7 +1420,7 @@ main{
 .home-v2 .collection-image img,
 .home-v2 .gallery-dialog>img{
   border-radius:16px!important;
-  overflow:hidden;
+  overflow:hidden!important;
 }
 .home-v2 .site-hero img,
 .home-v2 .site-hero video,
@@ -1440,7 +1439,7 @@ main{
 .home-v2 .property-map-view .location-card,
 .home-v2 .map-location-panel{
   border-radius:16px!important;
-  overflow:hidden;
+  overflow:hidden!important;
 }
 .home-v2 .journey-grid .journey-media{
   border-radius:0!important;
@@ -1463,13 +1462,13 @@ main{
 .home-v2 .journey-section .journey-card:first-child .journey-media img{
   border-top-left-radius:16px!important;
   border-bottom-left-radius:16px!important;
-  overflow:hidden;
+  overflow:hidden!important;
 }
 .home-v2 .journey-section .journey-card:last-child .journey-media,
 .home-v2 .journey-section .journey-card:last-child .journey-media img{
   border-top-right-radius:16px!important;
   border-bottom-right-radius:16px!important;
-  overflow:hidden;
+  overflow:hidden!important;
 }
 @media(max-width:760px){
   .home-v2 .journey-section .journey-card .journey-media,
@@ -1482,12 +1481,12 @@ main{
 .home-v2 .journey-section .journey-card:first-child{
   border-top-left-radius:16px!important;
   border-bottom-left-radius:16px!important;
-  overflow:hidden;
+  overflow:hidden!important;
 }
 .home-v2 .journey-section .journey-card:last-child{
   border-top-right-radius:16px!important;
   border-bottom-right-radius:16px!important;
-  overflow:hidden;
+  overflow:hidden!important;
 }
 .home-v2 .journey-section .journey-card:first-child .journey-content{
   border-bottom-left-radius:16px!important;
@@ -1512,7 +1511,7 @@ main{
 .home-v2 #filter-home .search-box,
 .home-v2 .view-toggle,
 .home-v2 [role="group"][aria-label="Property view"]{
-  overflow:hidden;
+  overflow:hidden!important;
 }
 .home-v2 #filter-home .field:first-child{
   border-top-left-radius:16px!important;
@@ -1543,4 +1542,467 @@ main{
 .mobile-menu nav span{
   font-size:inherit;
   padding:17px 0;
+}
+
+/* Global corner-radius system: large visual objects use the shared token. */
+.home-v2 :is(
+  .journey-card,
+  .journey-media,
+  .property-card,
+  .property-image,
+  .collection-card,
+  .collection-image,
+  .management-visual-v2,
+  .service-row,
+  .service-card-media,
+  .portfolio-card,
+  .portfolio-card-link,
+  .portfolio-image,
+  .timeline-step,
+  .sell-panel,
+  .sell-visual,
+  .proof-tile,
+  .proof-focus,
+  .search-box,
+  .final-v2 .section-shell
+),
+:is(.enquiry-dialog,.gallery-dialog,.filter-dialog){
+  border-radius:var(--radius-large)!important;
+  overflow:hidden!important;
+}
+.home-v2 :is(.journey-media img,.property-image img,.collection-image img,.management-visual-v2 img,.service-card-media img,.portfolio-image img,.sell-visual img,.proof-focus>img){
+  border-radius:inherit!important;
+}
+.home-v2 :is(.site-hero,.site-hero video,.site-hero img,.final-v2>img,.hero-video),
+.home-v2 .proof-experience.is-focus .proof-focus,
+.home-v2 :is(.site-logo img,.logo img,.intro-brand img){
+  border-radius:0!important;
+}
+@media(max-width:760px){
+  .home-v2 :is(.journey-card,.journey-media,.journey-media img,.property-card,.property-image,.collection-image,.management-visual-v2,.portfolio-card,.portfolio-image,.timeline-step,.sell-panel,.final-v2 .section-shell){
+    border-radius:var(--radius-large)!important;
+  }
+}
+
+/* Reference radius pass: pill search and CTA controls. */
+.home-v2 :is(.hero-actions>.btn,.discovery-actions>.btn,.management-copy-v2>.btn,.transition-v2 .section-shell>.btn,.search-box,.search-box>.search-primary,.more-filters-toggle,.tabs,.tab,.view-toggle,.view-option){
+  border-radius:var(--radius-pill)!important;
+}
+.home-v2 :is(.search-box,.tabs,.view-toggle){
+  overflow:hidden!important;
+}
+.home-v2 .search-box>.field{
+  border-radius:0!important;
+}
+.home-v2 :is(.proof-tile,.timeline-step,.property-card,.collection-card,.portfolio-card){
+  border-radius:var(--radius-large)!important;
+}
+
+/* Reference radius pass: override legacy discovery ID rules with pill controls. */
+.home-v2 #filter-home .search-box,
+.home-v2 #filter-home .search-primary,
+.home-v2 #filter-home .more-filters-toggle{
+  border-radius:var(--radius-pill)!important;
+}
+
+
+/* Reference radius pass: final CTA coverage for visible button variants. */
+:is(.btn:not(.text-link),.button,.header-cta,.filter-open,.search-primary,.amenity-search,.hero-search-submit,.owner-actions .btn,.sell-fields .btn){
+  border-radius:var(--radius-pill)!important;
+  overflow:hidden!important;
+}
+:is(.btn.link,.text-link,.button){
+  border-radius:var(--radius-pill)!important;
+}
+:is(.btn.link,.text-link,.button)::after,
+.button>span[aria-hidden],
+.button>svg{
+  border-radius:var(--radius-pill)!important;
+}
+
+
+/* Radius reference final override: hard fallback for cached token stylesheets. */
+:is(.btn:not(.text-link),.btn.link,.text-link,.button,.header-cta,.filter-open,.search-primary,.amenity-search,.hero-search-submit,.owner-actions .btn,.sell-fields .btn){
+  border-radius:var(--radius-pill,999px)!important;
+  overflow:hidden!important;
+}
+:is(.btn.link,.text-link,.button)::after,
+.button>span[aria-hidden],
+.button>svg{
+  border-radius:var(--radius-pill,999px)!important;
+}
+
+/* Radius reference pass: annotated homepage controls and panels. */
+.home-v2 :is(
+  .property-map-view,
+  .property-map-locations,
+  .property-map-locations .location-card,
+  .transition-panel,
+  .transition-panel-inner,
+  .sell-form,
+  .client-logo-group,
+  .client-logo-viewport,
+  .client-logo
+){
+  border-radius:var(--radius-large,16px)!important;
+  overflow:hidden!important;
+}
+.home-v2 :is(
+  .property-view-switch,
+  .property-view-switch button,
+  .map-fit,
+  .portfolio-filters,
+  .portfolio-filters button,
+  .portfolio-filters button.is-active,
+  .property-view-switch button[aria-pressed="true"],
+  .week
+){
+  border-radius:var(--radius-pill,999px)!important;
+  overflow:hidden!important;
+}
+
+/* Journey strip edge radius correction: only the outside image corners stay rounded. */
+.home-v2 .journey-section .journey-grid{
+  border-radius:0!important;
+  overflow:visible!important;
+}
+.home-v2 .journey-section .journey-card,
+.home-v2 .journey-section .journey-media,
+.home-v2 .journey-section .journey-media img{
+  border-radius:0!important;
+}
+.home-v2 .journey-section .journey-card:first-child,
+.home-v2 .journey-section .journey-card:first-child .journey-media,
+.home-v2 .journey-section .journey-card:first-child .journey-media img{
+  border-top-left-radius:var(--radius-large,16px)!important;
+  border-bottom-left-radius:var(--radius-large,16px)!important;
+  border-top-right-radius:0!important;
+  border-bottom-right-radius:0!important;
+  overflow:hidden!important;
+}
+.home-v2 .journey-section .journey-card:last-child,
+.home-v2 .journey-section .journey-card:last-child .journey-media,
+.home-v2 .journey-section .journey-card:last-child .journey-media img{
+  border-top-left-radius:0!important;
+  border-bottom-left-radius:0!important;
+  border-top-right-radius:var(--radius-large,16px)!important;
+  border-bottom-right-radius:var(--radius-large,16px)!important;
+  overflow:hidden!important;
+}
+@media(max-width:760px){
+  .home-v2 .journey-section .journey-card,
+  .home-v2 .journey-section .journey-media,
+  .home-v2 .journey-section .journey-media img{
+    border-radius:var(--radius-large,16px)!important;
+    overflow:hidden!important;
+  }
+}
+
+
+/* Visual consistency QA: bring homepage cards/media into the shared rounded system. */
+.portfolio-card,
+.portfolio-image,
+.journey-image-frame,
+.management-card,
+.proof-card,
+.sell-enquiry-panel,
+.service-panel{
+  border-radius:var(--radius-large,16px)!important;
+  overflow:hidden;
+}
+.portfolio-card,
+.management-card,
+.proof-card,
+.sell-enquiry-panel{
+  box-shadow:var(--shadow-card,0 1.2rem 2.8rem rgba(0,45,83,.08));
+}
+
+/* Homepage portfolio: city cards with expanded property detail. */
+.portfolio-explorer-home{
+  background:#f4f8fb;
+}
+.portfolio-explorer-home .portfolio-intro{
+  align-items:end;
+}
+.portfolio-city-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem;
+  margin:clamp(1.8rem,3vw,3rem) 0 1rem;
+}
+.portfolio-city-tabs button{
+  min-width:6.4rem;
+  min-height:3.1rem;
+  padding:0 1.25rem;
+  border:1px solid rgba(23,77,142,.2);
+  border-radius:0;
+  background:#fff;
+  color:var(--ink);
+  font:600 .95rem/1 var(--font-body);
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.portfolio-city-tabs button:hover,
+.portfolio-city-tabs button:focus-visible{
+  border-color:var(--accent);
+  outline:0;
+}
+.portfolio-city-tabs button.is-active{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff;
+  box-shadow:0 12px 30px rgba(0,71,137,.14);
+}
+.portfolio-home-stage{
+  display:grid;
+  grid-template-columns:minmax(18rem,32rem) minmax(0,1fr);
+  gap:clamp(1rem,2vw,1.8rem);
+  align-items:start;
+}
+.portfolio-home-stage>div:first-child{
+  border:1px solid rgba(23,77,142,.2);
+  border-radius:18px;
+  background:#fff;
+  padding:1.4rem;
+  box-shadow:0 1.4rem 4rem rgba(13,43,72,.07);
+}
+.portfolio-city-kicker,
+.portfolio-expanded-city{
+  display:block;
+  margin:0 0 1rem;
+  color:var(--accent);
+  font-size:.72rem;
+  line-height:1.2;
+  font-weight:700;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
+.portfolio-card-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.7rem;
+  max-height:min(72vh,54rem);
+  overflow:auto;
+  padding-right:.2rem;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(0,71,137,.35) transparent;
+}
+.portfolio-home-card{
+  display:grid;
+  grid-template-columns:7.5rem 1fr auto;
+  align-items:center;
+  gap:1rem;
+  width:100%;
+  padding:.7rem .8rem .7rem .7rem;
+  border:1px solid rgba(23,77,142,.12);
+  border-radius:14px;
+  background:#fff;
+  color:var(--ink);
+  text-align:left;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.portfolio-home-card:after{
+  content:'→';
+  color:var(--accent);
+  font-size:1.2rem;
+  line-height:1;
+}
+.portfolio-home-card:hover,
+.portfolio-home-card:focus-visible,
+.portfolio-home-card.is-active{
+  background:#eaf2f8;
+  border-color:rgba(0,71,137,.32);
+  transform:translateY(-1px);
+  box-shadow:0 14px 34px rgba(13,43,72,.08);
+  outline:0;
+}
+.portfolio-home-image{
+  display:block;
+  overflow:hidden;
+  border-radius:10px;
+  background:#dbe7ef;
+}
+.portfolio-home-image img{
+  display:block;
+  width:100%;
+  height:5.7rem;
+  object-fit:cover;
+  transition:transform .45s ease;
+}
+.portfolio-home-card:hover .portfolio-home-image img,
+.portfolio-home-card.is-active .portfolio-home-image img{
+  transform:scale(1.04);
+}
+.portfolio-home-copy{
+  display:grid;
+  gap:.3rem;
+  min-width:0;
+}
+.portfolio-home-copy strong{
+  color:var(--accent);
+  font-family:var(--font-display);
+  font-size:clamp(1.05rem,1.5vw,1.35rem);
+  line-height:1.05;
+  font-weight:700;
+  letter-spacing:-.045em;
+}
+.portfolio-home-copy small{
+  color:#406078;
+  font-size:.86rem;
+  line-height:1.35;
+}
+.portfolio-expanded-card{
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(20rem,.85fr);
+  min-height:clamp(34rem,62vw,44rem);
+  overflow:hidden;
+  border:1px solid rgba(23,77,142,.16);
+  border-radius:0;
+  background:#f7f9fb;
+  box-shadow:0 1.8rem 5rem rgba(13,43,72,.08);
+}
+.portfolio-expanded-image{
+  min-height:100%;
+  background:#dbe7ef;
+}
+.portfolio-expanded-image img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:clamp(34rem,62vw,44rem);
+  object-fit:cover;
+}
+.portfolio-expanded-copy{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding:clamp(2rem,4vw,3.5rem);
+}
+.portfolio-expanded-copy h3{
+  max-width:11ch;
+  margin:0;
+  color:#173047;
+  font-family:var(--font-display);
+  font-size:clamp(2.2rem,3.5vw,3.7rem);
+  line-height:.95;
+  font-weight:700;
+  letter-spacing:-.06em;
+}
+.portfolio-expanded-rule{
+  display:block;
+  width:2.9rem;
+  height:2px;
+  margin:1rem 0 1.1rem;
+  background:var(--accent);
+}
+.portfolio-expanded-copy p{
+  max-width:28rem;
+  margin:0;
+  color:#5d7183;
+  font-size:clamp(1rem,1.1vw,1.15rem);
+  line-height:1.55;
+}
+.portfolio-enquiry-form{
+  margin-top:auto;
+  padding-top:clamp(1.8rem,3vw,3.2rem);
+  border-top:1px solid rgba(23,77,142,.16);
+}
+.portfolio-enquiry-form h4{
+  margin:0 0 1rem;
+  color:#173047;
+  font-family:var(--font-display);
+  font-size:1.35rem;
+  line-height:1.1;
+  font-weight:700;
+  letter-spacing:-.035em;
+}
+.portfolio-enquiry-form label{
+  display:block;
+  margin-bottom:.55rem;
+}
+.portfolio-enquiry-form label span{
+  position:absolute;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;
+}
+.portfolio-enquiry-form input{
+  width:100%;
+  min-height:2.7rem;
+  border:1px solid rgba(23,77,142,.26);
+  border-radius:0;
+  background:#fff;
+  padding:0 .9rem;
+  color:var(--ink);
+  font:500 .95rem/1 var(--font-body);
+}
+.portfolio-enquiry-form input:focus{
+  border-color:var(--accent);
+  outline:2px solid rgba(0,71,137,.12);
+  outline-offset:0;
+}
+.portfolio-enquiry-form .btn{
+  width:100%;
+  min-height:3rem;
+  margin-top:.25rem;
+  border-radius:0;
+  justify-content:center;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+@media(max-width:1100px){
+  .portfolio-home-stage,
+  .portfolio-expanded-card{
+    grid-template-columns:1fr;
+  }
+  .portfolio-card-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    max-height:none;
+  }
+  .portfolio-expanded-copy{
+    min-height:32rem;
+  }
+}
+@media(max-width:680px){
+  .portfolio-city-tabs{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .portfolio-city-tabs button{
+    min-width:0;
+    padding-inline:.5rem;
+    font-size:.86rem;
+  }
+  .portfolio-home-stage>div:first-child{
+    padding:1rem;
+  }
+  .portfolio-card-grid{
+    grid-template-columns:1fr;
+  }
+  .portfolio-home-card{
+    grid-template-columns:6rem 1fr auto;
+  }
+  .portfolio-home-image img{
+    height:4.8rem;
+  }
+  .portfolio-expanded-card{
+    min-height:0;
+  }
+  .portfolio-expanded-image img{
+    min-height:22rem;
+  }
+  .portfolio-expanded-copy{
+    min-height:0;
+    padding:1.5rem;
+  }
+  .portfolio-expanded-copy h3{
+    max-width:100%;
+    font-size:2.1rem;
+  }
+  .portfolio-enquiry-form{
+    margin-top:1.8rem;
+  }
 }

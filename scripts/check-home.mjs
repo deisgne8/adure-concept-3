@@ -6,8 +6,8 @@ const template=readFileSync(new URL('../src/homepage.html',import.meta.url),'utf
 const socialOrigin=new URL(html.match(/property="og:image" content="([^"]+)"/)[1]).origin;
 assert.equal(html,template.replaceAll('{{SITE_ORIGIN}}',socialOrigin),'Published homepage differs from its build source; run npm run build');
 // These structures are required by the approved layouts and their animation modules.
-for(const className of ['management-carousel-copy','service-rows','proof-editorial-layout','proof-statistics','portfolio-card']){
-  assert.ok(html.includes(`class="${className}"`),`Approved layout missing: ${className}`);
+for(const className of ['management-carousel-copy','service-rows','proof-editorial-layout','proof-statistics','portfolio-explorer-home','portfolio-city-tabs','portfolio-card-grid','portfolio-expanded-card']){
+  assert.ok(html.includes(className),`Approved layout missing: ${className}`);
 }
 assert.equal((html.match(/class="proof-statistic"/g)||[]).length,5,'Keep all five editorial statistics');
 assert.ok(html.includes('assets/management-beachfront-photo.webp'),'Keep the approved management photograph');
@@ -19,20 +19,30 @@ assert.ok(html.includes('<dd>3000+</dd>'),'Units managed must have no comma');
 const source=readFileSync(new URL('../docs/reference-evidence/adure-v2-source.html',import.meta.url),'utf8');
 const referenceHome=source.slice(source.indexOf('<section class="page active home-v2"'),source.indexOf('<section class="page" id="properties"'));
 const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
-const referencePortfolio=[
-  ['Sunrise Residence 3','Residential · Qaryat Al Hidd, Saadiyat Island','assets/portfolio-reference/sunrise-residence-3-v2.webp'],
-  ['48 Burj Gate','Retail · Sheikh Zayed Road, Dubai','assets/portfolio-reference/48-burj-gate-v2.webp'],
-  ['Qaryat Al Hidd','Residential · Saadiyat Island','assets/portfolio-reference/qaryat-al-hidd-v2.webp'],
-  ['Al Mushrif Villas','Residential · Al Mushrif, Abu Dhabi','assets/portfolio-reference/al-mushrif-villas-v2.webp'],
-  ['Ghantoot Complex','Residential · Mohammed Bin Zayed City','assets/portfolio-reference/ghantoot-complex-v2.webp']
+const portfolioScript=readFileSync(new URL('../dist/portfolio-carousel.js',import.meta.url),'utf8');
+const requiredPortfolio=[
+  ['Al Salam Tower','assets/portfolio-reference/48-burj-gate-v2.webp'],
+  ['Hili Tower B','assets/portfolio-waterfront-tower-v2.png'],
+  ['Al Manhal Tower','assets/portfolio-curved-towers-v2.png'],
+  ['Jasmine Tower','assets/enhanced/proof-jasmine.webp'],
+  ['Al Mushrif Compound','assets/portfolio-reference/al-mushrif-villas-v2.webp'],
+  ['Sahara Complex','assets/portfolio-reference/ghantoot-complex-v2.webp'],
+  ['19 Villas Compound','assets/portfolio-modern-villa-v2.png'],
+  ['Al Ghadeer','assets/hidd-al-saadiyat/landscaped-community.webp'],
+  ['Julphar Residence, Al Reem','assets/hidd-al-saadiyat/urban-mixed-use.webp'],
+  ['Park View, Al Reem','assets/hidd-al-saadiyat/waterfront-view.webp'],
+  ['Al Raha Gardens','assets/hidd-al-saadiyat/promenade-mixed-use.webp'],
+  ['Hidd Saadiyat Villas','assets/portfolio-reference/qaryat-al-hidd-v2.webp'],
+  ['48 Burj Gate','assets/portfolio-reference/48-burj-gate-v2.webp']
 ];
-for(const [name,detail,image] of referencePortfolio){
-  assert.ok(localHome.includes(`<h3>${name}</h3>`),`Portfolio name missing: ${name}`);
-  assert.ok(localHome.includes(detail),`Portfolio detail missing: ${detail}`);
-  assert.ok(localHome.includes(`src="${image}"`),`Portfolio image missing: ${image}`);
+for(const [name,image] of requiredPortfolio){
+  assert.ok(portfolioScript.includes(name),`Portfolio project missing from interactive data: ${name}`);
+  assert.ok(portfolioScript.includes(image),`Portfolio image missing from interactive data: ${image}`);
   assert.ok(existsSync(new URL(`../dist/${image}`,import.meta.url)),`Portfolio asset missing: ${image}`);
 }
-assert.equal((localHome.match(/class="portfolio-item-v2"/g)||[]).length,referencePortfolio.length,'Portfolio must contain the five approved projects');
+for(const required of ['data-city="abu-dhabi"','data-city="dubai"','data-city="al-ain"','id="portfolio-expanded-card"']){
+  assert.ok(localHome.includes(required),`Portfolio interaction shell missing: ${required}`);
+}
 const approvedCopy=[
   'Creating Value Beyond Property',
   'A connected approach to real estate, shaped in Abu Dhabi.',
@@ -96,7 +106,11 @@ assert.equal(matchProperties({intent:'buy',type:'Villa'}).length,0);
 assert.deepEqual(matchProperties({intent:'lease',amenities:['Swimming Pool','Gym']}).map(p=>p.id),['ADU-304','ADU-006']);
 assert.deepEqual(matchProperties({intent:'buy',amenities:['Pet Friendly']}).map(p=>p.id),['ADU-004']);
 for(const route of new Set([...referenceHome.matchAll(/data-route="([^"]+)"/g)].map(m=>m[1]))){
-  const destinationRetained = route === 'about' ? localHome.includes('href="about.html"') : localHome.includes('#'+route);
+  const destinationRetained = route === 'about'
+    ? localHome.includes('href="about.html"')
+    : route === 'portfolio'
+      ? localHome.includes('href="portfolio.html"')
+      : localHome.includes('#'+route);
   assert.ok(destinationRetained,route+' destination retained');
 }
 console.log('PASS: revised homepage copy, section order, CTA destinations, assets, semantic heading and multi-field property matching.');

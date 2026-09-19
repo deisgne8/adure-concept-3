@@ -362,7 +362,7 @@ dialog::backdrop{
 }
 .footer .logo img{
   object-fit:contain;
-  width:12rem;
+  width:11rem;
   height:auto;
   background:transparent;
   padding:0;
@@ -450,3 +450,244 @@ dialog::backdrop{
 
 #services-menu small { display:block; color:var(--muted); font-size:var(--text-label); margin-top:var(--s025); }
 .language-label { display:inline-block; margin-left:var(--s1); }
+
+/* Shared large-radius helpers for contained visual components. */
+.image-frame,
+.card,
+dialog:not(.mobile-menu){
+  border-radius:var(--radius-large);
+  overflow:hidden!important;
+}
+
+/* Shared pill-radius controls from the ADURE radius system. */
+.btn:not(.link),
+.header-cta,
+.tab,
+.view-toggle,
+.view-switch,
+[role="group"][aria-label="Property view"]{
+  border-radius:var(--radius-pill);
+}
+
+.btn:not(.link),
+.header-cta,
+.view-toggle,
+.view-switch,
+[role="group"][aria-label="Property view"]{
+  overflow:hidden;
+}
+
+
+/* Reference radius pass: final CTA coverage for visible button variants. */
+:is(.btn:not(.text-link),.button,.header-cta,.filter-open,.search-primary,.amenity-search,.hero-search-submit,.owner-actions .btn,.sell-fields .btn){
+  border-radius:var(--radius-pill)!important;
+  overflow:hidden!important;
+}
+:is(.btn.link,.text-link,.button){
+  border-radius:var(--radius-pill)!important;
+}
+:is(.btn.link,.text-link,.button)::after,
+.button>span[aria-hidden],
+.button>svg{
+  border-radius:var(--radius-pill)!important;
+}
+
+
+/* Radius reference final override: hard fallback for cached token stylesheets. */
+:is(.btn:not(.text-link),.btn.link,.text-link,.button,.header-cta,.filter-open,.search-primary,.amenity-search,.hero-search-submit,.owner-actions .btn,.sell-fields .btn){
+  border-radius:var(--radius-pill,999px)!important;
+  overflow:hidden!important;
+}
+:is(.btn.link,.text-link,.button)::after,
+.button>span[aria-hidden],
+.button>svg{
+  border-radius:var(--radius-pill,999px)!important;
+}
+
+/* About navigation dropdown. */
+.nav-dropdown{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.nav-dropdown-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  padding:var(--s075) 0;
+}
+.nav-dropdown-toggle::after{
+  content:"";
+  width:.4rem;
+  height:.4rem;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
+}
+.nav-dropdown-menu{
+  position:absolute;
+  top:calc(100% + .85rem);
+  left:50%;
+  transform:translateX(-50%) translateY(8px);
+  min-width:15.5rem;
+  display:grid;
+  gap:.15rem;
+  padding:.75rem;
+  border:1px solid var(--border);
+  border-radius:var(--radius-large,16px);
+  background:rgba(255,255,255,.96);
+  color:var(--ink);
+  box-shadow:var(--shadow-soft);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+  z-index:20;
+}
+.nav-dropdown-menu::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:-1rem;
+  height:1rem;
+}
+.nav-dropdown-menu a{
+  display:block;
+  padding:.65rem .75rem;
+  border-radius:10px;
+  white-space:nowrap;
+  color:var(--ink);
+}
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible{
+  background:rgba(0,71,137,.08);
+  color:var(--accent);
+  outline:none;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateX(-50%) translateY(0);
+}
+.mobile-nav-group{
+  border-bottom:1px solid var(--line);
+}
+.mobile-menu .mobile-nav-group summary{
+  cursor:pointer;
+  list-style:none;
+}
+.mobile-menu .mobile-nav-group summary::-webkit-details-marker{
+  display:none;
+}
+.mobile-menu .mobile-nav-group summary::after{
+  content:"+";
+  float:right;
+}
+.mobile-menu .mobile-nav-group[open] summary::after{
+  content:"−";
+}
+.mobile-menu .mobile-nav-group a{
+  font-family:var(--font-body);
+  text-transform:none;
+  font-size:1rem;
+  line-height:1.35;
+  color:var(--muted);
+  border-bottom:0;
+}
+/* Footer vertical logo reference update. */
+.footer{
+  padding-top:clamp(42px,4.2vw,64px);
+}
+.footer-grid{
+  grid-template-columns:minmax(170px,1.35fr) repeat(4,minmax(108px,1fr));
+  align-items:start;
+  gap:clamp(2rem,5vw,5.25rem);
+}
+.footer .logo{
+  display:inline-flex;
+  align-items:flex-start;
+}
+.footer .logo img{
+  display:block;
+  width:clamp(190px,16vw,220px)!important;
+  max-width:100%;
+}
+.footer-bottom{
+  margin-top:clamp(1.4rem,2.2vw,2rem);
+}
+@media(max-width:1023.98px){
+  .footer-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:var(--s2);
+  }
+  .footer .logo img{
+    width:clamp(150px,32vw,190px)!important;
+  }
+}
+@media(max-width:767.98px){
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* Visual consistency pass: shared controls, media and card defaults. */
+.btn,
+.header-cta,
+.icon-button,
+.mobile-menu{
+  border-radius:var(--control-radius)!important;
+}
+.nav-dropdown-menu{
+  border-radius:var(--radius-large,16px)!important;
+  background:rgba(255,255,255,.96)!important;
+  overflow:visible;
+}
+.image-frame,
+.portfolio-card,
+.portfolio-image,
+.media-card,
+.service-card,
+.project-card,
+.property-card,
+.map-drawer-card,
+.customer-logo-panel,
+.perspectives-card{
+  border-radius:var(--radius-card)!important;
+}
+.image-frame,
+.portfolio-image,
+.property-card-media,
+.map-drawer-media,
+.customer-story-media,
+.about-card-media,
+.story-media,
+.hero-search-box,
+.empty-state,
+.map-view{
+  overflow:hidden;
+  border-radius:var(--radius-media)!important;
+}
+.section-shell{
+  max-width:var(--container);
+}
+:is(.section,.customer-groups,.customer-sectors,.customer-perspectives,.property-results-section,.about-section){
+  scroll-margin-top:calc(var(--nav-height) + 1rem);
+}
+:is(.customer-groups-head p,.customer-section-intro p,.about-page p,.properties-page p,.property-building,.customer-panel-copy p){
+  color:var(--color-text-secondary);
+}
+
+/* Dropdown readability fix: header links can be white on hero pages, but menu panels stay light. */
+.nav-dropdown-menu,
+.nav-dropdown-menu a{
+  color:var(--ink)!important;
+}
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a:focus-visible{
+  color:var(--accent)!important;
+  background:rgba(0,71,137,.08)!important;
+}

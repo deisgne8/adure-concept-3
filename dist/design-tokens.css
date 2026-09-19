@@ -109,10 +109,13 @@
   --grid-column-gap:clamp(3rem,7vw,8rem);
   --radius-sm:0;
   --radius-md:0;
-  --radius-lg:0;
-  --image-radius:var(--radius-md);
-  --control-radius:var(--radius-sm);
-  --panel-radius:var(--radius-lg);
+  --radius-large:16px;
+  --radius-pill:999px;
+  --radius-lg:var(--radius-large);
+  --image-radius:var(--radius-large);
+  --control-radius:var(--radius-pill);
+  --search-radius:var(--radius-pill);
+  --panel-radius:var(--radius-large);
   --border-width:1px;
   --border-subtle:1px solid var(--border);
   
@@ -198,3 +201,20 @@
 
 
 
+
+
+/* Visual consistency aliases used by cross-page QA patches. */
+:root{
+  --color-background:var(--white);
+  --color-surface:var(--surface-alt);
+  --color-surface-raised:var(--white);
+  --color-text-primary:var(--ink);
+  --color-text-secondary:#526476;
+  --color-border:#d5e0ec;
+  --color-accent:var(--accent);
+  --color-accent-hover:var(--accent-hover);
+  --radius-card:var(--radius-large);
+  --radius-media:var(--radius-large);
+  --shadow-card:0 1.2rem 2.8rem rgba(0,45,83,.08);
+  --shadow-card-hover:0 1.4rem 3.2rem rgba(0,45,83,.12);
+}

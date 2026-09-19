@@ -52,3 +52,45 @@
  #sell .sell-form{padding:24px 20px;border-radius:0}
 }
 @media(prefers-reduced-transparency:reduce){#sell .sell-form{background:rgba(15,65,121,.96);backdrop-filter:none}}
+
+
+/* Radius reference final override: hard fallback for cached token stylesheets. */
+:is(.btn:not(.text-link),.btn.link,.text-link,.button,.header-cta,.filter-open,.search-primary,.amenity-search,.hero-search-submit,.owner-actions .btn,.sell-fields .btn){
+  border-radius:var(--radius-pill,999px)!important;
+  overflow:hidden!important;
+}
+:is(.btn.link,.text-link,.button)::after,
+.button>span[aria-hidden],
+.button>svg{
+  border-radius:var(--radius-pill,999px)!important;
+}
+
+/* Radius reference pass: sell form panel and fields. */
+#sell .sell-form{
+  border-radius:var(--radius-large,16px)!important;
+  overflow:hidden!important;
+}
+#sell .sell-fields input,
+#sell .sell-fields select{
+  border-radius:var(--radius-large,16px)!important;
+}
+#sell .sell-fields .btn{
+  border-radius:var(--radius-pill,999px)!important;
+  overflow:hidden!important;
+}
+
+
+/* Visual consistency QA: enquiry form surfaces follow shared radius. */
+.sell-enquiry,
+.sell-enquiry-card,
+.sell-enquiry-form,
+.sell-enquiry input,
+.sell-enquiry select,
+.sell-enquiry textarea{
+  border-radius:var(--radius-large,16px)!important;
+}
+.sell-enquiry input,
+.sell-enquiry select,
+.sell-enquiry textarea{
+  border-radius:calc(var(--radius-large,16px) / 2)!important;
+}
