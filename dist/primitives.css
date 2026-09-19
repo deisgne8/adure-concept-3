@@ -691,3 +691,126 @@ dialog:not(.mobile-menu){
   color:var(--accent)!important;
   background:rgba(0,71,137,.08)!important;
 }
+
+/* Footer reference alignment: compact layout, larger logo, stronger headings. */
+.footer{
+  border-top:3px solid #1b2f34!important;
+  padding:clamp(46px,4.8vw,66px) 0 clamp(18px,2vw,26px)!important;
+}
+.footer-grid{
+  grid-template-columns:minmax(135px,1.1fr) repeat(4,minmax(115px,1fr))!important;
+  gap:clamp(2.8rem,7.5vw,8rem)!important;
+  align-items:start!important;
+  padding-bottom:clamp(2.5rem,3.8vw,3.7rem)!important;
+}
+.footer .logo{
+  display:inline-flex!important;
+  align-items:flex-start!important;
+}
+.footer .logo img{
+  width:clamp(128px,10.5vw,150px)!important;
+  max-width:100%!important;
+  height:auto!important;
+}
+.footer h3{
+  font-weight:800!important;
+  letter-spacing:-.01em!important;
+  color:var(--ink)!important;
+  margin:0 0 .9rem!important;
+}
+.footer-grid>div>a:not(.logo){
+  line-height:1.55!important;
+  margin-bottom:.42rem!important;
+}
+.footer-bottom{
+  margin-top:0!important;
+  padding-top:clamp(1rem,1.4vw,1.35rem)!important;
+}
+@media(max-width:1023.98px){
+  .footer-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:var(--s2)!important;
+  }
+  .footer .logo img{
+    width:clamp(128px,24vw,160px)!important;
+  }
+}
+@media(max-width:767.98px){
+  .footer-grid{
+    grid-template-columns:1fr!important;
+    padding-bottom:var(--s2)!important;
+  }
+}
+
+/* Footer logo size review: match attached reference more closely. */
+.footer{
+  padding:clamp(34px,3.7vw,48px) 0 clamp(14px,1.7vw,22px)!important;
+}
+.footer-grid{
+  grid-template-columns:minmax(120px,.95fr) repeat(4,minmax(115px,1fr))!important;
+  gap:clamp(3rem,8vw,8.8rem)!important;
+  padding-bottom:clamp(2rem,3vw,2.9rem)!important;
+}
+.footer .logo img{
+  width:clamp(112px,8.7vw,126px)!important;
+}
+.footer h3{
+  font-weight:850!important;
+}
+.footer-bottom{
+  padding-top:clamp(.85rem,1.2vw,1.15rem)!important;
+}
+
+/* Footer correction from browser review: top-left logo, no top black line. */
+.footer{
+  border-top:0!important;
+}
+.footer-grid{
+  grid-template-columns:minmax(155px,.9fr) repeat(4,minmax(120px,1fr))!important;
+  gap:clamp(3.2rem,7.8vw,8.4rem)!important;
+}
+.footer-grid>div:first-child{
+  justify-self:start!important;
+  align-self:start!important;
+  text-align:left!important;
+}
+.footer .logo{
+  justify-content:flex-start!important;
+}
+.footer .logo img{
+  width:clamp(150px,11vw,172px)!important;
+}
+
+/* Compensate for transparent whitespace inside the vertical logo SVG. */
+.footer .logo img{
+  transform:translateX(-72px)!important;
+  transform-origin:top left!important;
+}
+
+/* Footer logo final size review: stable desktop scale and responsive SVG whitespace correction. */
+.footer .logo img{
+  width:clamp(132px,7.5vw,145px)!important;
+  transform:translateX(calc(-1 * clamp(56px,3.8vw,62px)))!important;
+}
+
+/* Use the dedicated footer logo asset without SVG whitespace compensation. */
+.footer .logo img{
+  width:clamp(92px,5.8vw,112px)!important;
+  transform:none!important;
+}
+
+/* Reduce footer logo to half of the updated asset size. */
+.footer .logo img{
+  width:clamp(46px,2.9vw,56px)!important;
+}
+
+/* Footer logo should visually run down to the Contact link row. */
+.footer .logo img{
+  width:clamp(108px,7.2vw,138px)!important;
+}
+
+/* Footer logo requested fixed height. */
+.footer .logo img{
+  height:100px!important;
+  width:auto!important;
+}
