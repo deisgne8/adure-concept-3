@@ -323,3 +323,9 @@
 .properties-page .mobile-menu nav span{
   padding:17px 0;
 }
+
+/* Property owner CTA cleanup: remove side benefit list. */
+.properties-page .owner-cta-layout{
+  grid-template-columns:minmax(0,45rem)!important;
+  justify-content:start!important;
+}
