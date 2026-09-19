@@ -3,5 +3,8 @@
   "label": "Hero",
   "headline": ["Creating Value", "Beyond Property"],
   "description": "A connected approach to real estate, shaped in Abu Dhabi.",
-  "media": { "video": "/assets/hidd-al-saadiyat-hero.mp4", "poster": "/assets/hidd-al-saadiyat/hero-wave-facade.webp" }
+  "media": {
+    "video": "/assets/hidd-al-saadiyat-hero.mp4",
+    "poster": "/assets/hidd-al-saadiyat/hero-wave-facade.webp"
+  }
 }

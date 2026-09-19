@@ -1,4 +1,5 @@
 import HomeClient from "./HomeClient";
+import SmoothScroll from "./SmoothScroll";
 import ConversationSection from "./sections/ConversationSection";
 import DiscoverySection from "./sections/DiscoverySection";
 import HeroSection from "./sections/HeroSection";
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <HomeClient />
+      <SmoothScroll />
       <SiteChrome />
       <main id="main">
         <section className="home-v2" id="home">

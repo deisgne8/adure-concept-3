@@ -32,7 +32,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     return res.status(404).json({ error: "Unknown home section" });
   }
 
-  return res.status(200).json(
-    contentBySection[section as keyof typeof contentBySection],
-  );
+  return res
+    .status(200)
+    .json(contentBySection[section as keyof typeof contentBySection]);
 }
