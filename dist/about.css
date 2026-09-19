@@ -2696,3 +2696,37 @@
 .about-page .mobile-menu nav span{
   padding:17px 0;
 }
+
+/* Vision section alignment cleanup. */
+
+.about-page .vision-scroll-panels{
+  grid-column:1 / -1!important;
+  width:100%!important;
+}
+.about-page .vision-scroll-orbit{
+  display:none!important;
+}
+.about-page .vision-scroll-panel{
+  grid-template-columns:minmax(0,48%) minmax(24rem,34rem)!important;
+  align-items:start!important;
+  justify-content:space-between!important;
+  gap:clamp(3rem,6vw,7rem)!important;
+}
+.about-page .vision-scroll-panel h2{
+  max-width:100%!important;
+  overflow-wrap:normal!important;
+}
+.about-page .vision-scroll-panel p{
+  justify-self:end!important;
+  max-width:34rem!important;
+}
+@media(max-width:980px){
+  .about-page .vision-scroll-panel{
+    grid-template-columns:1fr!important;
+    gap:1.4rem!important;
+  }
+  .about-page .vision-scroll-panel p{
+    justify-self:start!important;
+    max-width:42rem!important;
+  }
+}
