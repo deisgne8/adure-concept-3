@@ -953,42 +953,175 @@
   max-width:68ch;
 }
 
-/* Inner-page navigation consistency: one behavior for About, Properties, Portfolio, and Customers. */
+/* Match reference search bar: compact segmented row with blue submit pill. */
+@media(min-width:901px){
+  .properties-page .hero-search-wrap{
+    padding:2.1rem 0 2.6rem!important;
+    background:#fff!important;
+  }
+  .properties-page .hero-search-box{
+    display:grid!important;
+    grid-template-columns:minmax(10.5rem,.74fr) repeat(4,minmax(10rem,1fr)) minmax(9.6rem,.8fr) minmax(13.2rem,.96fr)!important;
+    align-items:center!important;
+    gap:0!important;
+    min-height:4.85rem!important;
+    padding:.48rem!important;
+    border:1px solid #d8e4f0!important;
+    border-radius:999px!important;
+    background:#fff!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+  }
+  .properties-page .intent-switch{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    align-items:center!important;
+    height:4rem!important;
+    min-height:4rem!important;
+    padding:.25rem!important;
+    border:0!important;
+    border-right:1px solid #d8e4f0!important;
+    border-radius:999px!important;
+    background:#f2f6fa!important;
+    overflow:hidden!important;
+  }
+  .properties-page .intent-switch button{
+    width:100%!important;
+    height:3.5rem!important;
+    min-height:0!important;
+    padding:0 1rem!important;
+    border:0!important;
+    border-radius:999px!important;
+    background:transparent!important;
+    color:#454b53!important;
+    font-weight:700!important;
+    box-shadow:none!important;
+  }
+  .properties-page .intent-switch button.is-active,
+  .properties-page .intent-switch button.active{
+    background:#fff!important;
+    color:var(--accent)!important;
+    box-shadow:0 .6rem 1.4rem rgba(0,45,83,.1)!important;
+  }
+  .properties-page .search-field{
+    min-height:4rem!important;
+    padding:0 clamp(1rem,1.55vw,1.55rem)!important;
+    border-right:1px solid #d8e4f0!important;
+    justify-content:center!important;
+    gap:.42rem!important;
+  }
+  .properties-page .search-field span{
+    color:#5f6670!important;
+    font-size:.72rem!important;
+    letter-spacing:.22em!important;
+    line-height:1!important;
+  }
+  .properties-page .search-field select{
+    min-height:1.35rem!important;
+    padding:0 1.35rem 0 0!important;
+    color:#111!important;
+    font-size:.98rem!important;
+    font-weight:700!important;
+  }
+  .properties-page .more-filters{
+    height:4rem!important;
+  }
+  .properties-page .mobile-filter-trigger{
+    min-height:4rem!important;
+    height:4rem!important;
+    padding:0 1.05rem!important;
+    border:0!important;
+    border-right:1px solid #d8e4f0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    color:var(--accent)!important;
+  }
+  .properties-page .more-filters-label{
+    gap:.25rem!important;
+    color:var(--accent)!important;
+    font-size:.98rem!important;
+    font-weight:500!important;
+    letter-spacing:0!important;
+  }
+  .properties-page .more-filters-symbol:before{
+    content:'+'!important;
+    display:inline!important;
+    width:auto!important;
+    height:auto!important;
+    border:0!important;
+    color:var(--accent)!important;
+    font-size:1rem!important;
+    line-height:1!important;
+  }
+  .properties-page .mobile-filter-trigger small{
+    margin:.35rem 0 0!important;
+    color:#696f77!important;
+    font-size:.78rem!important;
+    line-height:1!important;
+    max-width:8.7rem!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    align-self:stretch!important;
+    min-height:4rem!important;
+    height:4rem!important;
+    width:100%!important;
+    border:0!important;
+    border-radius:999px!important;
+    background:var(--accent)!important;
+    color:#fff!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:1rem!important;
+    padding:0 1.4rem!important;
+    font-size:.92rem!important;
+    font-weight:800!important;
+    letter-spacing:0!important;
+    text-transform:none!important;
+    white-space:nowrap!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit:after{
+    content:'→'!important;
+    font-size:1.45rem!important;
+    line-height:1!important;
+    font-weight:400!important;
+  }
+}
+
+/* Homepage navigation parity for inner pages. */
 body.about-page .site-header,
 body.properties-page .site-header,
 body.customers-page .site-header,
 body.portfolio-page .site-header{
   position:fixed!important;
   inset:0 0 auto!important;
-  z-index:var(--z-header)!important;
   height:var(--nav-height)!important;
-  color:#fff!important;
+  color:var(--white)!important;
   background:transparent!important;
-  border-bottom:1px solid rgba(255,255,255,.18)!important;
+  border-bottom-color:transparent!important;
   box-shadow:none!important;
-  transition:background var(--motion-control) var(--ease),border-color var(--motion-control) var(--ease),color var(--motion-control) var(--ease),box-shadow var(--motion-control) var(--ease),backdrop-filter var(--motion-control) var(--ease)!important;
 }
-
 body.about-page .site-header.is-glass,
 body.properties-page .site-header.is-glass,
 body.customers-page .site-header.is-glass,
 body.portfolio-page .site-header.is-glass,
 body.property-detail-page .site-header{
   color:var(--ink)!important;
-  background:rgba(255,255,255,.72)!important;
-  border-bottom-color:rgba(210,226,238,.78)!important;
+  background:rgba(255,255,255,.5)!important;
+  border-bottom-color:rgba(231,230,227,.72)!important;
   box-shadow:0 .25rem 2rem rgba(0,0,0,.06)!important;
   -webkit-backdrop-filter:blur(.9375rem) saturate(130%)!important;
   backdrop-filter:blur(.9375rem) saturate(130%)!important;
 }
-
 body.about-page .site-header:not(.is-glass) .site-logo img,
 body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .site-logo img,
 body.customers-page .site-header:not(.is-glass) .site-logo img,
 body.portfolio-page .site-header:not(.is-glass) .site-logo img{
   filter:brightness(0) invert(1)!important;
 }
-
 body.about-page .site-header.is-glass .site-logo img,
 body.properties-page .site-header.is-glass .site-logo img,
 body.customers-page .site-header.is-glass .site-logo img,
@@ -996,14 +1129,15 @@ body.portfolio-page .site-header.is-glass .site-logo img,
 body.property-detail-page .site-header .site-logo img{
   filter:none!important;
 }
-
 body.about-page .desktop-nav,
 body.properties-page .desktop-nav,
 body.customers-page .desktop-nav,
 body.portfolio-page .desktop-nav{
-  gap:clamp(16px,1.6vw,28px)!important;
+  gap:var(--s125)!important;
+  margin-left:auto!important;
+  font-size:var(--text-nav)!important;
+  line-height:1.33333!important;
 }
-
 body.about-page .desktop-nav > a,
 body.about-page .desktop-nav > span,
 body.about-page .nav-dropdown-toggle,
@@ -1017,41 +1151,39 @@ body.portfolio-page .desktop-nav > a,
 body.portfolio-page .desktop-nav > span,
 body.portfolio-page .nav-dropdown-toggle{
   color:currentColor!important;
-  border-bottom:2px solid transparent!important;
-  padding:16px 0 .4rem!important;
+  border:0!important;
+  border-bottom:0!important;
+  padding:0!important;
   font-family:var(--font-body)!important;
-  font-size:.875rem!important;
-  font-weight:600!important;
+  font-size:var(--text-nav)!important;
+  font-weight:400!important;
   letter-spacing:0!important;
-  line-height:1.2!important;
+  line-height:1.33333!important;
+  text-transform:none!important;
 }
-
-body.about-page .site-header.is-glass .desktop-nav .is-current,
-body.about-page .site-header.is-glass .desktop-nav [aria-current="page"],
-body.properties-page .site-header.is-glass .desktop-nav .is-current,
-body.properties-page .site-header.is-glass .desktop-nav [aria-current="page"],
-body.customers-page .site-header.is-glass .desktop-nav .is-current,
-body.customers-page .site-header.is-glass .desktop-nav [aria-current="page"],
-body.portfolio-page .site-header.is-glass .desktop-nav .is-current,
-body.portfolio-page .site-header.is-glass .desktop-nav [aria-current="page"],
+body.about-page .nav-dropdown-toggle,
+body.properties-page .nav-dropdown-toggle,
+body.customers-page .nav-dropdown-toggle,
+body.portfolio-page .nav-dropdown-toggle{
+  padding:var(--s075) 0!important;
+}
+body.about-page .desktop-nav .is-current,
+body.about-page .desktop-nav [aria-current="page"],
+body.properties-page .desktop-nav .is-current,
+body.properties-page .desktop-nav [aria-current="page"],
+body.customers-page .desktop-nav .is-current,
+body.customers-page .desktop-nav [aria-current="page"],
+body.portfolio-page .desktop-nav .is-current,
+body.portfolio-page .desktop-nav [aria-current="page"]{
+  color:currentColor!important;
+  border:0!important;
+  border-bottom:0!important;
+}
 body.property-detail-page .desktop-nav .is-current,
 body.property-detail-page .desktop-nav [aria-current="page"]{
   color:var(--accent)!important;
-  border-bottom-color:transparent!important;
+  border:0!important;
 }
-
-body.about-page .site-header:not(.is-glass) .desktop-nav .is-current,
-body.about-page .site-header:not(.is-glass) .desktop-nav [aria-current="page"],
-body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav .is-current,
-body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav [aria-current="page"],
-body.customers-page .site-header:not(.is-glass) .desktop-nav .is-current,
-body.customers-page .site-header:not(.is-glass) .desktop-nav [aria-current="page"],
-body.portfolio-page .site-header:not(.is-glass) .desktop-nav .is-current,
-body.portfolio-page .site-header:not(.is-glass) .desktop-nav [aria-current="page"]{
-  color:#fff!important;
-  border-bottom-color:rgba(188,218,238,.9)!important;
-}
-
 body.about-page .desktop-nav a:hover,
 body.about-page .desktop-nav a:focus-visible,
 body.properties-page .desktop-nav a:hover,
@@ -1060,22 +1192,18 @@ body.customers-page .desktop-nav a:hover,
 body.customers-page .desktop-nav a:focus-visible,
 body.portfolio-page .desktop-nav a:hover,
 body.portfolio-page .desktop-nav a:focus-visible{
-  color:var(--brand-highlight)!important;
-}
-
-body.about-page .site-header.is-glass .desktop-nav a:hover,
-body.about-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.properties-page .site-header.is-glass .desktop-nav a:hover,
-body.properties-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.customers-page .site-header.is-glass .desktop-nav a:hover,
-body.customers-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.portfolio-page .site-header.is-glass .desktop-nav a:hover,
-body.portfolio-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.property-detail-page .desktop-nav a:hover,
-body.property-detail-page .desktop-nav a:focus-visible{
   color:var(--accent)!important;
 }
-
+body.about-page .site-header:not(.is-glass) .desktop-nav a:hover,
+body.about-page .site-header:not(.is-glass) .desktop-nav a:focus-visible,
+body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav a:hover,
+body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav a:focus-visible,
+body.customers-page .site-header:not(.is-glass) .desktop-nav a:hover,
+body.customers-page .site-header:not(.is-glass) .desktop-nav a:focus-visible,
+body.portfolio-page .site-header:not(.is-glass) .desktop-nav a:hover,
+body.portfolio-page .site-header:not(.is-glass) .desktop-nav a:focus-visible{
+  color:var(--brand-highlight)!important;
+}
 body.about-page .header-cta,
 body.about-page .header-cta.btn.primary,
 body.properties-page .header-cta,
@@ -1084,40 +1212,38 @@ body.customers-page .header-cta,
 body.customers-page .header-cta.btn.primary,
 body.portfolio-page .header-cta,
 body.portfolio-page .header-cta.btn.primary{
-  min-height:42px!important;
-  padding:0 16px!important;
+  min-height:var(--button-small)!important;
+  height:auto!important;
+  padding:var(--s075) var(--s1)!important;
   border-color:var(--accent)!important;
   background:var(--accent)!important;
   color:#fff!important;
   font-family:var(--font-body)!important;
-  font-size:.875rem!important;
-  font-weight:600!important;
+  font-size:13px!important;
+  font-weight:400!important;
   letter-spacing:0!important;
+  line-height:1.2!important;
   text-transform:none!important;
 }
-
 body.about-page .menu-toggle,
 body.properties-page .menu-toggle,
 body.customers-page .menu-toggle,
 body.portfolio-page .menu-toggle{
   color:currentColor!important;
 }
-
 body.about-page .site-header:not(.is-glass) .menu-toggle span,
 body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .menu-toggle span,
 body.customers-page .site-header:not(.is-glass) .menu-toggle span,
 body.portfolio-page .site-header:not(.is-glass) .menu-toggle span{
-  background:#fff!important;
+  background:currentColor!important;
 }
-
 body.about-page .site-header.is-glass .menu-toggle span,
 body.properties-page .site-header.is-glass .menu-toggle span,
 body.customers-page .site-header.is-glass .menu-toggle span,
 body.portfolio-page .site-header.is-glass .menu-toggle span,
 body.property-detail-page .menu-toggle span{
-  background:var(--ink)!important;
+  background:currentColor!important;
 }
-
 body.about-page .nav-dropdown-menu,
 body.properties-page .nav-dropdown-menu,
 body.customers-page .nav-dropdown-menu,
@@ -1125,11 +1251,10 @@ body.portfolio-page .nav-dropdown-menu{
   top:calc(100% + .85rem)!important;
   border-radius:var(--radius-large,16px)!important;
   background:rgba(255,255,255,.96)!important;
-  border-color:rgba(210,226,238,.9)!important;
+  border-color:var(--border)!important;
   box-shadow:var(--shadow-soft)!important;
   overflow:visible!important;
 }
-
 body.about-page .desktop-nav .nav-dropdown-menu a,
 body.properties-page .desktop-nav .nav-dropdown-menu a,
 body.customers-page .desktop-nav .nav-dropdown-menu a,
@@ -1138,12 +1263,14 @@ body.about-page .desktop-nav .nav-dropdown-menu .is-current,
 body.properties-page .desktop-nav .nav-dropdown-menu .is-current,
 body.customers-page .desktop-nav .nav-dropdown-menu .is-current,
 body.portfolio-page .desktop-nav .nav-dropdown-menu .is-current{
+  display:block!important;
   color:var(--ink)!important;
-  border-bottom:0!important;
+  border:0!important;
   padding:.65rem .75rem!important;
+  font-size:var(--text-nav)!important;
   font-weight:400!important;
+  line-height:1.33333!important;
 }
-
 body.about-page .desktop-nav .nav-dropdown-menu a:hover,
 body.about-page .desktop-nav .nav-dropdown-menu a:focus-visible,
 body.properties-page .desktop-nav .nav-dropdown-menu a:hover,
@@ -1156,21 +1283,296 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
   background:rgba(0,71,137,.08)!important;
 }
 
-body.about-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.about-page .site-header.is-glass .desktop-nav > span,
-body.about-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.properties-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.properties-page .site-header.is-glass .desktop-nav > span,
-body.properties-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.customers-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.customers-page .site-header.is-glass .desktop-nav > span,
-body.customers-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.portfolio-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.portfolio-page .site-header.is-glass .desktop-nav > span,
-body.portfolio-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.property-detail-page .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.property-detail-page .desktop-nav > span,
-body.property-detail-page .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]){
-  border-color:transparent!important;
-  border-bottom-color:transparent!important;
+/* Remove native focus border from properties search select fields. */
+.properties-page .hero-search-box select,
+.properties-page .hero-search-box select:focus,
+.properties-page .hero-search-box select:focus-visible{
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+}
+
+/* Keep the More Filters edge straight before the search button. */
+@media(min-width:901px){
+  .properties-page .hero-search-box{
+    overflow:visible!important;
+  }
+  .properties-page .more-filters,
+  .properties-page .mobile-filter-trigger{
+    border-radius:0!important;
+    overflow:visible!important;
+    clip-path:none!important;
+  }
+  .properties-page .hero-search-box > .more-filters:after,
+  .properties-page .hero-search-box > .more-filters:before,
+  .properties-page .mobile-filter-trigger:after,
+  .properties-page .mobile-filter-trigger:before{
+    border-radius:0!important;
+  }
+}
+
+/* Final straight edge fix for More Filters before submit. */
+@media(min-width:901px){
+  body.properties-page .hero-search-box .more-filters > .mobile-filter-trigger.mobile-filter-trigger{
+    border-radius:0!important;
+    overflow:visible!important;
+    clip-path:none!important;
+    background:transparent!important;
+  }
+}
+
+/* Search bar alignment polish: align labels with values and prevent select clipping. */
+.properties-page .hero-search-box{
+  grid-template-columns:minmax(9.5rem,.55fr) minmax(10.5rem,1fr) minmax(10.5rem,1fr) minmax(11.8rem,1.12fr) minmax(10rem,.96fr) minmax(9.6rem,.82fr) minmax(12rem,.92fr)!important;
+}
+.properties-page .hero-search-box .search-field{
+  align-items:stretch!important;
+  justify-content:center!important;
+  padding-inline:1.25rem!important;
+  gap:.36rem!important;
+}
+.properties-page .hero-search-box .search-field span{
+  display:block!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  color:var(--muted)!important;
+  font-size:.66rem!important;
+  line-height:1.2!important;
+  letter-spacing:.075em!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+}
+.properties-page .hero-search-box .search-field select{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  min-height:2.15rem!important;
+  margin:0!important;
+  padding:.15rem 2rem .15rem 0!important;
+  border:0!important;
+  background-color:transparent!important;
+  color:var(--ink)!important;
+  font-size:.92rem!important;
+  line-height:1.35!important;
+  text-align:left!important;
+  white-space:nowrap!important;
+  text-overflow:clip!important;
+}
+.properties-page .hero-search-box .search-beds{
+  min-width:11.8rem!important;
+}
+@media(max-width:1180px) and (min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(8.5rem,.6fr) repeat(3,minmax(10.25rem,1fr)) minmax(9rem,.82fr) minmax(11rem,.9fr)!important;
+  }
+  .properties-page .hero-search-box .search-beds{
+    min-width:10.8rem!important;
+  }
+}
+@media(max-width:900px){
+  .properties-page .hero-search-box{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .properties-page .hero-search-box .search-field{
+    padding-inline:1rem!important;
+  }
+  .properties-page .hero-search-box .search-beds{
+    min-width:0!important;
+  }
+}
+@media(max-width:640px){
+  .properties-page .hero-search-box{
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Match Grid/Map view toggle to the Buy/Lease pill style. */
+.properties-page .view-switch{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  align-items:center!important;
+  gap:0!important;
+  padding:.25rem!important;
+  border:1px solid #d8e4f0!important;
+  border-radius:999px!important;
+  background:#f2f6fa!important;
+  overflow:hidden!important;
+}
+.properties-page .view-switch button{
+  min-width:7.4rem!important;
+  min-height:3.5rem!important;
+  height:3.5rem!important;
+  padding:0 1.05rem!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#454b53!important;
+  font-weight:700!important;
+  box-shadow:none!important;
+  text-decoration:none!important;
+}
+.properties-page .view-switch button+button{
+  border-left:0!important;
+}
+.properties-page .view-switch button.is-active{
+  background:#fff!important;
+  color:var(--accent)!important;
+  box-shadow:0 .6rem 1.4rem rgba(0,45,83,.1)!important;
+}
+.properties-page .view-switch button.is-active:after{
+  content:none!important;
+}
+.properties-page .view-switch .view-icon{
+  color:currentColor!important;
+}
+
+/* Reference compact List / Map segmented toggle. */
+.properties-page .view-switch{
+  width:max-content!important;
+  padding:.25rem!important;
+  background:#edf3f8!important;
+  border:0!important;
+  border-radius:999px!important;
+  box-shadow:none!important;
+}
+.properties-page .view-switch button{
+  min-width:5.2rem!important;
+  min-height:2.9rem!important;
+  height:2.9rem!important;
+  padding:0 .95rem!important;
+  gap:.48rem!important;
+  font-size:.95rem!important;
+  font-weight:700!important;
+  color:#5f646b!important;
+}
+.properties-page .view-switch button.is-active{
+  background:#fff!important;
+  color:var(--accent)!important;
+  box-shadow:0 .25rem .8rem rgba(0,45,83,.08)!important;
+}
+.properties-page .view-switch .view-icon{
+  width:1rem!important;
+  height:1rem!important;
+}
+
+/* Give sort dropdown arrow comfortable right spacing. */
+.properties-page .sort-control select{
+  min-width:10.8rem!important;
+  padding:0 2.65rem 0 1.15rem!important;
+  background-position:right 1.05rem center!important;
+  background-size:.72rem auto!important;
+}
+
+/* Keep search submit inside the bar and remove divider before it. */
+@media(min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(10.25rem,.82fr) minmax(9.4rem,.9fr) minmax(9.4rem,.9fr) minmax(11.2rem,1.08fr) minmax(8.8rem,.78fr) minmax(9rem,.74fr) minmax(11.4rem,.92fr)!important;
+    overflow:hidden!important;
+  }
+  .properties-page .hero-search-box .search-field{
+    padding-inline:1rem!important;
+  }
+  .properties-page .hero-search-box .search-beds{
+    min-width:0!important;
+  }
+  .properties-page .hero-search-box .more-filters,
+  .properties-page .hero-search-box .mobile-filter-trigger{
+    border-right:0!important;
+  }
+  .properties-page .hero-search-box .more-filters{
+    min-width:0!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger{
+    padding-inline:1rem!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    justify-self:stretch!important;
+    margin:0!important;
+    padding-inline:1.1rem!important;
+    border-radius:999px!important;
+    box-sizing:border-box!important;
+    font-size:.88rem!important;
+  }
+}
+@media(max-width:1120px) and (min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(9.5rem,.8fr) minmax(8.6rem,.85fr) minmax(8.6rem,.85fr) minmax(10.4rem,1fr) minmax(8rem,.72fr) minmax(8.2rem,.68fr) minmax(10.6rem,.88fr)!important;
+  }
+  .properties-page .hero-search-box .search-field{
+    padding-inline:.85rem!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    font-size:.8rem!important;
+    padding-inline:.85rem!important;
+    gap:.7rem!important;
+  }
+  .properties-page .hero-search-box .more-filters-label{
+    font-size:.86rem!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger small{
+    font-size:.7rem!important;
+  }
+}
+
+/* Replace native sort select arrow so right spacing is controlled. */
+.properties-page .sort-control{
+  position:relative!important;
+}
+.properties-page .sort-control select{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  padding-right:3.1rem!important;
+  background-image:none!important;
+}
+.properties-page .sort-control::after{
+  content:'⌄'!important;
+  position:absolute!important;
+  right:1.15rem!important;
+  top:50%!important;
+  transform:translateY(-54%)!important;
+  color:var(--ink)!important;
+  font-size:1.05rem!important;
+  line-height:1!important;
+  pointer-events:none!important;
+}
+
+/* Round the property availability badge on card images. */
+.properties-page .property-status{
+  border-radius:8px!important;
+}
+
+/* Remove focus ring from sort select and align dropdown arrows consistently. */
+.properties-page .sort-control select,
+.properties-page .sort-control select:focus,
+.properties-page .sort-control select:focus-visible,
+.properties-page .toolbar-select select,
+.properties-page .toolbar-select select:focus,
+.properties-page .toolbar-select select:focus-visible{
+  outline:0!important;
+  box-shadow:none!important;
+}
+.properties-page .hero-search-box .search-field select{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  background-image:none!important;
+  padding-right:2.2rem!important;
+}
+.properties-page .hero-search-box .search-field{
+  position:relative!important;
+}
+.properties-page .hero-search-box .search-field::after{
+  content:'⌄'!important;
+  position:absolute!important;
+  right:clamp(1rem,1.4vw,1.45rem)!important;
+  top:50%!important;
+  transform:translateY(-8%)!important;
+  color:var(--ink)!important;
+  font-size:1rem!important;
+  line-height:1!important;
+  pointer-events:none!important;
 }

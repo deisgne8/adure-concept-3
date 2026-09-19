@@ -2631,3 +2631,12 @@ main{
     grid-column:1/-1!important;
   }
 }
+
+/* Remove old wrapper border around the updated homepage search pill. */
+.home-v2 #filter-home{
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}

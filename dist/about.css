@@ -3616,42 +3616,37 @@
   }
 }
 
-/* Inner-page navigation consistency: one behavior for About, Properties, Portfolio, and Customers. */
+/* Homepage navigation parity for inner pages. */
 body.about-page .site-header,
 body.properties-page .site-header,
 body.customers-page .site-header,
 body.portfolio-page .site-header{
   position:fixed!important;
   inset:0 0 auto!important;
-  z-index:var(--z-header)!important;
   height:var(--nav-height)!important;
-  color:#fff!important;
+  color:var(--white)!important;
   background:transparent!important;
-  border-bottom:1px solid rgba(255,255,255,.18)!important;
+  border-bottom-color:transparent!important;
   box-shadow:none!important;
-  transition:background var(--motion-control) var(--ease),border-color var(--motion-control) var(--ease),color var(--motion-control) var(--ease),box-shadow var(--motion-control) var(--ease),backdrop-filter var(--motion-control) var(--ease)!important;
 }
-
 body.about-page .site-header.is-glass,
 body.properties-page .site-header.is-glass,
 body.customers-page .site-header.is-glass,
 body.portfolio-page .site-header.is-glass,
 body.property-detail-page .site-header{
   color:var(--ink)!important;
-  background:rgba(255,255,255,.72)!important;
-  border-bottom-color:rgba(210,226,238,.78)!important;
+  background:rgba(255,255,255,.5)!important;
+  border-bottom-color:rgba(231,230,227,.72)!important;
   box-shadow:0 .25rem 2rem rgba(0,0,0,.06)!important;
   -webkit-backdrop-filter:blur(.9375rem) saturate(130%)!important;
   backdrop-filter:blur(.9375rem) saturate(130%)!important;
 }
-
 body.about-page .site-header:not(.is-glass) .site-logo img,
 body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .site-logo img,
 body.customers-page .site-header:not(.is-glass) .site-logo img,
 body.portfolio-page .site-header:not(.is-glass) .site-logo img{
   filter:brightness(0) invert(1)!important;
 }
-
 body.about-page .site-header.is-glass .site-logo img,
 body.properties-page .site-header.is-glass .site-logo img,
 body.customers-page .site-header.is-glass .site-logo img,
@@ -3659,14 +3654,15 @@ body.portfolio-page .site-header.is-glass .site-logo img,
 body.property-detail-page .site-header .site-logo img{
   filter:none!important;
 }
-
 body.about-page .desktop-nav,
 body.properties-page .desktop-nav,
 body.customers-page .desktop-nav,
 body.portfolio-page .desktop-nav{
-  gap:clamp(16px,1.6vw,28px)!important;
+  gap:var(--s125)!important;
+  margin-left:auto!important;
+  font-size:var(--text-nav)!important;
+  line-height:1.33333!important;
 }
-
 body.about-page .desktop-nav > a,
 body.about-page .desktop-nav > span,
 body.about-page .nav-dropdown-toggle,
@@ -3680,41 +3676,39 @@ body.portfolio-page .desktop-nav > a,
 body.portfolio-page .desktop-nav > span,
 body.portfolio-page .nav-dropdown-toggle{
   color:currentColor!important;
-  border-bottom:2px solid transparent!important;
-  padding:16px 0 .4rem!important;
+  border:0!important;
+  border-bottom:0!important;
+  padding:0!important;
   font-family:var(--font-body)!important;
-  font-size:.875rem!important;
-  font-weight:600!important;
+  font-size:var(--text-nav)!important;
+  font-weight:400!important;
   letter-spacing:0!important;
-  line-height:1.2!important;
+  line-height:1.33333!important;
+  text-transform:none!important;
 }
-
-body.about-page .site-header.is-glass .desktop-nav .is-current,
-body.about-page .site-header.is-glass .desktop-nav [aria-current="page"],
-body.properties-page .site-header.is-glass .desktop-nav .is-current,
-body.properties-page .site-header.is-glass .desktop-nav [aria-current="page"],
-body.customers-page .site-header.is-glass .desktop-nav .is-current,
-body.customers-page .site-header.is-glass .desktop-nav [aria-current="page"],
-body.portfolio-page .site-header.is-glass .desktop-nav .is-current,
-body.portfolio-page .site-header.is-glass .desktop-nav [aria-current="page"],
+body.about-page .nav-dropdown-toggle,
+body.properties-page .nav-dropdown-toggle,
+body.customers-page .nav-dropdown-toggle,
+body.portfolio-page .nav-dropdown-toggle{
+  padding:var(--s075) 0!important;
+}
+body.about-page .desktop-nav .is-current,
+body.about-page .desktop-nav [aria-current="page"],
+body.properties-page .desktop-nav .is-current,
+body.properties-page .desktop-nav [aria-current="page"],
+body.customers-page .desktop-nav .is-current,
+body.customers-page .desktop-nav [aria-current="page"],
+body.portfolio-page .desktop-nav .is-current,
+body.portfolio-page .desktop-nav [aria-current="page"]{
+  color:currentColor!important;
+  border:0!important;
+  border-bottom:0!important;
+}
 body.property-detail-page .desktop-nav .is-current,
 body.property-detail-page .desktop-nav [aria-current="page"]{
   color:var(--accent)!important;
-  border-bottom-color:transparent!important;
+  border:0!important;
 }
-
-body.about-page .site-header:not(.is-glass) .desktop-nav .is-current,
-body.about-page .site-header:not(.is-glass) .desktop-nav [aria-current="page"],
-body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav .is-current,
-body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav [aria-current="page"],
-body.customers-page .site-header:not(.is-glass) .desktop-nav .is-current,
-body.customers-page .site-header:not(.is-glass) .desktop-nav [aria-current="page"],
-body.portfolio-page .site-header:not(.is-glass) .desktop-nav .is-current,
-body.portfolio-page .site-header:not(.is-glass) .desktop-nav [aria-current="page"]{
-  color:#fff!important;
-  border-bottom-color:rgba(188,218,238,.9)!important;
-}
-
 body.about-page .desktop-nav a:hover,
 body.about-page .desktop-nav a:focus-visible,
 body.properties-page .desktop-nav a:hover,
@@ -3723,22 +3717,18 @@ body.customers-page .desktop-nav a:hover,
 body.customers-page .desktop-nav a:focus-visible,
 body.portfolio-page .desktop-nav a:hover,
 body.portfolio-page .desktop-nav a:focus-visible{
-  color:var(--brand-highlight)!important;
-}
-
-body.about-page .site-header.is-glass .desktop-nav a:hover,
-body.about-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.properties-page .site-header.is-glass .desktop-nav a:hover,
-body.properties-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.customers-page .site-header.is-glass .desktop-nav a:hover,
-body.customers-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.portfolio-page .site-header.is-glass .desktop-nav a:hover,
-body.portfolio-page .site-header.is-glass .desktop-nav a:focus-visible,
-body.property-detail-page .desktop-nav a:hover,
-body.property-detail-page .desktop-nav a:focus-visible{
   color:var(--accent)!important;
 }
-
+body.about-page .site-header:not(.is-glass) .desktop-nav a:hover,
+body.about-page .site-header:not(.is-glass) .desktop-nav a:focus-visible,
+body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav a:hover,
+body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .desktop-nav a:focus-visible,
+body.customers-page .site-header:not(.is-glass) .desktop-nav a:hover,
+body.customers-page .site-header:not(.is-glass) .desktop-nav a:focus-visible,
+body.portfolio-page .site-header:not(.is-glass) .desktop-nav a:hover,
+body.portfolio-page .site-header:not(.is-glass) .desktop-nav a:focus-visible{
+  color:var(--brand-highlight)!important;
+}
 body.about-page .header-cta,
 body.about-page .header-cta.btn.primary,
 body.properties-page .header-cta,
@@ -3747,40 +3737,38 @@ body.customers-page .header-cta,
 body.customers-page .header-cta.btn.primary,
 body.portfolio-page .header-cta,
 body.portfolio-page .header-cta.btn.primary{
-  min-height:42px!important;
-  padding:0 16px!important;
+  min-height:var(--button-small)!important;
+  height:auto!important;
+  padding:var(--s075) var(--s1)!important;
   border-color:var(--accent)!important;
   background:var(--accent)!important;
   color:#fff!important;
   font-family:var(--font-body)!important;
-  font-size:.875rem!important;
-  font-weight:600!important;
+  font-size:13px!important;
+  font-weight:400!important;
   letter-spacing:0!important;
+  line-height:1.2!important;
   text-transform:none!important;
 }
-
 body.about-page .menu-toggle,
 body.properties-page .menu-toggle,
 body.customers-page .menu-toggle,
 body.portfolio-page .menu-toggle{
   color:currentColor!important;
 }
-
 body.about-page .site-header:not(.is-glass) .menu-toggle span,
 body.properties-page:not(.property-detail-page) .site-header:not(.is-glass) .menu-toggle span,
 body.customers-page .site-header:not(.is-glass) .menu-toggle span,
 body.portfolio-page .site-header:not(.is-glass) .menu-toggle span{
-  background:#fff!important;
+  background:currentColor!important;
 }
-
 body.about-page .site-header.is-glass .menu-toggle span,
 body.properties-page .site-header.is-glass .menu-toggle span,
 body.customers-page .site-header.is-glass .menu-toggle span,
 body.portfolio-page .site-header.is-glass .menu-toggle span,
 body.property-detail-page .menu-toggle span{
-  background:var(--ink)!important;
+  background:currentColor!important;
 }
-
 body.about-page .nav-dropdown-menu,
 body.properties-page .nav-dropdown-menu,
 body.customers-page .nav-dropdown-menu,
@@ -3788,11 +3776,10 @@ body.portfolio-page .nav-dropdown-menu{
   top:calc(100% + .85rem)!important;
   border-radius:var(--radius-large,16px)!important;
   background:rgba(255,255,255,.96)!important;
-  border-color:rgba(210,226,238,.9)!important;
+  border-color:var(--border)!important;
   box-shadow:var(--shadow-soft)!important;
   overflow:visible!important;
 }
-
 body.about-page .desktop-nav .nav-dropdown-menu a,
 body.properties-page .desktop-nav .nav-dropdown-menu a,
 body.customers-page .desktop-nav .nav-dropdown-menu a,
@@ -3801,12 +3788,14 @@ body.about-page .desktop-nav .nav-dropdown-menu .is-current,
 body.properties-page .desktop-nav .nav-dropdown-menu .is-current,
 body.customers-page .desktop-nav .nav-dropdown-menu .is-current,
 body.portfolio-page .desktop-nav .nav-dropdown-menu .is-current{
+  display:block!important;
   color:var(--ink)!important;
-  border-bottom:0!important;
+  border:0!important;
   padding:.65rem .75rem!important;
+  font-size:var(--text-nav)!important;
   font-weight:400!important;
+  line-height:1.33333!important;
 }
-
 body.about-page .desktop-nav .nav-dropdown-menu a:hover,
 body.about-page .desktop-nav .nav-dropdown-menu a:focus-visible,
 body.properties-page .desktop-nav .nav-dropdown-menu a:hover,
@@ -3819,353 +3808,8 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
   background:rgba(0,71,137,.08)!important;
 }
 
-body.about-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.about-page .site-header.is-glass .desktop-nav > span,
-body.about-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.properties-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.properties-page .site-header.is-glass .desktop-nav > span,
-body.properties-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.customers-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.customers-page .site-header.is-glass .desktop-nav > span,
-body.customers-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.portfolio-page .site-header.is-glass .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.portfolio-page .site-header.is-glass .desktop-nav > span,
-body.portfolio-page .site-header.is-glass .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]),
-body.property-detail-page .desktop-nav > a:not(.is-current):not([aria-current="page"]),
-body.property-detail-page .desktop-nav > span,
-body.property-detail-page .nav-dropdown-toggle:not(.is-current):not([aria-current="page"]){
-  border-color:transparent!important;
-  border-bottom-color:transparent!important;
-}
-/* Timeline polish: equal circular milestone cards with consistent image and copy alignment. */
-.about-page .story-tilton-years{
-  grid-template-columns:repeat(6,minmax(0,1fr))!important;
-  gap:clamp(.8rem,1.4vw,1.15rem)!important;
-  margin-top:clamp(3rem,5vw,4.4rem)!important;
-}
-.about-page .story-tilton-years:before{
-  top:2rem!important;
-  left:0!important;
-  right:0!important;
-}
-.about-page .story-tilton-years li,
-.about-page .story-tilton-years li.is-active{
-  display:block!important;
-  height:clamp(11.4rem,14.2vw,12.2rem)!important;
-}
-.about-page .story-tilton-years li:before{
-  top:2rem!important;
-  width:.58rem!important;
-  height:.58rem!important;
-  box-shadow:0 0 0 .34rem rgba(23,77,142,.08)!important;
-}
-.about-page .story-tilton-years button{
-  height:100%!important;
-  min-height:0!important;
-  aspect-ratio:1/1!important;
-  max-width:clamp(11.4rem,14.2vw,12.2rem)!important;
-  margin:0 auto!important;
-  padding:2.75rem .72rem .85rem!important;
-  border-radius:999px!important;
-  border-color:rgba(23,77,142,.2)!important;
-  border-top-color:transparent!important;
-  background:rgba(239,246,250,.34)!important;
-  overflow:visible!important;
-  transform:none!important;
-}
-.about-page .story-tilton-years button:hover,
-.about-page .story-tilton-years button:focus-visible,
-.about-page .story-tilton-years li.is-active button{
-  background:rgba(255,255,255,.62)!important;
-  transform:none!important;
-}
-.about-page .story-tilton-years strong{
-  top:.62rem!important;
-  left:.65rem!important;
-  font-size:clamp(1.5rem,2.05vw,2rem)!important;
-}
-.about-page .story-tilton-years .story-thumb,
-.about-page .story-tilton-years li.is-active .story-thumb,
-.about-page .story-tilton-years li:not(.is-active) .story-thumb{
-  flex:0 0 auto!important;
-  width:100%!important;
-  height:clamp(4.4rem,6.8vw,5.6rem)!important;
-  aspect-ratio:auto!important;
-  border-radius:.55rem!important;
-}
-.about-page .story-tilton-years small,
-.about-page .story-tilton-years li.is-active small,
-.about-page .story-tilton-years li:not(.is-active) small{
-  width:100%!important;
-  max-width:none!important;
-  min-height:2.05rem!important;
-  font-size:clamp(.74rem,.92vw,.84rem)!important;
-  line-height:1.22!important;
-}
-@media(max-width:1100px){
-  .about-page .story-tilton-years{
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  }
-  .about-page .story-tilton-years li{
-    height:clamp(11.4rem,28vw,12.6rem)!important;
-  }
-  .about-page .story-tilton-years button{
-    max-width:clamp(11.4rem,28vw,12.6rem)!important;
-  }
-}
-@media(max-width:640px){
-  .about-page .story-tilton-years li{
-    height:auto!important;
-  }
-  .about-page .story-tilton-years button{
-    aspect-ratio:auto!important;
-    max-width:none!important;
-    min-height:11rem!important;
-    border-radius:2rem!important;
-  }
-}
-/* Timeline polish fix: prevent short milestone labels from shrinking circular cards. */
-.about-page .story-tilton-years button{
-  width:100%!important;
-  inline-size:100%!important;
-  min-width:100%!important;
-  max-width:100%!important;
-  aspect-ratio:auto!important;
-}
-.about-page .story-tilton-years .story-thumb,
-.about-page .story-tilton-years li.is-active .story-thumb,
-.about-page .story-tilton-years li:not(.is-active) .story-thumb{
-  width:100%!important;
-  inline-size:100%!important;
-}
-@media(max-width:640px){
-  .about-page .story-tilton-years button{
-    min-width:0!important;
-  }
-}
-/* Timeline polish fix: clear inherited responsive padding on all milestone slots. */
-.about-page .story-tilton-years li,
-.about-page .story-tilton-years li:nth-child(3n+1),
-.about-page .story-tilton-years li:first-child,
-.about-page .story-tilton-years li.is-active{
-  padding:0!important;
-  padding-inline:0!important;
-}
-/* Timeline final: match reference with line, dots, active image/detail and plain future years. */
-.about-page .story-tilton-years{
-  position:relative!important;
-  display:grid!important;
-  grid-template-columns:repeat(6,minmax(0,1fr))!important;
-  align-items:start!important;
-  gap:clamp(1.2rem,2.5vw,2.2rem)!important;
-  width:100%!important;
-  margin:clamp(3.4rem,5.8vw,5rem) 0 0!important;
-  padding:0!important;
-  border:0!important;
-  background:transparent!important;
-  overflow:visible!important;
-}
-.about-page .story-tilton-years:before{
-  content:''!important;
-  position:absolute!important;
-  left:.6rem!important;
-  right:.6rem!important;
-  top:.86rem!important;
-  height:1px!important;
-  background:rgba(23,77,142,.2)!important;
-  z-index:0!important;
-}
-.about-page .story-tilton-years li,
-.about-page .story-tilton-years li:nth-child(3n+1),
-.about-page .story-tilton-years li:first-child,
-.about-page .story-tilton-years li.is-active{
-  position:relative!important;
-  z-index:1!important;
-  height:auto!important;
-  min-height:0!important;
-  padding:0!important;
-  padding-inline:0!important;
-  border:0!important;
-  background:transparent!important;
-  box-shadow:none!important;
-  color:var(--accent)!important;
-}
-.about-page .story-tilton-years li:before{
-  content:''!important;
-  position:absolute!important;
-  left:0!important;
-  top:.86rem!important;
-  width:.6rem!important;
-  height:.6rem!important;
-  border-radius:999px!important;
-  background:var(--accent)!important;
-  box-shadow:0 0 0 .32rem rgba(23,77,142,.08)!important;
-  transform:translateY(-50%)!important;
-  z-index:3!important;
-}
-.about-page .story-tilton-years li:after{
-  content:none!important;
-}
-.about-page .story-tilton-years button{
-  position:relative!important;
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:flex-start!important;
-  gap:.62rem!important;
-  width:100%!important;
-  min-width:0!important;
-  max-width:none!important;
-  height:auto!important;
-  min-height:clamp(8.6rem,13vw,10.7rem)!important;
-  aspect-ratio:auto!important;
-  margin:0!important;
-  padding:2.25rem 0 0!important;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  color:inherit!important;
-  text-align:left!important;
-  box-shadow:none!important;
-  transform:none!important;
-  transition:opacity .22s ease!important;
-}
-.about-page .story-tilton-years button:hover,
-.about-page .story-tilton-years button:focus-visible,
-.about-page .story-tilton-years li.is-active button{
-  background:transparent!important;
-  border:0!important;
-  transform:none!important;
-}
-.about-page .story-tilton-years strong{
-  order:1!important;
-  position:static!important;
-  margin:0!important;
-  color:rgba(23,77,142,.4)!important;
-  font-family:var(--body)!important;
-  font-size:clamp(1.85rem,2.7vw,2.45rem)!important;
-  font-weight:700!important;
-  line-height:.95!important;
-  letter-spacing:-.06em!important;
-}
-.about-page .story-tilton-years li.is-active strong,
-.about-page .story-tilton-years button:hover strong{
-  color:var(--accent)!important;
-}
-.about-page .story-tilton-years .story-thumb,
-.about-page .story-tilton-years li.is-active .story-thumb,
-.about-page .story-tilton-years li:not(.is-active) .story-thumb{
-  order:0!important;
-  display:none!important;
-  width:clamp(9.8rem,14vw,12.6rem)!important;
-  height:clamp(5.3rem,7.2vw,6.4rem)!important;
-  margin:0!important;
-  border-radius:0!important;
-  overflow:hidden!important;
-  background:#c8d5df!important;
-}
-.about-page .story-tilton-years li.is-active .story-thumb{
-  display:block!important;
-}
-.about-page .story-tilton-years small,
-.about-page .story-tilton-years li.is-active small,
-.about-page .story-tilton-years li:not(.is-active) small{
-  order:2!important;
-  display:none!important;
-  width:100%!important;
-  max-width:12.8rem!important;
-  min-height:0!important;
-  color:#526476!important;
-  font-size:.82rem!important;
-  line-height:1.35!important;
-}
-.about-page .story-tilton-years li.is-active small{
-  display:block!important;
-}
-.about-page .story-tilton-years .story-thumb img{
-  display:block!important;
-  width:100%!important;
-  height:100%!important;
-  object-fit:cover!important;
-  border-radius:0!important;
-  filter:none!important;
-  opacity:1!important;
-  transform:none!important;
-}
-.about-page .story-tilton-years button:hover .story-thumb img,
-.about-page .story-tilton-years li.is-active .story-thumb img{
-  transform:none!important;
-}
-@media(max-width:1100px){
-  .about-page .story-tilton-years{
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    row-gap:1.8rem!important;
-  }
-  .about-page .story-tilton-years:before{
-    content:none!important;
-  }
-}
-@media(max-width:640px){
-  .about-page .story-tilton-years{
-    grid-template-columns:1fr!important;
-  }
-  .about-page .story-tilton-years button{
-    min-height:0!important;
-  }
-  .about-page .story-tilton-years .story-thumb,
-  .about-page .story-tilton-years li.is-active .story-thumb{
-    width:min(100%,13rem)!important;
-  }
-}
-/* Timeline reference fix: keep the active dot visible above the active image. */
-.about-page .story-tilton-years li.is-active:before{
-  z-index:8!important;
-}
-.about-page .story-tilton-years li.is-active .story-thumb{
-  margin-top:.55rem!important;
-}
-.about-page .story-tilton-years li.is-active button{
-  padding-top:2.75rem!important;
-}
-/* Timeline reference fix: align each year directly with its dot. */
-.about-page .story-tilton-years:before{
-  left:.3rem!important;
-  right:0!important;
-  top:.86rem!important;
-}
-.about-page .story-tilton-years li:before{
-  left:.3rem!important;
-  top:.86rem!important;
-  width:.58rem!important;
-  height:.58rem!important;
-  background:var(--accent)!important;
-  box-shadow:0 0 0 .28rem rgba(23,77,142,.08)!important;
-  transform:translate(-50%,-50%)!important;
-}
-.about-page .story-tilton-years strong{
-  transform:translateX(-.3rem)!important;
-}
-.about-page .story-tilton-years li.is-active .story-thumb,
-.about-page .story-tilton-years li.is-active small{
-  transform:translateX(-.3rem)!important;
-}
-@media(max-width:640px){
-  .about-page .story-tilton-years strong,
-  .about-page .story-tilton-years li.is-active .story-thumb,
-  .about-page .story-tilton-years li.is-active small{
-    transform:none!important;
-  }
-}
-/* Timeline reference fix: exact dot-to-year left alignment. */
-.about-page .story-tilton-years:before{
-  left:0!important;
-}
-.about-page .story-tilton-years li:before,
-.about-page .story-tilton-years li.is-active:before{
-  left:0!important;
-  transform:translateY(-50%)!important;
-}
-.about-page .story-tilton-years strong,
-.about-page .story-tilton-years li.is-active .story-thumb,
-.about-page .story-tilton-years li.is-active small{
-  transform:none!important;
+/* Final homepage nav parity guard. */
+body.about-page .header-cta,
+body.about-page .header-cta.btn.primary{
+  font-weight:400!important;
 }
