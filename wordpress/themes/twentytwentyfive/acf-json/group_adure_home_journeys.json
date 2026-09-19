@@ -1,0 +1,48 @@
+{
+  "key": "group_adure_home_journeys",
+  "title": "Home Journeys",
+  "fields": [
+    {
+      "key": "field_adure_journey_components",
+      "label": "Journey Components",
+      "name": "journey_components",
+      "type": "flexible_content",
+      "button_label": "Add component",
+      "layouts": [
+        {
+          "key": "layout_adure_journeys",
+          "name": "journeys",
+          "label": "Journeys",
+          "display": "block",
+          "sub_fields": [
+            { "key": "field_adure_journeys_heading", "label": "Heading", "name": "heading", "type": "textarea", "rows": 3 },
+            { "key": "field_adure_journeys_description", "label": "Description", "name": "description", "type": "textarea", "rows": 3 },
+            { "key": "field_adure_journeys_pt", "label": "Top spacing", "name": "pt", "type": "select", "choices": { "pt_100": "100", "pt_75": "75", "pt_50": "50", "pt_25": "25" }, "default_value": "pt_100" },
+            { "key": "field_adure_journeys_pb", "label": "Bottom spacing", "name": "pb", "type": "select", "choices": { "pb_100": "100", "pb_75": "75", "pb_50": "50", "pb_25": "25" }, "default_value": "pb_100" },
+            {
+              "key": "field_adure_journeys_cards",
+              "label": "Cards",
+              "name": "cards",
+              "type": "repeater",
+              "min": 1,
+              "max": 4,
+              "sub_fields": [
+                { "key": "field_adure_journey_image", "label": "Image", "name": "image", "type": "image", "return_format": "url" },
+                { "key": "field_adure_journey_image_alt", "label": "Image alt text", "name": "image_alt", "type": "text" },
+                { "key": "field_adure_journey_title", "label": "Title", "name": "title", "type": "text" },
+                { "key": "field_adure_journey_description", "label": "Description", "name": "description", "type": "textarea", "rows": 3 },
+                { "key": "field_adure_journey_button_text", "label": "Button text", "name": "button_text", "type": "text" },
+                { "key": "field_adure_journey_button_href", "label": "Button link or path", "name": "button_href", "type": "text" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "location": [[{ "param": "page", "operator": "==", "value": "6" }]],
+  "position": "acf_after_title",
+  "style": "seamless",
+  "show_in_rest": 1,
+  "active": true
+}

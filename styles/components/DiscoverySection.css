@@ -148,6 +148,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--motion-image) ease;
+}
+.map-location:hover .map-location-media img,
+.map-location:focus-visible .map-location-media img {
+  transform: scale(var(--image-scale));
 }
 .map-location-details {
   display: flex;
@@ -271,6 +276,14 @@
     scale 0.25s;
   box-sizing: border-box;
 }
+.adure-map-marker > span::before {
+  content: "";
+  position: absolute;
+  inset: -0.75rem;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 25%);
+  border-radius: 50%;
+  animation: adure-map-marker-pulse 2s ease-out infinite;
+}
 .adure-map-marker > span:after {
   content: "";
   position: absolute;
@@ -282,6 +295,10 @@
   background: #008bc7;
   scale: 1.2;
   box-shadow: 0 0 0 6px #008bc71c;
+}
+@keyframes adure-map-marker-pulse {
+  0% { opacity: 0.8; transform: scale(0.55); }
+  70%, 100% { opacity: 0; transform: scale(1.35); }
 }
 .adure-map-marker:focus-visible {
   outline: 2px solid var(--accent);

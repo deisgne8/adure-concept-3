@@ -7,6 +7,7 @@ export const getStaticProps = (async () => ({
   props: {
     homeContent: await loadHomeContent(),
   },
+  revalidate: 60,
 })) satisfies GetStaticProps;
 
 export default function IndexPage({

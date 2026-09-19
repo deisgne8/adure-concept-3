@@ -5,7 +5,6 @@ import DiscoverySection from "./sections/DiscoverySection";
 import HeroSection from "./sections/HeroSection";
 import JourneysSection from "./sections/JourneysSection";
 import ManagementSection from "./sections/ManagementSection";
-import HomeOverlays from "./sections/HomeOverlays";
 import PortfolioSection from "./sections/PortfolioSection";
 import ProofSection from "./sections/ProofSection";
 import SellSection from "./sections/SellSection";
@@ -40,7 +39,6 @@ export default function HomePage({ content }: HomePageProps) {
         </section>
       </main>
       <SiteFooter />
-      <HomeOverlays />
     </>
   );
 }

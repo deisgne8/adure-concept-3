@@ -1,11 +1,8 @@
 import {
-  AboutBusinessSection,
   AboutContactSection,
-  AboutCustomersSection,
   InnerBanner,
   AboutIntroductionSection,
   AboutLeadershipSection,
-  AboutScaleSection,
   AboutStorySection,
   AboutValuesSection,
   AboutVisionSection,
@@ -28,12 +25,9 @@ export default function AboutPage({ siteContent, content }: AboutPageProps) {
         <InnerBanner innerBanner={content.innerBanner} />
         <AboutIntroductionSection introduction={content.introduction} />
         <AboutStorySection story={content.story} />
-        <AboutScaleSection scale={content.scale} />
-        <AboutBusinessSection business={content.business} />
         <AboutVisionSection vision={content.vision} />
         <AboutValuesSection values={content.values} />
         <AboutLeadershipSection leadership={content.leadership} />
-        <AboutCustomersSection customers={content.customers} />
         <AboutContactSection contact={content.contact} />
       </main>
       <SiteFooter homeHref="/" />

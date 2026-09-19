@@ -40,12 +40,12 @@ export default function SiteFooter({ homeHref = "#home" }: SiteFooterProps) {
             </div>
             <div>
               <h3>Properties</h3>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
+              <Link href="/properties?transaction=sale">
                 Buy
-              </a>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties">
+              </Link>
+              <Link href="/properties?transaction=lease">
                 Lease
-              </a>
+              </Link>
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property">
                 List your property
               </a>

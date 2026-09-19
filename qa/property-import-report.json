@@ -1,0 +1,54 @@
+{
+  "sourceRows": 1936,
+  "buildings": 44,
+  "unitsReady": 1931,
+  "rejected": [
+    {
+      "source": "Unit_Details - Al Ain.xlsx / Sheikha Sheikha Bin Zayed  / row 2",
+      "reason": "Missing building name or unit code"
+    },
+    {
+      "source": "Unit_Details - Al Ain.xlsx / Sheikh Diab Bin Zayed  / row 2",
+      "reason": "Missing building name or unit code"
+    },
+    {
+      "source": "List of Retails Details S.xlsx / Sheikh Diab Al Nahyan Al Ain / row 2",
+      "reason": "Missing building name or unit code"
+    },
+    {
+      "source": "List of Retails Details S.xlsx / Sheikh Diab Al Nahyan Al Ain / row 3",
+      "reason": "Missing building name or unit code"
+    },
+    {
+      "source": "List of Retails Details S.xlsx / Sheikha Sheikha Al Nahyan / row 2",
+      "reason": "Missing building name or unit code"
+    }
+  ],
+  "duplicates": [],
+  "reconciledRows": 1936,
+  "statusCounts": {
+    "occupied": 1806,
+    "available": 125
+  },
+  "sectorCounts": {
+    "Residential": 1771,
+    "Retail": 160
+  },
+  "amenityCounts": {
+    "Balcony": 1248,
+    "Beach": 858,
+    "Built-in Cooker and Washing Machine": 81,
+    "Covered Parking": 20,
+    "Driver's Room": 23,
+    "Facility Room": 858,
+    "Gym": 1329,
+    "Jacuzzi": 1,
+    "Kids' Play Area": 1088,
+    "Maid Room": 1229,
+    "Private Garden": 20,
+    "Store Room": 77,
+    "Swimming Pool": 1350,
+    "Underground Parking": 839,
+    "Yoga Room": 858
+  }
+}

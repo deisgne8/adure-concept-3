@@ -391,8 +391,28 @@ select {
 .nav-disclosure > button {
   position: relative;
 }
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline-before {
+  position: relative;
+}
 .desktop-nav > a::after,
-.nav-disclosure > button::after {
+.nav-disclosure > button::after,
+.link-underline::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.375rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--ease);
+}
+.link-underline-before::before {
   content: "";
   position: absolute;
   right: 0;
@@ -407,7 +427,15 @@ select {
 .desktop-nav > a:hover::after,
 .desktop-nav > a:focus-visible::after,
 .nav-disclosure > button:hover::after,
-.nav-disclosure > button:focus-visible::after {
+.nav-disclosure > button:focus-visible::after,
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.link-underline-before:hover::before,
+.link-underline-before:focus-visible::before,
+.map-location:focus-visible .link-underline-before::before {
   transform: scaleX(1);
   transform-origin: left;
 }

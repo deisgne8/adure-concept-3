@@ -1,10 +1,12 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { ArrowRight } from "lucide-react";
 
 export type ButtonVariant = "default" | "primary" | "dark" | "link";
 
 type SharedProps = {
   children: ReactNode;
   className?: string;
+  showArrow?: boolean;
   variant?: ButtonVariant;
 };
 
@@ -21,10 +23,17 @@ type NativeButtonProps = SharedProps &
 type ButtonProps = LinkButtonProps | NativeButtonProps;
 
 export default function Button(props: ButtonProps) {
-  const { children, className, variant = "default" } = props;
+  const {
+    children,
+    className,
+    showArrow: showArrowProp,
+    variant = "default",
+  } = props;
+  const showArrow = showArrowProp ?? variant === "link";
   const buttonClassName = [
     "btn",
     variant === "default" ? "" : variant,
+    variant === "link" ? "button-link" : "",
     className,
   ]
     .filter(Boolean)
@@ -35,6 +44,7 @@ export default function Button(props: ButtonProps) {
       children: _children,
       className: _className,
       href,
+      showArrow: _showArrow,
       variant: _variant,
       ...linkProps
     } = props;
@@ -42,6 +52,7 @@ export default function Button(props: ButtonProps) {
     return (
       <a {...linkProps} className={buttonClassName} href={href}>
         {children}
+        {showArrow ? <ArrowRight aria-hidden="true" className="button-arrow" /> : null}
       </a>
     );
   }
@@ -49,6 +60,7 @@ export default function Button(props: ButtonProps) {
   const {
     children: _children,
     className: _className,
+    showArrow: _showArrow,
     type = "button",
     variant: _variant,
     ...nativeButtonProps
@@ -57,6 +69,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button {...nativeButtonProps} className={buttonClassName} type={type}>
       {children}
+      {showArrow ? <ArrowRight aria-hidden="true" className="button-arrow" /> : null}
     </button>
   );
 }

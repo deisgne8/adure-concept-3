@@ -7,12 +7,9 @@ import useBannerEntrance from "../ui/useBannerEntrance";
 type InnerBannerContent = (typeof import("../../data/about/inner-banner.json"));
 type IntroductionContent = (typeof import("../../data/about/introduction.json"));
 type StoryContent = (typeof import("../../data/about/story.json"));
-type ScaleContent = (typeof import("../../data/about/scale.json"));
-type BusinessContent = (typeof import("../../data/about/business.json"));
 type VisionContent = (typeof import("../../data/about/vision.json"));
 type ValuesContent = (typeof import("../../data/about/values.json"));
 type LeadershipContent = (typeof import("../../data/about/leadership.json"));
-type CustomersContent = (typeof import("../../data/about/customers.json"));
 type ContactContent = (typeof import("../../data/about/contact.json"));
 
 export function InnerBanner({ innerBanner }: { innerBanner: InnerBannerContent }) {
@@ -111,49 +108,6 @@ export function AboutStorySection({ story }: { story: StoryContent }) {
   );
 }
 
-export function AboutScaleSection({ scale }: { scale: ScaleContent }) {
-  const sectionRef = useRef<HTMLElement>(null);
-  return (
-    <section ref={sectionRef} className="scale-section scale-impact-section" aria-labelledby="scale-title">
-      <ScaleAnimation sectionRef={sectionRef} />
-      <div className="section-shell scale-impact-shell">
-        <div className="scale-impact-metrics" data-reveal>
-          {scale.metrics.map((metric) => <article key={metric.label}><p>{metric.label}</p><strong>{metric.value}</strong></article>)}
-        </div>
-        <div className="scale-impact-lower" data-reveal>
-          <div className="scale-impact-copy">
-            <h2 id="scale-title">{scale.title}</h2>
-            <p>{scale.description}</p>
-            <div className="scale-city-chips" aria-label="Cities of operation">
-              {scale.cities.map((city) => <span key={city}>{city}</span>)}
-            </div>
-          </div>
-          <figure className="scale-impact-image about-image-scale"><img src={scale.image} alt={scale.alt} /></figure>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function AboutBusinessSection({ business }: { business: BusinessContent }) {
-  return (
-    <section className="business-section" id={business.id} aria-labelledby="business-title">
-      <div className="section-shell business-layout">
-        <div data-reveal>
-          <span className="about-eyebrow"><b>06</b> {business.eyebrow}</span>
-          <h2 id="business-title">{business.title}</h2>
-          <p>{business.description}</p>
-        </div>
-        <div className="business-grid" data-reveal>
-          {business.items.map((item, index) => (
-            <a key={item.label} href={item.href}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.label}</strong><p>{item.description}</p></a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function AboutVisionSection({ vision }: { vision: VisionContent }) {
   const sectionRef = useRef<HTMLElement>(null);
   return (
@@ -218,19 +172,6 @@ export function AboutLeadershipSection({ leadership }: { leadership: LeadershipC
   );
 }
 
-export function AboutCustomersSection({ customers }: { customers: CustomersContent }) {
-  return (
-    <section className="customers-bridge customers-showcase" aria-labelledby="customers-title">
-      <div className="section-shell customers-showcase-layout" data-reveal>
-        <div className="customers-showcase-copy"><h2 id="customers-title">{customers.title}</h2><p>{customers.description}</p><a className="customers-pill" href={customers.link.href}>{customers.link.label}</a></div>
-        <div className="customers-showcase-cards" aria-label="Customer sectors">
-          {customers.sectors.map((sector) => <article className="customers-sector-card" key={sector.title}><div className="about-image-scale"><img src={sector.image} alt={sector.alt} /></div><h3>{sector.title}</h3></article>)}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function AboutContactSection({ contact }: { contact: ContactContent }) {
   return (
     <section className="about-cta final-v2 about-home-banner section" aria-labelledby="contact-title">
@@ -244,48 +185,6 @@ export function AboutContactSection({ contact }: { contact: ContactContent }) {
 }
 
 type SectionRef = { current: HTMLElement | null };
-
-function ScaleAnimation({ sectionRef }: { sectionRef: SectionRef }) {
-  useEffect(() => {
-    const section = sectionRef.current;
-    const metrics = section ? Array.from(section.querySelectorAll<HTMLElement>(".scale-impact-metrics strong")) : [];
-    const metricWrap = section?.querySelector<HTMLElement>(".scale-impact-metrics");
-    if (!metrics.length) return;
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const animate = (metric: HTMLElement) => {
-      if (metric.dataset.counted === "true") return;
-      metric.dataset.counted = "true";
-      const target = Number(metric.dataset.target ?? 0);
-      const suffix = metric.dataset.suffix ?? "";
-      if (reducedMotion) { metric.textContent = `${target}${suffix}`; return; }
-      const startedAt = performance.now();
-      const tick = (now: number) => {
-        const progress = Math.min(1, (now - startedAt) / 1300);
-        metric.textContent = `${Math.round(target * (1 - (1 - progress) ** 3))}${suffix}`;
-        if (progress < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-    metrics.forEach((metric) => {
-      const match = (metric.textContent ?? "").trim().match(/([\d,.]+)(.*)/);
-      metric.dataset.target = String(match ? Number(match[1].replace(/,/g, "")) : 0);
-      metric.dataset.suffix = match?.[2] ?? "";
-      metric.textContent = reducedMotion ? `${metric.dataset.target}${metric.dataset.suffix}` : `0${metric.dataset.suffix}`;
-    });
-
-    if (!metricWrap || !("IntersectionObserver" in window)) { metrics.forEach(animate); return; }
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      metrics.forEach(animate);
-      observer.disconnect();
-    }, { threshold: 0.35 });
-    observer.observe(metricWrap);
-    return () => observer.disconnect();
-  }, [sectionRef]);
-
-  return null;
-}
 
 function VisionAnimation({ sectionRef }: { sectionRef: SectionRef }) {
   useEffect(() => {

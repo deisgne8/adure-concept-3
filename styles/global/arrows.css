@@ -9,6 +9,22 @@
   transform: none;
 }
 
+#home .btn.link.button-link::after {
+  content: none;
+}
+
+.button-arrow {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+  stroke-width: 1.5;
+  transition: transform var(--motion-base) var(--ease);
+}
+
+#home #discovery .discovery-view-all::after {
+  content: none;
+}
+
 #home #proof .proof-about > span,
 #home #portfolio .portfolio-card-arrow,
 #home #trust .sector-arrow {
@@ -59,7 +75,12 @@
 #home #conversation .final-links a:focus-visible::after {
   transform: translateX(var(--space-2xs));
 }
-
+#home .btn.link:hover .button-arrow,
+#home .btn.link:focus-visible .button-arrow,
+#home #discovery .map-location:hover .button-arrow,
+#home #discovery .map-location:focus-visible .button-arrow {
+  transform: translateX(var(--space-2xs));
+}
 #home #proof .proof-about:hover > span,
 #home #proof .proof-about:focus-visible > span,
 #home #trust .sector:hover .sector-arrow {
@@ -73,7 +94,7 @@
     color var(--motion-base) var(--ease);
 }
 
-#home #discovery .map-location-action span,
+#home #discovery .map-location-action .button-arrow,
 #home #discovery .map-preview-copy .btn span {
   color: currentColor;
   font: 400 20px/1 var(--font-body);
