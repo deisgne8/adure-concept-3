@@ -15,7 +15,7 @@ for(const oldLayout of ['proof-collage','proof-experience','proof-carousel-head'
   assert.ok(!html.includes(oldLayout),`Retired layout returned: ${oldLayout}`);
 }
 assert.ok(!html.includes('class="amenity-clear"')&&!html.includes('class="text-link clear-filters"'),'Removed filter buttons must stay removed');
-assert.ok(html.includes('<dd>3000+</dd>'),'Units managed must have no comma');
+assert.ok(html.includes('<dd>1800+</dd>'),'Units managed must match client copy');
 const source=readFileSync(new URL('../docs/reference-evidence/adure-v2-source.html',import.meta.url),'utf8');
 const referenceHome=source.slice(source.indexOf('<section class="page active home-v2"'),source.indexOf('<section class="page" id="properties"'));
 const localHome=html.slice(html.indexOf('<section class="home-v2"'),html.indexOf('</main>'));
@@ -45,26 +45,32 @@ for(const required of ['data-city="abu-dhabi"','data-city="dubai"','data-city="a
 }
 const approvedCopy=[
   'Creating Value Beyond Property',
-  'A connected approach to real estate, shaped in Abu Dhabi.',
-  'One Partner for Every Property Move',
-  'Choose with clarity.',
-  'Position for the right value.',
-  'Connect people with place.',
-  'Protect what comes next.',
-  'Find a Place That Fits What Comes Next',
+  'Buy. Sell. Lease. Manage.',
+  'Discover ADURE',
+  'Find a Property',
+  'One Partner For Every Property Move',
+  'From finding the right place to protecting its long-term value, ADURE brings every part of the real estate journey together.',
+  'Find the right opportunity with clear insight and considered guidance.',
+  'Bring your property to market with considered positioning and the right audience.',
+  'Connect people with the right places they need.',
+  'Protect long-term performance through connected long-term management.',
+  'Find Your Next Address',
   'Explore available properties across our locations and communities.',
-  'Property management',
-  'Long after a property is bought, leased or occupied,',
-  'Success Proven in Numbers',
-  'The strongest measure of experience is what it continues to deliver.',
-  'From Places to Performance',
-  'Every asset has its own character, purpose and potential. Explore ADURE portfolio locations and open each property to view its details.',
-  'Your 30-Day Transition Journey',
-  'Good management starts with getting the beginning right.',
-  'Rooted in Trust and Transparency',
-  'ADURE works with government, semi government and private sector organisations across the UAE.',
-  'Whether you are finding a place, bringing a property to market or placing an asset under management, ADURE brings clarity to what comes next.',
-  'Every Next Move Begins with the Right Partner'
+  'From Occupancy To Operations, We Manage It All',
+  'Effective property management means more than looking after a building.',
+  'Built Over Time, Every Day',
+  'Long-term trust is earned through the performance that follows.',
+  '1800+',
+  'A Portfolio Built For Lasting Value',
+  'From residential communities to retail assets, our portfolio reflects a long-term approach to real estate.',
+  'Our 30-Day Transition Journey',
+  'A smooth transition is essential to protecting day-to-day operations, tenant experience and property performance.',
+  'Unlock The Next Opportunity For Your Property',
+  'We position and present your property with the attention it deserves, creating the right visibility and connecting it with serious buyers.',
+  'Trusted By Organisations That Expect More',
+  'ADURE has built long-standing relationships across government, semi-government and the private sector - where integrity, excellence and innovation matter.',
+  'We’re Here For Your Next Step',
+  'Whether you are looking to buy or rent your next property, bringing one to market or placing an asset under management, our team is ready to help.'
 ];
 const localCopy=localHome.replace(/<[^>]*>/g,'');
 approvedCopy.forEach(copy=>assert.ok(localCopy.includes(copy),`Approved copy missing: ${copy}`));
@@ -76,14 +82,13 @@ for(const [id,count] of [['government-semi-government',6],['private-sector-corpo
   assert.equal((group.match(/class="client-logo"/g)||[]).length,count*2,'Each logo has one hidden copy for a seamless loop');
   assert.equal((group.match(/class="client-logo-track"/g)||[]).length,1,'Each group has one horizontal animated track');
 }
-assert.ok(localHome.includes('<span class="discovery-title-ending">What Comes Next</span>'),'Keep what comes next together');
-assert.ok(localHome.includes('<div class="journey-heading"><h2>One Partner for Every Property Move</h2>'),'Journeys heading does not match the requested copy');
-assert.ok(localHome.includes('Every asset has its own character, purpose and potential. Explore ADURE portfolio locations and open each property to view its details.'),'Portfolio intro copy missing');
+assert.ok(localHome.includes('<div class="journey-heading"><h2>One Partner For Every Property Move</h2>'),'Journeys heading does not match the client copy');
+assert.ok(localHome.includes('From residential communities to retail assets, our portfolio reflects a long-term approach to real estate.'),'Portfolio intro copy missing');
 for (const [id, heading] of Object.entries({
-  management:'Value Lies in How a Property Is Cared For',
-  proof:'Success Proven in Numbers',
-  portfolio:'From Places to Performance',
-  trust:'Rooted in Trust and Transparency'
+  management:'From Occupancy To Operations, We Manage It All',
+  proof:'Built Over Time, Every Day',
+  portfolio:'A Portfolio Built For Lasting Value',
+  trust:'Trusted By Organisations That Expect More'
 })) {
   const section=localHome.match(new RegExp(`<section class="[^"]*" id="${id}">([\\s\\S]*?)<\\/section>`))?.[1];
   const h2Markup=section?.match(/<h2[^>]*>([\s\S]*?)<\/h2>/)?.[1];
