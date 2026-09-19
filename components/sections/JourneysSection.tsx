@@ -1,4 +1,5 @@
 import Section from "../ui/Section";
+import Button, { type ButtonVariant } from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type JourneysSectionProps = {
@@ -15,122 +16,46 @@ export default function JourneysSection({ content }: JourneysSectionProps) {
       >
         <div className="section-shell">
           <div className="journey-heading">
-            <h2>One Partner for Every Property Move</h2>
-            <p>
-              Real estate rarely begins and ends with one decision. ADURE brings
-              the expertise at every stage, so each move builds naturally into
-              the next.
+            <h2 data-aos="fade-up" data-aos-offset="120">
+              {content.heading}
+            </h2>
+            <p data-aos="fade-up" data-aos-delay="100" data-aos-offset="120">
+              {content.description}
             </p>
           </div>
           <div className="journey-grid">
-            <article className="journey-card">
-              <div className="journey-media">
-                <img
-                  src="assets/hidd-al-saadiyat/journey-buy.webp"
-                  width="960"
-                  height="1440"
-                  alt="Curved waterfront residences at Hidd Al Saadiyat framed by landscaped gardens"
-                />
-              </div>
-              <div className="journey-content">
-                <h3>Buy</h3>
-                <div className="journey-details">
-                  <div className="journey-details-inner">
-                    <p>
-                      Choose with clarity. Discover opportunities with guidance
-                      grounded in the market.
-                    </p>
-                    <a
-                      className="btn link"
-                      href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
-                    >
-                      Buy with ADURE
-                    </a>
+            {content.cards.map((card, index) => (
+              <article
+                className="journey-card"
+                data-aos="fade-up"
+                data-aos-delay={200 + index * 140}
+                data-aos-offset="120"
+                key={card.title}
+              >
+                <div className="journey-media">
+                  <img
+                    src={card.image.src}
+                    width={card.image.width}
+                    height={card.image.height}
+                    alt={card.image.alt}
+                  />
+                </div>
+                <div className="journey-content">
+                  <h3>{card.title}</h3>
+                  <div className="journey-details">
+                    <div className="journey-details-inner">
+                      <p>{card.description}</p>
+                      <Button
+                        href={card.button.href}
+                        variant={card.button.variant as ButtonVariant}
+                      >
+                        {card.button.text}
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </article>
-            <article className="journey-card">
-              <div className="journey-media">
-                <img
-                  src="assets/journeys/sell.jpg"
-                  width="1024"
-                  height="1536"
-                  alt="Property advisor reviewing real estate photographs"
-                />
-              </div>
-              <div className="journey-content">
-                <h3>Sell</h3>
-                <div className="journey-details">
-                  <div className="journey-details-inner">
-                    <p>
-                      Position for the right value. Bring your property to
-                      market with considered positioning and the right audience.
-                    </p>
-                    <a
-                      className="btn link"
-                      href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
-                    >
-                      Sell with ADURE
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article className="journey-card">
-              <div className="journey-media">
-                <img
-                  src="assets/journeys/lease-lobby.jpg"
-                  width="1333"
-                  height="2000"
-                  alt="Warm marble lobby with chandelier and seating at Hidd Al Saadiyat"
-                />
-              </div>
-              <div className="journey-content">
-                <h3>Lease</h3>
-                <div className="journey-details">
-                  <div className="journey-details-inner">
-                    <p>
-                      Connect people with place. Create the right match between
-                      properties, owners and occupants.
-                    </p>
-                    <a
-                      className="btn link"
-                      href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
-                    >
-                      Lease with ADURE
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
-            <article className="journey-card">
-              <div className="journey-media">
-                <img
-                  src="assets/journeys/manage.jpg"
-                  width="1024"
-                  height="1536"
-                  alt="Property management professional in a cap inspecting a landscaped residence"
-                />
-              </div>
-              <div className="journey-content">
-                <h3>Manage</h3>
-                <div className="journey-details">
-                  <div className="journey-details-inner">
-                    <p>
-                      Protect what comes next. Keep assets performing through
-                      connected management for the long term.
-                    </p>
-                    <a
-                      className="btn link"
-                      href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services"
-                    >
-                      Property management
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
           </div>
         </div>
       </Section>

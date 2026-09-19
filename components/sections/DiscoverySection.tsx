@@ -1,4 +1,5 @@
 import Section from "../ui/Section";
+import SelectField from "../ui/SelectField";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type DiscoverySectionProps = {
@@ -50,42 +51,50 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
           </button>
           <div id="filter-home">
             <form className="search-box" id="property-search">
-              <div className="field">
-                <label htmlFor="filter-location">Location</label>
-                <select id="filter-location" name="location">
-                  <option>All locations</option>
-                  <option>Abu Dhabi</option>
-                  <option>Dubai</option>
-                  <option>Al Ain</option>
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="filter-type">Property type</label>
-                <select id="filter-type" name="type">
-                  <option>All types</option>
-                  <option>Apartment</option>
-                  <option>Villa</option>
-                  <option>Commercial</option>
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="filter-bedrooms">Bedrooms</label>
-                <select id="filter-bedrooms" name="bedrooms">
-                  <option>Any bedrooms</option>
-                  <option>Studio</option>
-                  <option>1–2 bedrooms</option>
-                  <option>3+ bedrooms</option>
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="filter-price">Price range</label>
-                <select id="filter-price" name="price">
-                  <option>Any price</option>
-                  <option>Under AED 100K</option>
-                  <option>AED 100K–200K</option>
-                  <option>AED 200K+</option>
-                </select>
-              </div>
+              <SelectField
+                id="filter-location"
+                label="Location"
+                name="location"
+                options={[
+                  { label: "All locations", value: "All locations" },
+                  { label: "Abu Dhabi", value: "Abu Dhabi" },
+                  { label: "Dubai", value: "Dubai" },
+                  { label: "Al Ain", value: "Al Ain" },
+                ]}
+              />
+              <SelectField
+                id="filter-type"
+                label="Property type"
+                name="type"
+                options={[
+                  { label: "All types", value: "All types" },
+                  { label: "Apartment", value: "Apartment" },
+                  { label: "Villa", value: "Villa" },
+                  { label: "Commercial", value: "Commercial" },
+                ]}
+              />
+              <SelectField
+                id="filter-bedrooms"
+                label="Bedrooms"
+                name="bedrooms"
+                options={[
+                  { label: "Any bedrooms", value: "Any bedrooms" },
+                  { label: "Studio", value: "Studio" },
+                  { label: "1–2 bedrooms", value: "1–2 bedrooms" },
+                  { label: "3+ bedrooms", value: "3+ bedrooms" },
+                ]}
+              />
+              <SelectField
+                id="filter-price"
+                label="Price range"
+                name="price"
+                options={[
+                  { label: "Any price", value: "Any price" },
+                  { label: "Under AED 100K", value: "Under AED 100K" },
+                  { label: "AED 100K–200K", value: "AED 100K–200K" },
+                  { label: "AED 200K+", value: "AED 200K+" },
+                ]}
+              />
               <div className="more-filters">
                 <button
                   className="more-filters-toggle"

@@ -12,7 +12,7 @@
       "beforeServices": [
         {
           "label": "About ADURE",
-          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about"
+          "href": "/about"
         }
       ],
       "services": {

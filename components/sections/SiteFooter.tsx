@@ -1,13 +1,19 @@
-export default function SiteFooter() {
+import Link from "next/link";
+
+type SiteFooterProps = {
+  homeHref?: string;
+};
+
+export default function SiteFooter({ homeHref = "#home" }: SiteFooterProps) {
   return (
     <>
       <footer className="footer">
         <div className="container">
           <div className="footer-grid">
             <div>
-              <a className="logo" href="#home" aria-label="ADURE home">
+              <a className="logo" href={homeHref} aria-label="ADURE home">
                 <img
-                  src="assets/adure-logo-horizontal.svg"
+                  src="/assets/adure-logo-horizontal.svg"
                   alt="ADURE — Abu Dhabi United Real Estate"
                 />
               </a>
@@ -16,9 +22,9 @@ export default function SiteFooter() {
             </div>
             <div>
               <h3>Company</h3>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about">
+              <Link href="/about">
                 About ADURE
-              </a>
+              </Link>
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers">
                 Our customers
               </a>

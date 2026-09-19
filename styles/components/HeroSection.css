@@ -10,8 +10,8 @@
   top: 0;
   z-index: 0;
   width: 100%;
-  height: 100svh;
-  min-height: max(42rem, 100svh);
+  height: 100dvh;
+  min-height: max(42rem, 100dvh);
   --hero-media-y: 0px;
   --hero-media-scale: 1.09;
   --hero-copy-y: 0px;
@@ -135,11 +135,10 @@
   width: 100%;
 }
 
-/* The extra runway gives the hero a short held beat before this panel arrives. */
 #home > #journeys {
   position: relative;
   z-index: 2;
-  margin-top: 58svh;
+  margin-top: 0;
   background: #fff;
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.45);
 }
@@ -152,25 +151,12 @@
 
 @media (max-width: 900px) {
   #home > .site-hero {
-    min-height: 100svh;
+    min-height: 100dvh;
   }
 
-  #home > #journeys {
-    margin-top: 42svh;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #home {
-    background: #fff;
-  }
-
-  #home > .site-hero {
-    position: relative;
-    height: auto;
-    min-height: 100svh;
-  }
-
   #home > .site-hero .hero-video,
   #home > .site-hero .hero-inner {
     transform: none;
@@ -178,8 +164,4 @@
     will-change: auto;
   }
 
-  #home > #journeys {
-    margin-top: 0;
-    box-shadow: none;
-  }
 }

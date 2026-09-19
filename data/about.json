@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "About ADURE | Abu Dhabi United Real Estate",
+    "description": "Learn about ADURE, an integrated UAE real estate company operating across Abu Dhabi, Dubai and Al Ain since 2002."
+  },
+  "header": {
+    "nav": [
+      { "label": "About ADURE", "href": "/about", "current": true },
+      { "label": "Properties", "href": "/#discovery" },
+      { "label": "Our Customers" },
+      { "label": "Contact" }
+    ],
+    "cta": { "label": "List your property", "href": "/#sell" }
+  },
+  "hero": {
+    "image": "/assets/architecture-waterfront.webp",
+    "alt": "Waterfront architecture in Abu Dhabi",
+    "eyebrow": "About ADURE",
+    "title": ["Real Estate,", "End-To-End."],
+    "description": "ADURE brings the essential disciplines of real estate together around one clear purpose: creating lasting value.",
+    "link": { "label": "Explore What We Do", "href": "#what-we-do" }
+  },
+  "who": {
+    "id": "who-we-are",
+    "title": "Transforming The Region's Real Estate Landscape",
+    "paragraphs": [
+      "Abu Dhabi United Real Estate - ADURE - is an integrated UAE real estate company operating across Abu Dhabi, Dubai and Al Ain.",
+      "Our foundations are in property management, supported by expertise across leasing and operations, facility management, and financial and legal management. Today, that experience also extends to buying and selling, allowing us to support owners, investors, buyers and tenants through more of their real estate journey.",
+      "Across every relationship, our focus is the same: protect the quality of the asset, strengthen its performance and create an experience people can trust."
+    ]
+  },
+  "story": {
+    "eyebrow": "Our Story",
+    "milestones": [
+      {
+        "year": "2002",
+        "title": "Over Two Decades Of Excellence.",
+        "body": [
+          "Since 2002, ADURE has built its real estate experience around the professional management of properties and the day-to-day disciplines that protect their performance.",
+          "That foundation now brings together leasing and operations, facility management, and financial and legal management, alongside buying and selling."
+        ],
+        "left": "/assets/hidd-al-saadiyat/curved-residences.webp",
+        "right": "/assets/hidd-al-saadiyat/landscaped-community.webp",
+        "alt": "Managed waterfront residences"
+      },
+      {
+        "year": "2009",
+        "title": "A growing UAE footprint.",
+        "body": [
+          "ADURE expanded its operating experience across more communities, strengthening the systems and service standards behind every managed asset.",
+          "The portfolio grew around the same principle: protect quality, improve continuity and support the people using each place."
+        ],
+        "left": "/assets/portfolio-reference/al-mushrif-villas-v2.webp",
+        "right": "/assets/hidd-al-saadiyat/landscaped-community.webp",
+        "alt": "A growing UAE footprint"
+      },
+      {
+        "year": "2010",
+        "title": "Integrated property support.",
+        "body": [
+          "The business continued building joined-up capability across leasing, operations, facilities coordination and owner support.",
+          "Each discipline strengthened ADURE's ability to look at a property as a complete long-term asset."
+        ],
+        "left": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp",
+        "right": "/assets/management-beachfront-photo.webp",
+        "alt": "Integrated property support"
+      },
+      {
+        "year": "2018",
+        "title": "Performance through management.",
+        "body": [
+          "Operational oversight, reporting and service coordination became a stronger part of the ADURE management approach.",
+          "This period shaped the company's focus on occupancy, asset care and better experiences for owners and occupiers."
+        ],
+        "left": "/assets/hidd-al-saadiyat/management-facility-facade.jpg",
+        "right": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg",
+        "alt": "Performance through management"
+      },
+      {
+        "year": "2020",
+        "title": "A connected real estate model.",
+        "body": [
+          "ADURE's offer evolved into a clearer real estate model connecting buying, selling, leasing and management through one operating view.",
+          "That wider perspective allows each property decision to support what comes next."
+        ],
+        "left": "/assets/journeys/sell.jpg",
+        "right": "/assets/journeys/manage.jpg",
+        "alt": "A connected real estate model"
+      },
+      {
+        "year": "2021",
+        "title": "Built for what comes next.",
+        "body": [
+          "ADURE continues to bring long-term thinking to every property relationship across Abu Dhabi, Dubai and Al Ain.",
+          "The focus remains consistent: create value through clarity, accountability and everyday care."
+        ],
+        "left": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+        "right": "/assets/hidd-al-saadiyat/golden-waterfront.webp",
+        "alt": "Built for what comes next"
+      }
+    ]
+  },
+  "scale": {
+    "title": "A UAE Portfolio With Operating Depth.",
+    "description": "ADURE operates across three key UAE markets, managing a portfolio that spans residential, commercial and mixed-use environments.",
+    "metrics": [
+      { "label": "Units managed", "value": "3000+" },
+      { "label": "Professionals", "value": "200+" },
+      { "label": "Occupancy rate", "value": "98%" },
+      { "label": "Cities of operation", "value": "3" }
+    ],
+    "cities": ["Abu Dhabi", "Dubai", "Al Ain"],
+    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "alt": "Aerial view of Abu Dhabi waterfront communities"
+  },
+  "business": {
+    "id": "what-we-do",
+    "eyebrow": "Four Business Lines",
+    "title": "One Connected Real Estate Model.",
+    "description": "ADURE connects buying, selling, leasing and management through one operating view of the asset and the people it serves.",
+    "items": [
+      { "label": "Buy", "href": "/#discovery", "description": "Discover selected properties across key UAE communities." },
+      { "label": "Sell", "href": "/#sell", "description": "Position your property with a team that understands its market." },
+      { "label": "Lease", "href": "/#discovery", "description": "Connect spaces with qualified tenants and clear leasing support." },
+      { "label": "Manage", "href": "/#management", "description": "Protect performance through operations, facilities, finance and legal oversight." }
+    ]
+  },
+  "vision": {
+    "title": "Built For The Long Term.",
+    "panels": [
+      {
+        "title": "Vision",
+        "description": "To be the most trusted real estate partner in the UAE, setting the benchmark for occupancy, transparency and long-term asset value.",
+        "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp"
+      },
+      {
+        "title": "Mission",
+        "description": "To deliver specialist, technology-driven property solutions that protect every owner's investment and earns every tenant's loyalty.",
+        "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg"
+      }
+    ]
+  },
+  "values": {
+    "eyebrow": "Values",
+    "title": "Principles That Shape Every Relationship.",
+    "items": [
+      { "title": "Customer Centric", "description": "We listen closely, understand what matters and shape our service around the people and organisations we serve.", "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp" },
+      { "title": "Integrity", "description": "We act with honesty, transparency and accountability, building trust through every decision.", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg" },
+      { "title": "Excellence", "description": "We set high standards for our service, our properties and the way we work.", "image": "/assets/hidd-al-saadiyat/golden-waterfront.webp" },
+      { "title": "Partnership", "description": "We build lasting relationships with owners, tenants, clients and communities through shared commitment.", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp" },
+      { "title": "Innovation", "description": "We use technology, insight and better ways of working to improve service and performance.", "image": "/assets/hidd-al-saadiyat/management-facility-facade.jpg" },
+      { "title": "Sustainability", "description": "We consider the long-term environmental, social and economic impact of the assets we manage.", "image": "/assets/hidd-al-saadiyat/landscaped-community.webp" }
+    ]
+  },
+  "ceo": {
+    "title": "Real Estate Creates Lasting Value When Every Stage Of The Asset Journey Is Connected.",
+    "description": "At ADURE, our responsibility goes beyond individual transactions. We bring the right expertise together to protect performance, support the people who use our properties and build relationships that endure.",
+    "name": "Rashed Aldhaheri",
+    "role": "Group Chief Executive Officer"
+  },
+  "leadership": {
+    "title": "Experience Behind Every Decision.",
+    "people": [
+      { "name": "Eyad Eid", "role": "Group Chief Finance Officer", "image": "/assets/about/leadership/eyad-eid.jpg" },
+      { "name": "Ali Tawalbeh", "role": "Group Finance Manager", "image": "/assets/about/leadership/ali-tawalbeh.jpg" },
+      { "name": "Ahmed Qasim", "role": "Facility Management & Operations Manager", "image": "/assets/about/leadership/ahmed-qasim.jpg" }
+    ]
+  },
+  "customers": {
+    "title": "Rooted In Abu Dhabi Trusted Across The UAE",
+    "description": "From Abu Dhabi and Saadiyat to Al Ain and Dubai, ADURE brings local understanding and one consistent standard of service to the markets we serve.",
+    "link": { "label": "Our Customers", "href": "/#trust" },
+    "sectors": [
+      { "title": "Government & Semi-Government", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "alt": "ADURE team advising institutional clients" },
+      { "title": "Private Sector & Corporates", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp", "alt": "Modern UAE corporate property entrance" }
+    ]
+  },
+  "cta": {
+    "title": "Start With The Right Conversation.",
+    "description": "Whether you are looking to buy, sell or lease, or want an experienced team to manage your asset for the long term, speak to ADURE about what you need next.",
+    "image": "/assets/saadiyat-aerial-contact.png",
+    "alt": "Aerial view of Saadiyat waterfront",
+    "links": [
+      { "label": "Contact ADURE", "href": "/#conversation" },
+      { "label": "Explore Our Services", "href": "/#management" }
+    ]
+  },
+  "footer": {
+    "company": [
+      { "label": "About ADURE", "href": "/about" },
+      { "label": "Our Customers", "href": "/#trust" },
+      { "label": "Media and gallery", "href": "/#portfolio" },
+      { "label": "Careers" },
+      { "label": "Contact", "href": "/#conversation" }
+    ],
+    "properties": [
+      { "label": "Buy", "href": "/#discovery" },
+      { "label": "Lease", "href": "/#discovery" },
+      { "label": "List your property", "href": "/#sell" },
+      { "label": "Portfolio", "href": "/#portfolio" }
+    ],
+    "services": [
+      { "label": "Buy", "href": "/#discovery" },
+      { "label": "Sell", "href": "/#sell" },
+      { "label": "Leasing", "href": "/#discovery" },
+      { "label": "Property management", "href": "/#management" }
+    ],
+    "explore": [
+      { "label": "Upcoming projects", "href": "/#portfolio" },
+      { "label": "Qaryat Al Hidd", "href": "/#portfolio" }
+    ]
+  }
+}

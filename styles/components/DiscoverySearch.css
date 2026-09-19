@@ -45,11 +45,9 @@
   align-self: center;
 }
 
-#discovery #property-search select {
+#discovery #property-search .select-field-trigger {
   min-height: 2.25rem;
   padding: 2px 0;
-  border-bottom: 0;
-  color: var(--ink);
 }
 
 #discovery #property-search > .btn {

@@ -3,6 +3,11 @@
 }
 html {
   scroll-padding-top: var(--nav-height);
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 body {
   margin: 0;
@@ -12,6 +17,8 @@ body {
   font-size: var(--text-body);
   line-height: var(--line-body);
   font-weight: 400;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 body:has(dialog[open]) {
   overflow: hidden;
@@ -320,10 +327,14 @@ select {
   height: var(--nav-height);
   border-bottom: 1px solid transparent;
   transition:
+    transform var(--motion-control) var(--ease),
     background var(--motion-control) var(--ease),
     border-color var(--motion-control) var(--ease),
     color var(--motion-control) var(--ease),
     box-shadow var(--motion-control) var(--ease);
+}
+.site-header.is-scroll-hidden {
+  transform: translateY(calc(-100% - 1px));
 }
 .site-header.is-glass {
   color: var(--ink);

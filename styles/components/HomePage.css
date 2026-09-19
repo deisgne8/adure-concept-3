@@ -20,7 +20,7 @@ main {
 }
 .site-hero {
   position: relative;
-  min-height: max(100svh, var(--hero-min));
+  min-height: max(100dvh, var(--hero-min));
   padding: 0;
   color: white;
   display: flex;
@@ -486,6 +486,21 @@ main {
   padding: var(--s075) var(--s2);
   font-size: var(--text-label);
   min-height: var(--button-small);
+  cursor: pointer;
+  transition:
+    background var(--motion-fast) var(--ease),
+    border-color var(--motion-fast) var(--ease),
+    color var(--motion-fast) var(--ease);
+}
+.tab:hover:not(.active),
+.tab:focus-visible {
+  color: white;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.tab.active:hover {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 .tab.active {
   background: var(--accent);

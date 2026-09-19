@@ -1,39 +1,54 @@
 import type { HomeContent } from "../../lib/home/load-home-content";
 import Button from "../ui/Button";
+import SiteChromeClient from "./SiteChromeClient";
 
 type SiteChromeProps = {
   content: HomeContent["site"];
+  homeHref?: string;
+  currentPath?: string;
+  standalone?: boolean;
 };
 
-export default function SiteChrome({ content }: SiteChromeProps) {
+export default function SiteChrome({
+  content,
+  homeHref = content.header.logo.href,
+  currentPath,
+  standalone = false,
+}: SiteChromeProps) {
   const { header } = content;
+  const showIntro = !standalone;
 
   return (
     <>
-      <div className="site-intro" id="site-intro" hidden aria-label={`Loading ${content.brand}`}>
-        <button className="intro-skip" type="button">
-          Skip intro <span aria-hidden="true">→</span>
-        </button>
-        <div className="intro-lockup">
-          <div className="intro-brand" aria-hidden="true">
-            <img src="assets/adure-logo-horizontal.svg" alt="" />
+      {showIntro && (
+        <div className="site-intro" id="site-intro" hidden aria-label={`Loading ${content.brand}`}>
+          <button className="intro-skip" type="button">
+            Skip intro <span aria-hidden="true">→</span>
+          </button>
+          <div className="intro-lockup">
+            <div className="intro-brand" aria-hidden="true">
+              <img src="/assets/adure-logo-horizontal.svg" alt="" />
+            </div>
+            <p className="intro-caption">
+              <span>{content.tagline}</span>
+            </p>
           </div>
-          <p className="intro-caption">
-            <span>{content.tagline}</span>
-          </p>
         </div>
-      </div>
+      )}
+      {standalone && <SiteChromeClient />}
       <a className="skip-link" href="#main">
         Skip to content
       </a>
       <header className="site-header">
         <div className="container header-inner">
-          <a href={header.logo.href} className="site-logo" aria-label={header.logo.ariaLabel}>
-            <img src="assets/adure-logo-horizontal.svg" alt={header.logo.alt} width="230" height="62" />
+          <a href={homeHref} className="site-logo" aria-label={header.logo.ariaLabel}>
+            <img src="/assets/adure-logo-horizontal.svg" alt={header.logo.alt} width="230" height="62" />
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {header.navigation.beforeServices.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
+              <a key={item.href} href={item.href} aria-current={item.href === currentPath ? "page" : undefined}>
+                {item.label}
+              </a>
             ))}
             <div className="nav-disclosure">
               <button id="services-toggle" aria-expanded="false" aria-controls="services-menu">
@@ -65,8 +80,8 @@ export default function SiteChrome({ content }: SiteChromeProps) {
       </header>
       <dialog className="mobile-menu" id="mobile-menu" aria-label="Main navigation">
         <div className="menu-top">
-          <a href={header.logo.href} className="site-logo">
-            <img src="assets/adure-logo-horizontal.svg" alt={header.logo.alt} />
+          <a href={homeHref} className="site-logo">
+            <img src="/assets/adure-logo-horizontal.svg" alt={header.logo.alt} />
           </a>
           <button className="icon-button menu-close" aria-label="Close menu">×</button>
         </div>

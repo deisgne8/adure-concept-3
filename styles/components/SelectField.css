@@ -1,0 +1,78 @@
+.select-field-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 2.25rem;
+  padding: 2px 0;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.select-field-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.select-field-icon {
+  display: grid;
+  place-items: center;
+  width: 1rem;
+  transition: transform var(--motion-fast) var(--ease);
+}
+
+.select-field-icon::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: rotate(45deg) translate(-0.1rem, -0.1rem);
+}
+
+.select-field-trigger[data-state="open"] .select-field-icon {
+  transform: rotate(180deg);
+}
+
+.select-field-content {
+  z-index: var(--z-dialog);
+  min-width: var(--radix-select-trigger-width);
+  overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 0.75rem 2rem rgba(3, 17, 34, 0.14);
+}
+
+.select-field-viewport {
+  padding: var(--s025);
+}
+
+.select-field-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: var(--s075) 2.5rem var(--s075) var(--s075);
+  color: var(--ink);
+  font: 400 var(--text-small)/var(--line-small) var(--font-body);
+  cursor: pointer;
+  outline: none;
+}
+
+.select-field-option[data-highlighted] {
+  color: var(--white);
+  background: var(--accent);
+}
+
+.select-field-indicator {
+  position: absolute;
+  right: var(--s075);
+  display: grid;
+  place-items: center;
+  color: currentColor;
+}

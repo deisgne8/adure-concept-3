@@ -34,6 +34,19 @@
   color: #fff;
   background: var(--accent);
 }
+.property-view-switch button:hover,
+.property-view-switch button:focus-visible {
+  color: #fff;
+  background: var(--accent);
+}
+.property-view-switch button[aria-pressed="true"]:hover {
+  color: #fff;
+  background: var(--accent);
+}
+.property-view-switch button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 .property-view-switch button span {
   font-size: 19px;
   line-height: 1;
