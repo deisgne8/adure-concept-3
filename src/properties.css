@@ -1576,3 +1576,43 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
   line-height:1!important;
   pointer-events:none!important;
 }
+
+/* Browser comments: remove properties hero copy/eyebrow. */
+.properties-page .properties-hero-inner{
+  display:none!important;
+}
+
+/* Browser comments: use a map pin icon for the Map view toggle. */
+.properties-page .view-icon-map{
+  width:.82rem!important;
+  height:1.05rem!important;
+  border:1.7px solid currentColor!important;
+  border-radius:50% 50% 50% 0!important;
+  transform:rotate(-45deg)!important;
+  background:transparent!important;
+}
+.properties-page .view-icon-map:before{
+  content:''!important;
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:.28rem!important;
+  height:.28rem!important;
+  border-radius:50%!important;
+  background:currentColor!important;
+  transform:translate(-50%,-50%)!important;
+}
+.properties-page .view-icon-map:after{
+  content:none!important;
+}
+
+/* Browser comments: stronger radius for property availability badges. */
+.properties-page .property-status{
+  border-radius:12px!important;
+}
+
+/* Browser comment: remove bottom radius from property card images. */
+.properties-page .property-card-media,
+.properties-page .property-card-media img{
+  border-radius:var(--radius-large,16px) var(--radius-large,16px) 0 0!important;
+}

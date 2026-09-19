@@ -2,7 +2,7 @@ import './portfolio-carousel.js?v=portfolio-filter-position-2';
 import './transition-carousel.js';
 import './philosophy-story.js';
 import './management-carousel.js?v=title-case-1';
-import './proof-counter.js';
+import './proof-counter.js?v=units-1800-1';
 import './hero-transition.js';
 import './image-parallax.js';
 import {updatePropertyMap} from './property-map.js';

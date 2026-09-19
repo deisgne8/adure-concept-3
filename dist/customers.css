@@ -1151,3 +1151,336 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
   color:var(--accent)!important;
   background:rgba(0,71,137,.08)!important;
 }
+
+/* Browser comment: keep customer group headers on heading font and weight. */
+.customers-page .customer-logo-panel .customer-panel-copy h3{
+  font-family:var(--font-display)!important;
+  font-size:30px!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+  letter-spacing:-.055em!important;
+}
+
+/* Browser comment: show commitment intro paragraph directly below heading. */
+.customers-page .customer-commitment .customer-section-intro{
+  justify-content:flex-start!important;
+}
+.customers-page .customer-commitment .customer-section-intro p{
+  display:block!important;
+  max-width:25rem!important;
+  margin:1.5rem 0 0!important;
+  color:#40566d!important;
+  font-size:clamp(1rem,1.15vw,1.12rem)!important;
+  line-height:1.58!important;
+}
+
+/* Browser comment: client perspectives uses reference layout with ADURE design system. */
+.customers-page .customer-perspectives{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:clamp(5rem,8vw,7.5rem) 0!important;
+  background:linear-gradient(135deg,#edf4f8 0%,#f8fbfd 52%,#e8f1f6 100%)!important;
+}
+.customers-page .customer-perspectives::before{
+  content:""!important;
+  position:absolute!important;
+  inset:auto auto -24% -12%!important;
+  width:42rem!important;
+  height:42rem!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,rgba(23,77,142,.13),rgba(23,77,142,0) 66%)!important;
+  pointer-events:none!important;
+}
+.customers-page .perspectives-layout{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(18rem,.82fr) minmax(25rem,1.18fr)!important;
+  gap:clamp(3rem,7vw,6.5rem)!important;
+  align-items:center!important;
+}
+.customers-page .perspectives-intro{
+  max-width:31rem!important;
+}
+.customers-page .perspectives-kicker,
+.customers-page .perspectives-card-kicker{
+  margin:0 0 1.1rem!important;
+  color:#7b8fa3!important;
+  font:700 .72rem/1 var(--font-body)!important;
+  letter-spacing:.24em!important;
+  text-transform:uppercase!important;
+}
+.customers-page .perspectives-intro h2{
+  max-width:15ch!important;
+  margin:0!important;
+  color:var(--accent)!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(38px,4.1vw,64px)!important;
+  font-weight:700!important;
+  line-height:1.02!important;
+  letter-spacing:-.06em!important;
+}
+.customers-page .perspectives-intro>p:not(.perspectives-kicker){
+  max-width:29rem!important;
+  margin:1.45rem 0 0!important;
+  color:#526476!important;
+  font-size:clamp(1rem,1.1vw,1.08rem)!important;
+  line-height:1.58!important;
+}
+.customers-page .perspectives-approved-note{
+  margin-top:clamp(2.4rem,4vw,3.4rem)!important;
+  padding-top:1.25rem!important;
+  border-top:2px solid rgba(23,77,142,.28)!important;
+}
+.customers-page .perspectives-approved-note>span{
+  display:block!important;
+  width:3.8rem!important;
+  height:2px!important;
+  margin-top:-1.35rem!important;
+  background:var(--accent)!important;
+}
+.customers-page .perspectives-approved-note h3{
+  margin:1.1rem 0 0!important;
+  color:var(--accent)!important;
+  font:700 .78rem/1.1 var(--font-body)!important;
+  letter-spacing:.18em!important;
+  text-transform:uppercase!important;
+}
+.customers-page .perspectives-approved-note p{
+  margin:.75rem 0 0!important;
+  color:#526476!important;
+  font-size:.95rem!important;
+  line-height:1.55!important;
+}
+.customers-page .perspectives-quote-card{
+  position:relative!important;
+  overflow:hidden!important;
+  padding:clamp(2.25rem,4vw,3.6rem)!important;
+  border:1px solid rgba(185,198,207,.72)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.82)!important;
+  box-shadow:0 2rem 4.2rem rgba(0,45,83,.08)!important;
+  backdrop-filter:blur(16px)!important;
+}
+.customers-page .perspectives-quote-card::after{
+  content:"”"!important;
+  position:absolute!important;
+  right:1.25rem!important;
+  top:-3.6rem!important;
+  color:rgba(23,77,142,.08)!important;
+  font-family:Georgia,serif!important;
+  font-size:13rem!important;
+  line-height:1!important;
+  pointer-events:none!important;
+}
+.customers-page .perspectives-quote-card blockquote{
+  position:relative!important;
+  z-index:1!important;
+  margin:0!important;
+  max-width:33rem!important;
+  color:#173047!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(1.85rem,3vw,3.1rem)!important;
+  font-weight:700!important;
+  line-height:1.06!important;
+  letter-spacing:-.055em!important;
+}
+.customers-page .perspectives-quote-card>p:not(.perspectives-card-kicker){
+  position:relative!important;
+  z-index:1!important;
+  margin:1.35rem 0 0!important;
+  color:#526476!important;
+  font-size:.98rem!important;
+  line-height:1.55!important;
+}
+.customers-page .perspectives-customer-meta{
+  position:relative!important;
+  z-index:1!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:1rem!important;
+  margin-top:2rem!important;
+  padding-top:1.5rem!important;
+  border-top:1px solid rgba(23,77,142,.16)!important;
+}
+.customers-page .perspectives-logo-placeholder{
+  display:grid!important;
+  place-items:center!important;
+  width:3.4rem!important;
+  height:3.4rem!important;
+  border-radius:50%!important;
+  background:#edf3f7!important;
+  color:var(--accent)!important;
+}
+.customers-page .perspectives-logo-placeholder::before{
+  content:""!important;
+  width:1.35rem!important;
+  height:1.35rem!important;
+  background:currentColor!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black' stroke-width='1.7'%3E%3Cpath d='M5 20V9l7-4 7 4v11'/%3E%3Cpath d='M9 20v-7h6v7M4 20h16'/%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black' stroke-width='1.7'%3E%3Cpath d='M5 20V9l7-4 7 4v11'/%3E%3Cpath d='M9 20v-7h6v7M4 20h16'/%3E%3C/svg%3E") center/contain no-repeat!important;
+}
+.customers-page .perspectives-customer-meta strong{
+  display:block!important;
+  color:#173047!important;
+  font-family:var(--font-display)!important;
+  font-size:1.05rem!important;
+  line-height:1.1!important;
+}
+.customers-page .perspectives-customer-meta span{
+  display:block!important;
+  margin-top:.25rem!important;
+  color:#6a7c8d!important;
+  font-size:.72rem!important;
+  font-weight:700!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase!important;
+}
+@media(max-width:900px){
+  .customers-page .perspectives-layout{
+    grid-template-columns:1fr!important;
+  }
+  .customers-page .perspectives-intro{
+    max-width:none!important;
+  }
+}
+@media(max-width:620px){
+  .customers-page .perspectives-quote-card{
+    padding:2rem 1.45rem!important;
+  }
+}
+
+/* Browser comments: clean perspectives labels and use white section background. */
+.customers-page .customer-perspectives{
+  background:#fff!important;
+}
+.customers-page .customer-perspectives::before{
+  content:none!important;
+}
+.customers-page .perspectives-kicker,
+.customers-page .perspectives-card-kicker,
+.customers-page .perspectives-approved-note{
+  display:none!important;
+}
+
+/* Browser comment: align perspectives typography with ADURE hierarchy. */
+.customers-page .perspectives-intro h2{
+  font-family:var(--font-display)!important;
+  font-size:30px!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+  letter-spacing:-.055em!important;
+}
+.customers-page .perspectives-intro>p{
+  max-width:31rem!important;
+  margin-top:1.35rem!important;
+  color:#40566d!important;
+  font-size:clamp(.98rem,1.08vw,1.06rem)!important;
+  line-height:1.58!important;
+}
+.customers-page .perspectives-quote-card blockquote{
+  max-width:30rem!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(1.55rem,2.25vw,2.25rem)!important;
+  font-weight:700!important;
+  line-height:1.1!important;
+  letter-spacing:-.052em!important;
+}
+.customers-page .perspectives-quote-card>p:not(.perspectives-card-kicker){
+  max-width:35rem!important;
+  color:#40566d!important;
+  font-size:clamp(.96rem,1.04vw,1.02rem)!important;
+  line-height:1.58!important;
+}
+
+/* Browser comment: customers hero follows About page banner style. */
+.customers-page .customers-hero{
+  min-height:50svh!important;
+  align-items:center!important;
+}
+.customers-page .customers-hero-inner{
+  min-height:50svh!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  padding-block:calc(var(--nav-height) + 2rem) 3rem!important;
+}
+.customers-page .customers-hero h1{
+  max-width:12em!important;
+  font-size:clamp(44px,5.5vw,78px)!important;
+  font-weight:500!important;
+  line-height:.96!important;
+  letter-spacing:-.045em!important;
+  text-transform:none!important;
+}
+.customers-page .customers-hero p{
+  max-width:var(--reading)!important;
+  margin-top:var(--s2)!important;
+  font-size:var(--text-body-lg)!important;
+  line-height:var(--line-body-lg)!important;
+  color:var(--inverse-muted)!important;
+}
+.customers-page .customers-hero p+p{
+  max-width:var(--reading)!important;
+  margin-top:.75rem!important;
+}
+.customers-page .customers-hero-cta{
+  margin-top:1.75rem!important;
+}
+@media(max-width:640px){
+  .customers-page .customers-hero,
+  .customers-page .customers-hero-inner{
+    min-height:52svh!important;
+  }
+  .customers-page .customers-hero h1{
+    font-size:clamp(40px,12vw,58px)!important;
+    line-height:1!important;
+  }
+}
+
+/* Browser comment: customer group headings match section heading hierarchy and stay one line. */
+.customers-page .customer-logo-panel .customer-panel-copy h3{
+  max-width:none!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(2.4rem,4vw,4.4rem)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.045em!important;
+  white-space:nowrap!important;
+}
+@media(max-width:760px){
+  .customers-page .customer-logo-panel .customer-panel-copy h3{
+    font-size:clamp(2.1rem,10vw,3rem)!important;
+    white-space:normal!important;
+  }
+}
+
+/* Browser comment: customers banner font and hero button follow About page. */
+.customers-page .customers-hero h1{
+  max-width:12em!important;
+  font-size:clamp(44px,5.5vw,78px)!important;
+  font-weight:600!important;
+  line-height:.96!important;
+  letter-spacing:-.055em!important;
+  color:#fff!important;
+  text-transform:none!important;
+}
+.customers-page .customers-hero p{
+  max-width:var(--reading)!important;
+  margin-top:var(--s2)!important;
+  font-family:var(--font-body)!important;
+  font-weight:var(--about-body-weight,400)!important;
+  font-size:var(--text-body-lg)!important;
+  line-height:var(--line-body-lg)!important;
+  letter-spacing:0!important;
+  color:var(--inverse-muted)!important;
+}
+.customers-page .customers-hero-cta{
+  display:none!important;
+}
+@media(max-width:640px){
+  .customers-page .customers-hero h1{
+    font-size:clamp(40px,12vw,58px)!important;
+    line-height:1!important;
+  }
+}

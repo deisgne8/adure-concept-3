@@ -7,7 +7,7 @@ if (proofSection) {
 
   const counters = [
     { target: 2002, render: value => String(value) },
-    { target: 3000, render: value => `${value}+` },
+    { target: 1800, render: value => `${value}+` },
     { target: 200, render: value => `${value}+` },
     { target: 98, render: value => `${value}%` },
     { target: 2, render: value => `${Math.min(1, value)}–${value} <small>weeks</small>` }
