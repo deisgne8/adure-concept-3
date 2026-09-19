@@ -2006,3 +2006,471 @@ main{
     margin-top:1.8rem;
   }
 }
+
+/* Browser comment: journey card text links use a square underline, not a pill control. */
+#journeys .journey-card .btn.link,
+#journeys .journey-card .btn.link::after{
+  border-radius:0!important;
+  overflow:visible!important;
+}
+
+/* Browser comment: homepage search selects should sit flush without their own field border. */
+.home-v2 #filter-home .field select,
+.home-v2 #filter-home .field select:focus,
+.home-v2 #filter-home .field select:focus-visible{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background-color:transparent!important;
+}
+
+/* Browser comment: management heading is authored as two lines. */
+.management-copy-v2 h2.management-context > span,
+.management-title-main{
+  display:block;
+}
+
+/* Browser comment: stop management heading flex from flattening the requested two-line copy. */
+#management h2.management-context{
+  display:block!important;
+}
+
+/* Browser comment: center management service cards and reduce the gap around the image. */
+#management.has-management-stack .service-row>div{
+  align-content:center!important;
+  justify-items:center!important;
+  row-gap:clamp(18px,2.6vh,28px)!important;
+}
+#management .service-card-media{
+  margin:0 auto!important;
+}
+#home #management.has-management-stack .service-row h3,
+#home #management.has-management-stack .service-row p{
+  text-align:center!important;
+}
+
+/* Browser comment: restore previous homepage portfolio card-list design. */
+.portfolio-explorer-home{
+  background:#fff!important;
+}
+.portfolio-explorer-home .portfolio-intro{
+  align-items:start!important;
+}
+.portfolio-home-stage{
+  display:block!important;
+}
+.portfolio-home-stage>div:first-child{
+  width:100%!important;
+  border:1px solid rgba(23,77,142,.2)!important;
+  border-radius:16px!important;
+  background:#fff!important;
+  padding:1.5rem!important;
+  box-shadow:none!important;
+}
+.portfolio-card-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:.7rem .8rem!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding-right:0!important;
+}
+.portfolio-home-card{
+  grid-template-columns:7.5rem 1fr auto!important;
+  min-height:7.2rem!important;
+  border:1px solid rgba(23,77,142,.14)!important;
+  border-radius:0!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+.portfolio-home-card:hover,
+.portfolio-home-card:focus-visible,
+.portfolio-home-card.is-active{
+  background:#eaf2f8!important;
+  border-color:rgba(0,71,137,.32)!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+.portfolio-home-image{
+  border-radius:8px!important;
+}
+.portfolio-home-image img{
+  height:5.6rem!important;
+}
+.portfolio-expanded-card{
+  display:none!important;
+}
+@media(max-width:760px){
+  .portfolio-card-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Browser comment: reduce empty top and bottom space inside management service cards. */
+#management.has-management-stack .service-row{
+  min-height:min(460px,54vh)!important;
+}
+#management.has-management-stack .service-row>div{
+  min-height:inherit!important;
+  padding:clamp(22px,2.4vw,34px)!important;
+  row-gap:clamp(14px,2vh,22px)!important;
+}
+
+/* Browser comment: homepage portfolio uses image-led cards instead of the bordered list. */
+.portfolio-explorer-home .portfolio-city-tabs,
+.portfolio-explorer-home .portfolio-city-kicker,
+.portfolio-explorer-home .portfolio-expanded-card{
+  display:none!important;
+}
+.portfolio-home-stage,
+.portfolio-home-stage>div:first-child{
+  display:block!important;
+  width:100%!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  padding:0!important;
+  box-shadow:none!important;
+}
+.portfolio-card-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:clamp(1.5rem,2.4vw,2.4rem)!important;
+  max-height:none!important;
+  overflow:visible!important;
+  padding:0!important;
+}
+.portfolio-home-card{
+  display:block!important;
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+  color:inherit!important;
+  cursor:pointer!important;
+}
+.portfolio-home-card:hover,
+.portfolio-home-card:focus-visible,
+.portfolio-home-card.is-active{
+  background:transparent!important;
+  border-color:transparent!important;
+  box-shadow:none!important;
+  transform:none!important;
+  outline:0!important;
+}
+.portfolio-home-card:after{
+  content:none!important;
+}
+.portfolio-home-image{
+  display:block!important;
+  width:100%!important;
+  aspect-ratio:4/5!important;
+  overflow:hidden!important;
+  border-radius:16px!important;
+  background:#dbe7ef!important;
+}
+.portfolio-home-image img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  border-radius:inherit!important;
+  transition:transform .45s ease!important;
+}
+.portfolio-home-card:hover .portfolio-home-image img,
+.portfolio-home-card:focus-visible .portfolio-home-image img{
+  transform:scale(1.035)!important;
+}
+.portfolio-home-copy{
+  display:grid!important;
+  gap:.35rem!important;
+  padding-top:1rem!important;
+  text-align:left!important;
+}
+.portfolio-home-copy strong{
+  color:var(--accent)!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(1.35rem,1.7vw,1.75rem)!important;
+  line-height:1.05!important;
+  font-weight:700!important;
+  letter-spacing:-.045em!important;
+}
+.portfolio-home-copy small{
+  color:#60656b!important;
+  font-size:.95rem!important;
+  line-height:1.35!important;
+}
+@media(max-width:1040px){
+  .portfolio-card-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:640px){
+  .portfolio-card-grid{
+    grid-template-columns:1fr!important;
+  }
+  .portfolio-home-image{
+    aspect-ratio:4/3!important;
+  }
+}
+
+/* Browser comment: keep the image-card portfolio as a horizontal carousel. */
+.portfolio-card-grid{
+  --portfolio-card-gap:clamp(1.5rem,2.4vw,2.4rem);
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:var(--portfolio-card-gap)!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  scroll-snap-type:x mandatory!important;
+  scroll-behavior:smooth!important;
+  overscroll-behavior-inline:contain!important;
+  scrollbar-width:none!important;
+  padding:0 0 .5rem!important;
+}
+.portfolio-card-grid::-webkit-scrollbar{
+  display:none!important;
+}
+.portfolio-home-card{
+  flex:0 0 calc((100% - 3 * var(--portfolio-card-gap)) / 4)!important;
+  scroll-snap-align:start!important;
+}
+@media(max-width:1040px){
+  .portfolio-home-card{
+    flex-basis:calc((100% - var(--portfolio-card-gap)) / 2)!important;
+  }
+}
+@media(max-width:640px){
+  .portfolio-home-card{
+    flex-basis:82vw!important;
+  }
+}
+
+/* Browser comment: portfolio carousel filters and drag affordance. */
+.portfolio-type-filters{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:max-content;
+  max-width:100%;
+  margin:clamp(1.8rem,3.2vw,3.2rem) auto clamp(2.2rem,4vw,4rem);
+  padding:.35rem;
+  gap:.25rem;
+  border:1px solid rgba(23,77,142,.14);
+  border-radius:999px;
+  background:#eef3f8;
+}
+.portfolio-type-filters button{
+  min-height:2.85rem;
+  padding:0 1.35rem;
+  border:0;
+  border-radius:999px;
+  background:transparent;
+  color:#5d6269;
+  font:700 .78rem/1 var(--font-body);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease;
+}
+.portfolio-type-filters button.is-active{
+  background:var(--accent);
+  color:#fff;
+}
+.portfolio-type-filters button:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:3px;
+}
+.portfolio-card-grid{
+  cursor:grab!important;
+  user-select:none!important;
+}
+.portfolio-card-grid.is-pointer-down{
+  cursor:grabbing!important;
+  scroll-snap-type:none!important;
+  scroll-behavior:auto!important;
+}
+@media(max-width:640px){
+  .portfolio-type-filters{
+    width:100%;
+  }
+  .portfolio-type-filters button{
+    flex:1;
+    padding-inline:.65rem;
+    font-size:.7rem;
+  }
+}
+
+/* Browser comment: place portfolio filters in the intro row and match the reference pill design. */
+.portfolio-explorer-home .portfolio-intro{
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:end!important;
+  column-gap:clamp(3rem,7vw,8rem)!important;
+  margin-bottom:clamp(4rem,6vw,5.8rem)!important;
+}
+.portfolio-explorer-home .portfolio-intro h2{
+  grid-column:1!important;
+  grid-row:1!important;
+}
+.portfolio-explorer-home .portfolio-intro>div{
+  grid-column:1!important;
+  grid-row:2!important;
+  display:block!important;
+}
+.portfolio-explorer-home .portfolio-intro p{
+  max-width:46rem!important;
+}
+.portfolio-explorer-home .portfolio-intro .btn{
+  margin-top:1.1rem!important;
+}
+.portfolio-type-filters{
+  grid-column:2!important;
+  grid-row:2!important;
+  align-self:end!important;
+  justify-self:end!important;
+  display:flex!important;
+  width:max-content!important;
+  margin:0!important;
+  padding:.28rem!important;
+  gap:.3rem!important;
+  border:1px solid #d7e1ea!important;
+  border-radius:999px!important;
+  background:#eef3f8!important;
+  box-shadow:none!important;
+}
+.portfolio-type-filters button{
+  min-height:2.65rem!important;
+  padding:0 1.22rem!important;
+  border:0!important;
+  border-radius:999px!important;
+  background:transparent!important;
+  color:#5a5e64!important;
+  font:700 .78rem/1 var(--font-body)!important;
+  letter-spacing:.17em!important;
+  text-transform:uppercase!important;
+}
+.portfolio-type-filters button.is-active{
+  background:var(--accent)!important;
+  color:#fff!important;
+}
+@media(max-width:900px){
+  .portfolio-explorer-home .portfolio-intro{
+    grid-template-columns:1fr!important;
+    margin-bottom:2.8rem!important;
+  }
+  .portfolio-type-filters{
+    grid-column:1!important;
+    grid-row:3!important;
+    justify-self:start!important;
+    margin-top:1.5rem!important;
+  }
+}
+
+/* Browser comment: exact portfolio intro and filter placement from reference. */
+.portfolio-explorer-home .portfolio-intro{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) max-content!important;
+  grid-template-rows:auto auto!important;
+  align-items:end!important;
+  gap:1.1rem clamp(4rem,10vw,10rem)!important;
+  margin-bottom:clamp(4rem,6vw,5.7rem)!important;
+}
+.portfolio-explorer-home .portfolio-intro h2{
+  grid-column:1!important;
+  grid-row:1!important;
+  max-width:50rem!important;
+}
+.portfolio-explorer-home .portfolio-intro>div{
+  display:block!important;
+  grid-column:1!important;
+  grid-row:2!important;
+  max-width:48rem!important;
+}
+.portfolio-explorer-home .portfolio-intro p{
+  max-width:48rem!important;
+  margin:0 0 .9rem!important;
+  color:#62666b!important;
+  font-size:clamp(1rem,1.25vw,1.18rem)!important;
+  line-height:1.65!important;
+}
+.portfolio-explorer-home .portfolio-intro .btn{
+  display:none!important;
+}
+.portfolio-type-filters{
+  grid-column:2!important;
+  grid-row:2!important;
+  align-self:center!important;
+  justify-self:end!important;
+  min-width:19rem!important;
+  transform:translateY(.15rem)!important;
+}
+@media(max-width:900px){
+  .portfolio-explorer-home .portfolio-intro{
+    grid-template-columns:1fr!important;
+  }
+  .portfolio-type-filters{
+    grid-column:1!important;
+    grid-row:3!important;
+    justify-self:start!important;
+    min-width:0!important;
+    transform:none!important;
+  }
+  .portfolio-explorer-home .portfolio-intro .btn{
+    display:inline-flex!important;
+  }
+}
+
+/* Restore previous portfolio heading, copy and CTA while keeping carousel filters. */
+.portfolio-explorer-home .portfolio-intro .btn{
+  display:inline-flex!important;
+  grid-column:1!important;
+  grid-row:3!important;
+  justify-self:start!important;
+  margin-top:.35rem!important;
+}
+.portfolio-explorer-home .portfolio-intro{
+  align-items:start!important;
+}
+.portfolio-type-filters{
+  grid-row:2!important;
+  align-self:start!important;
+  margin-top:.15rem!important;
+}
+
+/* Align portfolio filters with the CTA row and the right edge of the visible card rail. */
+@media(min-width:901px){
+  .portfolio-explorer-home .portfolio-intro{
+    position:relative!important;
+    display:block!important;
+    padding-right:clamp(20rem,24vw,24rem)!important;
+    margin-bottom:clamp(3.6rem,5.2vw,5rem)!important;
+  }
+  .portfolio-explorer-home .portfolio-intro h2{
+    max-width:50rem!important;
+  }
+  .portfolio-explorer-home .portfolio-intro>div{
+    max-width:48rem!important;
+  }
+  .portfolio-explorer-home .portfolio-intro .btn{
+    display:inline-flex!important;
+    margin-top:.35rem!important;
+  }
+  .portfolio-type-filters{
+    position:absolute!important;
+    right:0!important;
+    bottom:.05rem!important;
+    grid-column:auto!important;
+    grid-row:auto!important;
+    justify-self:auto!important;
+    align-self:auto!important;
+    margin:0!important;
+    transform:none!important;
+  }
+}

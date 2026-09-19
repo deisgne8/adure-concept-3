@@ -58,7 +58,7 @@ const approvedCopy=[
   'Success Proven in Numbers',
   'The strongest measure of experience is what it continues to deliver.',
   'From Places to Performance',
-  'Every asset has its own character, purpose and potential.',
+  'Every asset has its own character, purpose and potential. Explore ADURE portfolio locations and open each property to view its details.',
   'Your 30-Day Transition Journey',
   'Good management starts with getting the beginning right.',
   'Rooted in Trust and Transparency',
@@ -78,14 +78,17 @@ for(const [id,count] of [['government-semi-government',6],['private-sector-corpo
 }
 assert.ok(localHome.includes('<span class="discovery-title-ending">What Comes Next</span>'),'Keep what comes next together');
 assert.ok(localHome.includes('<div class="journey-heading"><h2>One Partner for Every Property Move</h2>'),'Journeys heading does not match the requested copy');
+assert.ok(localHome.includes('Every asset has its own character, purpose and potential. Explore ADURE portfolio locations and open each property to view its details.'),'Portfolio intro copy missing');
 for (const [id, heading] of Object.entries({
-  management:'Value Lies in How a Property Is Cared For',
+  management:'Value Lies in How a Property Is Cared For',
   proof:'Success Proven in Numbers',
   portfolio:'From Places to Performance',
   trust:'Rooted in Trust and Transparency'
 })) {
   const section=localHome.match(new RegExp(`<section class="[^"]*" id="${id}">([\\s\\S]*?)<\\/section>`))?.[1];
-  assert.equal(section?.match(/<h2[^>]*>([^<]*)<\/h2>/)?.[1],heading,`${id} heading`);
+  const h2Markup=section?.match(/<h2[^>]*>([\s\S]*?)<\/h2>/)?.[1];
+  const h2Text=h2Markup?.replace(/<[^>]+>/g,'').replaceAll('&nbsp;',' ').trim();
+  assert.equal(h2Text,heading,`${id} heading`);
 }
 ['With You Across Every Stage','A Record That Speaks For Itself','A Considered Start','Trusted Across Sectors.'].forEach(copy=>assert.ok(!localHome.includes(copy),`Superseded copy remains: ${copy}`));
 const ids=[...localHome.matchAll(/<section class="[^"]* section" id="([^"]+)"/g)].map(m=>m[1]);

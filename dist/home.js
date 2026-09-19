@@ -1,4 +1,4 @@
-import './portfolio-carousel.js?v=portfolio-cards-3';
+import './portfolio-carousel.js?v=portfolio-filter-position-2';
 import './transition-carousel.js';
 import './philosophy-story.js';
 import './management-carousel.js?v=title-case-1';

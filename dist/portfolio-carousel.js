@@ -31,16 +31,33 @@ if(portfolioRoot&&portfolioRoot.dataset.portfolioReady!=='true'){
   const grid=portfolioRoot.querySelector('#portfolio-card-grid');
   const detail=portfolioRoot.querySelector('#portfolio-expanded-card');
   const kicker=portfolioRoot.querySelector('#portfolio-city-kicker');
-  let activeCity='abu-dhabi';
-  let activeProject=projects[activeCity][0];
+  const allProjects=Object.values(projects).flat();
+  const filterHost=document.createElement('div');
+  filterHost.className='portfolio-type-filters';
+  filterHost.setAttribute('role','group');
+  filterHost.setAttribute('aria-label','Filter portfolio by property type');
+  filterHost.innerHTML=`
+    <button class="is-active" type="button" data-portfolio-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-portfolio-filter="Residential" aria-pressed="false">Residential</button>
+    <button type="button" data-portfolio-filter="Retail" aria-pressed="false">Retail</button>`;
+  portfolioRoot.querySelector('.portfolio-intro')?.append(filterHost);
+  let activeCity='all';
+  let activeFilter='all';
+  let visibleProjects=allProjects;
+  let activeProject=visibleProjects[0];
+  const filteredProjects=()=>activeFilter==='all'?allProjects:allProjects.filter(project=>project.type===activeFilter);
   const renderCards=()=>{
-    grid.innerHTML=projects[activeCity].map(project=>`
-      <button class="portfolio-home-card${project.id===activeProject.id?' is-active':''}" type="button" data-project="${project.id}" aria-pressed="${project.id===activeProject.id}">
+    visibleProjects=filteredProjects();
+    if(!visibleProjects.some(project=>project.id===activeProject?.id))activeProject=visibleProjects[0];
+    grid.innerHTML=visibleProjects.map(project=>`
+      <button class="portfolio-home-card${project.id===activeProject?.id?' is-active':''}" type="button" data-project="${project.id}" aria-pressed="${project.id===activeProject?.id}">
         <span class="portfolio-home-image"><img src="${project.image}" alt="${project.alt}" loading="lazy" draggable="false"></span>
         <span class="portfolio-home-copy"><strong>${project.title}</strong><small>${project.type} · ${project.location}</small></span>
       </button>`).join('');
+    grid.scrollTo({left:0,behavior:'instant'});
   };
   const renderDetail=()=>{
+    if(!activeProject){detail.innerHTML='';return;}
     detail.innerHTML=`
       <div class="portfolio-expanded-image"><img src="${activeProject.image}" alt="${activeProject.alt}"></div>
       <div class="portfolio-expanded-copy">
@@ -59,7 +76,7 @@ if(portfolioRoot&&portfolioRoot.dataset.portfolioReady!=='true'){
       </div>`;
   };
   const selectProject=id=>{
-    const project=projects[activeCity].find(item=>item.id===id);
+    const project=visibleProjects.find(item=>item.id===id);
     if(!project)return;
     activeProject=project;
     renderCards();
@@ -68,11 +85,21 @@ if(portfolioRoot&&portfolioRoot.dataset.portfolioReady!=='true'){
       detail.animate([{opacity:.45,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:340,easing:'cubic-bezier(.22,.61,.36,1)'});
     }
   };
+  const setFilter=filter=>{
+    activeFilter=filter;
+    filterHost.querySelectorAll('button').forEach(button=>{
+      const active=button.dataset.portfolioFilter===filter;
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+    renderCards();
+    renderDetail();
+  };
   const selectCity=city=>{
     activeCity=city;
-    activeProject=projects[city][0];
-    kicker.textContent=labels[city];
-    grid.setAttribute('aria-labelledby',`portfolio-city-${city}`);
+    activeProject=(city==='all'?allProjects:projects[city])[0];
+    if(kicker)kicker.textContent=city==='all'?'PORTFOLIO':labels[city];
+    grid.setAttribute('aria-labelledby',city==='all'?'portfolio':'portfolio-city-'+city);
     tabs.forEach(tab=>{
       const active=tab.dataset.city===city;
       tab.classList.toggle('is-active',active);
@@ -81,12 +108,62 @@ if(portfolioRoot&&portfolioRoot.dataset.portfolioReady!=='true'){
     renderCards();
     renderDetail();
   };
+  filterHost.addEventListener('click',event=>{
+    const button=event.target.closest('[data-portfolio-filter]');
+    if(button)setFilter(button.dataset.portfolioFilter);
+  });
   tabs.forEach(tab=>tab.addEventListener('click',()=>selectCity(tab.dataset.city)));
   grid.addEventListener('click',event=>{
+    if(grid.classList.contains('is-dragging'))return;
     const card=event.target.closest('[data-project]');
     if(card)selectProject(card.dataset.project);
   });
+
+  let autoTimer;
+  const nextScroll=()=>{
+    if(!grid.scrollWidth||grid.scrollWidth<=grid.clientWidth+4)return;
+    const card=grid.querySelector('.portfolio-home-card');
+    const gap=Number.parseFloat(getComputedStyle(grid).columnGap)||0;
+    const step=(card?.getBoundingClientRect().width||grid.clientWidth*.25)+gap;
+    const max=grid.scrollWidth-grid.clientWidth;
+    const next=grid.scrollLeft+step>=max-2?0:grid.scrollLeft+step;
+    grid.scrollTo({left:next,behavior:'smooth'});
+  };
+  const startAuto=()=>{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    clearInterval(autoTimer);
+    autoTimer=setInterval(nextScroll,3200);
+  };
+  const stopAuto=()=>clearInterval(autoTimer);
+  let dragging=false,startX=0,startLeft=0,dragMoved=false;
+  grid.addEventListener('pointerdown',event=>{
+    dragging=true;dragMoved=false;startX=event.clientX;startLeft=grid.scrollLeft;stopAuto();
+    grid.classList.add('is-pointer-down');
+    grid.setPointerCapture?.(event.pointerId);
+  });
+  grid.addEventListener('pointermove',event=>{
+    if(!dragging)return;
+    const delta=event.clientX-startX;
+    if(Math.abs(delta)>5)dragMoved=true;
+    grid.scrollLeft=startLeft-delta;
+  });
+  const endDrag=()=>{
+    if(!dragging)return;
+    dragging=false;
+    grid.classList.remove('is-pointer-down');
+    if(dragMoved){grid.classList.add('is-dragging');setTimeout(()=>grid.classList.remove('is-dragging'),0);}
+    startAuto();
+  };
+  grid.addEventListener('pointerup',endDrag);
+  grid.addEventListener('pointercancel',endDrag);
+  grid.addEventListener('pointerleave',endDrag);
+  grid.addEventListener('mouseenter',stopAuto);
+  grid.addEventListener('mouseleave',startAuto);
+  grid.addEventListener('focusin',stopAuto);
+  grid.addEventListener('focusout',startAuto);
+  document.addEventListener('visibilitychange',()=>document.hidden?stopAuto():startAuto());
   selectCity(activeCity);
+  startAuto();
 }
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initHomepagePortfolio,{once:true});
