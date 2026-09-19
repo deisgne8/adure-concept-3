@@ -2640,3 +2640,19 @@ main{
   box-shadow:none!important;
   overflow:visible!important;
 }
+
+/* Soften homepage search select border and add left padding to option text. */
+.home-v2 #filter-home .search-box>.field select,
+.home-v2 #filter-home .search-box>.field select:focus,
+.home-v2 #filter-home .search-box>.field select:focus-visible{
+  border:1px solid transparent!important;
+  outline:0!important;
+  box-shadow:none!important;
+  padding-left:.55rem!important;
+  color:#1f2933!important;
+}
+.home-v2 #filter-home .search-box>.field select option{
+  padding-left:.75rem!important;
+  color:#1f2933!important;
+  background:#fff!important;
+}
