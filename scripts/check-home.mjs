@@ -95,5 +95,8 @@ assert.deepEqual(matchProperties({intent:'lease',bedrooms:'1–2 bedrooms',price
 assert.equal(matchProperties({intent:'buy',type:'Villa'}).length,0);
 assert.deepEqual(matchProperties({intent:'lease',amenities:['Swimming Pool','Gym']}).map(p=>p.id),['ADU-304','ADU-006']);
 assert.deepEqual(matchProperties({intent:'buy',amenities:['Pet Friendly']}).map(p=>p.id),['ADU-004']);
-for(const route of new Set([...referenceHome.matchAll(/data-route="([^"]+)"/g)].map(m=>m[1])))assert.ok(localHome.includes('#'+route),route+' destination retained');
+for(const route of new Set([...referenceHome.matchAll(/data-route="([^"]+)"/g)].map(m=>m[1]))){
+  const destinationRetained = route === 'about' ? localHome.includes('href="about.html"') : localHome.includes('#'+route);
+  assert.ok(destinationRetained,route+' destination retained');
+}
 console.log('PASS: revised homepage copy, section order, CTA destinations, assets, semantic heading and multi-field property matching.');

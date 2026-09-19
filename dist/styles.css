@@ -429,3 +429,27 @@ html{scroll-padding-top:104px}
 @media(prefers-reduced-motion:reduce){
   .journey-card-image,.journey-card-wipe,.journey-card-heading h3,.journey-card-heading>span,.journey-card-detail{transition:none!important}
 }
+
+/* Global image radius update. */
+:root{--image-radius:16px}
+.journey-grid,
+.journey-media,
+.collection-image,
+.portfolio-feature-image,
+.portfolio-item button,
+.management-image,
+.transition-visual,
+.stage-visual,
+.gallery-dialog>img{
+  border-radius:16px!important;
+  overflow:hidden;
+}
+.hero-image img,
+.hero-video,
+.site-logo img,
+.logo img,
+.brand img,
+.client-logo img,
+.footer-brand img{
+  border-radius:0!important;
+}

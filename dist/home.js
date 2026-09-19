@@ -8,20 +8,6 @@ import './image-parallax.js';
 import {updatePropertyMap} from './property-map.js';
 import {properties,matchProperties,reference} from './home-data.js';
 const $=s=>document.querySelector(s);
-function removeHyperlinks(root=document){
- const links=[];
- if(root.matches?.('a[href]'))links.push(root);
- root.querySelectorAll?.('a[href]').forEach(link=>links.push(link));
- links.forEach(link=>{
-  link.removeAttribute('href');
-  link.removeAttribute('target');
-  link.removeAttribute('rel');
- });
-}
-removeHyperlinks();
-new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{
- if(node.nodeType===1)removeHyperlinks(node);
-}))).observe(document.body,{childList:true,subtree:true});
 const form=$('#property-search'),filterDialog=$('#filter-dialog'),menu=$('#mobile-menu');
 const moreFiltersToggle=form.querySelector('.more-filters-toggle');
 const moreFiltersPanel=form.querySelector('.more-filters-panel');
@@ -139,10 +125,10 @@ $('.menu-close').addEventListener('click',()=>menu.close());
 menu.addEventListener('close',()=>{$('.menu-toggle').setAttribute('aria-expanded','false');$('.menu-toggle').focus();});
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.close()));
 const services=$('#services-toggle'),servicesMenu=$('#services-menu');
-function closeServices(focus=false){servicesMenu.hidden=true;services.setAttribute('aria-expanded','false');if(focus)services.focus();}
-services.addEventListener('click',()=>{servicesMenu.hidden=!servicesMenu.hidden;services.setAttribute('aria-expanded',String(!servicesMenu.hidden));});
+function closeServices(focus=false){if(!services||!servicesMenu)return;servicesMenu.hidden=true;services.setAttribute('aria-expanded','false');if(focus)services.focus();}
+services?.addEventListener('click',()=>{servicesMenu.hidden=!servicesMenu.hidden;services.setAttribute('aria-expanded',String(!servicesMenu.hidden));});
 document.addEventListener('click',async e=>{if(!e.target.closest('.nav-disclosure'))closeServices();if(e.target.closest('#empty-reset'))reset();const save=e.target.closest('[data-favourite]');if(save){const id=save.dataset.favourite;favourites=favourites.includes(id)?favourites.filter(x=>x!==id):[...favourites,id];try{localStorage.setItem('adure-favourites',JSON.stringify(favourites));}catch{}save.setAttribute('aria-pressed',String(favourites.includes(id)));save.textContent=favourites.includes(id)?'♥':'♡';$('#action-status').textContent=favourites.includes(id)?'Property saved.':'Property removed from saved items.';}const share=e.target.closest('[data-share]');if(share){const p=properties.find(x=>x.id===share.dataset.share);const text=`${p.title} — ${p.place} — ${format(p)}\n${reference}#property-detail`;try{await navigator.clipboard.writeText(text);share.textContent='Copied';$('#action-status').textContent='Property details copied to clipboard.';}catch{$('#search-status').textContent='Share this property: '+text;}}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){setMoreFiltersOpen(false);if(!servicesMenu.hidden)closeServices(true);}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){setMoreFiltersOpen(false);if(servicesMenu&&!servicesMenu.hidden)closeServices(true);}});
 // Preserve meaningful image crop and avoid an unnecessary intro or scroll animation.
 document.querySelectorAll('main img:not(.site-hero img)').forEach(img=>{img.loading='lazy';img.decoding='async';});
 

@@ -5,6 +5,6 @@
   "scripts": {
     "start": "node scripts/serve.mjs",
     "build": "node scripts/build-home.mjs",
-    "test": "node scripts/check-home.mjs && node scripts/check-portfolio.mjs"
+    "test": "node scripts/check-home.mjs && node scripts/check-portfolio.mjs && node scripts/check-properties.mjs"
   }
 }

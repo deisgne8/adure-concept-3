@@ -1406,3 +1406,141 @@ main{
 .filter-dialog *{
   text-transform:none!important
 }
+
+/* Global image radius update. */
+:root{--image-radius:16px}
+.home-v2 .journey-media,
+.home-v2 .journey-media img,
+.home-v2 .management-visual-v2,
+.home-v2 .management-visual-v2 img,
+.home-v2 .portfolio-image,
+.home-v2 .portfolio-image img,
+.home-v2 .property-card-media,
+.home-v2 .property-card-media img,
+.home-v2 .collection-image,
+.home-v2 .collection-image img,
+.home-v2 .gallery-dialog>img{
+  border-radius:16px!important;
+  overflow:hidden;
+}
+.home-v2 .site-hero img,
+.home-v2 .site-hero video,
+.home-v2 .final-v2>img,
+.site-logo img,
+.logo img,
+.intro-brand img,
+.client-logo img,
+.client-logo{
+  border-radius:0!important;
+}
+
+/* Image groups need the same 16px visible corner treatment. */
+.home-v2 .journey-grid,
+.home-v2 .portfolio-mosaic,
+.home-v2 .property-map-view .location-card,
+.home-v2 .map-location-panel{
+  border-radius:16px!important;
+  overflow:hidden;
+}
+.home-v2 .journey-grid .journey-media{
+  border-radius:0!important;
+}
+.home-v2 .journey-grid .journey-media img{
+  border-radius:0!important;
+}
+
+/* Journey strip edge radius: only outer images get rounded corners. */
+.home-v2 .journey-section .journey-grid{
+  border-radius:0!important;
+  overflow:visible!important;
+}
+.home-v2 .journey-section .journey-card,
+.home-v2 .journey-section .journey-media,
+.home-v2 .journey-section .journey-media img{
+  border-radius:0!important;
+}
+.home-v2 .journey-section .journey-card:first-child .journey-media,
+.home-v2 .journey-section .journey-card:first-child .journey-media img{
+  border-top-left-radius:16px!important;
+  border-bottom-left-radius:16px!important;
+  overflow:hidden;
+}
+.home-v2 .journey-section .journey-card:last-child .journey-media,
+.home-v2 .journey-section .journey-card:last-child .journey-media img{
+  border-top-right-radius:16px!important;
+  border-bottom-right-radius:16px!important;
+  overflow:hidden;
+}
+@media(max-width:760px){
+  .home-v2 .journey-section .journey-card .journey-media,
+  .home-v2 .journey-section .journey-card .journey-media img{
+    border-radius:16px!important;
+  }
+}
+
+/* Ensure bottom outer corners are clipped on the visible journey strip edges. */
+.home-v2 .journey-section .journey-card:first-child{
+  border-top-left-radius:16px!important;
+  border-bottom-left-radius:16px!important;
+  overflow:hidden;
+}
+.home-v2 .journey-section .journey-card:last-child{
+  border-top-right-radius:16px!important;
+  border-bottom-right-radius:16px!important;
+  overflow:hidden;
+}
+.home-v2 .journey-section .journey-card:first-child .journey-content{
+  border-bottom-left-radius:16px!important;
+}
+.home-v2 .journey-section .journey-card:last-child .journey-content{
+  border-bottom-right-radius:16px!important;
+}
+
+/* Discovery controls radius update. */
+.home-v2 .discovery-v2 .tabs,
+.home-v2 .discovery-v2 .tab,
+.home-v2 #filter-home .search-box,
+.home-v2 #filter-home .field,
+.home-v2 #filter-home .field select,
+.home-v2 #filter-home .more-filters-toggle,
+.home-v2 #filter-home .search-primary,
+.home-v2 .view-toggle,
+.home-v2 .view-option,
+.home-v2 [role="group"][aria-label="Property view"]{
+  border-radius:16px!important;
+}
+.home-v2 #filter-home .search-box,
+.home-v2 .view-toggle,
+.home-v2 [role="group"][aria-label="Property view"]{
+  overflow:hidden;
+}
+.home-v2 #filter-home .field:first-child{
+  border-top-left-radius:16px!important;
+  border-bottom-left-radius:16px!important;
+}
+.home-v2 #filter-home .search-primary{
+  border-radius:16px!important;
+}
+
+/* Discovery search box: remove inner separators. */
+.home-v2 #filter-home .search-box>.field,
+.home-v2 #filter-home .search-box>.more-filters{
+  border-right:0!important;
+}
+.home-v2 #filter-home .search-box>.field + .field,
+.home-v2 #filter-home .search-box>.more-filters{
+  border-left:0!important;
+}
+
+/* Header nav inactive labels. */
+.desktop-nav span,
+.mobile-menu nav span{
+  display:inline-flex;
+  align-items:center;
+  color:inherit;
+  font:inherit;
+}
+.mobile-menu nav span{
+  font-size:inherit;
+  padding:17px 0;
+}
