@@ -41,6 +41,7 @@ export type BuildingSummary = {
   cardImage: PropertyImage | null;
   heroImage: PropertyImage | null;
   gallery: PropertyImage[];
+  units?: PropertyUnit[];
   seo: {
     title: string;
     description: string | null;
@@ -115,6 +116,28 @@ export type PropertyListResponse = {
 
 export type BuildingDetail = BuildingSummary & {
   units: PropertyUnit[];
+};
+
+export type BuildingListResponse = {
+  items: BuildingSummary[];
+  pagination: {
+    page: number;
+    perPage: number;
+    total: number;
+    totalPages: number;
+  };
+  facets: {
+    amenities?: PropertyTerm[];
+    locations: PropertyTerm[];
+    sectors: PropertyTerm[];
+    unitTypes?: PropertyTerm[];
+  };
+};
+
+export type BuildingFilters = {
+  page?: string;
+  per_page?: string;
+  location?: string;
 };
 
 export type PropertyFilters = {

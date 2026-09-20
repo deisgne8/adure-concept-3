@@ -247,6 +247,24 @@ function adure_property_terms( $post_id, $taxonomy ) {
 	);
 }
 
+function adure_property_terms_for_taxonomy( $taxonomy ) {
+	$terms = get_terms(
+		array(
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+		)
+	);
+	if ( is_wp_error( $terms ) ) {
+		return array();
+	}
+	return array_map(
+		function ( $term ) {
+			return array( 'id' => $term->term_id, 'name' => $term->name, 'slug' => $term->slug );
+		},
+		$terms
+	);
+}
+
 function adure_property_gallery( $post_id ) {
 	$images = adure_property_value( 'gallery', $post_id );
 	if ( ! is_array( $images ) ) {
@@ -470,6 +488,48 @@ function adure_rest_properties( WP_REST_Request $request ) {
 	);
 }
 
+function adure_rest_buildings( WP_REST_Request $request ) {
+	$page     = max( 1, (int) $request->get_param( 'page' ) );
+	$per_page = min( 50, max( 1, (int) ( $request->get_param( 'per_page' ) ?: 20 ) ) );
+	$tax      = array();
+
+	if ( $request->get_param( 'location' ) ) {
+		$tax[] = array(
+			'taxonomy' => 'adure_location',
+			'field'    => 'slug',
+			'terms'    => sanitize_title( $request->get_param( 'location' ) ),
+		);
+	}
+
+	$query = new WP_Query(
+		array(
+			'post_type'      => 'adure_building',
+			'post_status'    => 'publish',
+			'posts_per_page' => $per_page,
+			'paged'          => $page,
+			'tax_query'      => $tax,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		)
+	);
+
+	return rest_ensure_response(
+		array(
+			'items'      => array_map( function ( $post ) { return adure_format_building( $post->ID, false ); }, $query->posts ),
+			'pagination' => array(
+				'page'       => $page,
+				'perPage'    => $per_page,
+				'total'      => (int) $query->found_posts,
+				'totalPages' => (int) $query->max_num_pages,
+			),
+			'facets'     => array(
+				'locations' => adure_property_terms_for_taxonomy( 'adure_location' ),
+				'sectors'   => adure_property_terms_for_taxonomy( 'adure_sector' ),
+			),
+		)
+	);
+}
+
 function adure_rest_building( WP_REST_Request $request ) {
 	$building = get_page_by_path( sanitize_title( $request['slug'] ), OBJECT, 'adure_building' );
 	if ( ! $building || 'publish' !== $building->post_status ) {
@@ -498,6 +558,7 @@ function adure_rest_unit( WP_REST_Request $request ) {
 
 function adure_register_property_rest_routes() {
 	register_rest_route( ADURE_PROPERTY_API_NAMESPACE, '/properties', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'adure_rest_properties', 'permission_callback' => '__return_true' ) );
+	register_rest_route( ADURE_PROPERTY_API_NAMESPACE, '/buildings', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'adure_rest_buildings', 'permission_callback' => '__return_true' ) );
 	register_rest_route( ADURE_PROPERTY_API_NAMESPACE, '/buildings/(?P<slug>[a-zA-Z0-9-]+)', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'adure_rest_building', 'permission_callback' => '__return_true' ) );
 	register_rest_route( ADURE_PROPERTY_API_NAMESPACE, '/units/(?P<slug>[a-zA-Z0-9-]+)', array( 'methods' => WP_REST_Server::READABLE, 'callback' => 'adure_rest_unit', 'permission_callback' => '__return_true' ) );
 }

@@ -4,12 +4,22 @@
     "title": ["Find The Right Place", "For Your Next Chapter"],
     "description": "Find a place to call home or grow your business.",
     "locations": "Abu Dhabi · Dubai · Al Ain",
-    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp"
+    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "imageAlt": "Waterfront residences and beach at Saadiyat Island"
   },
+  "filtersTitle": "Search Available Properties",
+  "availableTitle": "Available Properties",
   "ownerCta": {
     "title": ["We’re Here For Your", "Next Step"],
     "description": "Whether you are looking to buy or rent your next property, bringing one to market or placing an asset under management, our team is ready to help.",
-    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp"
+    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "imageAlt": "Aerial view of the Hidd Al Saadiyat beach and waterfront",
+    "buttons": [
+      { "href": "/properties?intent=buy", "label": "Find a Property", "target": null },
+      { "href": "/#sell", "label": "Sell With ADURE", "target": null },
+      { "href": "/#management", "label": "Property Management", "target": null },
+      { "href": "/contact", "label": "Contact ADURE", "target": null }
+    ]
   },
   "properties": [
     {"id":"adu-502","intent":"lease","title":"Two-Bedroom Sea-View Apartment","building":"Sunrise Residence 2","unit":"Unit 502","community":"Qaryat Al Hidd","city":"Abu Dhabi","type":"Apartment","beds":2,"baths":4,"area":246.97,"price":280000,"status":"Available","date":12,"image":"/assets/portfolio-reference/sunrise-residence-3-v2.webp","coordinates":[24.553,54.455]},
