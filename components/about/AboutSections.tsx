@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type InnerBannerContent = typeof import("../../data/about/inner-banner.json");
 type IntroductionContent = typeof import("../../data/about/introduction.json");
@@ -19,8 +20,8 @@ export function InnerBanner({ innerBanner }: { innerBanner: InnerBannerContent }
       <div className="section-shell about-hero-inner">
         <span className="about-eyebrow" data-aos="fade-up"><b>{innerBanner.eyebrow.slice(0, 2)}</b>{innerBanner.eyebrow.slice(2)}</span>
         <h1 id="about-title" data-aos="fade-up">{innerBanner.heading.map((line) => <span key={line}>{line}<br /></span>)}</h1>
-        <p data-aos="fade-up" data-aos-delay="120">{innerBanner.description}</p>
-        <a className="about-scroll-link" href={innerBanner.scrollAction.href} data-aos="fade-up" data-aos-delay="180">
+        <p data-aos="fade-up" data-aos-delay="100">{innerBanner.description}</p>
+        <a className="about-scroll-link" href={innerBanner.scrollAction.href} data-aos="fade-up" data-aos-delay="200">
           {innerBanner.scrollAction.label} <span aria-hidden="true">↓</span>
         </a>
       </div>
@@ -93,8 +94,8 @@ export function AboutStorySection({ story }: { story: StoryContent }) {
   return (
     <section className="story-section story-tilton-section" aria-labelledby="story-title">
       <div className="section-shell story-tilton-shell">
-        <div className="story-tilton-stage" data-reveal>
-          <figure ref={imageFrameRef} className="story-tilton-image story-tilton-image-left about-image-scale" data-aos="fade-right"><img ref={imageRef} className="story-parallax-image" src={story.image} alt={story.imageAlt} /></figure>
+        <div className="story-tilton-stage">
+          <figure ref={imageFrameRef} className="story-tilton-image story-tilton-image-left about-image-scale"><img ref={imageRef} className="story-parallax-image" src={story.image} alt={story.imageAlt} /></figure>
           <article className="story-tilton-card" data-aos="fade-left">
             <span className="about-eyebrow">{story.eyebrow}</span>
             <p className="story-tilton-year">{story.year}</p>
@@ -164,20 +165,22 @@ export function AboutGuidesSection({ guides }: { guides: GuidesContent }) {
 
   return (
     <section className="guides-section" aria-labelledby="guides-title">
-      <div className="section-shell guides-shell" data-reveal>
+      <div className="section-shell guides-shell">
         <header className="guides-head" data-aos="fade-up"><span className="about-eyebrow">{guides.eyebrow}</span><h2 id="guides-title" className="type-guides-heading">{guides.heading}</h2></header>
         <div className="guides-beliefs" aria-label="ADURE vision and mission">
-          {guides.beliefs.map((belief, index) => <article data-aos="fade-up" data-aos-delay={index * 100} key={belief.title}><img className="guides-belief-icon" src={belief.icon} alt="" aria-hidden="true" /><span>{belief.title}</span><p>{belief.description}</p></article>)}
+          {guides.beliefs.map((belief, index) => <article data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={belief.title}><img className="guides-belief-icon" src={belief.icon} alt="" aria-hidden="true" /><span>{belief.title}</span><p>{belief.description}</p></article>)}
         </div>
-        <div ref={valuesRef} className="guides-values" aria-labelledby="guides-values-title" data-aos="fade-up">
+        <div ref={valuesRef} className="guides-values" aria-labelledby="guides-values-title">
           <span className="guides-values-kicker" id="guides-values-title">{guides.values.heading}</span>
           <div className="guides-values-grid">
             {guides.values.items.map((value, index) => (
-              <article className={index === 0 ? "is-featured" : undefined} key={value.heading}>
+              <div className="aos-card-reveal" key={value.heading} data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}>
+              <article className={index === 0 ? "is-featured" : undefined}>
                 <span className="value-icon" aria-hidden="true"><svg><use href={`/assets/about-value-icons.svg#${value.icon}`} /></svg></span>
                 <figure className="guides-value-image about-image-scale"><img src={value.image} alt={value.imageAlt} loading="lazy" /></figure>
                 <div><h3>{value.heading}</h3><p>{value.description}</p></div>
               </article>
+              </div>
             ))}
           </div>
         </div>
@@ -189,7 +192,7 @@ export function AboutGuidesSection({ guides }: { guides: GuidesContent }) {
 export function AboutCeoMessageSection({ ceo }: { ceo: CeoContent }) {
   return (
     <section className="ceo-message-section ceo-message-light" aria-label="Chief executive message">
-      <div className="section-shell ceo-message-light-layout" data-reveal>
+      <div className="section-shell ceo-message-light-layout">
         <figure className="ceo-message-light-portrait about-image-scale" data-aos="fade-right"><img src={ceo.image} alt={ceo.imageAlt} /></figure>
         <div className="ceo-message-light-copy" data-aos="fade-left">
           <span id="ceo-message-title" className="ceo-message-anchor" aria-hidden="true" />
@@ -206,7 +209,7 @@ export function AboutLeadershipSection({ leadership }: { leadership: LeadershipC
 
   return (
     <section className="leadership-section team-section" aria-labelledby="leadership-title">
-      <div className="section-shell team-layout" data-reveal>
+      <div className="section-shell team-layout">
         <div className="team-intro" data-aos="fade-up">
           <h2 id="leadership-title">{leadership.heading}</h2><p>{leadership.description}</p>
           <div className="team-controls" aria-label="Leadership carousel controls">
@@ -241,7 +244,7 @@ export function AboutContactSection({ contact }: { contact: ContactContent }) {
   return (
     <section className="about-cta final-v2 about-home-banner section" aria-labelledby="contact-title">
       <img src={contact.image} alt={contact.alt} loading="lazy" />
-      <div className="section-shell" data-reveal>
+      <div className="section-shell">
         <span className="section-index">{contact.index}</span>
         <div className="final-layout" data-aos="fade-up">
           <div><h2 id="contact-title">{contact.title}</h2><p>{contact.description}</p></div>

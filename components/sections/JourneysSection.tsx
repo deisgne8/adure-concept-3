@@ -1,6 +1,7 @@
 import Section from "../ui/Section";
 import Button, { type ButtonVariant } from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type JourneysSectionProps = {
   content: HomeContent["journeys"];
@@ -32,13 +33,14 @@ export default function JourneysSection({ content }: JourneysSectionProps) {
           </div>
           <div className="journey-grid">
             {content.cards.map((card, index) => (
-              <article
-                className="journey-card"
+              <div
+                className="journey-card-reveal"
                 data-aos="fade-up"
-                data-aos-delay={200 + index * 140}
+                data-aos-delay={aosSequenceDelay(index)}
                 data-aos-offset="120"
                 key={card.title}
               >
+              <article className="journey-card">
                 {card.image.src && (
                   <div className="journey-media">
                     <img src={card.image.src} alt={card.image.alt} />
@@ -58,6 +60,7 @@ export default function JourneysSection({ content }: JourneysSectionProps) {
                   </div>
                 </div>
               </article>
+              </div>
             ))}
           </div>
         </div>

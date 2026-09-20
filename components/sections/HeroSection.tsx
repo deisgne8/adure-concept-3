@@ -49,7 +49,7 @@ export default function HeroSection({ content }: HeroSectionProps) {
           <div ref={bannerRef} className="hero-lockup page-banner-enter">
             <div>
               {content.heading.length > 0 && (
-                <h1 data-aos="fade-up">
+                <h1>
                   {content.heading.map((line, index) => (
                     <Fragment key={line}>
                       {index > 0 && <br />}
@@ -62,16 +62,12 @@ export default function HeroSection({ content }: HeroSectionProps) {
             <div className="hero-side">
               {content.strapline && <p>{content.strapline}</p>}
               {content.description && (
-                <p className="hero-belief" data-aos="fade-up" data-aos-delay="100">
+                <p className="hero-belief">
                   {content.description}
                 </p>
               )}
               {heroButtons.length > 0 && (
-                <div
-                  className="hero-actions"
-                  data-aos="zoom-in"
-                  data-aos-delay="200"
-                >
+                <div className="hero-actions">
                   {heroButtons.map((button, index) => (
                     <Button
                       key={button.href}

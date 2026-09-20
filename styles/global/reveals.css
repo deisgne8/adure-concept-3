@@ -1,24 +1,25 @@
-/* Shared title-then-introduction reveal for every homepage chapter. */
-.section-copy-reveal-ready .section-copy-title,
-.section-copy-reveal-ready .section-copy-intro {
-  opacity: 0;
-  transform: translate3d(0, 24px, 0);
-  transition:
-    opacity 0.68s ease,
-    transform 0.86s cubic-bezier(0.22, 0.61, 0.36, 1);
+/* Keep ordinary reveals subtle instead of AOS's 100px default travel. */
+[data-aos][data-aos="fade-up"] {
+  transform: translate3d(0, 28px, 0);
 }
-.section-copy-reveal-ready.is-copy-visible .section-copy-title,
-.section-copy-reveal-ready.is-copy-visible .section-copy-intro {
-  opacity: 1;
-  transform: none;
+[data-aos][data-aos="fade-down"] {
+  transform: translate3d(0, -28px, 0);
 }
-.section-copy-reveal-ready.is-copy-visible .section-copy-title {
-  transition-delay: 0.08s;
+[data-aos][data-aos="fade-left"] {
+  transform: translate3d(32px, 0, 0);
 }
-.section-copy-reveal-ready.is-copy-visible .section-copy-intro {
-  transition-delay: 0.28s;
+[data-aos][data-aos="fade-right"] {
+  transform: translate3d(-32px, 0, 0);
 }
 
+/* A layout-neutral child keeps AOS transforms away from hoverable cards. */
+.aos-card-reveal {
+  min-width: 0;
+  height: 100%;
+}
+.aos-card-reveal > :only-child {
+  height: 100%;
+}
 
 /* Reusable entry treatment for page heroes and inner banners. */
 .page-banner-enter > * {

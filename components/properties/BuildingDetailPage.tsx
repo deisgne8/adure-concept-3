@@ -4,6 +4,7 @@ import type { BuildingDetail } from "../../lib/properties/types";
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import PropertyCard from "./PropertyCard";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type BuildingDetailPageProps = {
   building: BuildingDetail;
@@ -30,9 +31,9 @@ export default function BuildingDetailPage({
             <img alt={building.heroImage?.alt || building.name} src={hero} />
           ) : null}
           <div className="section-shell property-detail-hero-copy">
-            <Link href="/properties">Properties</Link>
-            <h1>{building.name}</h1>
-            {building.address ? <p>{building.address}</p> : null}
+            <Link href="/properties" data-aos="fade-up">Properties</Link>
+            <h1 data-aos="fade-up" data-aos-delay="100">{building.name}</h1>
+            {building.address ? <p data-aos="fade-up" data-aos-delay="200">{building.address}</p> : null}
           </div>
         </section>
         {building.summary ||
@@ -41,11 +42,11 @@ export default function BuildingDetailPage({
         building.amenities.length ? (
           <section className="property-overview pt_100 pb_100">
             <div className="section-shell property-overview-grid">
-              <div>
+              <div data-aos="fade-right">
                 <span className="eyebrow">Building overview</span>
                 {building.summary ? <h2>{building.summary}</h2> : null}
               </div>
-              <div className="property-rich-copy">
+              <div className="property-rich-copy" data-aos="fade-left">
                 {building.description ? (
                   <div
                     dangerouslySetInnerHTML={{ __html: building.description }}
@@ -53,8 +54,8 @@ export default function BuildingDetailPage({
                 ) : null}
                 {building.features.length ? (
                   <ul>
-                    {building.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
+                    {building.features.map((feature, index) => (
+                      <li key={feature} data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}>{feature}</li>
                     ))}
                   </ul>
                 ) : null}
@@ -72,12 +73,14 @@ export default function BuildingDetailPage({
         {building.gallery.length ? (
           <section className="property-gallery pb_100">
             <div className="section-shell property-gallery-grid">
-              {building.gallery.map((image) =>
+              {building.gallery.map((image, index) =>
                 image.card ? (
                   <img
                     alt={image.alt || building.name}
                     key={image.id}
                     src={image.card}
+                    data-aos="fade-up"
+                    data-aos-delay={aosSequenceDelay(index)}
                   />
                 ) : null,
               )}
@@ -86,14 +89,14 @@ export default function BuildingDetailPage({
         ) : null}
         <section className="building-units pt_100 pb_100">
           <div className="section-shell">
-            <div className="catalog-results-head">
+            <div className="catalog-results-head" data-aos="fade-up">
               <h2>Available units</h2>
               <p>{building.units.length} available</p>
             </div>
             {building.units.length ? (
               <div className="catalog-grid">
-                {building.units.map((unit) => (
-                  <PropertyCard key={unit.id} property={unit} />
+                {building.units.map((unit, index) => (
+                  <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={unit.id}><PropertyCard property={unit} /></div>
                 ))}
               </div>
             ) : (

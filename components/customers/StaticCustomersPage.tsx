@@ -5,6 +5,7 @@ import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
 import CustomerAssetCarousel from "./CustomerAssetCarousel";
 import CustomerCommitmentStack from "./CustomerCommitmentStack";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type Props = { content: CustomersContent; site: HomeContent["site"] };
 
@@ -20,8 +21,8 @@ export default function StaticCustomersPage({ content, site }: Props) {
             <h1 id="customers-title" data-aos="fade-up">
               {content.hero.headingLines.map((line, index) => <span key={line}>{index > 0 ? <br /> : null}{line}</span>)}
             </h1>
-            {content.hero.paragraphs.map((paragraph, index) => <p data-aos="fade-up" data-aos-delay={100 + index * 80} key={paragraph}>{paragraph}</p>)}
-            <a className="customers-hero-cta" href={content.hero.cta.href} data-aos="fade-up" data-aos-delay="260">{content.hero.cta.label}<span aria-hidden="true">→</span></a>
+            {content.hero.paragraphs.map((paragraph, index) => <p data-aos="fade-up" data-aos-delay={aosSequenceDelay(index + 1)} key={paragraph}>{paragraph}</p>)}
+            <a className="customers-hero-cta" href={content.hero.cta.href} data-aos="fade-up" data-aos-delay="300">{content.hero.cta.label}<span aria-hidden="true">→</span></a>
           </div>
         </section>
 
@@ -33,9 +34,9 @@ export default function StaticCustomersPage({ content, site }: Props) {
                   <h3>{group.title}</h3>
                   {group.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
-                <ul className="customer-logo-grid" aria-label={`${group.title} clients`} data-aos="fade-up" data-aos-delay="100">
-                  {group.logos.map((logo) => (
-                    <li key={logo.name}><img src={logo.image} alt={logo.name} loading="lazy" decoding="async" /></li>
+                <ul className="customer-logo-grid" aria-label={`${group.title} clients`}>
+                  {group.logos.map((logo, index) => (
+                    <li key={logo.name} data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}><img src={logo.image} alt={logo.name} loading="lazy" decoding="async" /></li>
                   ))}
                 </ul>
               </article>

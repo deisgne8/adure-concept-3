@@ -12,6 +12,7 @@ import type {
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type Props = {
   buildingFilters: BuildingFilters;
@@ -121,7 +122,7 @@ function AnimatedPortfolioStat({ value, label, delay }: { value: string; label: 
   }, [delay, isNumeric, target]);
 
   return (
-    <div ref={elementRef} aria-label={`${value} ${label}`}>
+    <div ref={elementRef} aria-label={`${value} ${label}`} data-aos="fade-up" data-aos-delay={delay}>
       {value ? (
         <strong aria-hidden="true">
           {isNumeric ? displayValue : value}
@@ -188,8 +189,8 @@ export default function StaticPortfolioPage({
             ) : null}
             {content.hero.image ? <div className="portfolio-hero-shade" /> : null}
             <div className="section-shell portfolio-hero-inner">
-              {heroHeading.length ? <h1 id="portfolio-title">{heroHeading}</h1> : null}
-              {content.hero.description ? <p>{content.hero.description}</p> : null}
+              {heroHeading.length ? <h1 id="portfolio-title" data-aos="fade-up">{heroHeading}</h1> : null}
+              {content.hero.description ? <p data-aos="fade-up" data-aos-delay="100">{content.hero.description}</p> : null}
             </div>
           </section>
         ) : null}
@@ -201,18 +202,18 @@ export default function StaticPortfolioPage({
           >
             <div className="section-shell portfolio-intro-grid">
               {content.introduction.heading ? (
-                <h2 id="portfolio-intro-title">{content.introduction.heading}</h2>
+                <h2 id="portfolio-intro-title" data-aos="fade-right">{content.introduction.heading}</h2>
               ) : null}
               <div>
                 {content.introduction.paragraphs.length ? (
-                  <div className="portfolio-intro-copy">
+                  <div className="portfolio-intro-copy" data-aos="fade-left">
                     {content.introduction.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   </div>
                 ) : null}
                 {content.introduction.stats.length ? (
                   <div className="portfolio-stats" aria-label="Portfolio summary">
                     {content.introduction.stats.map((stat, index) => (
-                      <AnimatedPortfolioStat key={`${stat.value}-${stat.label}`} value={stat.value} label={stat.label} delay={index * 100} />
+                      <AnimatedPortfolioStat key={`${stat.value}-${stat.label}`} value={stat.value} label={stat.label} delay={aosSequenceDelay(index)} />
                     ))}
                   </div>
                 ) : null}
@@ -227,14 +228,14 @@ export default function StaticPortfolioPage({
         >
           <div className="section-shell">
             {hasExplorerHead ? (
-              <div className="portfolio-section-head">
+              <div className="portfolio-section-head" data-aos="fade-up">
                 {content.explorer.heading ? (
                   <h2 id="portfolio-explorer-title">{content.explorer.heading}</h2>
                 ) : null}
                 {content.explorer.description ? <p>{content.explorer.description}</p> : null}
               </div>
             ) : null}
-            <div className="portfolio-city-tabs" role="tablist" aria-label="Portfolio locations">
+            <div className="portfolio-city-tabs" role="tablist" aria-label="Portfolio locations" data-aos="fade-up" data-aos-delay="100">
               <Link
                 aria-selected={!activeLocation}
                 className={!activeLocation ? "is-active" : undefined}
@@ -263,19 +264,19 @@ export default function StaticPortfolioPage({
                     : `${activeLocationLabel} buildings`}
                 </p>
                 <div id="portfolio-projects">
-                  {buildingItems.map((building) => (
-                    <PortfolioBuildingCard building={building} key={building.id} />
+                  {buildingItems.map((building, index) => (
+                    <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={building.id}><PortfolioBuildingCard building={building} /></div>
                   ))}
                 </div>
                 {!buildingItems.length ? (
-                  <div className="portfolio-empty-state">
+                  <div className="portfolio-empty-state" data-aos="fade-up">
                     <h3>No buildings found</h3>
                     <p>Try another location or reset the filter.</p>
                     <Button href="/portfolio" variant="primary">All Locations</Button>
                   </div>
                 ) : null}
                 {pagination.totalPages > 1 ? (
-                  <nav className="portfolio-pagination" aria-label="Building result pages">
+                  <nav className="portfolio-pagination" aria-label="Building result pages" data-aos="fade-up">
                     {pagination.page > 1 ? (
                       <Link href={portfolioPageHref(buildingFilters, pagination.page - 1)}>
                         Previous
@@ -309,13 +310,13 @@ export default function StaticPortfolioPage({
           >
             <div className="section-shell">
               {content.principles.heading ? (
-                <h2 id="portfolio-principles-title">{content.principles.heading}</h2>
+                <h2 id="portfolio-principles-title" data-aos="fade-up">{content.principles.heading}</h2>
               ) : null}
               {content.principles.items.length ? (
                 <div className="portfolio-principle-grid">
                   {content.principles.items.map((item, index) => (
+                    <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={`${item.title}-${index}`}>
                     <article
-                      key={`${item.title}-${index}`}
                       style={
                         item.image
                           ? ({ "--principle-image": `url('${item.image}')` } as CSSProperties)
@@ -329,6 +330,7 @@ export default function StaticPortfolioPage({
                         </div>
                       ) : null}
                     </article>
+                    </div>
                   ))}
                 </div>
               ) : null}
@@ -344,9 +346,9 @@ export default function StaticPortfolioPage({
             {content.cta.image ? <img src={content.cta.image} alt={content.cta.imageAlt} loading="lazy" /> : null}
             {content.cta.image ? <div className="portfolio-cta-shade" /> : null}
             <div className="section-shell portfolio-cta-grid">
-              {content.cta.heading ? <h2 id="portfolio-cta-title">{content.cta.heading}</h2> : null}
+              {content.cta.heading ? <h2 id="portfolio-cta-title" data-aos="fade-right">{content.cta.heading}</h2> : null}
               {content.cta.description || (content.cta.buttonHref && content.cta.buttonLabel) ? (
-                <div className="portfolio-card-intro">
+                <div className="portfolio-card-intro" data-aos="fade-left">
                   {content.cta.description ? <p>{content.cta.description}</p> : null}
                   {content.cta.buttonHref && content.cta.buttonLabel ? (
                     <Button

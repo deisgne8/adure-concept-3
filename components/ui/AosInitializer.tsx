@@ -30,6 +30,7 @@ export default function AosInitializer() {
 
       refreshAos();
       window.addEventListener("load", refreshAos);
+      document.addEventListener("load", refreshAos, true);
       Router.events.on("routeChangeComplete", refreshAos);
       void document.fonts?.ready.then(refreshAos);
     });
@@ -37,6 +38,7 @@ export default function AosInitializer() {
     return () => {
       cancelled = true;
       window.removeEventListener("load", refreshAos);
+      document.removeEventListener("load", refreshAos, true);
       Router.events.off("routeChangeComplete", refreshAos);
       window.cancelAnimationFrame(refreshFrame);
       window.cancelAnimationFrame(refreshAfterLayoutFrame);

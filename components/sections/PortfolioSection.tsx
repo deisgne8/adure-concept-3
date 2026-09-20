@@ -66,14 +66,14 @@ export default function PortfolioSection({ content }: PortfolioSectionProps) {
     <Section className="portfolio-v2 portfolio-explorer-home section" id={content.id} spacing={content.spacing}>
       <div className="section-shell">
         <div className="portfolio-intro">
-          <h2>{content.heading}</h2>
-          <div>
+          <h2 data-aos="fade-right">{content.heading}</h2>
+          <div data-aos="fade-left" data-aos-delay="100">
             <p>{content.description}</p>
             <Button href={content.button.href} variant="link">
               {content.button.label}
             </Button>
           </div>
-          <div className="portfolio-type-filters" role="group" aria-label="Filter portfolio projects">
+          <div className="portfolio-type-filters" role="group" aria-label="Filter portfolio projects" data-aos="fade-up" data-aos-delay="200">
             {content.filters.map((filter) => (
               <button
                 key={filter}
@@ -93,7 +93,7 @@ export default function PortfolioSection({ content }: PortfolioSectionProps) {
             ))}
           </div>
         </div>
-        <div className="portfolio-home-stage">
+        <div className="portfolio-home-stage" data-aos="fade-up" data-aos-delay="100">
           <div>
             <div
               className="portfolio-card-grid"

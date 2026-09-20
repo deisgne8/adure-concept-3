@@ -122,7 +122,7 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
             </form>
           </div>
           <p className="search-status" id="search-status" role="status" aria-live="polite"></p>
-          <div className="grid-3" id="home-properties" data-aos="fade-up"></div>
+          <div className="grid-3" id="home-properties"></div>
           <div className="discovery-actions" data-aos="fade-up" data-aos-delay="100">
             {content.actions.map((action, index) => (
               <Button

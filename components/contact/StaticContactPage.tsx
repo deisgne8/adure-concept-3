@@ -3,6 +3,7 @@ import type { ContactContent, ContactDetail } from "../../lib/contact/types";
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type Props = {
   content: ContactContent;
@@ -18,7 +19,7 @@ function ContactDetailRow({ detail, index }: { detail: ContactDetail; index: num
   ));
 
   return (
-    <article data-aos="fade-up" data-aos-delay={index * 90}>
+    <article data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}>
       <span className="contact-icon" aria-hidden="true">
         <img src={detail.icon} alt={detail.iconAlt} />
       </span>

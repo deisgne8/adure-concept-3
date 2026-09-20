@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Bath, BedDouble, Check, Maximize2 } from "lucide-react";
+import { Check } from "lucide-react";
 import type { HomeContent } from "../../lib/home/load-home-content";
 import type { PropertyUnitDetail } from "../../lib/properties/types";
 import Button from "../ui/Button";
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import { formatPropertyPrice } from "./PropertyCard";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type UnitDetailPageProps = {
   property: PropertyUnitDetail;
@@ -29,6 +30,24 @@ export default function UnitDetailPage({
     property.features.storeRoom && "Store room",
     property.features.studyRoom && "Study room",
   ].filter((item): item is string => Boolean(item));
+  const gallery = [
+    hero
+      ? {
+          alt: property.gallery[0]?.alt || property.title,
+          id: "hero",
+          src: hero,
+        }
+      : null,
+    ...property.gallery.slice(1, 3).flatMap((image) =>
+      image.full || image.card
+        ? [{ alt: image.alt || property.title, id: String(image.id), src: image.full || image.card }]
+        : [],
+    ),
+  ].filter((image): image is { alt: string; id: string; src: string } => Boolean(image));
+  const propertyType = property.unitTypes[0]?.name || property.subtype || "Not specified";
+  const location = [building.name, property.locations.at(-1)?.name]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <div className="property-page">
@@ -40,57 +59,59 @@ export default function UnitDetailPage({
         standalone
       />
       <main id="main">
-        <section className={`unit-hero${hero ? " has-image" : ""}`}>
-          {hero ? (
-            <img alt={property.gallery[0]?.alt || property.title} src={hero} />
-          ) : null}
-          <div className="section-shell unit-hero-copy">
-            <div className="unit-breadcrumb">
+        <section className="unit-detail-hero" aria-labelledby="unit-title">
+          <div className="section-shell">
+            <nav className="unit-detail-breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
               <Link href="/properties">Properties</Link>
               <span>/</span>
               <Link href={`/properties/${building.slug}`}>{building.name}</Link>
-            </div>
-            <div className="unit-heading">
-              <div>
-                <span className="eyebrow">
-                  {property.sectors[0]?.name} · Unit {property.unitCode}
+            </nav>
+            <div className="unit-detail-hero-grid">
+              <div data-aos="fade-right">
+                <span className="unit-detail-eyebrow">
+                  {property.status} for {property.transaction === "sale" ? "sale" : "lease"}
                 </span>
-                <h1>{property.title}</h1>
+                <h1 id="unit-title">{property.title}</h1>
+                {location ? <p className="unit-detail-location">{location}</p> : null}
+                {property.summary ? <p className="unit-detail-intro">{property.summary}</p> : null}
+                <div className="unit-detail-actions">
+                  <Button className="button-wipe" href="#unit-enquiry">
+                    <span>Request viewing</span>
+                  </Button>
+                  <Button href="/properties" variant="link" showArrow={false}>
+                    Back to properties
+                  </Button>
+                </div>
               </div>
-              {price ? <strong>{price}</strong> : null}
+              <aside className="unit-detail-price" aria-label="Property price and reference" data-aos="fade-left">
+                <span>{property.transaction === "sale" ? "Sale price" : "Annual rent"}</span>
+                {price ? <strong>{price}</strong> : <strong>Price on request</strong>}
+                <small>Reference ADU-{property.id}</small>
+              </aside>
             </div>
+            {gallery.length ? (
+              <div className="unit-detail-gallery" aria-label="Property image gallery">
+                {gallery.map((image, index) => (
+                  <figure className={index === 0 ? "unit-detail-gallery-main" : ""} key={image.id} data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}>
+                    <img alt={image.alt} src={image.src} />
+                  </figure>
+                ))}
+              </div>
+            ) : null}
+            <dl className="unit-detail-facts" aria-label="Property facts">
+              <div data-aos="fade-up"><dt>Bedrooms</dt><dd>{property.bedrooms === null ? "--" : property.bedrooms === 0 ? "Studio" : property.bedrooms}</dd></div>
+              <div data-aos="fade-up" data-aos-delay="100"><dt>Bathrooms</dt><dd>{property.bathrooms ?? "--"}</dd></div>
+              <div data-aos="fade-up" data-aos-delay="200"><dt>Area</dt><dd>{property.areaSqm === null ? "--" : `${property.areaSqm.toLocaleString("en-US")} sqm`}</dd></div>
+              <div data-aos="fade-up" data-aos-delay="300"><dt>Property type</dt><dd>{propertyType}</dd></div>
+              <div data-aos="fade-up" data-aos-delay="400"><dt>Status</dt><dd>{property.status}</dd></div>
+            </dl>
           </div>
         </section>
-        <section className="unit-overview pt_100 pb_100">
+        <section className="unit-detail-overview pt_100 pb_100">
           <div className="section-shell unit-overview-grid">
-            <div className="unit-main">
-              <div className="unit-facts">
-                {property.bedrooms !== null ? (
-                  <span>
-                    <BedDouble aria-hidden="true" />
-                    <strong>
-                      {property.bedrooms === 0 ? "Studio" : property.bedrooms}
-                    </strong>
-                    <small>
-                      {property.bedrooms === 0 ? "Residence" : "Bedrooms"}
-                    </small>
-                  </span>
-                ) : null}
-                {property.bathrooms !== null ? (
-                  <span>
-                    <Bath aria-hidden="true" />
-                    <strong>{property.bathrooms}</strong>
-                    <small>Bathrooms</small>
-                  </span>
-                ) : null}
-                {property.areaSqm !== null ? (
-                  <span>
-                    <Maximize2 aria-hidden="true" />
-                    <strong>{property.areaSqm.toLocaleString("en-US")}</strong>
-                    <small>Square metres</small>
-                  </span>
-                ) : null}
-              </div>
+            <div className="unit-main" data-aos="fade-right">
+              <span className="unit-detail-eyebrow">Property overview</span>
+              <h2>{property.summary || property.title}</h2>
               {property.description ? (
                 <div
                   className="property-rich-copy"
@@ -104,8 +125,8 @@ export default function UnitDetailPage({
                     {[
                       ...features,
                       ...property.amenities.map((amenity) => amenity.name),
-                    ].map((feature) => (
-                      <li key={feature}>
+                    ].map((feature, index) => (
+                      <li key={feature} data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}>
                         <Check aria-hidden="true" />
                         {feature}
                       </li>
@@ -113,26 +134,11 @@ export default function UnitDetailPage({
                   </ul>
                 </div>
               ) : null}
-              {property.gallery.length > 1 ? (
-                <div className="property-gallery-grid">
-                  {property.gallery
-                    .slice(1)
-                    .map((image) =>
-                      image.card ? (
-                        <img
-                          alt={image.alt || property.title}
-                          key={image.id}
-                          src={image.card}
-                        />
-                      ) : null,
-                    )}
-                </div>
-              ) : null}
             </div>
-            <aside className="unit-contact">
-              <span className="eyebrow">Enquire about this unit</span>
+            <aside className="unit-contact unit-detail-enquiry" id="unit-enquiry">
+              <span className="eyebrow" data-aos="fade-up">Enquire about this unit</span>
               {property.primaryBroker ? (
-                <div className="broker-profile">
+                <div className="broker-profile" data-aos="fade-up" data-aos-delay="100">
                   {property.primaryBroker.photo?.thumbnail ? (
                     <img
                       alt={
@@ -166,7 +172,7 @@ export default function UnitDetailPage({
                   Email broker
                 </Button>
               ) : null}
-              <dl>
+              <dl data-aos="fade-up" data-aos-delay="200">
                 {property.floor ? (
                   <>
                     <dt>Floor</dt>

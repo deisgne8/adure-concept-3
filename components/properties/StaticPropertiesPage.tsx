@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Bath, BedDouble, Maximize2 } from "lucide-react";
 import type { HomeContent } from "../../lib/home/load-home-content";
 import type { StaticCatalogContent } from "../../lib/properties/static-types";
 import type { PropertyFacets, PropertyImage, PropertyListResponse, PropertyTerm } from "../../lib/properties/types";
@@ -8,6 +9,7 @@ import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
 import PropertiesFilterDialog from "./PropertiesFilterDialog";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type Props = {
   content: StaticCatalogContent;
@@ -82,8 +84,7 @@ function propertyImage(property: ListingPropertyUnit) {
 function formatPropertyPrice(property: ListingPropertyUnit) {
   const amount = property.transaction === "sale" ? property.salePrice : property.annualRent;
   if (amount === null) return "Price on request";
-  const suffix = property.transaction === "lease" ? " / year" : "";
-  return `${property.currency} ${amount.toLocaleString("en-US")}${suffix}`;
+  return amount.toLocaleString("en-US");
 }
 
 function UnitPropertyCard({
@@ -94,13 +95,10 @@ function UnitPropertyCard({
   property: ListingPropertyUnit;
 }) {
   const building = property.building;
-  const sectors = uniqueTerms(property.sectors);
   const locations = uniqueTerms([
     ...property.locations,
     ...(building?.locations ?? []),
   ]);
-  const unitTypes = uniqueTerms(property.unitTypes);
-  const amenities = uniqueTerms(property.amenities);
   const image = propertyImage(property);
   const href = building ? `/properties/${building.slug}/${property.slug}` : "/properties";
   const reference = `REF # ADU-${property.id}`;
@@ -132,23 +130,26 @@ function UnitPropertyCard({
         <h3>{property.title}</h3>
         <p className="property-building">{[building?.name, property.unitCode].filter(Boolean).join(" · ")}</p>
         <div className="property-price">{formatPropertyPrice(property)}</div>
-        <div className="property-facts building-taxonomy-facts">
-          <span>{termNames(unitTypes, "Unit type unavailable")}</span>
-          <span>{property.bathrooms !== null ? `${property.bathrooms} Bath` : termNames(sectors, "Sector unavailable")}</span>
-          <span>{property.areaSqm !== null ? `${property.areaSqm.toLocaleString("en-US")} sqm` : "Area unavailable"}</span>
+        <div className="property-facts" aria-label="Property facts">
+          <span>
+            <BedDouble aria-hidden="true" />
+            {property.bedrooms === null
+              ? "--"
+              : property.bedrooms === 0
+                ? "Studio"
+                : `${property.bedrooms} Bed`}
+          </span>
+          <span>
+            <Bath aria-hidden="true" />
+            {property.bathrooms === null ? "--" : `${property.bathrooms} Bath`}
+          </span>
+          <span>
+            <Maximize2 aria-hidden="true" />
+            {property.areaSqm === null
+              ? "--"
+              : `${property.areaSqm.toLocaleString("en-US")} sqm`}
+          </span>
         </div>
-        <div className="property-facts building-taxonomy-facts">
-          <span>{termNames(sectors, "Sector unavailable")}</span>
-          <span>{amenities.length ? `${amenities.length} Amenities` : "Amenities unavailable"}</span>
-          <span>{property.floor || "Floor unavailable"}</span>
-        </div>
-        {amenities.length ? (
-          <div className="property-building-tags">
-            {amenities.slice(0, 4).map((amenity) => (
-              <span key={amenity.slug}>{amenity.name}</span>
-            ))}
-          </div>
-        ) : null}
         <div className="property-card-footer">
           <span>{reference}</span>
           <span className="view-property">
@@ -185,9 +186,12 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
     if (!transaction) return;
 
     const nextFilters = { ...emptyFilters, transaction };
-    setDraftFilters(nextFilters);
-    setFilters(nextFilters);
-    setPage(1);
+    const frame = window.requestAnimationFrame(() => {
+      setDraftFilters(nextFilters);
+      setFilters(nextFilters);
+      setPage(1);
+    });
+    return () => window.cancelAnimationFrame(frame);
   }, [router.isReady, router.query.intent]);
 
   useEffect(() => {
@@ -291,16 +295,16 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
             {content.hero.image ? <div className="properties-hero-shade" /> : null}
             {hasHeroContent ? (
               <div className="section-shell properties-hero-inner">
-                {content.hero.eyebrow ? <span className="properties-eyebrow"><b>01</b> {content.hero.eyebrow}</span> : null}
+                {content.hero.eyebrow ? <span className="properties-eyebrow" data-aos="fade-up"><b>01</b> {content.hero.eyebrow}</span> : null}
                 {content.hero.title.length ? (
-                  <h1 id="properties-title">
+                  <h1 id="properties-title" data-aos="fade-up" data-aos-delay="100">
                     {content.hero.title.map((line, index) => (
                       <span key={`${line}-${index}`}>{line}{index < content.hero.title.length - 1 ? <br /> : null}</span>
                     ))}
                   </h1>
                 ) : null}
-                {content.hero.description ? <p>{content.hero.description}</p> : null}
-                {content.hero.locations ? <span className="hero-location-line" aria-hidden="true">{content.hero.locations}</span> : null}
+                {content.hero.description ? <p data-aos="fade-up" data-aos-delay="200">{content.hero.description}</p> : null}
+                {content.hero.locations ? <span className="hero-location-line" aria-hidden="true" data-aos="fade-up" data-aos-delay="300">{content.hero.locations}</span> : null}
               </div>
             ) : null}
           </section>
@@ -308,8 +312,8 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
 
         <div className="hero-search-wrap">
           <div className="section-shell">
-            {content.filtersTitle ? <div className="properties-search-head"><h2 id="property-search-title">{content.filtersTitle}</h2></div> : null}
-            <form className="hero-property-search" aria-labelledby={content.filtersTitle ? "property-search-title" : undefined} onSubmit={(event) => { event.preventDefault(); submitSearch(); }}>
+            {content.filtersTitle ? <div className="properties-search-head" data-aos="fade-up"><h2 id="property-search-title">{content.filtersTitle}</h2></div> : null}
+            <form className="hero-property-search" aria-labelledby={content.filtersTitle ? "property-search-title" : undefined} data-aos="fade-up" data-aos-delay="100" onSubmit={(event) => { event.preventDefault(); submitSearch(); }}>
               <div className="hero-search-box search-box">
                 <div className="intent-switch tabs" role="group" aria-label="Property intent">
                   {(["buy", "lease"] as const).map((option) => {
@@ -390,8 +394,8 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
 
         <section className="property-results-section" id="results" aria-labelledby={content.availableTitle ? "results-title" : undefined}>
           <div className="section-shell">
-            {content.availableTitle ? <h2 className="properties-results-title" id="results-title">{content.availableTitle}</h2> : null}
-            <div className="results-toolbar">
+            {content.availableTitle ? <h2 className="properties-results-title" id="results-title" data-aos="fade-up">{content.availableTitle}</h2> : null}
+            <div className="results-toolbar" data-aos="fade-up" data-aos-delay="100">
               <div className="results-toolbar-primary"><strong aria-live="polite" aria-label={`${results.length} properties available to ${filters.transaction === "lease" ? "lease" : "buy"}.`}><span className="result-number">{String(results.length).padStart(2, "0")}</span><span className="result-copy"><b>{results.length === 1 ? "Property" : "Properties"}</b><small>Available to {filters.transaction === "lease" ? "lease" : "buy"}</small></span></strong></div>
               <div className="results-toolbar-actions">
                 <label className="toolbar-select sort-control">
@@ -411,10 +415,10 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
             </div>
             <div className="results-layout" id="grid-view">
               <div className="results-column">
-                {pageItems.length ? <div className="property-grid" aria-live="polite">{pageItems.map((property, index) => <UnitPropertyCard index={(currentPage - 1) * pageSize + index + 1} key={property.id} property={property} />)}</div> : (
-                  <div className="empty-state"><span className="properties-eyebrow">No results</span><h3>No Properties Match This Location</h3><p>Try another location, or speak with our team and we’ll help you continue your property search.</p><div><Button type="button" variant="primary" onClick={clearFilters}>Clear filters</Button><Button href="/contact">Contact ADURE</Button></div></div>
+                {pageItems.length ? <div className="property-grid" aria-live="polite">{pageItems.map((property, index) => <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={property.id}><UnitPropertyCard index={(currentPage - 1) * pageSize + index + 1} property={property} /></div>)}</div> : (
+                  <div className="empty-state" data-aos="fade-up"><span className="properties-eyebrow">No results</span><h3>No Properties Match This Location</h3><p>Try another location, or speak with our team and we’ll help you continue your property search.</p><div><Button type="button" variant="primary" onClick={clearFilters}>Clear filters</Button><Button href="/contact">Contact ADURE</Button></div></div>
                 )}
-                {totalPages > 1 ? <nav className="pagination" aria-label="Property result pages"><button type="button" onClick={() => changePage(Math.max(1, currentPage - 1))} aria-label="Previous page">←</button>{Array.from({ length: totalPages }, (_, index) => index + 1).map((number) => <button type="button" key={number} onClick={() => changePage(number)} aria-current={number === currentPage ? "page" : undefined}>{String(number).padStart(2, "0")}</button>)}<button type="button" onClick={() => changePage(Math.min(totalPages, currentPage + 1))} aria-label="Next page">→</button></nav> : null}
+                {totalPages > 1 ? <nav className="pagination" aria-label="Property result pages" data-aos="fade-up"><button type="button" onClick={() => changePage(Math.max(1, currentPage - 1))} aria-label="Previous page">←</button>{Array.from({ length: totalPages }, (_, index) => index + 1).map((number) => <button type="button" key={number} onClick={() => changePage(number)} aria-current={number === currentPage ? "page" : undefined}>{String(number).padStart(2, "0")}</button>)}<button type="button" onClick={() => changePage(Math.min(totalPages, currentPage + 1))} aria-label="Next page">→</button></nav> : null}
               </div>
             </div>
           </div>
@@ -425,7 +429,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
             {content.ownerCta.image ? <img src={content.ownerCta.image} alt={content.ownerCta.imageAlt} /> : null}
             {content.ownerCta.image ? <div className="owner-cta-overlay" /> : null}
             <div className="section-shell owner-cta-layout">
-              <div className="owner-card-copy">
+              <div className="owner-card-copy" data-aos="fade-right">
                 {content.ownerCta.title.length ? (
                   <h2 id="owner-title">
                     {content.ownerCta.title.map((line, index) => (
@@ -450,7 +454,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                   </nav>
                 ) : null}
               </div>
-              {content.ownerCta.description ? <p className="owner-card-intro">{content.ownerCta.description}</p> : null}
+              {content.ownerCta.description ? <p className="owner-card-intro" data-aos="fade-left">{content.ownerCta.description}</p> : null}
             </div>
           </section>
         ) : null}

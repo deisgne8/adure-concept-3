@@ -1008,57 +1008,6 @@ main {
 .final-links a:hover {
   color: var(--accent);
 }
-.conversation-reveal-ready .section-shell {
-  opacity: 0;
-  transform: translate3d(0, 32px, 0) scale(0.988);
-  backdrop-filter: blur(0);
-  -webkit-backdrop-filter: blur(0);
-}
-.conversation-reveal-ready .final-layout h2,
-.conversation-reveal-ready .final-layout p,
-.conversation-reveal-ready .final-links a {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-}
-.conversation-reveal-ready.is-conversation-visible .section-shell {
-  opacity: 1;
-  transform: none;
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  transition:
-    opacity 0.72s ease 0.38s,
-    transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.38s,
-    backdrop-filter 0.9s ease 0.38s,
-    -webkit-backdrop-filter 0.9s ease 0.38s;
-}
-.conversation-reveal-ready.is-conversation-visible .final-layout h2,
-.conversation-reveal-ready.is-conversation-visible .final-layout p,
-.conversation-reveal-ready.is-conversation-visible .final-links a {
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity 0.62s ease,
-    transform 0.82s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.conversation-reveal-ready.is-conversation-visible .final-layout h2 {
-  transition-delay: 0.94s;
-}
-.conversation-reveal-ready.is-conversation-visible .final-layout p {
-  transition-delay: 1.08s;
-}
-.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(1) {
-  transition-delay: 1.2s;
-}
-.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(2) {
-  transition-delay: 1.29s;
-}
-.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(3) {
-  transition-delay: 1.38s;
-}
-.conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(4) {
-  transition-delay: 1.47s;
-}
-
 .final-v2 + .footer {
   padding-top: var(--s35);
 }
@@ -1275,6 +1224,10 @@ main {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(18px, 1.6vw, 30px);
 }
+.journey-section .journey-card-reveal {
+  min-width: 0;
+  height: 100%;
+}
 .journey-section .journey-card {
   display: flex;
   flex-direction: column;
@@ -1319,16 +1272,16 @@ main {
   border-radius: 0 !important;
 }
 
-.home-v2 .journey-section .journey-card:first-child,
-.home-v2 .journey-section .journey-card:first-child .journey-media,
-.home-v2 .journey-section .journey-card:first-child .journey-media img {
+.home-v2 .journey-section .journey-card-reveal:first-child .journey-card,
+.home-v2 .journey-section .journey-card-reveal:first-child .journey-media,
+.home-v2 .journey-section .journey-card-reveal:first-child .journey-media img {
   border-radius: var(--radius-large, 16px) 0 0 var(--radius-large, 16px) !important;
   overflow: hidden !important;
 }
 
-.home-v2 .journey-section .journey-card:last-child,
-.home-v2 .journey-section .journey-card:last-child .journey-media,
-.home-v2 .journey-section .journey-card:last-child .journey-media img {
+.home-v2 .journey-section .journey-card-reveal:last-child .journey-card,
+.home-v2 .journey-section .journey-card-reveal:last-child .journey-media,
+.home-v2 .journey-section .journey-card-reveal:last-child .journey-media img {
   border-radius: 0 var(--radius-large, 16px) var(--radius-large, 16px) 0 !important;
   overflow: hidden !important;
 }
@@ -1389,9 +1342,12 @@ main {
     padding-bottom: var(--s1);
     scroll-snap-type: x mandatory;
   }
-  .journey-section .journey-card {
+  .journey-section .journey-card-reveal {
     flex: 0 0 min(72vw, 420px);
     scroll-snap-align: start;
+  }
+  .journey-section .journey-card {
+    width: 100%;
   }
   .journey-section .journey-media img {
     height: min(62vw, 520px);
@@ -1402,6 +1358,9 @@ main {
     font-size: clamp(36px, 10vw, 48px);
   }
   .journey-section .journey-card {
+    width: 100%;
+  }
+  .journey-section .journey-card-reveal {
     flex-basis: 86vw;
   }
   .journey-section .journey-media img {

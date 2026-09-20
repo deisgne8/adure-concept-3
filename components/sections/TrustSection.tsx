@@ -1,6 +1,7 @@
 import Section from "../ui/Section";
 import Button, { type ButtonVariant } from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
+import { aosSequenceDelay } from "../../lib/aos";
 
 type TrustSectionProps = {
   content: HomeContent["trust"];
@@ -37,16 +38,18 @@ export default function TrustSection({ content }: TrustSectionProps) {
       spacing={content.spacing}
     >
       <header className="trust-logo-head">
-        <h2 className="trust-logo-title">{content.heading}</h2>
-        <p className="trust-logo-intro">{content.description}</p>
+        <h2 className="trust-logo-title" data-aos="fade-up">{content.heading}</h2>
+        <p className="trust-logo-intro" data-aos="fade-up" data-aos-delay="100">{content.description}</p>
       </header>
 
       <div className="client-logo-groups">
-        {content.groups.map((group) => (
+        {content.groups.map((group, index) => (
           <section
             className="client-logo-group"
             aria-labelledby={group.id}
             key={group.id}
+            data-aos="fade-up"
+            data-aos-delay={aosSequenceDelay(index)}
           >
             <h3 id={group.id}>{group.heading}</h3>
             <div className={`client-logo-viewport${group.reverse ? " reverse" : ""}`}>
@@ -59,13 +62,15 @@ export default function TrustSection({ content }: TrustSectionProps) {
         ))}
       </div>
 
-      <Button
-        className="trust-logo-cta"
-        href={content.button.href}
-        variant={content.button.variant as ButtonVariant}
-      >
-        {content.button.text}
-      </Button>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <Button
+          className="trust-logo-cta"
+          href={content.button.href}
+          variant={content.button.variant as ButtonVariant}
+        >
+          {content.button.text}
+        </Button>
+      </div>
     </Section>
   );
 }
