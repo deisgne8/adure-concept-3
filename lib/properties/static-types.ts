@@ -24,15 +24,29 @@ export type StaticProperty = {
 export type StaticCatalogContent = {
   hero: {
     eyebrow: string;
-    title: [string, string];
+    title: string[];
     description: string;
     locations: string;
     image: string;
+    imageAlt: string;
   };
+  filtersTitle: string;
+  filterLabels?: {
+    bedrooms?: string;
+    building?: string;
+    location?: string;
+    price?: string;
+    sector?: string;
+    transaction?: string;
+    unitType?: string;
+  };
+  availableTitle: string;
   ownerCta: {
-    title: [string, string];
+    title: string[];
     description: string;
     image: string;
+    imageAlt: string;
+    buttons: Array<{ href: string; label: string; target: string | null }>;
   };
   properties: StaticProperty[];
 };

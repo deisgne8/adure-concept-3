@@ -13,14 +13,26 @@ type WordPressMedia =
   | false
   | null;
 
+type WordPressLink =
+  | string
+  | {
+      target?: string;
+      title?: string;
+      url?: string;
+    }
+  | false
+  | null;
+
 type WordPressPortfolioPage = {
   acf?: {
+    portfolio_cta_button?: WordPressLink;
     portfolio_cta_button_label?: string;
-    portfolio_cta_button_link?: string;
+    portfolio_cta_button_link?: WordPressLink;
     portfolio_cta_description?: string;
     portfolio_cta_heading?: string;
     portfolio_cta_image?: WordPressMedia;
     portfolio_cta_image_alt?: string;
+    portfolio_cta_link?: WordPressLink;
     portfolio_explorer_description?: string;
     portfolio_explorer_heading?: string;
     portfolio_hero_description?: string;
@@ -69,6 +81,22 @@ function getRows<T>(rows: T[] | false | undefined) {
   return Array.isArray(rows) ? rows : [];
 }
 
+function getLink(link?: WordPressLink, fallbackLabel = "") {
+  if (!link) {
+    return { href: "", label: "", target: null };
+  }
+
+  if (typeof link === "string") {
+    return { href: link.trim(), label: fallbackLabel.trim(), target: null };
+  }
+
+  return {
+    href: link.url?.trim() ?? "",
+    label: link.title?.trim() || fallbackLabel.trim(),
+    target: link.target?.trim() || null,
+  };
+}
+
 export async function loadWordPressPortfolioContent() {
   const endpoint = getWordPressEndpoint("homePages");
   endpoint.pathname = `${endpoint.pathname.replace(/\/$/, "")}/1991`;
@@ -86,6 +114,10 @@ export async function loadWordPressPortfolioContent() {
   const acf = page.acf ?? {};
   const heroImage = acf.portfolio_hero_image;
   const ctaImage = acf.portfolio_cta_image;
+  const ctaButton = getLink(
+    acf.portfolio_cta_button ?? acf.portfolio_cta_button_link ?? acf.portfolio_cta_link,
+    acf.portfolio_cta_button_label ?? "",
+  );
 
   return {
     meta: {
@@ -131,8 +163,9 @@ export async function loadWordPressPortfolioContent() {
     cta: {
       heading: acf.portfolio_cta_heading ?? "",
       description: acf.portfolio_cta_description ?? "",
-      buttonLabel: acf.portfolio_cta_button_label ?? "",
-      buttonHref: acf.portfolio_cta_button_link ?? "",
+      buttonLabel: ctaButton.label,
+      buttonHref: ctaButton.href,
+      buttonTarget: ctaButton.target,
       buttonVariant: "primary" as ButtonVariant,
       image: getMediaUrl(ctaImage) ?? "",
       imageAlt: acf.portfolio_cta_image_alt || getMediaAlt(ctaImage),

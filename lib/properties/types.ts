@@ -41,6 +41,7 @@ export type BuildingSummary = {
   cardImage: PropertyImage | null;
   heroImage: PropertyImage | null;
   gallery: PropertyImage[];
+  units?: PropertyUnit[];
   seo: {
     title: string;
     description: string | null;
@@ -126,8 +127,10 @@ export type BuildingListResponse = {
     totalPages: number;
   };
   facets: {
+    amenities?: PropertyTerm[];
     locations: PropertyTerm[];
     sectors: PropertyTerm[];
+    unitTypes?: PropertyTerm[];
   };
 };
 

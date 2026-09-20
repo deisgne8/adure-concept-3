@@ -55,11 +55,23 @@ function positiveInteger(value: string | undefined, fallback: number) {
   return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
 }
 
-function collectTerms(items: BuildingSummary[], key: "locations" | "sectors") {
+function collectTerms(items: BuildingSummary[], key: "amenities" | "locations" | "sectors") {
   const terms = new Map<string, PropertyTerm>();
   items.forEach((item) => {
     item[key].forEach((term) => {
       terms.set(term.slug, term);
+    });
+  });
+  return [...terms.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function collectUnitTerms(items: BuildingSummary[], key: "amenities" | "sectors" | "unitTypes") {
+  const terms = new Map<string, PropertyTerm>();
+  items.forEach((item) => {
+    item.units?.forEach((unit) => {
+      unit[key].forEach((term) => {
+        terms.set(term.slug, term);
+      });
     });
   });
   return [...terms.values()].sort((a, b) => a.name.localeCompare(b.name));
@@ -74,8 +86,10 @@ function normalizeBuildingList(
 ): BuildingListResponse {
   const allItems = response.items ?? [];
   const facets = response.facets ?? {
+    amenities: collectUnitTerms(allItems, "amenities"),
     locations: collectTerms(allItems, "locations"),
     sectors: collectTerms(allItems, "sectors"),
+    unitTypes: collectUnitTerms(allItems, "unitTypes"),
   };
 
   if (response.pagination) {
@@ -119,6 +133,39 @@ export async function loadProperties(filters: PropertyFilters = {}) {
     }
   });
   return getJson<PropertyListResponse>(endpoint);
+}
+
+export async function loadAllProperties(filters: PropertyFilters = {}) {
+  const firstPage = await loadProperties({ ...filters, page: filters.page ?? "1", per_page: filters.per_page ?? "200" });
+  const totalPages = firstPage.pagination.totalPages;
+
+  if (totalPages <= 1) {
+    return firstPage;
+  }
+
+  const remainingPages = await Promise.all(
+    Array.from({ length: totalPages - 1 }, (_, index) =>
+      loadProperties({
+        ...filters,
+        page: String(index + 2),
+        per_page: filters.per_page ?? "200",
+      }),
+    ),
+  );
+
+  return {
+    ...firstPage,
+    items: [
+      ...firstPage.items,
+      ...remainingPages.flatMap((page) => page.items),
+    ],
+    pagination: {
+      ...firstPage.pagination,
+      page: 1,
+      total: firstPage.pagination.total,
+      totalPages,
+    },
+  };
 }
 
 export async function loadBuildings(filters: BuildingFilters = {}) {

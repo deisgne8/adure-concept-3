@@ -349,7 +349,14 @@ export default function StaticPortfolioPage({
                 <div className="portfolio-card-intro">
                   {content.cta.description ? <p>{content.cta.description}</p> : null}
                   {content.cta.buttonHref && content.cta.buttonLabel ? (
-                    <Button href={content.cta.buttonHref} variant={content.cta.buttonVariant}>{content.cta.buttonLabel}</Button>
+                    <Button
+                      href={content.cta.buttonHref}
+                      rel={content.cta.buttonTarget === "_blank" ? "noreferrer" : undefined}
+                      target={content.cta.buttonTarget ?? undefined}
+                      variant={content.cta.buttonVariant}
+                    >
+                      {content.cta.buttonLabel}
+                    </Button>
                   ) : null}
                 </div>
               ) : null}

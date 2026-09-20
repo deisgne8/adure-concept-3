@@ -31,6 +31,7 @@ export type PortfolioContent = {
     description: string;
     buttonLabel: string;
     buttonHref: string;
+    buttonTarget: string | null;
     buttonVariant: ButtonVariant;
     image: string;
     imageAlt: string;
