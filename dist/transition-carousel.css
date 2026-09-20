@@ -57,3 +57,35 @@
 @media(prefers-reduced-motion:reduce){
  .has-transition-carousel .transition-visual-slide,.has-transition-carousel .timeline-step,.has-transition-carousel .transition-step-nav button,.has-transition-carousel .transition-step-nav button::after{transition:none}
 }
+
+/* Browser comment: give transition journey enough bottom spacing. */
+#home > #transition.has-transition-carousel .transition-content{
+  padding-bottom:clamp(86px,8vw,132px)!important;
+}
+#home > #transition.has-transition-carousel .transition-footer{
+  margin-top:clamp(52px,5vw,84px)!important;
+  padding-bottom:clamp(18px,2vw,32px)!important;
+}
+#home > #transition.has-transition-carousel .transition-footer>.btn{
+  margin-bottom:0!important;
+}
+@media(max-width:767.98px){
+  #home > #transition.has-transition-carousel .transition-content{
+    padding-bottom:64px!important;
+  }
+  #home > #transition.has-transition-carousel .transition-footer{
+    margin-top:42px!important;
+    padding-bottom:18px!important;
+  }
+}
+
+/* Keep the sticky transition content inside the visible panel. */
+#home > #transition.has-transition-carousel .transition-content{
+  box-sizing:border-box;
+  height:100%;
+  max-height:100%;
+  min-height:0;
+}
+#home > #transition.has-transition-carousel .timeline-v2{
+  min-height:0;
+}

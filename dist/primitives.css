@@ -814,3 +814,26 @@ dialog:not(.mobile-menu){
   height:100px!important;
   width:auto!important;
 }
+
+/* Browser comment: keep the header List your property CTA in the rounded mixed-case format. */
+.site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  box-shadow:none!important;
+}
+.site-header .header-cta.btn.primary:hover,
+.site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}

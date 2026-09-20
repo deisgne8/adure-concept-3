@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#004789">
+  <title>Contact Us | ADURE</title>
+  <meta name="description" content="Contact ADURE for property buying, leasing, selling and management enquiries across Abu Dhabi, Dubai and Al Ain.">
+  <link rel="icon" href="assets/adure-logo.svg">
+  <link rel="preload" href="assets/fonts/fira-sans-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/fira-sans-500.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/source-sans-pro-400.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="design-tokens.css?v=visual-cohesion-1">
+  <link rel="stylesheet" href="primitives.css?v=header-cta-pill-1">
+  <link rel="stylesheet" href="contact.css?v=header-cta-consistent-2">
+  <script type="module" src="contact.js?v=contact-page-1"></script>
+</head>
+<body class="contact-page">
+  <a class="skip-link" href="#contact-main">Skip to content</a>
+
+  <header class="site-header contact-header"><div class="container header-inner"><a href="index.html" class="site-logo" aria-label="ADURE home"><img src="assets/adure-logo-horizontal.svg" alt="ADURE — Abu Dhabi United Real Estate" width="230" height="62"></a><nav class="desktop-nav" aria-label="Main navigation"><div class="nav-dropdown about-nav-dropdown">
+          <a class="nav-dropdown-toggle" href="about.html">About ADURE</a>
+          <div class="nav-dropdown-menu" aria-label="About ADURE sections">
+            <a href="about.html#story-title">Our Story</a>
+            <a href="about.html#who-we-are">Our Presence</a>
+            <a href="about.html#guides-title">Vision, Mission &amp; Values</a>
+            <a href="about.html#ceo-message-title">CEO Message</a>
+            <a href="about.html#leadership-title">Leadership</a>
+            <a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <a href="properties.html">Properties</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="customers.html">Our Clients</a>
+        <a class="is-current" aria-current="page" href="contact.html">Contact</a>
+      </nav><a class="btn primary header-cta" href="index.html#sell">List your property</a><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="contact-mobile-menu"><span></span><span></span><span></span></button></div></header>
+
+  <dialog class="mobile-menu" id="contact-mobile-menu" aria-label="Main navigation"><div class="menu-top"><a href="index.html" class="site-logo"><img src="assets/adure-logo-horizontal.svg" alt="ADURE home"></a><button class="icon-button menu-close" type="button" aria-label="Close menu">×</button></div><nav aria-label="Mobile navigation"><details class="mobile-nav-group">
+        <summary>About ADURE</summary>
+        <a href="about.html#story-title">Our Story</a>
+        <a href="about.html#who-we-are">Our Presence</a>
+        <a href="about.html#guides-title">Vision, Mission &amp; Values</a>
+        <a href="about.html#ceo-message-title">CEO Message</a>
+        <a href="about.html#leadership-title">Leadership</a>
+        <a href="contact.html">Contact Us</a>
+      </details><a href="properties.html">Properties</a><a href="portfolio.html">Portfolio</a><a href="customers.html">Our Clients</a><a class="is-current" aria-current="page" href="contact.html">Contact</a></nav><a class="btn primary" href="index.html#sell">List your property</a><p class="menu-contact">Abu Dhabi · Dubai · Al Ain<br><a href="tel:+97126457869">02 6457869</a></p></dialog>
+
+  <main id="contact-main" class="contact-main">
+    <section class="contact-card" aria-labelledby="contact-title">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <h1 id="contact-title">Get In Touch</h1>
+          <p class="contact-lede">Start a conversation with us. From property enquiries to management support, our team is here to understand what you need and guide you with the right next step.</p>
+          <div class="contact-details" aria-label="ADURE contact details">
+            <article>
+              <span class="contact-icon" aria-hidden="true"><img src="assets/contact/address.svg" alt=""></span>
+              <div>
+                <h2>Office Location</h2>
+                <p>Abu Dhabi United Real Estate<br>Abu Dhabi · Dubai · Al Ain</p>
+              </div>
+            </article>
+            <article>
+              <span class="contact-icon" aria-hidden="true"><img src="assets/contact/telephone.svg" alt=""></span>
+              <div>
+                <h2>Phone</h2>
+                <p><a href="tel:+97126457869">02 6457869</a></p>
+              </div>
+            </article>
+            <article>
+              <span class="contact-icon" aria-hidden="true"><img src="assets/contact/emails.svg" alt=""></span>
+              <div>
+                <h2>Email</h2>
+                <p><a href="mailto:Inquiries@adu-re.com">Inquiries@adu-re.com</a></p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <form class="contact-form" action="mailto:Inquiries@adu-re.com" method="post" enctype="text/plain">
+          <label for="contact-name">Full Name<input id="contact-name" name="name" type="text" placeholder="Your name" autocomplete="name" required></label>
+          <label for="contact-phone">Phone Number<input id="contact-phone" name="phone" type="tel" placeholder="Your phone number" autocomplete="tel" required></label>
+          <label for="contact-type">Inquiry Type<select id="contact-type" name="inquiry" required><option>Buying Property</option><option>Leasing Property</option><option>Selling Property</option><option>Property Management</option><option>General Inquiry</option></select></label>
+          <label class="message-label" for="contact-message"><span class="field-heading">Message <em>(Optional)</em></span><textarea id="contact-message" name="message" placeholder="Tell us more about your property request."></textarea></label>
+          <button class="contact-submit" type="submit">Submit</button>
+          <label class="contact-consent"><input type="checkbox" name="privacy" required><span>By submitting this form, I agree to the Privacy Policy.</span></label>
+        </form>
+      </div>
+
+      <section class="contact-map" aria-label="ADURE location map">
+        <iframe title="ADURE location map" src="https://www.openstreetmap.org/export/embed.html?bbox=54.3400%2C24.4300%2C54.4300%2C24.5000&amp;layer=mapnik&amp;marker=24.4667%2C54.3667" loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="contact-map-link" href="https://maps.google.com/?q=Abu%20Dhabi%20United%20Real%20Estate%20ADURE" target="_blank" rel="noopener">View On Google Maps</a>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><div class="footer-grid"><div><a class="logo" href="index.html" aria-label="ADURE home"><img src="assets/logo-footer.svg" alt="ADURE — Abu Dhabi United Real Estate"></a></div><div><h3>Company</h3><a href="about.html">About ADURE</a><a href="customers.html">Our Clients</a><a href="index.html#media">Media and gallery</a><a href="index.html#careers">Careers</a><a href="contact.html">Contact</a></div><div><h3>Properties</h3><a href="properties.html?intent=buy">Buy</a><a href="properties.html?intent=lease">Lease</a><a href="index.html#sell">List your property</a><a href="portfolio.html">Portfolio</a></div><div><h3>Services</h3><a href="properties.html?intent=buy">Buy</a><a href="index.html#sell">Sell</a><a href="properties.html?intent=lease">Leasing</a><a href="index.html#management">Property management</a></div><div><h3>Explore</h3><a href="portfolio.html">Portfolio</a><a href="properties.html">Available properties</a></div></div><div class="footer-bottom"><span>© 2026 ADURE. All rights reserved.</span><span>Privacy · Terms · Accessibility</span></div></div></footer>
+</body>
+</html>

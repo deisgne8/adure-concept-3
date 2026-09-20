@@ -1616,3 +1616,625 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
 .properties-page .property-card-media img{
   border-radius:var(--radius-large,16px) var(--radius-large,16px) 0 0!important;
 }
+
+/* Restore properties banner title and intro text while keeping eyebrow removed. */
+.properties-page .properties-hero-inner{
+  display:block!important;
+}
+.properties-page .properties-hero .properties-eyebrow,
+.properties-page .properties-hero .hero-location-line{
+  display:none!important;
+}
+
+/* Match reference banner typography scale. */
+.properties-page .properties-hero h1{
+  max-width:48rem!important;
+  font-size:clamp(2.35rem,3.2vw,3.25rem)!important;
+  line-height:1.02!important;
+  letter-spacing:-.06em!important;
+  font-weight:700!important;
+}
+.properties-page .properties-hero p{
+  max-width:50rem!important;
+  margin-top:1.35rem!important;
+  font-size:clamp(1rem,1.25vw,1.18rem)!important;
+  line-height:1.55!important;
+  font-weight:600!important;
+}
+
+/* Browser comment: site page headings use the About reference size and weight. */
+:where(body) main :where(h1,h2){
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  :where(body) main :where(h1,h2){
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+}
+
+/* Browser comment: properties hero matches compact inner-page banner height. */
+.properties-page .properties-hero{
+  min-height:50svh!important;
+  align-items:center!important;
+}
+.properties-page .properties-hero-inner{
+  min-height:50svh!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:flex-start!important;
+  padding-block:calc(var(--nav-height) + 2rem) 3rem!important;
+}
+.properties-page .properties-hero h1{
+  max-width:12em!important;
+}
+@media(max-width:640px){
+  .properties-page .properties-hero,
+  .properties-page .properties-hero-inner{
+    min-height:52svh!important;
+  }
+}
+
+/* Browser comment: properties content review alignment with DOCX. */
+.properties-page .properties-search-head{
+  margin:0 0 1.4rem!important;
+}
+.properties-page .properties-search-head h2,
+.properties-page .properties-results-title{
+  margin:0!important;
+  color:var(--accent)!important;
+}
+.properties-page .properties-results-title{
+  margin-bottom:1.25rem!important;
+}
+@media(min-width:1181px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(8.8rem,.74fr) minmax(8.8rem,.86fr) minmax(11rem,1.06fr) minmax(8.9rem,.86fr) minmax(10.2rem,.96fr) minmax(8rem,.72fr) minmax(8.8rem,.74fr) minmax(11rem,.9fr)!important;
+    overflow:hidden!important;
+  }
+}
+@media(max-width:1180px) and (min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    grid-column:auto!important;
+  }
+}
+
+/* Browser comment: prevent expanded properties search from overflowing medium desktops. */
+@media(max-width:1320px) and (min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    overflow:hidden!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    grid-column:auto!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
+
+/* Browser comment: align expanded properties search controls cleanly. */
+@media(min-width:901px){
+  .properties-page .hero-search-box{
+    display:grid!important;
+    grid-template-columns:minmax(15rem,.95fr) repeat(5,minmax(8.2rem,1fr)) minmax(11rem,.9fr) minmax(12rem,1fr)!important;
+    align-items:stretch!important;
+    overflow:hidden!important;
+  }
+  .properties-page .hero-search-box > *{
+    min-width:0!important;
+  }
+  .properties-page .hero-search-box .intent-switch,
+  .properties-page .hero-search-box .search-field,
+  .properties-page .hero-search-box .more-filters,
+  .properties-page .hero-search-box .mobile-filter-trigger,
+  .properties-page .hero-search-box > .hero-search-submit{
+    min-height:5.2rem!important;
+    height:5.2rem!important;
+  }
+  .properties-page .hero-search-box .intent-switch{
+    align-self:stretch!important;
+    border-right:1px solid var(--border)!important;
+  }
+  .properties-page .hero-search-box .search-field{
+    border-right:1px solid var(--border)!important;
+  }
+  .properties-page .hero-search-box .more-filters{
+    border-right:0!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger{
+    width:100%!important;
+    padding-inline:1rem!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    grid-column:auto!important;
+    align-self:stretch!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    border-radius:999px!important;
+  }
+}
+@media(max-width:1320px) and (min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(14rem,.9fr) repeat(3,minmax(9rem,1fr))!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    grid-column:auto!important;
+  }
+}
+
+/* Browser comment: reduce properties Buy/Lease switch size. */
+@media(min-width:901px){
+  .properties-page .hero-search-box .intent-switch{
+    align-self:center!important;
+    justify-self:center!important;
+    width:min(13.25rem,calc(100% - 1.1rem))!important;
+    min-height:3.85rem!important;
+    height:3.85rem!important;
+    margin:0!important;
+    border:1px solid var(--border)!important;
+    border-radius:999px!important;
+  }
+  .properties-page .hero-search-box .intent-switch button{
+    min-height:3.35rem!important;
+    height:3.35rem!important;
+    padding-inline:1.1rem!important;
+    font-size:.82rem!important;
+  }
+}
+
+/* Browser comment: properties search submit uses icon only. */
+.properties-page .hero-search-box > .hero-search-submit{
+  display:grid!important;
+  place-items:center!important;
+  width:3.95rem!important;
+  min-width:3.95rem!important;
+  max-width:3.95rem!important;
+  height:3.95rem!important;
+  min-height:3.95rem!important;
+  padding:0!important;
+  justify-self:center!important;
+  align-self:center!important;
+  border-radius:999px!important;
+  overflow:hidden!important;
+  font-size:0!important;
+}
+.properties-page .hero-search-box > .hero-search-submit::after{
+  content:none!important;
+}
+.properties-page .hero-search-box .search-submit-icon{
+  width:1.15rem!important;
+  height:1.15rem!important;
+  display:block!important;
+  background:currentColor!important;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' d='m20 20-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' d='m20 20-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+}
+@media(max-width:900px){
+  .properties-page .hero-search-box > .hero-search-submit{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+}
+
+/* Final alignment pass: keep search controls in one row and restore submit label. */
+@media(min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(11.5rem,.95fr) minmax(8rem,.7fr) minmax(8.7rem,.78fr) minmax(7.5rem,.66fr) minmax(7.6rem,.66fr) minmax(7.5rem,.66fr) minmax(8.8rem,.72fr) minmax(12rem,.9fr)!important;
+    min-height:5.9rem!important;
+    align-items:center!important;
+    overflow:visible!important;
+  }
+  .properties-page .hero-search-box .intent-switch,
+  .properties-page .hero-search-box .search-field,
+  .properties-page .hero-search-box .more-filters,
+  .properties-page .hero-search-box > .hero-search-submit{
+    grid-row:1!important;
+  }
+  .properties-page .hero-search-box .search-field{
+    min-width:0!important;
+    width:auto!important;
+    min-height:4rem!important;
+    height:4rem!important;
+    padding-inline:clamp(.75rem,1vw,1rem)!important;
+  }
+  .properties-page .hero-search-box .search-field span{
+    font-size:.66rem!important;
+    letter-spacing:.16em!important;
+    white-space:nowrap!important;
+  }
+  .properties-page .hero-search-box .search-field select{
+    font-size:.88rem!important;
+    min-width:0!important;
+    width:100%!important;
+  }
+  .properties-page .hero-search-box .more-filters{
+    min-width:0!important;
+    width:auto!important;
+    height:4rem!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger{
+    min-height:4rem!important;
+    height:4rem!important;
+    padding-inline:clamp(.7rem,1vw,1rem)!important;
+  }
+  .properties-page .hero-search-box .more-filters-label{
+    font-size:.9rem!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger small{
+    font-size:.74rem!important;
+    max-width:8rem!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    display:inline-flex!important;
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    height:4rem!important;
+    min-height:4rem!important;
+    justify-self:stretch!important;
+    align-self:center!important;
+    padding:0 1.15rem!important;
+    gap:.75rem!important;
+    font-size:.88rem!important;
+    font-weight:800!important;
+    text-transform:none!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit::before{
+    content:'Search Properties'!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit::after{
+    content:'→'!important;
+    display:block!important;
+    font-size:1.35rem!important;
+    line-height:1!important;
+  }
+  .properties-page .hero-search-box .search-submit-icon{
+    display:none!important;
+  }
+}
+
+/* Move search button closer to More Filters. */
+@media(min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(11.5rem,.95fr) minmax(8rem,.7fr) minmax(8.7rem,.78fr) minmax(7.5rem,.66fr) minmax(7.6rem,.66fr) minmax(7.5rem,.66fr) minmax(9.4rem,.78fr) minmax(11.2rem,.84fr)!important;
+  }
+  .properties-page .hero-search-box .more-filters{
+    padding-right:0!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger{
+    padding-right:.65rem!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    margin-left:0!important;
+    justify-self:start!important;
+  }
+}
+
+/* Compact search bar spacing and align controls. */
+@media(min-width:901px){
+  .properties-page .hero-search-box{
+    grid-template-columns:minmax(12rem,.95fr) minmax(8.5rem,.74fr) minmax(9.5rem,.82fr) minmax(8.5rem,.74fr) minmax(8.6rem,.74fr) minmax(8.4rem,.72fr) minmax(10.2rem,.86fr) minmax(4rem,4rem)!important;
+    min-height:5.25rem!important;
+    padding:.45rem .65rem .45rem .45rem!important;
+    align-items:center!important;
+    column-gap:0!important;
+  }
+  .properties-page .hero-search-box .intent-switch{
+    width:min(13rem,calc(100% - .6rem))!important;
+    height:3.75rem!important;
+    min-height:3.75rem!important;
+  }
+  .properties-page .hero-search-box .intent-switch button{
+    height:3.25rem!important;
+    min-height:3.25rem!important;
+  }
+  .properties-page .hero-search-box .search-field,
+  .properties-page .hero-search-box .mobile-filter-trigger,
+  .properties-page .hero-search-box > .hero-search-submit{
+    height:3.75rem!important;
+    min-height:3.75rem!important;
+    align-self:center!important;
+  }
+  .properties-page .hero-search-box .search-field{
+    padding-inline:clamp(.75rem,.95vw,1rem)!important;
+  }
+  .properties-page .hero-search-box .more-filters{
+    height:3.75rem!important;
+    min-height:3.75rem!important;
+    width:auto!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger{
+    padding-left:1rem!important;
+    padding-right:.5rem!important;
+    justify-content:center!important;
+  }
+  .properties-page .hero-search-box .mobile-filter-trigger small{
+    margin-top:.32rem!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit{
+    width:3.75rem!important;
+    min-width:3.75rem!important;
+    max-width:3.75rem!important;
+    padding:0!important;
+    justify-self:start!important;
+    display:grid!important;
+    place-items:center!important;
+    font-size:0!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit::before{
+    content:none!important;
+  }
+  .properties-page .hero-search-box > .hero-search-submit::after{
+    content:''!important;
+    width:1.1rem!important;
+    height:1.1rem!important;
+    background:currentColor!important;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' d='m20 20-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' d='m20 20-4.35-4.35M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4Z'/%3E%3C/svg%3E") center/contain no-repeat!important;
+  }
+}
+
+/* Reference owner CTA banner: light action card over beach image. */
+.properties-page .owner-cta{
+  min-height:clamp(38rem,52vw,48rem)!important;
+  align-items:center!important;
+  padding:clamp(3rem,5vw,5rem) 0!important;
+  background:#d9e8ef!important;
+}
+.properties-page .owner-cta>img{
+  object-position:center 42%!important;
+}
+.properties-page .owner-cta-overlay{
+  background:linear-gradient(0deg,rgba(255,255,255,.08),rgba(255,255,255,.08))!important;
+}
+.properties-page .owner-cta-layout{
+  position:relative!important;
+  z-index:2!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(25rem,.82fr)!important;
+  gap:clamp(4rem,8vw,8.5rem)!important;
+  align-items:start!important;
+  padding:clamp(3.4rem,5vw,4.8rem) clamp(3.2rem,5.5vw,5.4rem)!important;
+  border-radius:16px!important;
+  background:linear-gradient(135deg,rgba(231,241,246,.96),rgba(247,248,249,.94))!important;
+  color:var(--ink)!important;
+  box-shadow:0 1.8rem 4rem rgba(0,45,83,.12)!important;
+}
+.properties-page .owner-card-copy{
+  display:grid!important;
+  gap:clamp(4.4rem,8vw,6.8rem)!important;
+}
+.properties-page .owner-cta h2{
+  max-width:30rem!important;
+  margin:0!important;
+  color:var(--accent)!important;
+  font-size:clamp(2.6rem,3.55vw,3.55rem)!important;
+  line-height:1.04!important;
+  letter-spacing:-.07em!important;
+  font-weight:800!important;
+}
+.properties-page .owner-card-intro{
+  max-width:34rem!important;
+  margin:0!important;
+  color:#535b64!important;
+  font-size:clamp(1rem,1.25vw,1.22rem)!important;
+  line-height:1.65!important;
+  font-weight:400!important;
+}
+.properties-page .owner-actions{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:0 clamp(2rem,3vw,2.5rem)!important;
+  max-width:34rem!important;
+}
+.properties-page .owner-actions a{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:1rem!important;
+  min-height:4.5rem!important;
+  padding:.2rem 0!important;
+  border-top:1px solid #b7cce0!important;
+  color:var(--accent)!important;
+  background:transparent!important;
+  font-family:var(--font-body)!important;
+  font-size:clamp(.95rem,1vw,1.05rem)!important;
+  font-weight:500!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  text-decoration:none!important;
+}
+.properties-page .owner-actions a:nth-last-child(-n+2){
+  border-bottom:1px solid #b7cce0!important;
+}
+.properties-page .owner-actions a span{
+  font-size:1.35rem!important;
+  line-height:1!important;
+}
+@media(max-width:900px){
+  .properties-page .owner-cta-layout{
+    grid-template-columns:1fr!important;
+    gap:2.5rem!important;
+    padding:2.3rem!important;
+  }
+  .properties-page .owner-card-copy{
+    gap:2.8rem!important;
+  }
+  .properties-page .owner-actions{
+    grid-template-columns:1fr!important;
+  }
+  .properties-page .owner-actions a:nth-last-child(-n+2){
+    border-bottom:0!important;
+  }
+  .properties-page .owner-actions a:last-child{
+    border-bottom:1px solid #b7cce0!important;
+  }
+}
+
+/* Owner banner final sizing: inset card like reference. */
+.properties-page .owner-cta .owner-cta-layout{
+  width:min(calc(100% - (var(--page-gutter) * 2)),74.5rem)!important;
+  margin-inline:auto!important;
+}
+
+/* Rounded More Filters drawer controls. */
+.properties-page .filter-dialog,
+.properties-page .filter-drawer{
+  border-radius:1.35rem!important;
+  overflow:hidden!important;
+}
+.properties-page .filter-dialog-head{
+  border-radius:1.35rem 1.35rem 0 0!important;
+}
+.properties-page .filter-dialog-actions{
+  border-radius:0 0 1.35rem 1.35rem!important;
+}
+.properties-page .filter-pill,
+.properties-page .range-fields input,
+.properties-page .amenities-list input,
+.properties-page .drawer-apply{
+  border-radius:.7rem!important;
+}
+.properties-page .filter-pill{
+  padding:.58rem .9rem!important;
+}
+.properties-page .range-fields input{
+  padding-inline:1rem!important;
+}
+.properties-page .amenities-list input{
+  border-radius:.35rem!important;
+}
+.properties-page .drawer-apply{
+  border-radius:.85rem!important;
+}
+@media(max-width:760px){
+  .properties-page .filter-dialog,
+  .properties-page .filter-drawer{
+    border-radius:1.25rem 1.25rem 0 0!important;
+  }
+  .properties-page .filter-dialog-head{
+    border-radius:1.25rem 1.25rem 0 0!important;
+  }
+  .properties-page .filter-dialog-actions{
+    border-radius:0!important;
+  }
+}
+
+/* Standard checkbox sizing inside the More Filters drawer. */
+.properties-page .amenities-list{
+  gap:.78rem!important;
+}
+.properties-page .amenities-list label{
+  min-height:1.5rem!important;
+  gap:.7rem!important;
+}
+.properties-page .amenities-list input{
+  width:1.125rem!important;
+  height:1.125rem!important;
+  min-width:1.125rem!important;
+  min-height:1.125rem!important;
+  border-radius:.25rem!important;
+}
+.properties-page .amenities-list input:checked:after{
+  font-size:.75rem!important;
+}
+
+/* Force amenity checkboxes to a true 18px square. */
+.properties-page .filter-dialog .amenities-list input[type="checkbox"]{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  box-sizing:border-box!important;
+  inline-size:1.125rem!important;
+  block-size:1.125rem!important;
+  width:1.125rem!important;
+  height:1.125rem!important;
+  min-inline-size:1.125rem!important;
+  min-block-size:1.125rem!important;
+  min-width:1.125rem!important;
+  min-height:1.125rem!important;
+  max-width:1.125rem!important;
+  max-height:1.125rem!important;
+  padding:0!important;
+  flex:0 0 1.125rem!important;
+  line-height:1!important;
+}
+
+/* Let property card titles use their real height to avoid blank space under one-line headings. */
+.properties-page .property-card-body{
+  grid-template-rows:auto auto auto auto auto auto!important;
+}
+.properties-page .property-card h3{
+  min-height:0!important;
+  margin-top:.72rem!important;
+  margin-bottom:0!important;
+}
+.properties-page .property-card .property-building{
+  min-height:0!important;
+  margin-top:.55rem!important;
+}
+.properties-page .property-card .property-price{
+  margin-top:1.3rem!important;
+}
+
+/* Browser comment: keep the header List your property CTA in the rounded mixed-case format. */
+.site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  box-shadow:none!important;
+}
+.site-header .header-cta.btn.primary:hover,
+.site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}
+/* Header CTA consistency: List your property button. */
+body .site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border:1px solid var(--accent)!important;
+  color:#fff!important;
+  font-family:var(--font-body)!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+body .site-header .header-cta.btn.primary:hover,
+body .site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}

@@ -67,7 +67,7 @@ if(scaleMetrics.length){
 }
 
 const storySection=$('.story-tilton-section');
-if(storySection){
+if(storySection && $('.story-tilton-years', storySection) && $('.story-tilton-prev', storySection) && $('.story-tilton-next', storySection) && $('.story-tilton-year', storySection)){
   const milestones=[
     {
       year:'2002',

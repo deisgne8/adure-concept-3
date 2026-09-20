@@ -5,6 +5,32 @@ import './management-carousel.js?v=title-case-1';
 import './proof-counter.js?v=units-1800-1';
 import './hero-transition.js';
 import './image-parallax.js';
+
+function settleHomepageHashTarget(){
+  const hash=location.hash;
+  if(!hash||hash==='#home')return;
+  const target=document.querySelector(hash);
+  if(!target)return;
+  const header=document.querySelector('.site-header');
+  const transition=document.querySelector('#transition.has-transition-scroll');
+  const align=()=>{
+    const headerHeight=header?.getBoundingClientRect().height||0;
+    const targetTop=window.scrollY+target.getBoundingClientRect().top;
+    window.scrollTo({top:Math.max(0,targetTop-headerHeight),behavior:'instant'});
+    const transitionBottom=transition?.getBoundingClientRect().bottom||0;
+    const overlap=Math.max(0,transitionBottom-headerHeight);
+    if(overlap>1)window.scrollBy({top:overlap,behavior:'instant'});
+  };
+  requestAnimationFrame(()=>{
+    align();
+    setTimeout(align,120);
+    setTimeout(align,420);
+  });
+}
+
+addEventListener('load',settleHomepageHashTarget,{once:true});
+addEventListener('hashchange',settleHomepageHashTarget);
+
 import {updatePropertyMap} from './property-map.js';
 import {properties,matchProperties,reference} from './home-data.js';
 const $=s=>document.querySelector(s);

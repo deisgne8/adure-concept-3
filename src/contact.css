@@ -1,0 +1,430 @@
+.contact-page{
+  min-height:100vh;
+  background:var(--surface-alt);
+  color:var(--ink);
+}
+.contact-page h1,.contact-page h2,.contact-page h3{
+  font-family:var(--font-display);
+  text-transform:none;
+  color:var(--accent);
+  font-weight:700;
+  letter-spacing:-.055em;
+}
+.contact-header{
+  color:var(--ink);
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(213,224,236,.72);
+  box-shadow:0 .25rem 2rem rgba(0,45,83,.06);
+  -webkit-backdrop-filter:blur(.9375rem) saturate(130%);
+  backdrop-filter:blur(.9375rem) saturate(130%);
+}
+.contact-header .site-logo img{
+  filter:none;
+}
+.contact-header .desktop-nav a.is-current,
+.contact-header .mobile-menu a.is-current{
+  color:var(--accent);
+}
+.contact-main{
+  padding:calc(var(--nav-height) + clamp(2rem,4vw,4rem)) var(--gutter) clamp(5rem,8vw,8rem);
+}
+.contact-card{
+  width:min(1180px,100%);
+  margin:0 auto;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(22rem,.82fr);
+  gap:clamp(2rem,6vw,5rem);
+  align-items:start;
+  min-height:500px;
+}
+.contact-copy{
+  min-height:500px;
+  display:flex;
+  flex-direction:column;
+}
+.contact-pill{
+  width:max-content;
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  padding:.5rem .8rem;
+  border:1px solid rgba(0,71,137,.12);
+  border-radius:var(--radius-pill);
+  background:#eef5fb;
+  color:var(--accent);
+  font-size:var(--text-label);
+  line-height:var(--line-label);
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.contact-copy h1{
+  margin-top:0;
+  max-width:12ch;
+  font-size:clamp(2.4rem,4vw,4.4rem);
+  line-height:1.05;
+  font-weight:600;
+}
+.contact-lede{
+  margin-top:1rem;
+  max-width:36rem;
+  color:#526476;
+  font-size:var(--text-body-lg);
+  line-height:var(--line-body-lg);
+}
+.contact-details{
+  display:grid;
+  gap:1.25rem;
+  margin-top:auto;
+  padding-top:clamp(2.5rem,5vw,4rem);
+}
+.contact-details article{
+  display:grid;
+  grid-template-columns:3rem 1fr;
+  gap:1rem;
+  align-items:start;
+}
+.contact-icon{
+  width:3rem;
+  height:3rem;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(0,71,137,.12);
+  border-radius:var(--radius-pill);
+  background:#eef5fb;
+  color:var(--accent);
+  font-size:1rem;
+}
+.contact-details h2{
+  margin:0;
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:1rem;
+  line-height:1.2;
+  font-weight:700;
+  letter-spacing:0;
+}
+.contact-details p{
+  margin-top:.35rem;
+  color:#526476;
+  line-height:1.5;
+}
+.contact-details a:hover{
+  color:var(--accent);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.contact-form{
+  display:grid;
+  gap:1rem;
+  padding:clamp(1.25rem,2vw,1.6rem);
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-card);
+  background:var(--surface-alt);
+}
+.contact-form label{
+  display:grid;
+  gap:.55rem;
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:var(--text-small);
+  line-height:var(--line-small);
+}
+.contact-form label span{
+  color:#526476;
+}
+.contact-form .field-heading{
+  display:flex;
+  align-items:baseline;
+  gap:.35rem;
+  color:var(--ink);
+}
+.contact-form .field-heading em{
+  color:#526476;
+  font-style:normal;
+}
+.contact-form input:not([type="checkbox"]),
+.contact-form select,
+.contact-form textarea{
+  width:100%;
+  min-height:3.35rem;
+  border:1px solid var(--color-border);
+  border-radius:var(--radius-large);
+  background:var(--white);
+  color:var(--ink);
+  padding:0 1rem;
+  outline:none;
+  font-family:var(--font-body);
+  font-size:var(--text-body);
+  transition:border-color var(--motion-control) var(--ease),box-shadow var(--motion-control) var(--ease),background var(--motion-control) var(--ease);
+}
+.contact-form textarea{
+  min-height:8.5rem;
+  resize:vertical;
+  padding:1rem;
+  line-height:1.45;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 4px rgba(0,71,137,.1);
+  background:var(--white);
+}
+.contact-submit{
+  min-height:var(--button-height);
+  border:1px solid var(--accent);
+  border-radius:var(--control-radius);
+  background:var(--accent);
+  color:var(--white);
+  font-size:var(--text-label);
+  line-height:var(--line-label);
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-family:var(--font-body);
+  transition:background var(--motion-control) var(--ease),border-color var(--motion-control) var(--ease),transform var(--motion-control) var(--ease);
+}
+.contact-submit:hover{
+  background:var(--accent-hover);
+  border-color:var(--accent-hover);
+  transform:translateY(-1px);
+}
+.contact-consent{
+  grid-template-columns:18px 1fr!important;
+  align-items:start;
+  column-gap:.7rem!important;
+  row-gap:0!important;
+  margin-top:.15rem;
+  color:#526476!important;
+  font-family:var(--font-body);
+  font-size:var(--text-small)!important;
+  line-height:var(--line-small)!important;
+}
+.contact-consent input{
+  width:18px;
+  height:18px;
+  margin:.2rem 0 0;
+  accent-color:var(--accent);
+}
+.contact-map{
+  margin:clamp(2.5rem,5vw,4.5rem) 0 0;
+  border:1px solid var(--color-border);
+  border-radius:var(--image-radius);
+  overflow:hidden;
+  background:var(--white);
+  box-shadow:var(--shadow-card);
+}
+.contact-map iframe{
+  display:block;
+  width:100%;
+  height:clamp(22rem,46vw,34rem);
+  border:0;
+}
+@media (max-width:900px){
+  .contact-main{padding-inline:var(--gutter);}
+  .contact-card{padding:1.25rem;}
+  .contact-grid{grid-template-columns:1fr;}
+  .contact-copy{min-height:auto;}
+  .contact-details{margin-top:2.25rem;padding-top:0;}
+}
+@media (max-width:640px){
+  .contact-copy h1{font-size:3.2rem;}
+  .contact-form{padding:1rem;}
+}
+
+/* Browser comment: contact page map should be a full-width Google map band. */
+.contact-page .contact-map{
+  width:100vw!important;
+  margin:clamp(3rem,6vw,5rem) 0 0 calc(50% - 50vw)!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#d8e5ee!important;
+}
+.contact-page .contact-map iframe{
+  width:100%!important;
+  height:clamp(24rem,42vw,34rem)!important;
+}
+@media(max-width:640px){
+  .contact-page .contact-map iframe{
+    height:24rem!important;
+  }
+}
+
+/* Browser comment: contact intro/form section uses white background. */
+.contact-page{
+  background:#fff!important;
+}
+.contact-main{
+  background:#fff!important;
+}
+.contact-page .contact-card{
+  background:#fff!important;
+}
+
+/* Browser comment: align privacy consent checkbox and move select arrow inward. */
+.contact-page .contact-consent{
+  display:grid!important;
+  grid-template-columns:18px minmax(0,1fr)!important;
+  align-items:start!important;
+  column-gap:.75rem!important;
+  padding:0!important;
+  margin-top:.35rem!important;
+}
+.contact-page .contact-consent input{
+  grid-column:1!important;
+  width:18px!important;
+  height:18px!important;
+  margin:.12rem 0 0!important;
+  justify-self:start!important;
+}
+.contact-page .contact-consent span{
+  grid-column:2!important;
+  display:block!important;
+  color:#526476!important;
+  line-height:1.45!important;
+}
+.contact-page .contact-form select{
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  padding-right:3.25rem!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5 10 12.5 15 7.5' stroke='%23302E2D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 1.55rem center!important;
+  background-size:14px 14px!important;
+}
+
+/* Browser comment: force consent checkbox to remain square. */
+.contact-page .contact-form .contact-consent input[type="checkbox"]{
+  min-height:0!important;
+  inline-size:18px!important;
+  block-size:18px!important;
+  width:18px!important;
+  height:18px!important;
+  padding:0!important;
+  border-radius:2px!important;
+}
+
+/* Browser comment: contact detail icons use supplied SVGs without circular backgrounds. */
+.contact-page .contact-icon{
+  width:2rem!important;
+  height:2rem!important;
+  display:block!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--accent)!important;
+}
+.contact-page .contact-icon img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  filter:brightness(0) saturate(100%) invert(23%) sepia(88%) saturate(1345%) hue-rotate(187deg) brightness(89%) contrast(101%)!important;
+}
+.contact-page .contact-details article{
+  grid-template-columns:2rem 1fr!important;
+  gap:1.2rem!important;
+}
+
+/* Browser comment: make all contact detail labels larger and heavier. */
+.contact-page .contact-details h2{
+  font-size:calc(1rem + 4px)!important;
+  font-weight:800!important;
+  line-height:1.18!important;
+}
+
+/* Browser comment: show visible map fallback and Google Maps action. */
+.contact-page .contact-map{
+  position:relative!important;
+}
+.contact-page .contact-map-link{
+  position:absolute!important;
+  right:clamp(1rem,3vw,2rem)!important;
+  bottom:clamp(1rem,3vw,2rem)!important;
+  z-index:2!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:44px!important;
+  padding:0 18px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  color:#fff!important;
+  font-family:var(--font-body)!important;
+  font-size:13px!important;
+  font-weight:600!important;
+  text-decoration:none!important;
+  box-shadow:0 12px 28px rgba(0,45,83,.18)!important;
+}
+.contact-page .contact-map-link:hover,
+.contact-page .contact-map-link:focus-visible{
+  background:var(--accent-hover)!important;
+}
+
+/* Browser comment: remove whitespace after the contact map before footer. */
+.contact-main{
+  padding-bottom:0!important;
+}
+.contact-page .contact-map{
+  margin-bottom:0!important;
+}
+.contact-page .footer{
+  margin-top:0!important;
+}
+
+/* Browser comment: keep the header List your property CTA in the rounded mixed-case format. */
+.site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  box-shadow:none!important;
+}
+.site-header .header-cta.btn.primary:hover,
+.site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}
+/* Header CTA consistency: List your property button. */
+body .site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border:1px solid var(--accent)!important;
+  color:#fff!important;
+  font-family:var(--font-body)!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+body .site-header .header-cta.btn.primary:hover,
+body .site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}

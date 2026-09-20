@@ -5,7 +5,7 @@ const html=readFileSync(new URL('../dist/properties.html',import.meta.url),'utf8
 const css=readFileSync(new URL('../dist/properties.css',import.meta.url),'utf8');
 const js=readFileSync(new URL('../dist/properties.js',import.meta.url),'utf8');
 
-for(const text of ['Find The Right Place','Find a place to call home or grow your business.','Properties That Match Your Search','Own Property in the UAE?'])assert.ok(html.includes(text),`Missing properties-page content: ${text}`);
+for(const text of ['Find The Right Place','Find a place to call home or grow your business.','Search Available Properties','Available Properties','We’re Here For Your','Next Step'])assert.ok(html.includes(text),`Missing properties-page content: ${text}`);
 assert.ok(!html.includes('class="results-intro"'),'Results intro banner should be removed');
 for(const id of ['hero-property-search','filter-panel','property-grid','map-view','empty-state','filter-dialog'])assert.ok(html.includes(`id="${id}"`),`Missing properties-page element: ${id}`);
 for(const behaviour of ['setIntent','applyHeroSearch','clearFilters','setView','selectMapProperty','data-favourite'])assert.ok(js.includes(behaviour),`Missing properties interaction: ${behaviour}`);

@@ -81,57 +81,94 @@ const projectName=$('#portfolio-project-name');
 const projectCopy=$('#portfolio-project-copy');
 const projectImage=$('#portfolio-image');
 const explorer=$('.portfolio-explorer');
-const expandedClose=$('.portfolio-expanded-close');
+let portfolioPopup=null;
 function fallbackDescription(project,city){
   return `${project.name} is part of ADURE’s managed portfolio in ${city}, supported by connected expertise across leasing, operations, facility management and owner reporting.`;
+}
+function escapeHtml(value){
+  return String(value).replace(/[&<>"]/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[character]));
+}
+function selectedProject(){
+  const projects=projectsByCity[activeCity] || [];
+  return projects[activeIndex] || projects[0];
+}
+function ensurePortfolioPopup(){
+  if(portfolioPopup)return portfolioPopup;
+  portfolioPopup=document.createElement('div');
+  portfolioPopup.className='portfolio-popup';
+  portfolioPopup.setAttribute('role','dialog');
+  portfolioPopup.setAttribute('aria-modal','true');
+  portfolioPopup.setAttribute('aria-hidden','true');
+  portfolioPopup.innerHTML=`<div class="portfolio-popup-backdrop" data-popup-close></div><article class="portfolio-popup-card" tabindex="-1"></article>`;
+  document.body.append(portfolioPopup);
+  portfolioPopup.addEventListener('click',event=>{
+    if(event.target.closest('[data-popup-close]'))closePortfolioPopup();
+  });
+  return portfolioPopup;
+}
+function popupMarkup(project){
+  const description=descriptions[project.name] || fallbackDescription(project,activeCity);
+  return `<div class="portfolio-popup-copy">
+    <button class="portfolio-popup-close" type="button" data-popup-close aria-label="Close project details">×</button>
+    <h3>${escapeHtml(project.name)}</h3>
+    <span class="portfolio-detail-line" aria-hidden="true"></span>
+    <p>${escapeHtml(description)}</p>
+    <div class="portfolio-detail-actions">
+      <a class="btn primary" href="properties.html">Explore properties</a>
+      <a class="btn" href="about.html#contact-title">Contact ADURE</a>
+    </div>
+  </div>
+  <figure class="portfolio-popup-image"><img src="${project.image}" alt="${escapeHtml(project.name)}" draggable="false"></figure>`;
+}
+function openPortfolioPopup(project){
+  const popup=ensurePortfolioPopup();
+  popup.querySelector('.portfolio-popup-card').innerHTML=popupMarkup(project);
+  popup.classList.add('is-open');
+  popup.setAttribute('aria-hidden','false');
+  document.documentElement.classList.add('portfolio-popup-open');
+  requestAnimationFrame(()=>popup.querySelector('.portfolio-popup-card')?.focus({preventScroll:true}));
+}
+function closePortfolioPopup(){
+  if(!portfolioPopup)return;
+  portfolioPopup.classList.remove('is-open');
+  portfolioPopup.setAttribute('aria-hidden','true');
+  document.documentElement.classList.remove('portfolio-popup-open');
 }
 function projectCard(project,index){
   const active=index===activeIndex;
   return `<button type="button" class="portfolio-project-card ${active?'is-active':''}" data-index="${index}" aria-pressed="${active?'true':'false'}">
-    <span class="portfolio-project-card-image"><img src="${project.image}" alt="${project.name}" loading="lazy" draggable="false"></span>
-    <span class="portfolio-project-card-copy"><strong>${project.name}</strong><small>${project.type} · ${project.location}</small></span>
+    <span class="portfolio-project-card-image"><img src="${project.image}" alt="${escapeHtml(project.name)}" loading="lazy" draggable="false"></span>
+    <span class="portfolio-project-card-copy"><strong>${escapeHtml(project.name)}</strong><small>${escapeHtml(project.type)} · ${escapeHtml(project.location)}</small></span>
   </button>`;
 }
 function drawPortfolio(){
   const projects=projectsByCity[activeCity] || [];
-  const selected=projects[activeIndex] || projects[0];
+  const selected=selectedProject();
   if(!selected)return;
   listLabel.textContent=`${activeCity} buildings`;
   projectsEl.innerHTML=projects.map(projectCard).join('');
+  explorer?.setAttribute('aria-expanded','false');
   if(cityName) cityName.textContent=activeCity;
   projectName.textContent=selected.name;
   projectCopy.textContent=descriptions[selected.name] || fallbackDescription(selected,activeCity);
   projectImage.src=selected.image;
   projectImage.alt=selected.name;
-  $$('button',projectsEl).forEach(button=>{
-    button.addEventListener('click',event=>{
+  $$('.portfolio-project-card',projectsEl).forEach(button=>{
+    button.addEventListener('click',()=>{
       activeIndex=Number(button.dataset.index);
-      const shouldExpand=Boolean(event.target.closest('.portfolio-project-card-image'));
       drawPortfolio();
-      if(shouldExpand)openPortfolioExpanded();
+      openPortfolioPopup(selectedProject());
     });
   });
 }
-
-function openPortfolioExpanded(){
-  explorer?.classList.add('is-expanded');
-  explorer?.setAttribute('aria-expanded','true');
-  projectImage?.closest('.portfolio-project-image')?.setAttribute('tabindex','-1');
-  explorer?.scrollIntoView({behavior:'smooth',block:'center'});
-}
-function closePortfolioExpanded(){
-  explorer?.classList.remove('is-expanded');
-  explorer?.setAttribute('aria-expanded','false');
-}
-expandedClose?.addEventListener('click',closePortfolioExpanded);
 document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&explorer?.classList.contains('is-expanded'))closePortfolioExpanded();
+  if(event.key==='Escape')closePortfolioPopup();
 });
 
 $$('.portfolio-city-tabs button').forEach(button=>button.addEventListener('click',()=>{
   activeCity=button.dataset.city;
   activeIndex=0;
-  closePortfolioExpanded();
+  closePortfolioPopup();
   $$('.portfolio-city-tabs button').forEach(item=>{
     const isActive=item===button;
     item.classList.toggle('is-active',isActive);

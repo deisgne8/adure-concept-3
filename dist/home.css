@@ -10,7 +10,7 @@
 @import url('./section-spacing.css');
 @import url('./discovery-search.css');
 @import url('./type-system.css');
-@import url('./transition-carousel.css');
+@import url('./transition-carousel.css?v=panel-fit-1');
 @import url('./arrow-system.css');
 @import url('./section-copy-reveal.css');
 @import url('./hero-transition.css');
@@ -2743,7 +2743,7 @@ main{
   }
 }
 
-/* Browser comment: align homepage section headings with the One Partner reference size and weight. */
+/* Browser comment: align homepage section headings with the inner-page heading size and weight. */
 .home-v2 :is(
   .journey-heading h2,
   .discovery-title h2,
@@ -2755,9 +2755,9 @@ main{
   .trust-logo-title,
   .final-layout h2
 ){
-  font-size:clamp(38px,3.7vw,62px)!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
   line-height:1.05!important;
-  font-weight:700!important;
+  font-weight:600!important;
   letter-spacing:-.035em!important;
 }
 @media(max-width:767.98px){
@@ -2772,7 +2772,7 @@ main{
     .trust-logo-title,
     .final-layout h2
   ){
-    font-size:clamp(36px,10vw,48px)!important;
+    font-size:clamp(32px,9vw,42px)!important;
   }
 }
 
@@ -2793,4 +2793,68 @@ main{
     max-width:100%;
     font-size:1rem;
   }
+}
+
+/* Browser comment: site page headings use the About reference size and weight. */
+:where(body) main :where(h1,h2){
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  :where(body) main :where(h1,h2){
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+}
+
+/* Browser comment: keep the header List your property CTA in the rounded mixed-case format. */
+.site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  box-shadow:none!important;
+}
+.site-header .header-cta.btn.primary:hover,
+.site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}
+/* Header CTA consistency: List your property button. */
+body .site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border:1px solid var(--accent)!important;
+  color:#fff!important;
+  font-family:var(--font-body)!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+body .site-header .header-cta.btn.primary:hover,
+body .site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
 }

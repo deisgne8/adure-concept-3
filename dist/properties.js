@@ -336,7 +336,7 @@ function clearFilters(){
 
 function applyHeroSearch(){
   const data=new FormData($('#hero-property-search'));
-  state.hero={location:data.get('location'),query:'',community:'all',type:data.get('type'),beds:data.get('beds'),price:data.get('price')};
+  state.hero={location:data.get('location'),query:'',community:data.get('community'),type:data.get('type'),beds:data.get('beds'),price:data.get('price')};
   state.page=1;render();$('#results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
 }
 

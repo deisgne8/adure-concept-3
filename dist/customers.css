@@ -1484,3 +1484,570 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
     line-height:1!important;
   }
 }
+
+/* Align Customers typography with the homepage scale. */
+.customers-page .customers-hero h1{
+  font-size:clamp(3.8rem,7.2vw,6.6rem)!important;
+  line-height:.92!important;
+  letter-spacing:-.075em!important;
+  font-weight:700!important;
+  max-width:52rem!important;
+}
+.customers-page .customers-hero p{
+  font-size:clamp(1rem,1.25vw,1.18rem)!important;
+  line-height:1.55!important;
+  max-width:48rem!important;
+}
+.customers-page .customer-groups-head h2,
+.customers-page .customer-section-intro h2,
+.customers-page .perspectives-card h2,
+.customers-page .customers-closing-card h2,
+.customers-page .customer-commitment .customer-section-intro h2{
+  font-size:clamp(3rem,5.4vw,5.4rem)!important;
+  line-height:.95!important;
+  letter-spacing:-.07em!important;
+  font-weight:700!important;
+}
+.customers-page .customer-groups-head p,
+.customers-page .customer-section-intro p,
+.customers-page .perspectives-card p,
+.customers-page .customers-closing-card p,
+.customers-page .customer-commitment .customer-section-intro p{
+  font-size:clamp(1rem,1.18vw,1.14rem)!important;
+  line-height:1.62!important;
+}
+.customers-page .customer-panel-copy h3,
+.customers-page .commitment-grid h3,
+.customers-page .asset-story-feature-copy h3,
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-teaser h3{
+  font-size:clamp(1.45rem,2vw,2.25rem)!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+  font-weight:700!important;
+}
+.customers-page .customer-panel-copy p,
+.customers-page .commitment-grid p,
+.customers-page .asset-story-feature-copy p{
+  font-size:clamp(.98rem,1.08vw,1.06rem)!important;
+  line-height:1.6!important;
+}
+@media(max-width:760px){
+  .customers-page .customers-hero h1{
+    font-size:clamp(3rem,13vw,4.5rem)!important;
+  }
+  .customers-page .customer-groups-head h2,
+  .customers-page .customer-section-intro h2,
+  .customers-page .perspectives-card h2,
+  .customers-page .customers-closing-card h2,
+  .customers-page .customer-commitment .customer-section-intro h2{
+    font-size:clamp(2.65rem,11vw,4rem)!important;
+  }
+}
+
+/* Final card heading normalization to homepage card scale. */
+.customers-page .customer-logo-panel .customer-panel-copy h3,
+.customers-page .commitment-grid article h3,
+.customers-page .asset-story-card-feature .asset-story-feature-copy h3,
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-teaser h3{
+  font-size:clamp(1.45rem,2vw,2.25rem)!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+  font-weight:700!important;
+}
+
+/* Browser comment: site page headings use the About reference size and weight. */
+:where(body) main :where(h1,h2){
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  :where(body) main :where(h1,h2){
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+}
+
+/* Browser comment: customers page h3 headings also use the About reference size and weight. */
+.customers-page main :where(.customer-panel-copy h3,.commitment-grid h3,.asset-story-feature-copy h3,.asset-story-teaser h3){
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+.customers-page main .customer-panel-copy h3{
+  white-space:nowrap!important;
+}
+@media(max-width:640px){
+  .customers-page main :where(.customer-panel-copy h3,.commitment-grid h3,.asset-story-feature-copy h3,.asset-story-teaser h3){
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+  .customers-page main .customer-panel-copy h3{
+    white-space:normal!important;
+  }
+}
+
+/* Browser comment: final customers heading override wins over legacy page-specific rules. */
+.customers-page main .customers-hero h1,
+.customers-page main .customer-groups h3,
+.customers-page main .customer-sectors h2,
+.customers-page main .customer-sectors h3,
+.customers-page main .customer-commitment h2,
+.customers-page main .customer-commitment h3,
+.customers-page main .customer-perspectives h2,
+.customers-page main .customer-perspectives h3,
+.customers-page main .customers-closing h2,
+.customers-page main .customers-closing h3{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+.customers-page main .customer-groups .customer-panel-copy h3{
+  white-space:nowrap!important;
+}
+@media(max-width:640px){
+  .customers-page main .customers-hero h1,
+  .customers-page main .customer-groups h3,
+  .customers-page main .customer-sectors h2,
+  .customers-page main .customer-sectors h3,
+  .customers-page main .customer-commitment h2,
+  .customers-page main .customer-commitment h3,
+  .customers-page main .customer-perspectives h2,
+  .customers-page main .customer-perspectives h3,
+  .customers-page main .customers-closing h2,
+  .customers-page main .customers-closing h3{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+  .customers-page main .customer-groups .customer-panel-copy h3{
+    white-space:normal!important;
+  }
+}
+
+/* Browser comment: exact customers heading override for legacy selectors. */
+.customers-page main .customers-hero h1,
+.customers-page main .customer-logo-panel .customer-panel-copy h3,
+.customers-page main .customer-sectors .customer-section-intro h2,
+.customers-page main .customer-sectors .asset-story-card-feature .asset-story-feature-copy h3,
+.customers-page main .customer-sectors .asset-story-card-feature .asset-story-teaser h3,
+.customers-page main .customer-sectors .asset-story-card h3,
+.customers-page main .customer-commitment .customer-section-intro h2,
+.customers-page main .customer-commitment .commitment-grid article h3,
+.customers-page main .customer-perspectives .perspectives-intro h2,
+.customers-page main .customer-perspectives .perspectives-quote-card blockquote,
+.customers-page main .customers-closing .customers-closing-card h2{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+.customers-page main .customer-logo-panel .customer-panel-copy h3{
+  white-space:nowrap!important;
+}
+@media(max-width:640px){
+  .customers-page main .customers-hero h1,
+  .customers-page main .customer-logo-panel .customer-panel-copy h3,
+  .customers-page main .customer-sectors .customer-section-intro h2,
+  .customers-page main .customer-sectors .asset-story-card-feature .asset-story-feature-copy h3,
+  .customers-page main .customer-sectors .asset-story-card-feature .asset-story-teaser h3,
+  .customers-page main .customer-sectors .asset-story-card h3,
+  .customers-page main .customer-commitment .customer-section-intro h2,
+  .customers-page main .customer-commitment .commitment-grid article h3,
+  .customers-page main .customer-perspectives .perspectives-intro h2,
+  .customers-page main .customer-perspectives .perspectives-quote-card blockquote,
+  .customers-page main .customers-closing .customers-closing-card h2{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+  .customers-page main .customer-logo-panel .customer-panel-copy h3{
+    white-space:normal!important;
+  }
+}
+
+/* Customer sector card headings match property card heading size. */
+.customers-page main .customer-sectors .asset-story-card-feature .asset-story-feature-copy h3,
+.customers-page main .customer-sectors .asset-story-card-feature .asset-story-teaser h3,
+.customers-page main .customer-sectors .asset-story-card h3{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(1.28rem,1.42vw,1.62rem)!important;
+  line-height:1.12!important;
+  letter-spacing:-.025em!important;
+  font-weight:500!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  .customers-page main .customer-sectors .asset-story-card-feature .asset-story-feature-copy h3,
+  .customers-page main .customer-sectors .asset-story-card-feature .asset-story-teaser h3,
+  .customers-page main .customer-sectors .asset-story-card h3{
+    font-size:clamp(1.28rem,5.6vw,1.62rem)!important;
+  }
+}
+
+/* Customer sector card headings requested size. */
+.customers-page main .customer-sectors .asset-story-card-feature .asset-story-feature-copy h3,
+.customers-page main .customer-sectors .asset-story-card-feature .asset-story-teaser h3,
+.customers-page main .customer-sectors .asset-story-card h3{
+  font-size:24px!important;
+  font-weight:700!important;
+  line-height:1.15!important;
+  color:#004789!important;
+}
+
+/* Hide sector card numbering and keep image-card headings white. */
+.customers-page main .customer-sectors .asset-story-teaser span{
+  display:none!important;
+}
+.customers-page main .customer-sectors .asset-story-card-feature:not(.is-active) .asset-story-teaser h3{
+  color:#fff!important;
+}
+
+/* Dark overlay on customer sector image cards. */
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image:after{
+  inset:0!important;
+  height:auto!important;
+  background:linear-gradient(180deg,rgba(3,22,38,.28) 0%,rgba(3,22,38,.48) 48%,rgba(3,22,38,.78) 100%)!important;
+}
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image img{
+  filter:none!important;
+}
+.customers-page main .customer-sectors .asset-story-card-feature:not(.is-active) .asset-story-teaser h3{
+  color:#fff!important;
+  text-shadow:0 .08rem .5rem rgba(0,0,0,.35)!important;
+}
+
+/* Blend customer sector image overlays with a layered gradient. */
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image:after{
+  background:
+    linear-gradient(180deg,rgba(0,71,137,.10) 0%,rgba(3,22,38,.28) 48%,rgba(3,22,38,.72) 100%),
+    radial-gradient(circle at 28% 18%,rgba(255,255,255,.16),rgba(255,255,255,0) 42%)!important;
+  mix-blend-mode:multiply!important;
+}
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image:before{
+  content:''!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  background:linear-gradient(0deg,rgba(0,71,137,.22),rgba(0,71,137,.04))!important;
+  mix-blend-mode:soft-light!important;
+}
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-teaser{
+  z-index:3!important;
+}
+
+/* Match commitment stack card headings to the sector card heading size. */
+.customers-page main .customer-commitment .commitment-grid article h3{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:24px!important;
+  font-weight:700!important;
+  line-height:1.15!important;
+  letter-spacing:-.025em!important;
+  color:#004789!important;
+}
+
+
+
+
+
+/* Browser comment: perspectives section is testimonial content, not an explanatory placeholder. */
+.customers-page .perspectives-layout{
+  grid-template-columns:minmax(18rem,.78fr) minmax(25rem,1.22fr)!important;
+  align-items:center!important;
+}
+.customers-page main .customer-perspectives .perspectives-intro h2{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+.customers-page .perspectives-intro>p{
+  display:none!important;
+}
+.customers-page .perspectives-quote-card{
+  background:#fff!important;
+}
+.customers-page main .customer-perspectives .perspectives-quote-card blockquote{
+  max-width:36rem!important;
+  font-size:clamp(28px,2.8vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+}
+.customers-page .perspectives-quote-card>p:not(.perspectives-card-kicker){
+  max-width:40rem!important;
+  margin-top:1.45rem!important;
+}
+@media(max-width:640px){
+  .customers-page main .customer-perspectives .perspectives-intro h2{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+  .customers-page main .customer-perspectives .perspectives-quote-card blockquote{
+    font-size:clamp(28px,8vw,36px)!important;
+  }
+}
+
+/* Reduce active commitment card internal spacing by half. */
+.customers-page .commitment-grid article.is-active{
+  padding-top:clamp(.9rem,1.5vw,1.4rem)!important;
+  padding-bottom:clamp(1.3rem,2.4vw,2.3rem)!important;
+}
+.customers-page .commitment-grid p{
+  margin:clamp(.6rem,2vw,2rem) 0 0!important;
+}
+.customers-page .commitment-grid article.is-active p{
+  max-height:7rem!important;
+}
+
+/* Reduce active commitment row height to remove the large middle gap. */
+.customers-page .commitment-grid{
+  --active-row:clamp(11rem,23vh,14rem)!important;
+}
+.customers-page .commitment-grid article.is-active{
+  align-content:start!important;
+}
+
+/* Directly tighten heading-to-copy gap in the active commitment card. */
+.customers-page .commitment-grid article.is-active{
+  row-gap:clamp(.7rem,1vw,1rem)!important;
+}
+.customers-page .commitment-grid article.is-active p{
+  margin:.45rem 0 0!important;
+}
+
+/* Final active commitment paragraph margin override. */
+.customers-page main .customer-commitment .commitment-grid article.is-active p{
+  margin-top:.45rem!important;
+}
+
+/* Pixel-tight active commitment paragraph gap. */
+.customers-page main .customer-commitment .commitment-grid article.is-active p{
+  margin-top:8px!important;
+}
+
+/* Remove spacing animation so reduced commitment gap applies immediately. */
+.customers-page main .customer-commitment .commitment-grid article.is-active p{
+  transition:opacity .45s ease .12s,max-height .45s ease,transform .45s ease .12s!important;
+}
+
+/* Keep commitment section height to the visible card stack. */
+.customers-page .customer-commitment{
+  min-height:0!important;
+  height:auto!important;
+}
+.customers-page .commitment-layout,
+.customers-page .commitment-grid{
+  --closed-row:clamp(6.35rem,12vh,7.25rem)!important;
+  --active-row:clamp(11rem,23vh,14rem)!important;
+  --stack-height:calc(var(--active-row) + var(--closed-row) + var(--closed-row) + var(--closed-row));
+}
+.customers-page .commitment-layout{
+  height:var(--stack-height)!important;
+  min-height:0!important;
+}
+.customers-page .commitment-grid{
+  height:var(--stack-height)!important;
+  min-height:0!important;
+}
+
+/* Customers closing banner matches the homepage final banner style. */
+.customers-page .customers-closing{
+  position:relative!important;
+  display:grid!important;
+  align-items:center!important;
+  min-height:min(78vh,820px)!important;
+  margin-top:var(--section-space,clamp(4rem,8vw,8rem))!important;
+  padding-block:clamp(64px,10vw,140px)!important;
+  background:#08182e!important;
+  color:var(--ink)!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+}
+.customers-page .customers-closing>img{
+  position:absolute!important;
+  z-index:-2!important;
+  inset:-5% 0!important;
+  width:100%!important;
+  height:110%!important;
+  object-fit:cover!important;
+  object-position:center 54%!important;
+}
+.customers-page .customers-closing-shade{
+  display:none!important;
+}
+.customers-page .customers-closing-card{
+  position:relative!important;
+  z-index:2!important;
+  width:min(calc(100% - 2 * var(--gutter,clamp(1rem,4vw,3rem))),1540px)!important;
+  padding:clamp(30px,4vw,60px)!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  grid-template-rows:auto auto!important;
+  column-gap:clamp(60px,10vw,170px)!important;
+  row-gap:clamp(56px,8vw,110px)!important;
+  background:rgba(237,242,248,.78)!important;
+  border:1px solid rgba(255,255,255,.42)!important;
+  border-radius:16px!important;
+  box-shadow:0 24px 70px rgba(3,17,34,.18)!important;
+  backdrop-filter:blur(22px)!important;
+  -webkit-backdrop-filter:blur(22px)!important;
+}
+.customers-page main .customers-closing .customers-closing-card h2{
+  grid-column:1!important;
+  max-width:650px!important;
+  margin:0!important;
+  color:var(--accent)!important;
+  font-size:clamp(42px,4.5vw,72px)!important;
+  line-height:1!important;
+  letter-spacing:-.035em!important;
+  font-weight:700!important;
+}
+.customers-page .customers-closing-card p{
+  grid-column:2!important;
+  align-self:start!important;
+  max-width:620px!important;
+  margin:0!important;
+  color:var(--muted)!important;
+  font-size:var(--text-body-lg,1.125rem)!important;
+  line-height:var(--line-body-lg,1.65)!important;
+}
+.customers-page .customers-actions{
+  grid-column:1!important;
+  grid-row:2!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  align-content:end!important;
+  gap:0 var(--s2,2rem)!important;
+  margin:0!important;
+}
+.customers-page .customers-actions .btn,
+.customers-page .customers-actions a{
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:var(--s1,1rem)!important;
+  padding:var(--s15,1.5rem) 0!important;
+  border:0!important;
+  border-top:1px solid rgba(0,71,137,.24)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:var(--accent)!important;
+  box-shadow:none!important;
+  font-family:var(--font-display,var(--display))!important;
+  text-transform:none!important;
+  font-size:var(--text-body,1rem)!important;
+  font-weight:500!important;
+  line-height:var(--line-h4,1.2)!important;
+  text-decoration:none!important;
+}
+.customers-page .customers-actions .btn:hover,
+.customers-page .customers-actions a:hover{
+  color:var(--accent)!important;
+}
+@media(max-width:760px){
+  .customers-page .customers-closing{
+    min-height:auto!important;
+    padding-block:var(--s4,4rem)!important;
+  }
+  .customers-page .customers-closing-card{
+    width:calc(100% - 2 * var(--s1,1rem))!important;
+    grid-template-columns:1fr!important;
+    gap:var(--s35,3.5rem)!important;
+    padding:var(--s2,2rem)!important;
+  }
+  .customers-page main .customers-closing .customers-closing-card h2,
+  .customers-page .customers-closing-card p,
+  .customers-page .customers-actions{
+    grid-column:1!important;
+  }
+  .customers-page main .customers-closing .customers-closing-card h2{
+    font-size:clamp(38px,12vw,56px)!important;
+  }
+  .customers-page .customers-actions{
+    grid-row:auto!important;
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Testimonial quote uses reference card heading scale. */
+.customers-page main .customer-perspectives .perspectives-quote-card blockquote{
+  font-size:24px!important;
+  font-weight:700!important;
+  line-height:1.15!important;
+  letter-spacing:-.025em!important;
+}
+
+/* Align testimonial heading with the top of the testimonial card and preserve closing banner heading font. */
+.customers-page .perspectives-layout{
+  align-items:start!important;
+}
+.customers-page .perspectives-intro{
+  align-self:start!important;
+  padding-top:0!important;
+}
+.customers-page main .customers-closing .customers-closing-card h2,
+.customers-page main .customers-closing h2#closing-title{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(42px,4.5vw,72px)!important;
+  font-weight:700!important;
+  line-height:1!important;
+  letter-spacing:-.035em!important;
+  color:var(--accent)!important;
+}
+
+/* Browser comment: keep the header List your property CTA in the rounded mixed-case format. */
+.site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+  color:#fff!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  box-shadow:none!important;
+}
+.site-header .header-cta.btn.primary:hover,
+.site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}
+/* Header CTA consistency: List your property button. */
+body .site-header .header-cta.btn.primary{
+  min-height:42px!important;
+  width:150px!important;
+  height:42px!important;
+  padding:0 22px!important;
+  border-radius:999px!important;
+  background:var(--accent)!important;
+  border:1px solid var(--accent)!important;
+  color:#fff!important;
+  font-family:var(--font-body)!important;
+  font-size:14px!important;
+  font-weight:600!important;
+  line-height:1!important;
+  letter-spacing:0!important;
+  text-transform:none!important;
+  white-space:nowrap!important;
+  box-shadow:none!important;
+}
+body .site-header .header-cta.btn.primary:hover,
+body .site-header .header-cta.btn.primary:focus-visible{
+  background:var(--accent-hover)!important;
+  border-color:var(--accent-hover)!important;
+  color:#fff!important;
+}
