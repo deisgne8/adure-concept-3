@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Button from "../ui/Button";
 import Section from "../ui/Section";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
@@ -115,9 +116,9 @@ export default function ProofSection({ content }: ProofSectionProps) {
           <div className="proof-statement" data-aos="fade-right">
             <h2>{content.heading}</h2>
             <p>{content.description}</p>
-            <a className="proof-about" href={content.link.href}>
-              <span aria-hidden="true">↗</span>{content.link.label}
-            </a>
+            <Button className="proof-about" href={content.link.href} variant="link">
+              {content.link.label}
+            </Button>
           </div>
           <dl className="proof-statistics" aria-label="ADURE in numbers" data-aos="fade-left">
             {content.metrics.map((metric, index) => (

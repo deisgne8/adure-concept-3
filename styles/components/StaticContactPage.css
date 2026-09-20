@@ -177,27 +177,17 @@
   box-shadow: 0 0 0 4px rgba(0, 71, 137, 0.1);
 }
 
-.contact-form .contact-submit.btn.primary {
+.contact-form .contact-submit.btn {
   display: inline-flex;
   width: 100%;
   min-height: var(--button-height);
   justify-content: center;
-  border: 1px solid var(--accent);
   border-radius: var(--control-radius);
-  background: var(--accent);
-  color: var(--white);
   font-size: var(--text-label);
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: var(--line-label);
   text-transform: uppercase;
-}
-
-.contact-form .contact-submit.btn.primary:hover,
-.contact-form .contact-submit.btn.primary:focus-visible {
-  border-color: var(--accent-hover);
-  background: var(--accent-hover);
-  transform: translateY(-1px);
 }
 
 .contact-form .contact-consent {

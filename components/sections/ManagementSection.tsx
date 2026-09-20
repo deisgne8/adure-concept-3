@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import Section from "../ui/Section";
 import Button, { type ButtonVariant } from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
@@ -12,6 +14,16 @@ const clamp = (value: number) => Math.max(0, Math.min(1, value));
 
 export default function ManagementSection({ content }: ManagementSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isCompact, setIsCompact] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1023.98px)");
+    const sync = () => setIsCompact(mediaQuery.matches);
+
+    sync();
+    mediaQuery.addEventListener("change", sync);
+    return () => mediaQuery.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const root = sectionRef.current;
@@ -24,7 +36,7 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
     if (!root || !track || !title || !intro || !slides.length) return;
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const compact = window.matchMedia("(max-width: 800px)");
+    const compact = window.matchMedia("(max-width: 1023.98px)");
     let frame = 0;
     let entranceFrame = 0;
     let entranceTarget = 0;
@@ -148,7 +160,29 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
       reduced.removeEventListener("change", measure);
       compact.removeEventListener("change", measure);
     };
-  }, [content.cards.length]);
+  }, [content.cards.length, isCompact]);
+
+  const renderServiceCard = (card: HomeContent["management"]["cards"][number]) => (
+    <div>
+      <h3>{card.title}</h3>
+      <div className="service-card-media">
+        <img src={card.image.src} alt={card.image.alt} width="900" height="560" loading="lazy" decoding="async" />
+      </div>
+      <p>{card.description}</p>
+    </div>
+  );
+
+  const compactServiceRail = (
+    <div className="management-compact-services">
+      <Swiper className="service-rows management-service-swiper" slidesPerView="auto" spaceBetween={16} aria-label="Property management services">
+        {content.cards.map((card, index) => (
+          <SwiperSlide className="service-row" style={{ "--service-index": index } as CSSProperties} key={card.title}>
+            {renderServiceCard(card)}
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
 
   return (
     <Section className="management-v2 section has-management-stack has-scroll-entrance" id={content.id} spacing={content.spacing} ref={sectionRef}>
@@ -165,6 +199,7 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
                 <Button className="management-main-cta" href={content.button.href} variant={content.button.variant as ButtonVariant}>
                   {content.button.text}
                 </Button>
+                {isCompact ? compactServiceRail : null}
               </div>
               <figure className="management-visual-v2">
                 <img src={content.image.src} alt={content.image.alt} width="1600" height="1066" />
@@ -172,19 +207,15 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
               </figure>
             </div>
             <div className="management-carousel-copy">
-              <div className="service-rows">
-                {content.cards.map((card, index) => (
-                  <article className={`service-row${index === 0 ? " is-current" : ""}`} style={{ "--service-index": index } as CSSProperties} key={card.title}>
-                    <div>
-                      <h3>{card.title}</h3>
-                      <div className="service-card-media">
-                        <img src={card.image.src} alt={card.image.alt} width="900" height="560" loading="lazy" decoding="async" />
-                      </div>
-                      <p>{card.description}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
+              {!isCompact ? (
+                <div className="service-rows">
+                  {content.cards.map((card, index) => (
+                    <article className={`service-row${index === 0 ? " is-current" : ""}`} style={{ "--service-index": index } as CSSProperties} key={card.title}>
+                      {renderServiceCard(card)}
+                    </article>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import * as Select from "@radix-ui/react-select";
 import { useEffect, useRef, useState } from "react";
 
 type SelectOption = {
+  disabled?: boolean;
   label: string;
   value: string;
 };
@@ -14,6 +15,8 @@ type SelectFieldProps = {
   name: string;
   onValueChange?: (value: string) => void;
   options: SelectOption[];
+  placeholder?: string;
+  required?: boolean;
   value?: string;
 };
 
@@ -25,9 +28,11 @@ export default function SelectField({
   name,
   onValueChange,
   options,
+  placeholder,
+  required,
   value: controlledValue,
 }: SelectFieldProps) {
-  const initialValue = defaultValue ?? options[0]?.value ?? "";
+  const initialValue = defaultValue ?? (placeholder ? undefined : options[0]?.value ?? "");
   const [internalValue, setInternalValue] = useState(initialValue);
   const fieldRef = useRef<HTMLDivElement>(null);
   const value = controlledValue ?? internalValue;
@@ -37,7 +42,7 @@ export default function SelectField({
     const form = fieldRef.current?.closest("form");
     const reset = () => {
       if (!isControlled) setInternalValue(initialValue);
-      onValueChange?.(initialValue);
+      if (initialValue !== undefined) onValueChange?.(initialValue);
     };
 
     form?.addEventListener("reset", reset);
@@ -53,10 +58,11 @@ export default function SelectField({
           if (!isControlled) setInternalValue(nextValue);
           onValueChange?.(nextValue);
         }}
+        required={required}
         value={value}
       >
         <Select.Trigger className="select-field-trigger" id={id}>
-          <Select.Value />
+          <Select.Value placeholder={placeholder} />
           <Select.Icon className="select-field-icon" aria-hidden="true">
             <span />
           </Select.Icon>
@@ -67,6 +73,7 @@ export default function SelectField({
               {options.map((option) => (
                 <Select.Item
                   className="select-field-option"
+                  disabled={option.disabled}
                   key={option.value}
                   value={option.value}
                 >

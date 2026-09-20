@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 
 declare global {
   interface Window {
@@ -14,7 +14,7 @@ type HeroClientProps = {
 };
 
 export default function HeroClient({ hasVideo }: HeroClientProps) {
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!hasVideo) return;
 
     const root = document.documentElement;
@@ -24,8 +24,8 @@ export default function HeroClient({ hasVideo }: HeroClientProps) {
     const shouldPlayOpening = !location.hash || location.hash === "#home";
 
     if (shouldPlayOpening) {
-      root.dataset.opening = "pending";
-      window.adureOpeningTimer = window.setTimeout(() => {
+      root.dataset.opening ||= "pending";
+      window.adureOpeningTimer ||= window.setTimeout(() => {
         window.adureFinishOpening?.();
       }, 10_000);
     }

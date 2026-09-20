@@ -54,6 +54,9 @@ export type ListingPropertyListResponse = Omit<PropertyListResponse, "facetsBySe
 
 const pageSize = 21;
 const fallbackImage = "/assets/no-image.png";
+const removedBuildingSlugs = new Set(["c4-building"]);
+const disabledBuildingSlugs = new Set(["sunrise-residence-6"]);
+const disabledUnitTypeSlugs = new Set(["retail"]);
 const emptyFilters = {
   bedrooms: "all",
   building: "all",
@@ -168,7 +171,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
   const [draftFilters, setDraftFilters] = useState({ ...emptyFilters });
   const [filters, setFilters] = useState({ ...emptyFilters });
   const [page, setPage] = useState(1);
-  const [sort, setSort] = useState("recommended");
+  const [sort, setSort] = useState("title");
   const [view, setView] = useState<"grid" | "map">("grid");
 
   useEffect(() => {
@@ -235,6 +238,9 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
   const results = useMemo(() => {
     const items = properties.items ?? [];
     return items
+      .filter((property) => !removedBuildingSlugs.has(property.building?.slug ?? ""))
+      .filter((property) => !disabledBuildingSlugs.has(property.building?.slug ?? ""))
+      .filter((property) => !property.unitTypes.some((term) => disabledUnitTypeSlugs.has(term.slug)))
       .filter((property) => property.transaction === filters.transaction || property.transaction === "both")
       .filter((property) =>
         filters.location === "all" ||
@@ -259,6 +265,12 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
         return true;
       })
       .sort((left, right) => {
+        if (sort === "title") {
+          return left.title.localeCompare(right.title, "en", {
+            numeric: true,
+            sensitivity: "base",
+          });
+        }
         if (sort === "newest") return right.id - left.id;
         const leftPrice = left.transaction === "sale" ? left.salePrice : left.annualRent;
         const rightPrice = right.transaction === "sale" ? right.salePrice : right.annualRent;
@@ -358,7 +370,16 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                   label={labels.building}
                   name="building"
                   onValueChange={(value) => updateDraft("building", value)}
-                  options={[{ label: "All buildings", value: "all" }, ...buildings.map((term) => ({ label: term.name, value: term.slug }))]}
+                  options={[
+                    { label: "All buildings", value: "all" },
+                    ...buildings
+                      .filter((term) => !removedBuildingSlugs.has(term.slug))
+                      .map((term) => ({
+                        disabled: disabledBuildingSlugs.has(term.slug),
+                        label: term.name,
+                        value: term.slug,
+                      })),
+                  ]}
                   value={draftFilters.building}
                 />
                 <SelectField
@@ -367,7 +388,14 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                   label={labels.unitType}
                   name="unitType"
                   onValueChange={(value) => updateDraft("unitType", value)}
-                  options={[{ label: "All types", value: "all" }, ...unitTypes.map((term) => ({ label: term.name, value: term.slug }))]}
+                  options={[
+                    { label: "All types", value: "all" },
+                    ...unitTypes.map((term) => ({
+                      disabled: disabledUnitTypeSlugs.has(term.slug),
+                      label: term.name,
+                      value: term.slug,
+                    })),
+                  ]}
                   value={draftFilters.unitType}
                 />
                 <SelectField
@@ -418,18 +446,27 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
             <div className="results-toolbar" data-aos="fade-up" data-aos-delay="100">
               <div className="results-toolbar-primary"><strong aria-live="polite" aria-label={`${results.length} properties available to ${filters.transaction === "lease" ? "lease" : "buy"}.`}><span className="result-number">{String(results.length).padStart(2, "0")}</span><span className="result-copy"><b>{results.length === 1 ? "Property" : "Properties"}</b><small>Available to {filters.transaction === "lease" ? "lease" : "buy"}</small></span></strong></div>
               <div className="results-toolbar-actions">
-                <label className="toolbar-select sort-control">
+                <div className="sort-control">
                   <span>Sort by</span>
-                  <select value={sort} onChange={(event) => { setSort(event.target.value); setPage(1); }} aria-label="Sort properties">
-                    <option value="recommended">Recommended</option>
-                    <option value="newest">Newest</option>
-                    <option value="low">Price Low - High</option>
-                    <option value="high">Price High - Low</option>
-                  </select>
-                </label>
+                  <SelectField
+                    className="toolbar-select sort-select-field"
+                    id="property-sort"
+                    label="Sort properties"
+                    name="sort"
+                    onValueChange={(value) => { setSort(value); setPage(1); }}
+                    options={[
+                      { label: "Title A-Z", value: "title" },
+                      { label: "Recommended", value: "recommended" },
+                      { label: "Newest", value: "newest" },
+                      { label: "Price Low - High", value: "low" },
+                      { label: "Price High - Low", value: "high" },
+                    ]}
+                    value={sort}
+                  />
+                </div>
                 <div className="view-switch" role="group" aria-label="Results view">
                   <button className={view === "grid" ? "is-active" : ""} type="button" onClick={() => setView("grid")} aria-label="List view" aria-pressed={view === "grid"}><span className="view-icon view-icon-list" aria-hidden="true" /><span>List</span></button>
-                  <button className={view === "map" ? "is-active" : ""} type="button" onClick={() => setView("map")} aria-label="Map view" aria-pressed={view === "map"}><span className="view-icon view-icon-map" aria-hidden="true" /><span>Map</span></button>
+                  <button className="is-disabled" type="button" disabled aria-label="Map view is temporarily unavailable" title="Map view is temporarily unavailable"><span className="view-icon view-icon-map" aria-hidden="true" /><span>Map</span></button>
                 </div>
               </div>
             </div>

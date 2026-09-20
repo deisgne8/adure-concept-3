@@ -8,8 +8,11 @@
   background: var(--ink);
 }
 .site-intro {
-  display: contents;
+  display: none;
   color: var(--accent);
+}
+html[data-opening] .site-intro {
+  display: contents;
 }
 .site-intro::before {
   content: "";
@@ -95,6 +98,10 @@ html[data-opening] #home > .site-hero > .hero-video {
   max-width: none;
   transform-origin: 50% 100%;
   will-change: clip-path, opacity, transform;
+}
+html[data-opening="pending"] #home > .site-hero > .hero-video {
+  opacity: 0;
+  clip-path: inset(100% 0 0 0);
 }
 html[data-opening] .site-hero::after {
   opacity: 0;

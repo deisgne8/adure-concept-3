@@ -28,7 +28,7 @@ export default function SiteChrome({
   return (
     <>
       {showIntro && (
-        <div className="site-intro" id="site-intro" hidden aria-label={`Loading ${content.brand}`}>
+        <div className="site-intro" id="site-intro" aria-label={`Loading ${content.brand}`}>
           <div className="intro-lockup">
             <div className="intro-brand" aria-hidden="true">
               <img src="/assets/adure-logo-horizontal.svg" alt="" />
@@ -68,7 +68,7 @@ export default function SiteChrome({
               <a key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
             ))}
           </nav>
-          <Button className="header-cta" href={header.cta.href} variant="primary">
+          <Button className="header-cta button-wipe" href={header.cta.href} variant="primary">
             <span className="button-action-label">{header.cta.label}</span>
           </Button>
           <button className="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -79,28 +79,46 @@ export default function SiteChrome({
         </div>
       </header>
       <dialog className="mobile-menu" id="mobile-menu" aria-label="Main navigation">
-        <div className="menu-top">
-          <a href={homeHref} className="site-logo">
-            <img src={header.logo.src} alt={header.logo.alt} />
-          </a>
-          <button className="icon-button menu-close" aria-label="Close menu">×</button>
+        <div className="container mobile-menu-inner">
+          <div className="menu-top">
+            <a href={homeHref} className="site-logo">
+              <img src={header.logo.src} alt={header.logo.alt} />
+            </a>
+            <button className="menu-close" aria-label="Close menu">
+              <span />
+              <span />
+            </button>
+          </div>
+          <nav aria-label="Mobile navigation">
+            {navigation.map((item, index) => item.items?.length ? (
+              <div className="mobile-nav-group" key={item.label}>
+                <div className="mobile-nav-row">
+                  <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
+                  <button
+                    className="mobile-nav-toggle"
+                    type="button"
+                    aria-label={`Show ${item.label} submenu`}
+                    aria-controls={`mobile-nav-menu-${index}`}
+                    aria-expanded="false"
+                  >
+                    <span className="mobile-nav-arrow" aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="mobile-nav-submenu" id={`mobile-nav-menu-${index}`} hidden>
+                  {item.items.map((subitem) => <a key={`${item.label}-${subitem.label}`} href={subitem.href}>{subitem.label}</a>)}
+                </div>
+              </div>
+            ) : (
+              <a key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
+            ))}
+          </nav>
+          <Button className="mobile-menu-cta" href={header.cta.href} variant="primary">{header.cta.label}</Button>
+          <p className="menu-contact">
+            {header.contact.markets}
+            <br />
+            <a href={header.contact.phoneHref}>{header.contact.phone}</a>
+          </p>
         </div>
-        <nav aria-label="Mobile navigation">
-          {navigation.map((item) => item.items?.length ? (
-            <details className="mobile-nav-group" key={item.label}>
-              <summary>{item.label}</summary>
-              {item.items.map((subitem) => <a key={`${item.label}-${subitem.label}`} href={subitem.href}>{subitem.label}</a>)}
-            </details>
-          ) : (
-            <a key={item.href} href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>{item.label}</a>
-          ))}
-        </nav>
-        <Button className="mobile-menu-cta" href={header.cta.href} variant="primary">{header.cta.label}</Button>
-        <p className="menu-contact">
-          {header.contact.markets}
-          <br />
-          <a href={header.contact.phoneHref}>{header.contact.phone}</a>
-        </p>
       </dialog>
     </>
   );

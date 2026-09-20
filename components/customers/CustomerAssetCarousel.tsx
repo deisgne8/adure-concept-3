@@ -1,67 +1,46 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperInstance } from "swiper";
 import type { CustomerSector } from "../../lib/customers/types";
 
 type Props = { items: CustomerSector[] };
 
 export default function CustomerAssetCarousel({ items }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const cardRefs = useRef<Array<HTMLElement | null>>([]);
-  const pointerStart = useRef<number | null>(null);
-  const pointerCurrent = useRef(0);
-
-  const select = useCallback((index: number) => {
-    setActiveIndex((index + items.length) % items.length);
-  }, [items.length]);
+  const swiperRef = useRef<SwiperInstance | null>(null);
+  const canLoop = items.length > 1;
 
   useEffect(() => {
-    const syncOffset = () => setOffset(cardRefs.current[activeIndex]?.offsetLeft ?? 0);
-    const frame = requestAnimationFrame(syncOffset);
-    window.addEventListener("resize", syncOffset, { passive: true });
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("resize", syncOffset);
-    };
+    const frame = requestAnimationFrame(() => swiperRef.current?.update());
+    return () => cancelAnimationFrame(frame);
   }, [activeIndex]);
 
   return (
     <div className="asset-carousel" aria-label="Asset types supported by ADURE">
-      <div className="asset-carousel-viewport">
-        <div
-          className="asset-carousel-track"
-          style={{ transform: `translateX(-${offset}px)` }}
-          onKeyDown={(event) => {
-            if (event.key === "ArrowLeft") select(activeIndex - 1);
-            if (event.key === "ArrowRight") select(activeIndex + 1);
-          }}
-          onPointerDown={(event) => {
-            pointerStart.current = event.clientX;
-            pointerCurrent.current = event.clientX;
-            event.currentTarget.setPointerCapture?.(event.pointerId);
-          }}
-          onPointerMove={(event) => { if (pointerStart.current !== null) pointerCurrent.current = event.clientX; }}
-          onPointerUp={() => {
-            if (pointerStart.current !== null && Math.abs(pointerCurrent.current - pointerStart.current) > 48) {
-              select(activeIndex + (pointerCurrent.current < pointerStart.current ? 1 : -1));
-            }
-            pointerStart.current = null;
-          }}
-          onPointerCancel={() => { pointerStart.current = null; }}
-        >
-          {items.map((item, index) => {
-            const active = index === activeIndex;
-            return (
+      <Swiper
+        className="asset-carousel-viewport"
+        slidesPerView="auto"
+        spaceBetween={16}
+        loop={canLoop}
+        watchOverflow
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+          requestAnimationFrame(() => swiper.update());
+        }}
+      >
+        {items.map((item, index) => {
+          const active = index === activeIndex;
+          return (
+            <SwiperSlide className={`asset-story-card-feature${active ? " is-active" : ""}`} key={item.title}>
               <article
-                className={`asset-story-card asset-story-card-feature${active ? " is-active" : ""}`}
-                key={item.title}
-                ref={(element) => { cardRefs.current[index] = element; }}
                 tabIndex={0}
                 aria-current={active ? "true" : undefined}
-                onClick={() => select(index)}
+                onClick={() => swiperRef.current?.slideToLoop(index)}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
-                    select(index);
+                    swiperRef.current?.slideToLoop(index);
                   }
                 }}
               >
@@ -77,12 +56,12 @@ export default function CustomerAssetCarousel({ items }: Props) {
                   <h3>{item.title}</h3>
                 </div>
               </article>
-            );
-          })}
-        </div>
-      </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
       <div className="asset-carousel-controls" aria-label="Asset carousel controls">
-        <button className="asset-carousel-arrow" type="button" onClick={() => select(activeIndex - 1)} aria-label="Previous asset type">←</button>
+        <button className="asset-carousel-arrow" type="button" onClick={() => swiperRef.current?.slidePrev()} aria-label="Previous asset type">←</button>
         <div className="asset-carousel-dots" aria-label="Select asset type">
           {items.map((item, index) => (
             <button
@@ -91,11 +70,11 @@ export default function CustomerAssetCarousel({ items }: Props) {
               key={item.title}
               aria-label={`Show ${item.title}`}
               aria-current={index === activeIndex ? "true" : undefined}
-              onClick={() => select(index)}
+              onClick={() => swiperRef.current?.slideToLoop(index)}
             />
           ))}
         </div>
-        <button className="asset-carousel-arrow" type="button" onClick={() => select(activeIndex + 1)} aria-label="Next asset type">→</button>
+        <button className="asset-carousel-arrow" type="button" onClick={() => swiperRef.current?.slideNext()} aria-label="Next asset type">→</button>
       </div>
     </div>
   );

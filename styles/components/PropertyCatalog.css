@@ -720,3 +720,16 @@
     border-bottom: 0;
   }
 }
+
+@media (max-width: 1439.98px) {
+  .property-detail-hero:not(.has-image) {
+    min-height: clamp(18rem, 42vh, 24rem);
+  }
+
+  .catalog-card h2 a,
+  .catalog-card-footer a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+  }
+}

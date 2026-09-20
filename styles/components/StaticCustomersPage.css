@@ -206,13 +206,12 @@
   padding: 0.2rem 0 1.2rem;
 }
 
-.asset-carousel-track {
-  display: flex;
+.asset-carousel-viewport .swiper-wrapper {
   align-items: stretch;
-  gap: 1rem;
-  touch-action: pan-y;
-  transition: transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+}
+
+.asset-carousel-viewport .swiper-slide {
+  height: auto;
 }
 
 .asset-story-card-feature {
@@ -226,6 +225,12 @@
   cursor: pointer;
   opacity: 0.82;
   transition: flex-basis 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, transform 0.35s ease;
+}
+
+.asset-story-card-feature > article {
+  position: relative;
+  min-height: inherit;
+  height: 100%;
 }
 
 .asset-story-card-feature.is-active {
@@ -1121,5 +1126,66 @@
 
   .customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image img {
     scale: none;
+  }
+}
+
+@media (max-width: 1439.98px) {
+  .customers-page .customer-sectors-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .customers-page .customer-sectors-layout > *,
+  .customers-page .customer-section-intro,
+  .customers-page .asset-carousel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .customers-page .asset-carousel-dots {
+    gap: 0.25rem;
+  }
+
+  .customers-page .asset-carousel-dot,
+  .customers-page .asset-carousel-dot.is-active {
+    position: relative;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent;
+  }
+
+  .customers-page .asset-carousel-dot::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: #b8c6d1;
+    content: "";
+    transform: translate(-50%, -50%);
+    transition: width 0.28s ease, background 0.28s ease;
+  }
+
+  .customers-page .asset-carousel-dot.is-active {
+    width: 2rem;
+  }
+
+  .customers-page .asset-carousel-dot.is-active::before {
+    width: 2rem;
+    background: var(--accent);
+  }
+}
+
+@media (max-width: 900px) {
+  .customers-page .perspectives-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 2.5rem !important;
+  }
+
+  .customers-page .perspectives-layout > *,
+  .customers-page .perspectives-quote-card {
+    width: 100%;
+    min-width: 0;
   }
 }

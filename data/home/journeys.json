@@ -12,19 +12,19 @@
       "button": { "text": "Buy with ADURE", "href": "/properties?intent=buy", "variant": "link" }
     },
     {
-      "image": { "src": "/assets/journeys/sell.jpg", "alt": "Property advisor reviewing real estate photographs" },
+      "image": { "src": "/assets/journeys/sell.webp", "alt": "Property advisor reviewing real estate photographs" },
       "title": "Sell",
       "description": "Bring your property to market with considered positioning and the right audience.",
       "button": { "text": "Sell With ADURE", "href": "/#sell", "variant": "link" }
     },
     {
-      "image": { "src": "/assets/journeys/lease-lobby.jpg", "alt": "Warm marble lobby with chandelier and seating at Hidd Al Saadiyat" },
+      "image": { "src": "/assets/journeys/lease-lobby.webp", "alt": "Warm marble lobby with chandelier and seating at Hidd Al Saadiyat" },
       "title": "Lease",
       "description": "Connect people with the right places they need.",
       "button": { "text": "Lease with ADURE", "href": "/properties?intent=lease", "variant": "link" }
     },
     {
-      "image": { "src": "/assets/journeys/manage.jpg", "alt": "Property management professional inspecting a landscaped residence" },
+      "image": { "src": "/assets/journeys/manage.webp", "alt": "Property management professional inspecting a landscaped residence" },
       "title": "Manage",
       "description": "Protect long-term performance through connected long-term management.",
       "button": { "text": "Property Management", "href": "/#management", "variant": "link" }

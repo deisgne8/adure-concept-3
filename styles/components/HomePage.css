@@ -710,10 +710,34 @@ main {
   color: var(--muted);
 }
 #home-properties {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s15);
   margin-top: var(--s35);
+}
+#home-properties .home-properties-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+#home-properties .swiper-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--s15);
+}
+#home-properties .swiper-slide {
+  min-width: 0;
+  height: auto;
+}
+@media (max-width: 1023.98px) {
+  #home-properties .swiper-wrapper {
+    display: flex;
+    gap: 0;
+  }
+  #home-properties .swiper-slide {
+    width: min(78vw, 25rem);
+  }
+}
+@media (max-width: 540px) {
+  #home-properties .swiper-slide {
+    width: 86vw;
+  }
 }
 .property-card {
   min-width: 0;
@@ -1140,7 +1164,7 @@ main {
     grid-column: 1/-1;
   }
   #home-properties {
-    grid-template-columns: repeat(2, 1fr);
+    display: block;
   }
   .management-visual-v2 img {
     height: 32.5rem;
@@ -1263,7 +1287,7 @@ main {
    then treats each horizontally scrolling card as its own visual on mobile. */
 .home-v2 .journey-section .journey-grid {
   border-radius: 0 !important;
-  overflow: visible !important;
+  overflow: hidden !important;
 }
 
 .home-v2 .journey-section .journey-card,
@@ -1286,7 +1310,7 @@ main {
   overflow: hidden !important;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 1023.98px) {
   .home-v2 .journey-section .journey-card,
   .home-v2 .journey-section .journey-media,
   .home-v2 .journey-section .journey-media img,
@@ -1441,8 +1465,7 @@ main {
     display: none;
   }
   #home-properties {
-    grid-template-columns: 1fr;
-    gap: var(--s35);
+    display: block;
   }
   .property-image img {
     height: var(--media-short);

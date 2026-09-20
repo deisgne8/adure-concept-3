@@ -2,7 +2,7 @@
   "eyebrow": "01 About ADURE",
   "heading": ["About ADURE"],
   "description": "Abu Dhabi United Real Estate ‘ADURE’ brings integrated services of real estate together around one clear purpose: creating lasting value.",
-  "backgroundImage": "/assets/about/about-adure-banner.jpg",
+  "backgroundImage": "/assets/about/about-adure-banner.webp",
   "backgroundPosition": "center",
   "scrollAction": { "label": "Explore What We Do", "href": "#who-we-are" }
 }

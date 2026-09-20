@@ -496,7 +496,7 @@
     );
   }
 }
-@media (max-width: 1100px) and (min-width: 801px) {
+@media (max-width: 1100px) and (min-width: 1024px) {
   #home #management .management-context-copy > h2 {
     width: 44vw;
     max-width: 15ch;
@@ -510,7 +510,7 @@
     width: 50vw;
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 1023.98px) {
   #home #management.has-management-stack {
     overflow: hidden;
   }
@@ -525,7 +525,7 @@
     top: auto;
     height: auto;
     min-height: calc(100svh - var(--management-top, 0px));
-    padding: 64px var(--page-gutter);
+    padding: 64px var(--page-gutter) 56px;
     overflow: hidden;
   }
   #home #management .management-context-copy {
@@ -551,6 +551,10 @@
     margin: 24px 0 0;
     color: #fff;
   }
+  #management.has-management-stack .management-compact-services {
+    width: calc(100% + var(--page-gutter));
+    margin-top: 32px;
+  }
   #management .management-stack-sticky .management-visual-v2 {
     position: absolute;
     inset: 0;
@@ -560,20 +564,28 @@
     transform: none;
   }
   #management.has-management-stack .management-carousel-copy {
-    width: 100%;
-    margin: 0;
-    padding: 32px var(--page-gutter) 72px;
+    display: none;
   }
   #management.has-management-stack .service-rows {
-    gap: 20px;
+    display: block;
+    width: 100%;
+    overflow: hidden;
   }
   #management.has-management-stack .service-row {
     position: relative;
     top: auto;
+    width: min(78vw, 30rem);
     min-height: 0;
     margin: 0;
     transform: none;
     will-change: auto;
+  }
+  #management.has-management-stack .management-service-swiper .swiper-wrapper {
+    display: flex;
+  }
+  #management.has-management-stack .management-service-swiper .swiper-slide {
+    flex: 0 0 auto;
+    height: auto;
   }
   #management.has-management-stack .service-row > div {
     display: grid;
@@ -587,6 +599,12 @@
   }
   #home #management.has-management-stack .service-row h3 {
     font-size: clamp(25px, 7vw, 34px);
+  }
+}
+
+@media (max-width: 540px) {
+  #management.has-management-stack .service-row {
+    width: 86vw;
   }
 }
 

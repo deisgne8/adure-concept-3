@@ -123,6 +123,12 @@
   }
 }
 
+@media (max-width: 900px) {
+  #discovery #filter-home .tab {
+    min-height: 2.75rem;
+  }
+}
+
 /* The static main reference keeps the search intent and criteria in one pill. */
 #home #discovery .discovery-title h2 {
   font-size: clamp(36px, 3.2vw, 54px);
@@ -314,5 +320,11 @@
 
   #discovery #filter-home .search-box.is-more-open .amenity-actions {
     display: none;
+  }
+}
+
+@media (max-width: 1439.98px) {
+  #discovery #property-search .select-field-trigger {
+    min-height: 2.75rem;
   }
 }

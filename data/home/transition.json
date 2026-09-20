@@ -18,7 +18,7 @@
       "title": "Review",
       "description": "Understand the asset, review documentation and identify existing requirements.",
       "image": {
-        "src": "/assets/transition-stages.png",
+        "src": "/assets/transition-stages.webp",
         "alt": "Reviewing property plans and documentation",
         "viewBox": "0 0 764 507",
         "width": 1536,
@@ -30,7 +30,7 @@
       "title": "Inspect",
       "description": "Assess the property, operations and resident needs.",
       "image": {
-        "src": "/assets/transition-stages.png",
+        "src": "/assets/transition-stages.webp",
         "alt": "Inspecting a managed property",
         "viewBox": "772 0 764 507",
         "width": 1536,
@@ -42,7 +42,7 @@
       "title": "Takeover",
       "description": "Bring operations, communications and reporting into alignment.",
       "image": {
-        "src": "/assets/hidd-al-saadiyat/transition-takeover-pool.jpg",
+        "src": "/assets/hidd-al-saadiyat/transition-takeover-pool.webp",
         "alt": "Managed waterfront property ready for operational takeover",
         "width": 2000,
         "height": 1333
@@ -53,7 +53,7 @@
       "title": "Manage",
       "description": "Move forward with clear oversight and a focus on long-term value.",
       "image": {
-        "src": "/assets/transition-stages.png",
+        "src": "/assets/transition-stages.webp",
         "alt": "Ongoing property management and reporting",
         "viewBox": "772 516 764 508",
         "width": 1536,

@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Section from "../ui/Section";
 import Button from "../ui/Button";
+import SelectField from "../ui/SelectField";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type SellSectionProps = {
@@ -36,17 +37,18 @@ export default function SellSection({ content }: SellSectionProps) {
                   required
                 />
               </label>
-              <label htmlFor="sell-type">
-                Property Type
-                <select id="sell-type" name="type" defaultValue="" required>
-                  <option value="" disabled>
-                    Select property type
-                  </option>
-                  {content.form.propertyTypes.map((propertyType) => (
-                    <option key={propertyType}>{propertyType}</option>
-                  ))}
-                </select>
-              </label>
+              <SelectField
+                className="sell-type-field"
+                id="sell-type"
+                label="Property Type"
+                name="type"
+                options={content.form.propertyTypes.map((propertyType) => ({
+                  label: propertyType,
+                  value: propertyType,
+                }))}
+                placeholder="Select property type"
+                required
+              />
               <label htmlFor="sell-name">
                 Name
                 <input

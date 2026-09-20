@@ -4,7 +4,7 @@
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "heading": "Unlock The Next Opportunity For Your Property",
   "description": "We position and present your property with the attention it deserves, creating the right visibility and connecting it with serious buyers.",
-  "background": "/assets/sell-sunset.jpg",
+  "background": "/assets/sell-sunset.webp",
   "form": {
     "action": "mailto:Inquiries@adu-re.com",
     "button": "Discuss My Property",

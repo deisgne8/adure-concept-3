@@ -92,7 +92,9 @@ export default function StaticContactPage({ content, site }: Props) {
                 </span>
                 <textarea id="contact-message" name="message" placeholder={content.form.messagePlaceholder} />
               </label>
-              <Button className="contact-submit" type="submit" variant="primary">{content.form.submitLabel}</Button>
+              <Button className="button-wipe contact-submit" type="submit">
+                <span>{content.form.submitLabel}</span>
+              </Button>
               <label className="contact-consent">
                 <input type="checkbox" name="privacy" required />
                 <span>{content.form.consentLabel}</span>

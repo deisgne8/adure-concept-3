@@ -24,6 +24,7 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
             className="btn filter-open"
             type="button"
             aria-haspopup="dialog"
+            aria-controls="filter-dialog"
             data-aos="zoom-in"
           >
             {content.mobileButton} <span aria-hidden="true">⌕</span>
@@ -138,6 +139,13 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
           </div>
         </div>
       </Section>
+      <dialog className="filter-dialog home-filter-dialog" id="filter-dialog" aria-labelledby="filter-title">
+        <div className="dialog-top">
+          <h2 id="filter-title">{content.mobileButton}</h2>
+          <button className="icon-button filter-close" type="button" aria-label="Close property search">×</button>
+        </div>
+        <div id="filter-slot" />
+      </dialog>
     </>
   );
 }

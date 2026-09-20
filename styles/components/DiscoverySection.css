@@ -357,7 +357,7 @@
   box-shadow: none;
   margin: 0 20px 12px 0;
 }
-@media (max-width: 800px) {
+@media (max-width: 1023.98px) {
   .property-view-toolbar {
     gap: 12px;
     align-items: flex-start;
@@ -431,5 +431,13 @@
   .map-fit {
     top: 16px;
     right: 16px;
+  }
+}
+
+@media (max-width: 1439.98px) {
+  #property-map-canvas .leaflet-control-zoom a {
+    width: 2.75rem;
+    height: 2.75rem;
+    line-height: 2.75rem;
   }
 }
