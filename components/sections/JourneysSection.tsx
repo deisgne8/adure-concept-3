@@ -11,6 +11,75 @@ type JourneysSectionProps = {
   content: HomeContent["journeys"];
 };
 
+type JourneyCardData = HomeContent["journeys"]["cards"][number];
+
+function JourneyCard({ card }: { card: JourneyCardData }) {
+  return (
+    <article className="journey-card">
+      {card.image.src && (
+        <div className="journey-media">
+          <img src={card.image.src} alt={card.image.alt} />
+        </div>
+      )}
+      <div className="journey-content">
+        <h3>{card.title}</h3>
+        <div className="journey-details">
+          <div className="journey-details-inner">
+            <p>{card.description}</p>
+            {card.button.text && card.button.href && (
+              <Button href={card.button.href} variant={card.button.variant as ButtonVariant}>
+                {card.button.text}
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function JourneyGrid({ cards }: { cards: JourneyCardData[] }) {
+  return (
+    <div className="journey-grid">
+      {cards.map((card, index) => (
+        <div
+          className="journey-card-reveal"
+          data-aos="fade-up"
+          data-aos-delay={aosSequenceDelay(index)}
+          data-aos-offset="120"
+          key={card.title}
+        >
+          <JourneyCard card={card} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function JourneySwiper({ cards }: { cards: JourneyCardData[] }) {
+  return (
+    <Swiper
+      autoplay={{ delay: 2400, disableOnInteraction: false, pauseOnMouseEnter: true }}
+      className="journey-swiper"
+      modules={[Autoplay]}
+      slidesPerView="auto"
+      spaceBetween={16}
+    >
+      {cards.map((card, index) => (
+        <SwiperSlide
+          className="journey-card-reveal"
+          data-aos="fade-up"
+          data-aos-delay={aosSequenceDelay(index)}
+          data-aos-offset="120"
+          key={card.title}
+        >
+          <JourneyCard card={card} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+}
+
 export default function JourneysSection({ content }: JourneysSectionProps) {
   const [isCompact, setIsCompact] = useState(false);
 
@@ -45,45 +114,7 @@ export default function JourneysSection({ content }: JourneysSectionProps) {
               </p>
             )}
           </div>
-          <Swiper
-            autoplay={isCompact ? { delay: 2400, disableOnInteraction: false, pauseOnMouseEnter: true } : false}
-            className="journey-grid journey-swiper"
-            key={isCompact ? "compact-journeys" : "desktop-journeys"}
-            modules={[Autoplay]}
-            slidesPerView="auto"
-            spaceBetween={isCompact ? 16 : 0}
-          >
-            {content.cards.map((card, index) => (
-              <SwiperSlide
-                className="journey-card-reveal"
-                data-aos="fade-up"
-                data-aos-delay={aosSequenceDelay(index)}
-                data-aos-offset="120"
-                key={card.title}
-              >
-                <article className="journey-card">
-                  {card.image.src && (
-                    <div className="journey-media">
-                      <img src={card.image.src} alt={card.image.alt} />
-                    </div>
-                  )}
-                  <div className="journey-content">
-                    <h3>{card.title}</h3>
-                    <div className="journey-details">
-                      <div className="journey-details-inner">
-                        <p>{card.description}</p>
-                        {card.button.text && card.button.href && (
-                          <Button href={card.button.href} variant={card.button.variant as ButtonVariant}>
-                            {card.button.text}
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          {isCompact ? <JourneySwiper cards={content.cards} /> : <JourneyGrid cards={content.cards} />}
         </div>
       </Section>
     </>
