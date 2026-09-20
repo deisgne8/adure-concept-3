@@ -42,7 +42,8 @@ main{
   color:white;
   display:flex;
   align-items:center;
-  overflow:hidden
+  overflow:hidden;
+  background:#08182e url('assets/adure-banner-poster.jpg') center/cover no-repeat
 }
 .site-hero>img{
   position:absolute;

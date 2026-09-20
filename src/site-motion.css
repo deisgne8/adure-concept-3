@@ -7,6 +7,7 @@
   will-change:opacity,transform;
 }
 [data-site-reveal].is-site-visible{opacity:1;transform:translate3d(0,0,0)}
+#home[data-site-reveal]{opacity:1!important;transform:none!important}
 [data-site-parallax]{
   --site-parallax-y:0px;
   transform:translate3d(0,var(--site-parallax-y),0) scale(1.08);
