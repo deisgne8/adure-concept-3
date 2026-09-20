@@ -2270,8 +2270,14 @@
 }
 
 /* Let property card titles use their real height to avoid blank space under one-line headings. */
+.properties-page .property-card{
+  overflow:hidden!important;
+  border-radius:var(--radius-large,16px)!important;
+}
 .properties-page .property-card-body{
   grid-template-rows:auto auto auto auto auto auto!important;
+  overflow:hidden!important;
+  border-radius:0 0 var(--radius-large,16px) var(--radius-large,16px)!important;
 }
 .properties-page .property-card h3{
   min-height:0!important;

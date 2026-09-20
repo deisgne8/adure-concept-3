@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import type { StaticProperty } from "../../lib/properties/static-types";
 import { propertyPrice } from "../../lib/properties/static-catalog";
 
@@ -143,7 +144,10 @@ export default function StaticPropertyCard({
         <div className="property-facts"><PropertyFacts property={property} /></div>
         <div className="property-card-footer">
           <span>{reference}</span>
-          <span className="view-property"><span>View property</span><span aria-hidden="true">→</span></span>
+          <span className="view-property">
+            <span>View property</span>
+            <ArrowRight aria-hidden="true" className="button-arrow" />
+          </span>
         </div>
       </div>
     </article>

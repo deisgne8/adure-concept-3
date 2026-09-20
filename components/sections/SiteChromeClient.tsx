@@ -14,21 +14,42 @@ export default function SiteChromeClient({ persistentGlass = false }: SiteChrome
     const menuClose = document.querySelector<HTMLButtonElement>(".menu-close");
     const servicesToggle = document.querySelector<HTMLButtonElement>("#services-toggle");
     const servicesMenu = document.querySelector<HTMLElement>("#services-menu");
+    let servicesCloseTimer: ReturnType<typeof setTimeout> | undefined;
 
     const updateHeader = () => header?.classList.toggle("is-glass", persistentGlass || window.scrollY > 24);
-    const closeServices = () => {
+    const closeServices = (restoreFocus = false) => {
       servicesToggle?.setAttribute("aria-expanded", "false");
-      if (servicesMenu) servicesMenu.hidden = true;
+      servicesMenu?.classList.remove("is-open");
+      clearTimeout(servicesCloseTimer);
+
+      const finishClose = () => {
+        if (servicesMenu && !servicesMenu.classList.contains("is-open")) servicesMenu.hidden = true;
+      };
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) finishClose();
+      else servicesCloseTimer = setTimeout(finishClose, 180);
+
+      if (restoreFocus) servicesToggle?.focus();
     };
     const toggleServices = () => {
-      const isOpen = servicesToggle?.getAttribute("aria-expanded") === "true";
-      servicesToggle?.setAttribute("aria-expanded", String(!isOpen));
-      if (servicesMenu) servicesMenu.hidden = isOpen;
+      if (!servicesToggle || !servicesMenu) return;
+      if (servicesMenu.classList.contains("is-open")) {
+        closeServices();
+        return;
+      }
+
+      clearTimeout(servicesCloseTimer);
+      servicesMenu.hidden = false;
+      requestAnimationFrame(() => servicesMenu.classList.add("is-open"));
+      servicesToggle.setAttribute("aria-expanded", "true");
     };
     const closeServicesOnOutsideClick = (event: MouseEvent) => {
       if (!servicesMenu?.contains(event.target as Node) && !servicesToggle?.contains(event.target as Node)) {
         closeServices();
       }
+    };
+    const closeServicesOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && servicesMenu && !servicesMenu.hidden) closeServices(true);
     };
     const openMenu = () => {
       mobileMenu?.showModal();
@@ -44,6 +65,7 @@ export default function SiteChromeClient({ persistentGlass = false }: SiteChrome
     mobileMenu?.addEventListener("close", restoreMenuTrigger);
     servicesToggle?.addEventListener("click", toggleServices);
     document.addEventListener("click", closeServicesOnOutsideClick);
+    document.addEventListener("keydown", closeServicesOnEscape);
 
     const mobileLinks = mobileMenu?.querySelectorAll("a");
     mobileLinks?.forEach((link) => link.addEventListener("click", closeMenu));
@@ -55,7 +77,9 @@ export default function SiteChromeClient({ persistentGlass = false }: SiteChrome
       mobileMenu?.removeEventListener("close", restoreMenuTrigger);
       servicesToggle?.removeEventListener("click", toggleServices);
       document.removeEventListener("click", closeServicesOnOutsideClick);
+      document.removeEventListener("keydown", closeServicesOnEscape);
       mobileLinks?.forEach((link) => link.removeEventListener("click", closeMenu));
+      clearTimeout(servicesCloseTimer);
     };
   }, [persistentGlass]);
 

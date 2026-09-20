@@ -1,3 +1,8 @@
+import {
+  getWordPressEndpoint,
+  getWordPressUrl,
+} from "../config/endpoints";
+
 type WordPressMedia = string | { url?: string; source_url?: string } | null;
 
 type WordPressHeroButton = {
@@ -42,12 +47,7 @@ export type WordPressHomePage = {
   };
 };
 
-export function getWordPressUrl() {
-  return (process.env.WORDPRESS_URL ?? "https://adure.e8demo.com").replace(
-    /\/$/,
-    "",
-  );
-}
+export { getWordPressUrl };
 
 export function getHomeJourneysFields(page: WordPressHomePage | null) {
   return page?.acf?.journey_components?.find(
@@ -56,9 +56,12 @@ export function getHomeJourneysFields(page: WordPressHomePage | null) {
 }
 
 export async function loadWordPressHomePage() {
-  const response = await fetch(
-    `${getWordPressUrl()}/wp-json/wp/v2/pages?slug=home&per_page=1&acf_format=standard`,
-  );
+  const endpoint = getWordPressEndpoint("homePages");
+  endpoint.searchParams.set("slug", "home");
+  endpoint.searchParams.set("per_page", "1");
+  endpoint.searchParams.set("acf_format", "standard");
+
+  const response = await fetch(endpoint);
 
   if (!response.ok) {
     throw new Error(`WordPress home request failed: ${response.status}`);

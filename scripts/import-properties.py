@@ -5,9 +5,11 @@ from __future__ import annotations
 import argparse
 import base64
 import json
+import os
 import re
 import tempfile
 import urllib.error
+import urllib.parse
 import urllib.request
 import zipfile
 from collections import defaultdict
@@ -338,11 +340,14 @@ def post_batch(
 def import_payload(
     payload: dict[str, Any],
     wordpress_url: str,
+    property_import_endpoint: str,
     username: str,
     password: str,
     batch_size: int,
 ) -> dict[str, Any]:
-    endpoint = wordpress_url.rstrip("/") + "/wp-json/adure/v1/property-import"
+    endpoint = urllib.parse.urljoin(
+        wordpress_url.rstrip("/") + "/", property_import_endpoint
+    )
     responses: list[dict[str, Any]] = []
     buildings = payload["buildings"]
     units = payload["units"]
@@ -376,9 +381,16 @@ def main() -> None:
     parser.add_argument("source", type=Path)
     parser.add_argument("--output", type=Path, default=Path("qa/property-import.json"))
     parser.add_argument("--report", type=Path, default=Path("qa/property-import-report.json"))
-    parser.add_argument("--wordpress-url")
-    parser.add_argument("--username")
-    parser.add_argument("--application-password")
+    parser.add_argument("--wordpress-url", default=os.environ.get("WORDPRESS_URL"))
+    parser.add_argument(
+        "--property-import-endpoint",
+        default=os.environ.get("WORDPRESS_PROPERTY_IMPORT_ENDPOINT"),
+    )
+    parser.add_argument("--username", default=os.environ.get("WORDPRESS_USER"))
+    parser.add_argument(
+        "--application-password",
+        default=os.environ.get("WORDPRESS_APPLICATION_PASSWORD"),
+    )
     parser.add_argument("--batch-size", type=int, default=50)
     args = parser.parse_args()
 
@@ -389,13 +401,21 @@ def main() -> None:
     args.report.write_text(json.dumps(report, indent=2), encoding="utf-8")
     print(json.dumps(report, indent=2))
 
-    credentials = (args.wordpress_url, args.username, args.application_password)
+    credentials = (
+        args.wordpress_url,
+        args.property_import_endpoint,
+        args.username,
+        args.application_password,
+    )
     if any(credentials) and not all(credentials):
-        raise SystemExit("WordPress URL, username and application password are all required.")
+        raise SystemExit(
+            "WordPress URL, property import endpoint, username and application password are all required."
+        )
     if all(credentials):
         result = import_payload(
             payload,
             args.wordpress_url,
+            args.property_import_endpoint,
             args.username,
             args.application_password,
             args.batch_size,

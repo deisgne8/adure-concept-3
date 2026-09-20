@@ -1,4 +1,4 @@
-import { getWordPressUrl } from "../home/wordpress";
+import { getWordPressEndpoint } from "../config/endpoints";
 import type {
   BuildingDetail,
   PropertyFilters,
@@ -16,8 +16,8 @@ const emptyProperties: PropertyListResponse = {
   },
 };
 
-async function getJson<T>(path: string): Promise<T> {
-  const response = await fetch(`${getWordPressUrl()}${path}`, {
+async function getJson<T>(endpoint: URL): Promise<T> {
+  const response = await fetch(endpoint, {
     headers: { Accept: "application/json" },
   });
 
@@ -33,12 +33,13 @@ async function getJson<T>(path: string): Promise<T> {
 }
 
 export async function loadProperties(filters: PropertyFilters = {}) {
-  const search = new URLSearchParams();
+  const endpoint = getWordPressEndpoint("properties");
   Object.entries(filters).forEach(([key, value]) => {
-    if (value !== undefined && value !== "") search.set(key, value);
+    if (value !== undefined && value !== "") {
+      endpoint.searchParams.set(key, value);
+    }
   });
-  const suffix = search.size ? `?${search.toString()}` : "";
-  return getJson<PropertyListResponse>(`/wp-json/adure/v1/properties${suffix}`);
+  return getJson<PropertyListResponse>(endpoint);
 }
 
 export async function loadHomeProperties() {
@@ -51,15 +52,15 @@ export async function loadHomeProperties() {
 }
 
 export function loadBuilding(slug: string) {
-  return getJson<BuildingDetail>(
-    `/wp-json/adure/v1/buildings/${encodeURIComponent(slug)}`,
-  );
+  const endpoint = getWordPressEndpoint("buildings");
+  endpoint.pathname = `${endpoint.pathname.replace(/\/$/, "")}/${encodeURIComponent(slug)}`;
+  return getJson<BuildingDetail>(endpoint);
 }
 
 export function loadUnit(slug: string) {
-  return getJson<PropertyUnitDetail>(
-    `/wp-json/adure/v1/units/${encodeURIComponent(slug)}`,
-  );
+  const endpoint = getWordPressEndpoint("units");
+  endpoint.pathname = `${endpoint.pathname.replace(/\/$/, "")}/${encodeURIComponent(slug)}`;
+  return getJson<PropertyUnitDetail>(endpoint);
 }
 
 export function isNotFoundError(error: unknown) {
