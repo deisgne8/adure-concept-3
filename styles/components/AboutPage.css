@@ -573,6 +573,62 @@
     border-radius:16px!important;
   }
 }
+
+/* Fixed-reference leadership controls and four-card rail. */
+.about-page .team-intro {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: clamp(.75rem, 1.4vw, 1.2rem) clamp(1.5rem, 3vw, 2.5rem) !important;
+  align-items: end !important;
+  max-width: none !important;
+}
+.about-page .team-intro h2,
+.about-page .team-intro p { grid-column: 1 !important; }
+.about-page .team-controls {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  display: flex !important;
+  gap: .65rem !important;
+  align-self: end !important;
+  justify-self: end !important;
+}
+.about-page .team-controls button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgba(0, 71, 137, .4);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+.about-page .team-controls button:hover,
+.about-page .team-controls button:focus-visible { background: var(--accent); color: #fff; }
+.about-page .team-card-grid.swiper .swiper-wrapper {
+  gap: 0 !important;
+}
+.about-page .team-card-grid.swiper .swiper-slide.team-card {
+  flex: 0 0 auto !important;
+  width: auto !important;
+}
+.about-page .team-card figure,
+.about-page .team-card img { border-radius: 14px !important; }
+.about-page .team-card p {
+  display: block !important;
+  width: auto !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+@media(max-width:900px) {
+  .about-page .team-intro { grid-template-columns: 1fr !important; }
+  .about-page .team-controls { grid-column: 1 !important; grid-row: auto !important; justify-self: start !important; }
+}
 @media(max-width:640px){
   .about-page .story-timeline-layout{
     padding-block:3rem!important;
@@ -2495,4 +2551,74 @@ body .about-page main .guides-head .type-guides-heading{
     justify-self:start!important;
     max-width:42rem!important;
   }
+}
+
+/* Fixed-reference leadership controls remain visible above the Swiper rail. */
+.about-page .team-intro {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:clamp(.75rem,1.4vw,1.2rem) clamp(1.5rem,3vw,2.5rem)!important;
+  align-items:end!important;
+  max-width:none!important;
+}
+.about-page .team-intro h2,
+.about-page .team-intro p { grid-column:1!important; }
+.about-page .team-controls {
+  grid-column:2!important;
+  grid-row:1 / span 2!important;
+  display:flex!important;
+  gap:.65rem!important;
+  align-self:end!important;
+  justify-self:end!important;
+}
+.about-page .team-controls button {
+  display:grid;
+  place-items:center;
+  width:2.75rem;
+  height:2.75rem;
+  padding:0;
+  border:1px solid rgba(0,71,137,.4);
+  border-radius:50%;
+  background:transparent;
+  color:var(--accent);
+  cursor:pointer;
+}
+.about-page .team-controls button:hover,
+.about-page .team-controls button:focus-visible { background:var(--accent); color:#fff; }
+.about-page .team-card-grid.swiper .swiper-wrapper { gap:0!important; }
+.about-page .team-card-grid.swiper .swiper-slide.team-card {
+  flex:0 0 auto!important;
+  width:auto!important;
+}
+.about-page .team-card figure,
+.about-page .team-card img { border-radius:14px!important; }
+.about-page .team-card p {
+  display:block!important;
+  width:auto!important;
+  max-width:100%!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+@media(max-width:900px) {
+  .about-page .team-intro { grid-template-columns:1fr!important; }
+  .about-page .team-controls { grid-column:1!important; grid-row:auto!important; justify-self:start!important; }
+}
+
+/* Fixed-reference inner-page width and shared heading scale. */
+.about-page .section-shell {
+  max-width:1216px!important;
+}
+.about-page main :is(h1,h2) {
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px) {
+  .about-page main :is(h1,h2) { font-size:clamp(32px,9vw,42px)!important; }
 }

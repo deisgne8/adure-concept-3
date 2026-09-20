@@ -28,7 +28,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
         <section className="customer-groups pt_100 pb_100" aria-label="Client groups">
           <div className="section-shell customer-group-grid">
             {content.clientGroups.map((group) => (
-              <article className="customer-logo-panel" key={group.title}>
+              <article className="customer-logo-panel" id={group.id} key={group.title}>
                 <div className="customer-panel-copy" data-aos="fade-up">
                   <h2>{group.title}</h2>
                   {group.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
@@ -93,7 +93,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
           </div>
         </section>
       </main>
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
     </div>
   );
 }

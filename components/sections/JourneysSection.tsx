@@ -1,5 +1,5 @@
 import Section from "../ui/Section";
-import Button from "../ui/Button";
+import Button, { type ButtonVariant } from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type JourneysSectionProps = {
@@ -50,7 +50,7 @@ export default function JourneysSection({ content }: JourneysSectionProps) {
                     <div className="journey-details-inner">
                       <p>{card.description}</p>
                       {card.button.text && card.button.href && (
-                        <Button href={card.button.href} variant="link">
+                        <Button href={card.button.href} variant={card.button.variant as ButtonVariant}>
                           {card.button.text}
                         </Button>
                       )}

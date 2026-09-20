@@ -4,74 +4,109 @@
   "markets": ["Abu Dhabi", "Dubai", "Al Ain"],
   "header": {
     "logo": {
+      "src": "/assets/adure-logo-horizontal.svg",
       "href": "/",
       "ariaLabel": "ADURE home",
       "alt": "ADURE - Abu Dhabi United Real Estate"
     },
-    "navigation": {
-      "beforeServices": [
-        {
-          "label": "About ADURE",
-          "href": "/about"
-        }
-      ],
-      "services": {
-        "label": "Services",
+    "navigation": [
+      {
+        "label": "About ADURE",
+        "href": "/about",
         "items": [
-          {
-            "label": "Overview",
-            "description": "All connected capabilities",
-            "href": "/#management"
-          },
-          {
-            "label": "Buy",
-            "description": "Find your next property",
-            "href": "/properties?intent=buy"
-          },
-          {
-            "label": "Sell",
-            "description": "Bring a property to market",
-            "href": "/#sell"
-          },
-          {
-            "label": "Leasing",
-            "description": "Explore available properties",
-            "href": "/properties?intent=lease"
-          },
-          {
-            "label": "Property management",
-            "description": "Protect long-term asset value",
-            "href": "/#management"
-          }
+          { "label": "Our Story", "href": "/about#story-title" },
+          { "label": "Our Presence", "href": "/about#who-we-are" },
+          { "label": "Vision, Mission & Values", "href": "/about#guides-title" },
+          { "label": "CEO Message", "href": "/about#ceo-message-title" },
+          { "label": "Leadership", "href": "/about#leadership-title" },
+          { "label": "Contact Us", "href": "/contact" }
         ]
       },
-      "afterServices": [
-        {
-          "label": "Properties",
-          "href": "/properties"
-        },
-        {
-          "label": "Portfolio",
-          "href": "/portfolio"
-        },
-        {
-          "label": "Our Clients",
-          "href": "/customers"
-        },
-        {
-          "label": "Contact",
-          "href": "/contact"
-        }
-      ]
-    },
-    "cta": {
-      "label": "List your property",
-      "href": "/#sell"
-    },
-    "contact": {
-      "markets": "Abu Dhabi - Dubai - Al Ain",
-      "phone": "02 6457869",
-      "phoneHref": "tel:+97126457869"
-    }
+      {
+        "label": "Properties",
+        "href": "/properties",
+        "items": [
+          { "label": "Lease", "href": "/properties?intent=lease" },
+          { "label": "Buy", "href": "/properties?intent=buy" },
+          { "label": "Sell", "href": "/#sell" }
+        ]
+      },
+      {
+        "label": "Portfolio",
+        "href": "/portfolio",
+        "items": [
+          { "label": "Abu Dhabi", "href": "/portfolio#portfolio-city-abu-dhabi" },
+          { "label": "Dubai", "href": "/portfolio#portfolio-city-dubai" },
+          { "label": "Al Ain", "href": "/portfolio#portfolio-city-al-ain" },
+          { "label": "Hidd Al Saadiyat", "href": "/portfolio#portfolio-city-hidd-al-saadiyat" }
+        ]
+      },
+      {
+        "label": "Our Customer",
+        "href": "/customers",
+        "items": [
+          { "label": "Government", "href": "/customers#government" },
+          { "label": "Semi Government", "href": "/customers#government" },
+          { "label": "Private Sector", "href": "/customers#private-sector" }
+        ]
+      },
+      {
+        "label": "Our Services",
+        "href": "/#management",
+        "items": [
+          { "label": "Buy", "href": "/properties?intent=buy" },
+          { "label": "Sell", "href": "/#sell" },
+          { "label": "Leasing", "href": "/properties?intent=lease" },
+          { "label": "Property Management", "href": "/#management" }
+        ]
+      },
+      { "label": "Contact Us", "href": "/contact" }
+    ],
+    "cta": { "label": "List your property", "href": "/#sell" },
+    "contact": { "markets": "Abu Dhabi - Dubai - Al Ain", "phone": "02 6457869", "phoneHref": "tel:+97126457869" }
+  },
+  "footer": {
+    "logo": { "src": "/assets/logo-footer.svg", "alt": "ADURE - Abu Dhabi United Real Estate" },
+    "tagline": "Creating Value Beyond Property",
+    "email": "Inquiries@adu-re.com",
+    "columns": [
+      {
+        "heading": "Company",
+        "links": [
+          { "label": "About ADURE", "href": "/about" },
+          { "label": "Our Clients", "href": "/customers" },
+          { "label": "Media and gallery", "href": "/#media" },
+          { "label": "Careers", "href": "/#careers" },
+          { "label": "Contact Us", "href": "/contact" }
+        ]
+      },
+      {
+        "heading": "Properties",
+        "links": [
+          { "label": "Buy", "href": "/properties?intent=buy" },
+          { "label": "Lease", "href": "/properties?intent=lease" },
+          { "label": "List your property", "href": "/#sell" },
+          { "label": "Portfolio", "href": "/portfolio" }
+        ]
+      },
+      {
+        "heading": "Services",
+        "links": [
+          { "label": "Buy", "href": "/properties?intent=buy" },
+          { "label": "Sell", "href": "/#sell" },
+          { "label": "Leasing", "href": "/properties?intent=lease" },
+          { "label": "Property management", "href": "/#management" }
+        ]
+      },
+      {
+        "heading": "Explore",
+        "links": [
+          { "label": "Portfolio", "href": "/portfolio" },
+          { "label": "Available properties", "href": "/properties" }
+        ]
+      }
+    ],
+    "copyright": "© 2026 ADURE. All rights reserved.",
+    "legal": "Privacy · Terms · Accessibility"
   }
 }

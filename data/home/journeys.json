@@ -1,0 +1,33 @@
+{
+  "id": "journeys",
+  "label": "Property journeys",
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
+  "heading": "One Partner For Every Property Move",
+  "description": "From finding the right place to protecting its long-term value, ADURE brings every part of the real estate journey together.",
+  "cards": [
+    {
+      "image": { "src": "/assets/hidd-al-saadiyat/journey-buy.webp", "alt": "Curved waterfront residences at Hidd Al Saadiyat framed by landscaped gardens" },
+      "title": "Buy",
+      "description": "Find the right opportunity with clear insight and considered guidance.",
+      "button": { "text": "Buy with ADURE", "href": "/properties?intent=buy", "variant": "link" }
+    },
+    {
+      "image": { "src": "/assets/journeys/sell.jpg", "alt": "Property advisor reviewing real estate photographs" },
+      "title": "Sell",
+      "description": "Bring your property to market with considered positioning and the right audience.",
+      "button": { "text": "Sell With ADURE", "href": "/#sell", "variant": "link" }
+    },
+    {
+      "image": { "src": "/assets/journeys/lease-lobby.jpg", "alt": "Warm marble lobby with chandelier and seating at Hidd Al Saadiyat" },
+      "title": "Lease",
+      "description": "Connect people with the right places they need.",
+      "button": { "text": "Lease with ADURE", "href": "/properties?intent=lease", "variant": "link" }
+    },
+    {
+      "image": { "src": "/assets/journeys/manage.jpg", "alt": "Property management professional inspecting a landscaped residence" },
+      "title": "Manage",
+      "description": "Protect long-term performance through connected long-term management.",
+      "button": { "text": "Property Management", "href": "/#management", "variant": "link" }
+    }
+  ]
+}

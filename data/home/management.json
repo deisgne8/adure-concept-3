@@ -1,12 +1,12 @@
 {
   "id": "management",
   "label": "Property management",
-  "spacing": { "pt": "pt_0", "pb": "pb_0" },
+  "spacing": { "pt": "pt_100", "pb": "pb_100" },
   "heading": "From Occupancy To Operations, We Manage It All",
   "description": "Effective property management means more than looking after a building. It means keeping it occupied, operating efficiently, financially controlled and professionally cared for. ADURE brings leasing, operations, facility management, financial management and legal support together under one accountable team, giving owners a clearer, more coordinated way to manage the performance of their property.",
   "button": {
     "text": "Explore property management",
-    "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services",
+    "href": "/#management",
     "variant": "link"
   },
   "image": {
@@ -20,7 +20,7 @@
         "src": "assets/hidd-al-saadiyat/management-leasing-lobby.jpg",
         "alt": "Hidd Al Saadiyat lobby with a sculptural chandelier and timber screen"
       },
-      "description": "Keeping occupancy, tenant relationships and everyday performance moving forward."
+      "description": "Keeping occupancy, tenant relationships and day-to-day performance moving in the right direction."
     },
     {
       "title": "Facility Management",
@@ -28,7 +28,7 @@
         "src": "assets/hidd-al-saadiyat/management-facility-facade.jpg",
         "alt": "Hidd Al Saadiyat mixed-use facade and contemporary residences"
       },
-      "description": "Maintaining spaces with the consistency, care and attention they require."
+      "description": "Maintaining the environments people depend on, with consistency and care."
     },
     {
       "title": "Financial & Legal Management",

@@ -22,7 +22,7 @@ export default function AboutPage({ siteContent, content }: AboutPageProps) {
         <AboutLeadershipSection leadership={content.leadership} />
         <AboutContactSection contact={content.contact} />
       </main>
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={siteContent} homeHref="/" />
     </div>
   );
 }

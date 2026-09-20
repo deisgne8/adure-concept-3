@@ -60,8 +60,9 @@ export default function HeroSection({ content }: HeroSectionProps) {
               )}
             </div>
             <div className="hero-side">
+              {content.strapline && <p>{content.strapline}</p>}
               {content.description && (
-                <p data-aos="fade-up" data-aos-delay="100">
+                <p className="hero-belief" data-aos="fade-up" data-aos-delay="100">
                   {content.description}
                 </p>
               )}

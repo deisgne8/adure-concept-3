@@ -12,7 +12,7 @@ export type CustomersContent = {
     imageAlt: string;
     cta: { label: string; href: string };
   };
-  clientGroups: Array<{ title: string; paragraphs: string[]; logos: CustomerLogo[] }>;
+  clientGroups: Array<{ id: string; title: string; paragraphs: string[]; logos: CustomerLogo[] }>;
   sectors: { heading: string; description: string; items: CustomerSector[] };
   commitment: { heading: string; description: string; items: Array<{ title: string; description: string }> };
   testimonial: { heading: string; quote: string; description: string; client: string; location: string };

@@ -210,6 +210,115 @@
   }
 }
 
+/* Fixed-reference Home portfolio: filtered, draggable image rail. */
+#home#home #portfolio .portfolio-intro {
+  position: relative;
+  display: block;
+  padding-right: clamp(20rem, 24vw, 24rem);
+  margin: 0 0 clamp(3.6rem, 5.2vw, 5rem);
+}
+#home#home #portfolio .portfolio-intro > div { display: block; max-width: 48rem; }
+#home#home #portfolio .portfolio-intro h2 { max-width: 50rem; }
+#home#home #portfolio .portfolio-intro p { max-width: 48rem; margin: 0.875rem 0 0; }
+#home#home #portfolio .portfolio-intro .btn { margin-top: 1.1rem; }
+#home#home #portfolio .portfolio-type-filters {
+  position: absolute;
+  right: 0;
+  bottom: 0.05rem;
+  display: flex;
+  width: max-content;
+  min-width: 19rem;
+  padding: 0.28rem;
+  gap: 0.3rem;
+  border: 1px solid #d7e1ea;
+  border-radius: 999px;
+  background: #eef3f8;
+}
+#home#home #portfolio .portfolio-type-filters button {
+  min-height: 2.65rem;
+  padding: 0 1.22rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #5a5e64;
+  font: 700 0.78rem/1 var(--font-body);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+#home#home #portfolio .portfolio-type-filters button.is-active { background: var(--accent); color: #fff; }
+#home#home #portfolio .portfolio-type-filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+#home#home #portfolio .portfolio-home-stage,
+#home#home #portfolio .portfolio-home-stage > div:first-child { display: block; width: 100%; }
+#home#home #portfolio .portfolio-card-grid {
+  --portfolio-card-gap: clamp(1.5rem, 2.4vw, 2.4rem);
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--portfolio-card-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  padding: 0 0 0.5rem;
+}
+#home#home #portfolio .portfolio-card-grid::-webkit-scrollbar { display: none; }
+#home#home #portfolio .portfolio-card-grid.is-pointer-down { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+#home#home #portfolio .portfolio-home-card {
+  display: block;
+  flex: 0 0 calc((100% - 3 * var(--portfolio-card-gap)) / 4);
+  min-width: 0;
+  color: inherit;
+  scroll-snap-align: start;
+}
+#home#home #portfolio .portfolio-home-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #dbe7ef;
+}
+#home#home #portfolio .portfolio-home-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+#home#home #portfolio .portfolio-home-card:hover img,
+#home#home #portfolio .portfolio-home-card:focus-visible img { transform: scale(1.035); }
+#home#home #portfolio .portfolio-home-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+#home#home #portfolio .portfolio-home-copy { display: grid; gap: 0.35rem; padding-top: 1rem; }
+#home#home #portfolio .portfolio-home-copy strong {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 1.7vw, 1.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+#home#home #portfolio .portfolio-home-copy small { color: #60656b; font-size: 0.95rem; line-height: 1.35; }
+@media (max-width: 1040px) {
+  #home#home #portfolio .portfolio-home-card { flex-basis: calc((100% - var(--portfolio-card-gap)) / 2); }
+}
+@media (max-width: 900px) {
+  #home#home #portfolio .portfolio-intro { padding-right: 0; }
+  #home#home #portfolio .portfolio-type-filters { position: static; width: max-content; min-width: 0; margin-top: 1.5rem; }
+}
+@media (max-width: 640px) {
+  #home#home #portfolio .portfolio-type-filters { width: 100%; }
+  #home#home #portfolio .portfolio-type-filters button { flex: 1; padding-inline: 0.65rem; font-size: 0.7rem; }
+  #home#home #portfolio .portfolio-home-card { flex-basis: 82vw; }
+  #home#home #portfolio .portfolio-home-image { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #home#home #portfolio .portfolio-card-grid { scroll-behavior: auto; }
+  #home#home #portfolio .portfolio-home-image img { transition: none; }
+}
+
 
 /* Portfolio toolbar follows the square listing-view segmented control. */
 #home#home #portfolio .portfolio-toolbar {

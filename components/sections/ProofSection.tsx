@@ -27,6 +27,10 @@ export default function ProofSection({ content }: ProofSectionProps) {
     const startCounters = () => {
       if (hasAnimated) return;
       hasAnimated = true;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        setValues(targets);
+        return;
+      }
       setValues(targets.map(() => 0));
 
       const startTime = performance.now();

@@ -2,9 +2,7 @@
 
 import { useEffect } from "react";
 
-type SiteChromeClientProps = {
-  persistentGlass?: boolean;
-};
+type SiteChromeClientProps = { persistentGlass?: boolean };
 
 export default function SiteChromeClient({ persistentGlass = false }: SiteChromeClientProps) {
   useEffect(() => {
@@ -12,60 +10,59 @@ export default function SiteChromeClient({ persistentGlass = false }: SiteChrome
     const mobileMenu = document.querySelector<HTMLDialogElement>("#mobile-menu");
     const menuToggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
     const menuClose = document.querySelector<HTMLButtonElement>(".menu-close");
-    const servicesToggle = document.querySelector<HTMLButtonElement>("#services-toggle");
-    const servicesMenu = document.querySelector<HTMLElement>("#services-menu");
-    let servicesCloseTimer: ReturnType<typeof setTimeout> | undefined;
+    const dropdowns = Array.from(document.querySelectorAll<HTMLElement>(".desktop-nav .nav-dropdown"));
 
+    const closeDropdowns = (except?: HTMLElement) => {
+      dropdowns.forEach((dropdown) => {
+        if (dropdown !== except) dropdown.classList.remove("is-open");
+      });
+    };
     const updateHeader = () => header?.classList.toggle("is-glass", persistentGlass || window.scrollY > 24);
-    const closeServices = (restoreFocus = false) => {
-      servicesToggle?.setAttribute("aria-expanded", "false");
-      servicesMenu?.classList.remove("is-open");
-      clearTimeout(servicesCloseTimer);
-
-      const finishClose = () => {
-        if (servicesMenu && !servicesMenu.classList.contains("is-open")) servicesMenu.hidden = true;
-      };
-
-      servicesCloseTimer = setTimeout(finishClose, 180);
-
-      if (restoreFocus) servicesToggle?.focus();
-    };
-    const toggleServices = () => {
-      if (!servicesToggle || !servicesMenu) return;
-      if (servicesMenu.classList.contains("is-open")) {
-        closeServices();
-        return;
-      }
-
-      clearTimeout(servicesCloseTimer);
-      servicesMenu.hidden = false;
-      requestAnimationFrame(() => servicesMenu.classList.add("is-open"));
-      servicesToggle.setAttribute("aria-expanded", "true");
-    };
-    const closeServicesOnOutsideClick = (event: MouseEvent) => {
-      if (!servicesMenu?.contains(event.target as Node) && !servicesToggle?.contains(event.target as Node)) {
-        closeServices();
-      }
-    };
-    const closeServicesOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && servicesMenu && !servicesMenu.hidden) closeServices(true);
-    };
     const openMenu = () => {
-      mobileMenu?.showModal();
+      if (mobileMenu && !mobileMenu.open) mobileMenu.showModal();
       menuToggle?.setAttribute("aria-expanded", "true");
     };
     const closeMenu = () => mobileMenu?.close();
     const restoreMenuTrigger = () => menuToggle?.setAttribute("aria-expanded", "false");
+    const closeMenuFromBackdrop = (event: MouseEvent) => {
+      if (event.target === mobileMenu) closeMenu();
+    };
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (!dropdowns.some((dropdown) => dropdown.contains(event.target as Node))) closeDropdowns();
+    };
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      const open = dropdowns.find((dropdown) => dropdown.classList.contains("is-open"));
+      closeDropdowns();
+      open?.querySelector<HTMLElement>(".nav-dropdown-toggle")?.focus();
+    };
+
+    const dropdownCleanups = dropdowns.map((dropdown) => {
+      const open = () => { closeDropdowns(dropdown); dropdown.classList.add("is-open"); };
+      const closePointer = () => dropdown.classList.remove("is-open");
+      const close = (event: FocusEvent) => {
+        if (!dropdown.contains(event.relatedTarget as Node | null)) dropdown.classList.remove("is-open");
+      };
+      dropdown.addEventListener("pointerenter", open);
+      dropdown.addEventListener("pointerleave", closePointer);
+      dropdown.addEventListener("focusin", open);
+      dropdown.addEventListener("focusout", close);
+      return () => {
+        dropdown.removeEventListener("pointerenter", open);
+        dropdown.removeEventListener("pointerleave", closePointer);
+        dropdown.removeEventListener("focusin", open);
+        dropdown.removeEventListener("focusout", close);
+      };
+    });
 
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });
     menuToggle?.addEventListener("click", openMenu);
     menuClose?.addEventListener("click", closeMenu);
+    mobileMenu?.addEventListener("click", closeMenuFromBackdrop);
     mobileMenu?.addEventListener("close", restoreMenuTrigger);
-    servicesToggle?.addEventListener("click", toggleServices);
-    document.addEventListener("click", closeServicesOnOutsideClick);
-    document.addEventListener("keydown", closeServicesOnEscape);
-
+    document.addEventListener("click", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
     const mobileLinks = mobileMenu?.querySelectorAll("a");
     mobileLinks?.forEach((link) => link.addEventListener("click", closeMenu));
 
@@ -73,12 +70,12 @@ export default function SiteChromeClient({ persistentGlass = false }: SiteChrome
       window.removeEventListener("scroll", updateHeader);
       menuToggle?.removeEventListener("click", openMenu);
       menuClose?.removeEventListener("click", closeMenu);
+      mobileMenu?.removeEventListener("click", closeMenuFromBackdrop);
       mobileMenu?.removeEventListener("close", restoreMenuTrigger);
-      servicesToggle?.removeEventListener("click", toggleServices);
-      document.removeEventListener("click", closeServicesOnOutsideClick);
-      document.removeEventListener("keydown", closeServicesOnEscape);
+      document.removeEventListener("click", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
       mobileLinks?.forEach((link) => link.removeEventListener("click", closeMenu));
-      clearTimeout(servicesCloseTimer);
+      dropdownCleanups.forEach((cleanup) => cleanup());
     };
   }, [persistentGlass]);
 

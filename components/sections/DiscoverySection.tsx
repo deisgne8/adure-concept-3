@@ -17,10 +17,8 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
       >
         <div className="section-shell">
           <div className="discovery-title">
-            <h2>Find Your Next Address</h2>
-            <p>
-              Explore available properties across our locations and communities.
-            </p>
+            <h2>{content.heading}</h2>
+            <p>{content.description}</p>
           </div>
           <button
             className="btn filter-open"
@@ -28,7 +26,7 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
             aria-haspopup="dialog"
             data-aos="zoom-in"
           >
-            Find real estate <span aria-hidden="true">⌕</span>
+            {content.mobileButton} <span aria-hidden="true">⌕</span>
           </button>
           <div id="filter-home" data-aos="fade-up" data-aos-delay="100">
             <form className="search-box" id="property-search">
@@ -106,40 +104,37 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
                       className="more-filters-symbol"
                       aria-hidden="true"
                     ></span>
-                    <span>More Filters</span>
+                    <span>{content.moreFiltersLabel}</span>
                   </span>
-                  <small>Facilities &amp; Amenities</small>
+                  <small>{content.moreFiltersDescription}</small>
                 </button>
                 <div className="more-filters-panel" id="amenity-filters" hidden>
-                  <p>Facilities &amp; amenities</p>
+                  <p>{content.moreFiltersDescription}</p>
                   <div className="amenity-grid">
-                    <label><input type="checkbox" name="amenity" value="Parking" /><span>Parking</span></label>
-                    <label><input type="checkbox" name="amenity" value="Balcony" /><span>Balcony</span></label>
-                    <label><input type="checkbox" name="amenity" value="Swimming Pool" /><span>Swimming Pool</span></label>
-                    <label><input type="checkbox" name="amenity" value="Gym" /><span>Gym</span></label>
-                    <label><input type="checkbox" name="amenity" value="24/7 Security" /><span>24/7 Security</span></label>
-                    <label><input type="checkbox" name="amenity" value="Pet Friendly" /><span>Pet Friendly</span></label>
+                    {content.amenities.map((amenity) => <label key={amenity}><input type="checkbox" name="amenity" value={amenity} /><span>{amenity}</span></label>)}
                   </div>
                   <div className="amenity-actions">
-                    <button className="btn dark amenity-search" type="submit">Search properties</button>
+                    <Button className="amenity-search" type="submit" variant="dark">{content.submitButton}</Button>
                   </div>
                 </div>
               </div>
-              <button className="btn dark search-primary" type="submit">Search properties</button>
+              <Button className="search-primary" type="submit" variant="dark">{content.submitButton}</Button>
             </form>
           </div>
           <p className="search-status" id="search-status" role="status" aria-live="polite"></p>
           <div className="grid-3" id="home-properties" data-aos="fade-up"></div>
           <div className="discovery-actions" data-aos="fade-up" data-aos-delay="100">
-            <Button
-              className="button-wipe discovery-view-all"
-              href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
-              showArrow={false}
-              variant="default"
-            >
-              <span>View all properties</span>
-            </Button>
-            <Button href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property" variant="link">Thinking of selling? Sell your property</Button>
+            {content.actions.map((action, index) => (
+              <Button
+                className={index === 0 ? "button-wipe discovery-view-all" : undefined}
+                href={action.href}
+                key={action.label}
+                showArrow={index !== 0}
+                variant={action.variant as "default" | "link"}
+              >
+                {index === 0 ? <span>{action.label}</span> : action.label}
+              </Button>
+            ))}
           </div>
         </div>
       </Section>

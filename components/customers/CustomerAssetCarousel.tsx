@@ -46,6 +46,7 @@ export default function CustomerAssetCarousel({ items }: Props) {
             }
             pointerStart.current = null;
           }}
+          onPointerCancel={() => { pointerStart.current = null; }}
         >
           {items.map((item, index) => {
             const active = index === activeIndex;

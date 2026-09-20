@@ -2,5 +2,15 @@
   "id": "discovery",
   "label": "Property discovery",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "filters": ["Purpose", "Property type", "Location", "Price"]
+  "heading": "Find Your Next Address",
+  "description": "Explore available properties across our locations and communities.",
+  "mobileButton": "Search Properties",
+  "submitButton": "Search Properties",
+  "moreFiltersLabel": "More Filters",
+  "moreFiltersDescription": "Facilities & Amenities",
+  "amenities": ["Parking", "Balcony", "Swimming Pool", "Gym", "24/7 Security", "Pet Friendly"],
+  "actions": [
+    { "label": "Explore Properties", "href": "/properties?intent=buy", "variant": "default" },
+    { "label": "Sell With ADURE", "href": "/#sell", "variant": "link" }
+  ]
 }

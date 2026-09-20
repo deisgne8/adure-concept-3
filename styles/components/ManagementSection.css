@@ -650,3 +650,125 @@
   > .management-main-cta {
   transition-delay: 0.55s, 0.55s, 0s;
 }
+
+/* Fixed-reference static management composition. */
+#home #management {
+  padding-block: var(--space-section, clamp(64px, 7vw, 112px));
+  background: var(--surface-alt);
+}
+#home #management .section-shell {
+  width: min(calc(100% - 2 * var(--page-gutter)), var(--container-max));
+  max-width: var(--container-max);
+}
+#home #management .management-layout-v2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.78fr);
+  grid-template-rows: auto auto auto auto;
+  gap: clamp(2rem, 4vw, 5rem);
+  align-items: start;
+}
+#home #management .management-copy-v2 { display: contents; }
+#home #management .management-copy-v2 h2 {
+  grid-column: 1;
+  grid-row: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--accent);
+}
+#home #management .management-copy-v2 .intro {
+  grid-column: 2;
+  grid-row: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+#home #management .management-visual-v2 {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: relative;
+  min-height: clamp(24rem, 50vw, 42rem);
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+}
+#home #management .management-visual-v2 img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  transform: none;
+}
+#home #management .management-visual-v2 figcaption {
+  position: absolute;
+  left: clamp(1.25rem, 3vw, 3rem);
+  bottom: clamp(1.25rem, 3vw, 3rem);
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  clip: auto;
+  color: #fff;
+  background: rgba(4, 28, 54, 0.72);
+  backdrop-filter: blur(10px);
+  white-space: normal;
+}
+#home #management .management-carousel-copy {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  display: block;
+  padding: 0;
+  text-align: left;
+}
+#home #management .service-rows {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+}
+#home #management .service-row,
+#home #management .service-row.is-active {
+  position: static;
+  width: auto;
+  padding: clamp(1.5rem, 2.6vw, 2.5rem) 0 0;
+  border-top: 1px solid rgba(23, 77, 142, 0.24);
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: none;
+}
+#home #management .service-row h3 {
+  max-width: 15ch;
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-size: clamp(1.6rem, 2.2vw, 2.3rem);
+  line-height: 1.1;
+  text-transform: none;
+}
+#home #management .service-row p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+#home #management .management-main-cta {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  justify-self: start;
+  margin: 0;
+}
+@media (max-width: 800px) {
+  #home #management .management-layout-v2 { grid-template-columns: 1fr; }
+  #home #management .management-copy-v2 h2,
+  #home #management .management-copy-v2 .intro { grid-column: 1; }
+  #home #management .management-copy-v2 .intro { grid-row: 2; }
+  #home #management .management-visual-v2 { grid-row: 3; }
+  #home #management .management-carousel-copy { grid-row: 4; }
+  #home #management .service-rows { grid-template-columns: 1fr; }
+  #home #management .management-main-cta { grid-row: 5; }
+}

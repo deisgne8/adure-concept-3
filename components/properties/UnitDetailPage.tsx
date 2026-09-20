@@ -196,7 +196,7 @@ export default function UnitDetailPage({
           </div>
         </section>
       </main>
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
     </div>
   );
 }

@@ -174,7 +174,7 @@ export default function StaticPropertiesPage({ content, site }: Props) {
         </section>
       </main>
       <PropertiesFilterDialog ref={filterDialogRef} resultCount={results.length} />
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
     </div>
   );
 }

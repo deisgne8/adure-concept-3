@@ -38,7 +38,7 @@ export default function HomePage({ content }: HomePageProps) {
           <ConversationSection content={content.conversation} />
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter content={content.site} />
     </>
   );
 }

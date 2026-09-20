@@ -24,7 +24,7 @@ export default function SellSection({ content }: SellSectionProps) {
             <h2 id="sell-title">{content.heading}</h2>
             <p>{content.description}</p>
           </div>
-          <form className="sell-form" data-sell-form data-aos="fade-left">
+          <form className="sell-form" action={content.form.action} method="post" encType="text/plain" data-sell-form data-aos="fade-left">
             <div className="sell-fields">
               <label htmlFor="sell-location">
                 Property Location

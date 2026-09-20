@@ -93,7 +93,7 @@ export default function PropertyCatalogPage({
           </div>
         </section>
       </main>
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
     </div>
   );
 }

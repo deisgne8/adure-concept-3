@@ -9,6 +9,8 @@ import PortfolioProjectModal from "./PortfolioProjectModal";
 
 type Props = { content: PortfolioContent; site: HomeContent["site"] };
 
+const cityAnchor = (city: string) => `portfolio-city-${city.toLowerCase().replaceAll(" ", "-")}`;
+
 function AnimatedPortfolioStat({ value, label, delay }: { value: string; label: string; delay: number }) {
   const elementRef = useRef<HTMLDivElement>(null);
   const numericMatch = value.match(/^(\d+)(.*)$/);
@@ -78,6 +80,21 @@ export default function StaticPortfolioPage({ content, site }: Props) {
     [content.hero.headingLines],
   );
 
+  useEffect(() => {
+    const selectHashCity = () => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+      const index = content.explorer.projectsByCity.findIndex((group) => cityAnchor(group.city) === hash);
+      if (index < 0) return;
+      setActiveCityIndex(index);
+      setSelectedProject(null);
+      window.requestAnimationFrame(() => document.getElementById(hash)?.scrollIntoView({ block: "start" }));
+    };
+    selectHashCity();
+    window.addEventListener("hashchange", selectHashCity);
+    return () => window.removeEventListener("hashchange", selectHashCity);
+  }, [content.explorer.projectsByCity]);
+
   return (
     <div className="portfolio-page">
       <SiteChrome content={site} currentPath="/portfolio" homeHref="/" skipTargetId="portfolio-main" standalone />
@@ -118,6 +135,7 @@ export default function StaticPortfolioPage({ content, site }: Props) {
                 const active = index === activeCityIndex;
                 return (
                   <button
+                    id={cityAnchor(group.city)}
                     className={active ? "is-active" : undefined}
                     type="button"
                     role="tab"
@@ -182,7 +200,7 @@ export default function StaticPortfolioPage({ content, site }: Props) {
           </div>
         </section>
       </main>
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
       <PortfolioProjectModal city={activeCity.city} project={selectedProject} onClose={closeModal} />
     </div>
   );

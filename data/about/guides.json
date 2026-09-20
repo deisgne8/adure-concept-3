@@ -1,4 +1,5 @@
 {
+  "eyebrow": "Vision, Mission & Values",
   "heading": "What Guides Us",
   "beliefs": [
     { "title": "Our Vision", "description": "To be the most trusted real estate partner in the UAE, setting the benchmark for occupancy, transparency and long-term asset value.", "icon": "/assets/about/vision.svg" },
@@ -9,12 +10,12 @@
     "image": "/assets/about/36.jpg",
     "imageAlt": "Family walking through a residential community",
     "items": [
-      { "heading": "Customer Centric", "description": "Our clients drive every decision; we listen, anticipate and go beyond expectations to earn their trust and loyalty.", "icon": "target-audience" },
-      { "heading": "Integrity", "description": "We act with honesty and transparency at every level, earning the trust of clients, partners and communities.", "icon": "honesty" },
-      { "heading": "Excellence", "description": "We settle for nothing less than the highest quality in our properties, our service and our conduct.", "icon": "excellence" },
-      { "heading": "Partnership", "description": "We serve owners, tenants and communities with equal care and commitment.", "icon": "handshake" },
-      { "heading": "Innovation", "description": "We embrace new ideas and technologies to raise the standard of what we deliver.", "icon": "idea" },
-      { "heading": "Sustainability", "description": "We manage assets with long-term environmental, social and economic responsibility in mind.", "icon": "integration" }
+      { "heading": "Customer Centric", "description": "Our clients drive every decision; we listen, anticipate and go beyond expectations to earn their trust and loyalty.", "icon": "target-audience", "image": "/assets/about/36.jpg", "imageAlt": "Family walking through a residential community" },
+      { "heading": "Integrity", "description": "We act with honesty and transparency at every level, earning the trust of clients, partners and communities.", "icon": "honesty", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "imageAlt": "Managed property interior" },
+      { "heading": "Excellence", "description": "We settle for nothing less than the highest quality in our properties, our service and our conduct.", "icon": "excellence", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "imageAlt": "Managed property interior" },
+      { "heading": "Partnership", "description": "We serve owners, tenants and communities with equal care and commitment.", "icon": "handshake", "image": "/assets/portfolio-reference/qaryat-al-hidd-v2.webp", "imageAlt": "Qaryat Al Hidd waterfront community" },
+      { "heading": "Innovation", "description": "We embrace new ideas and technologies to raise the standard of what we deliver.", "icon": "idea", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp", "imageAlt": "Contemporary mixed-use property" },
+      { "heading": "Sustainability", "description": "We manage assets with long-term environmental, social and economic responsibility in mind.", "icon": "integration", "image": "/assets/hidd-al-saadiyat/saadiyat-beach.webp", "imageAlt": "Saadiyat waterfront environment" }
     ]
   }
 }

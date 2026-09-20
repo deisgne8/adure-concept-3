@@ -102,7 +102,7 @@ export default function BuildingDetailPage({
           </div>
         </section>
       </main>
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
     </div>
   );
 }

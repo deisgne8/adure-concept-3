@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
 
 type InnerBannerContent = typeof import("../../data/about/inner-banner.json");
@@ -16,8 +17,12 @@ export function InnerBanner({ innerBanner }: { innerBanner: InnerBannerContent }
       <img src={innerBanner.backgroundImage} alt="" style={{ objectPosition: innerBanner.backgroundPosition }} />
       <div className="about-hero-shade" />
       <div className="section-shell about-hero-inner">
+        <span className="about-eyebrow" data-aos="fade-up"><b>{innerBanner.eyebrow.slice(0, 2)}</b>{innerBanner.eyebrow.slice(2)}</span>
         <h1 id="about-title" data-aos="fade-up">{innerBanner.heading.map((line) => <span key={line}>{line}<br /></span>)}</h1>
         <p data-aos="fade-up" data-aos-delay="120">{innerBanner.description}</p>
+        <a className="about-scroll-link" href={innerBanner.scrollAction.href} data-aos="fade-up" data-aos-delay="180">
+          {innerBanner.scrollAction.label} <span aria-hidden="true">↓</span>
+        </a>
       </div>
     </section>
   );
@@ -91,6 +96,8 @@ export function AboutStorySection({ story }: { story: StoryContent }) {
         <div className="story-tilton-stage" data-reveal>
           <figure ref={imageFrameRef} className="story-tilton-image story-tilton-image-left about-image-scale" data-aos="fade-right"><img ref={imageRef} className="story-parallax-image" src={story.image} alt={story.imageAlt} /></figure>
           <article className="story-tilton-card" data-aos="fade-left">
+            <span className="about-eyebrow">{story.eyebrow}</span>
+            <p className="story-tilton-year">{story.year}</p>
             <h2 id="story-title" className="type-guides-heading">{story.heading}</h2>
             {story.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </article>
@@ -104,21 +111,21 @@ export function AboutGuidesSection({ guides }: { guides: GuidesContent }) {
   return (
     <section className="guides-section" aria-labelledby="guides-title">
       <div className="section-shell guides-shell" data-reveal>
-        <header className="guides-head" data-aos="fade-up"><h2 id="guides-title" className="type-guides-heading">{guides.heading}</h2></header>
+        <header className="guides-head" data-aos="fade-up"><span className="about-eyebrow">{guides.eyebrow}</span><h2 id="guides-title" className="type-guides-heading">{guides.heading}</h2></header>
         <div className="guides-beliefs" aria-label="ADURE vision and mission">
           {guides.beliefs.map((belief, index) => <article data-aos="fade-up" data-aos-delay={index * 100} key={belief.title}><img className="guides-belief-icon" src={belief.icon} alt="" aria-hidden="true" /><span>{belief.title}</span><p>{belief.description}</p></article>)}
         </div>
         <div className="guides-values" aria-labelledby="guides-values-title" data-aos="fade-up">
           <span className="guides-values-kicker" id="guides-values-title">{guides.values.heading}</span>
           <div className="guides-values-grid">
-            {guides.values.items.map((value) => (
-              <article key={value.heading}>
+            {guides.values.items.map((value, index) => (
+              <article className={index === 0 ? "is-featured" : undefined} key={value.heading}>
                 <span className="value-icon" aria-hidden="true"><svg><use href={`/assets/about-value-icons.svg#${value.icon}`} /></svg></span>
+                <figure className="guides-value-image about-image-scale"><img src={value.image} alt={value.imageAlt} loading="lazy" /></figure>
                 <div><h3>{value.heading}</h3><p>{value.description}</p></div>
               </article>
             ))}
           </div>
-          <figure className="guides-values-image about-image-scale"><img src={guides.values.image} alt={guides.values.imageAlt} /></figure>
         </div>
       </div>
     </section>
@@ -131,6 +138,7 @@ export function AboutCeoMessageSection({ ceo }: { ceo: CeoContent }) {
       <div className="section-shell ceo-message-light-layout" data-reveal>
         <figure className="ceo-message-light-portrait about-image-scale" data-aos="fade-right"><img src={ceo.image} alt={ceo.imageAlt} /></figure>
         <div className="ceo-message-light-copy" data-aos="fade-left">
+          <span id="ceo-message-title" className="ceo-message-anchor" aria-hidden="true" />
           {ceo.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <p className="ceo-signature"><strong>{ceo.name}</strong><span>{ceo.position}</span></p>
         </div>
@@ -140,14 +148,20 @@ export function AboutCeoMessageSection({ ceo }: { ceo: CeoContent }) {
 }
 
 export function AboutLeadershipSection({ leadership }: { leadership: LeadershipContent }) {
+  const swiperRef = useRef<SwiperInstance | null>(null);
+
   return (
     <section className="leadership-section team-section" aria-labelledby="leadership-title">
       <div className="section-shell team-layout" data-reveal>
         <div className="team-intro" data-aos="fade-up">
           <h2 id="leadership-title">{leadership.heading}</h2><p>{leadership.description}</p>
+          <div className="team-controls" aria-label="Leadership carousel controls">
+            <button className="team-prev" type="button" aria-label={leadership.controls.previous} onClick={() => swiperRef.current?.slidePrev()}>←</button>
+            <button className="team-next" type="button" aria-label={leadership.controls.next} onClick={() => swiperRef.current?.slideNext()}>→</button>
+          </div>
         </div>
         <div data-aos="fade-up" data-aos-delay="100">
-          <Swiper className="team-card-grid" slidesPerView={1.15} spaceBetween={0} breakpoints={{ 640: { slidesPerView: 2.2 }, 960: { slidesPerView: 4 } }}>
+          <Swiper className="team-card-grid" slidesPerView={1.15} spaceBetween={0} onSwiper={(swiper) => { swiperRef.current = swiper; }} breakpoints={{ 640: { slidesPerView: 2.2 }, 960: { slidesPerView: 4 } }}>
             {leadership.people.map((person) => <SwiperSlide className="team-card" key={person.name}><figure className="about-image-scale"><img src={person.image} alt={person.name} /></figure><h3>{person.name}</h3><p>{person.position}</p></SwiperSlide>)}
           </Swiper>
         </div>

@@ -15,6 +15,7 @@
   },
   "clientGroups": [
     {
+      "id": "government",
       "title": "Government & Semi-Government",
       "paragraphs": ["ADURE's experience includes work with organisations across government and semi-government sectors, supporting real estate requirements through structured management, operational oversight and a clear focus on building strong partnerships."],
       "logos": [
@@ -51,6 +52,7 @@
       ]
     },
     {
+      "id": "private-sector",
       "title": "Private Sector & Corporates",
       "paragraphs": [
         "Our portfolio also extends across private-sector and corporate organisations, where different assets, operational requirements and business priorities call for a flexible and accountable approach.",

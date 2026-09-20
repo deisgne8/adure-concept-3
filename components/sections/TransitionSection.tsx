@@ -95,7 +95,7 @@ export default function TransitionSection({ content }: TransitionSectionProps) {
 
       const media = gsap.matchMedia();
       media.add(
-        "(min-width: 768px)",
+        "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
         () => {
           const stageDistance = () =>
             Math.max(520, window.innerHeight - (header?.offsetHeight ?? 0));

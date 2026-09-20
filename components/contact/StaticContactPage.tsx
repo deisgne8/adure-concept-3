@@ -31,6 +31,22 @@ function ContactDetailRow({ detail, index }: { detail: ContactDetail; index: num
 }
 
 export default function StaticContactPage({ content, site }: Props) {
+  const prepareMail = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const recipient = content.form.action.replace(/^mailto:/, "");
+    const subject = `${data.get("inquiry")} enquiry from ${data.get("name")}`;
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Phone: ${data.get("phone")}`,
+      `Inquiry: ${data.get("inquiry")}`,
+      `Message: ${data.get("message") || "Not provided"}`,
+    ].join("\n");
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <div className="contact-page">
       <SiteChrome
@@ -54,7 +70,7 @@ export default function StaticContactPage({ content, site }: Props) {
               </div>
             </div>
 
-            <form className="contact-form" action={content.form.action} method="post" encType="text/plain" data-aos="fade-left">
+            <form className="contact-form" action={content.form.action} method="post" encType="text/plain" data-aos="fade-left" onSubmit={prepareMail}>
               <label htmlFor="contact-name">
                 {content.form.nameLabel}
                 <input id="contact-name" name="name" type="text" placeholder={content.form.namePlaceholder} autoComplete="name" required />
@@ -97,7 +113,8 @@ export default function StaticContactPage({ content, site }: Props) {
         </section>
       </main>
 
-      <SiteFooter homeHref="/" />
+      <SiteFooter content={site} homeHref="/" />
     </div>
   );
 }
+import type { FormEvent } from "react";
