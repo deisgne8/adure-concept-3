@@ -1969,3 +1969,31 @@ main {
     display:none;
   }
 }
+
+/* Final fixed-reference surface contract. Keep this page-scoped and after the
+   legacy Home rules so card rounding cannot be reset by older experiments. */
+#home.home-v2 :is(
+  .property-card,
+  .property-image,
+  .property-map-view,
+  .property-map-locations,
+  .property-map-locations .location-card,
+  .proof-tile,
+  .portfolio-card,
+  .portfolio-image,
+  .transition-panel,
+  .transition-panel-inner,
+  .sell-form,
+  .sell-enquiry-panel,
+  .service-panel,
+  .client-logo-group,
+  .client-logo-viewport,
+  .client-logo
+) {
+  border-radius:var(--radius-large,16px)!important;
+  overflow:hidden!important;
+}
+
+#home.home-v2 :is(.site-hero,.management-scene,.transition-visual) {
+  border-radius:0!important;
+}

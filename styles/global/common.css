@@ -14,7 +14,6 @@
 @import "./layout.css";
 @import "../components/DiscoverySearch.css";
 @import "../components/SelectField.css";
-@import "./typography.css";
 @import "../components/TransitionSection.css";
 @import "./arrows.css";
 @import "./reveals.css";
@@ -22,7 +21,6 @@
 @import "../components/HomePage.css";
 @import "../components/ConversationSection.css";
 @import "../components/SiteChrome.css";
-@import "../components/HeroHeadings.css";
 @import "../components/SellSection.css";
 @import "../components/AboutPage.css";
 @import "../components/PropertyCatalog.css";

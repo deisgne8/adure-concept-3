@@ -64,13 +64,6 @@
   --tracking-display: 0.04em;
 }
 
-/* Match the Introduction and Story section titles to the Guides title. */
-body .about-page main .type-guides-heading {
-  font-family: "Fira Sans", sans-serif !important;
-  font-weight: 700 !important;
-  font-synthesis: none;
-}
-
 @media (max-width: 1023.98px) {
   :root {
     --text-display: 2.5rem;
@@ -97,10 +90,14 @@ body .about-page main .type-guides-heading {
   }
 }
 
-/* The fixed reference ends with one title-case heading role across Home.
-   Keep it page-scoped so excluded standalone Properties/Portfolio bodies do
-   not inherit the reference's broad `body main` override. */
-#home#home :is(h1, h2) {
+/* Final reference heading contract. This file is loaded after all page CSS so
+   older page-local heading experiments cannot change the approved role. Keep
+   the contract scoped to the synchronized routes; standalone Properties and
+   Portfolio retain their own typography. */
+#home#home :is(h1, h2),
+.about-page.about-page main :is(h1, h2),
+.customers-page.customers-page main :is(h1, h2),
+.contact-page.contact-page main > :is(section, div) :is(h1, h2) {
   font-family: var(--font-display) !important;
   font-size: clamp(36px, 3.2vw, 54px) !important;
   font-weight: 600 !important;
@@ -109,9 +106,26 @@ body .about-page main .type-guides-heading {
   text-transform: none !important;
 }
 
+/* Contact detail labels are information labels, not section headings. */
+.contact-page.contact-page main .contact-details h2 {
+  color: var(--ink) !important;
+  font-family: var(--font-body) !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
+
 @media (max-width: 640px) {
-  #home#home :is(h1, h2) {
+  #home#home :is(h1, h2),
+  .about-page.about-page main :is(h1, h2),
+  .customers-page.customers-page main :is(h1, h2),
+  .contact-page.contact-page main > :is(section, div) :is(h1, h2) {
     font-size: clamp(32px, 9vw, 42px) !important;
+  }
+
+  .contact-page.contact-page main .contact-details h2 {
+    font-size: 18px !important;
   }
 }
 
