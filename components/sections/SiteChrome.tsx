@@ -61,7 +61,7 @@ export default function SiteChrome({
                   aria-haspopup="true"
                   aria-controls={`nav-menu-${index}`}
                 >
-                  {item.label}<span className="services-arrow" aria-hidden="true" />
+                  {item.label}
                 </a>
                 <div className="nav-dropdown-menu" id={`nav-menu-${index}`}>
                   {item.items.map((subitem) => <a key={`${item.label}-${subitem.label}`} href={subitem.href}>{subitem.label}</a>)}
@@ -92,7 +92,6 @@ export default function SiteChrome({
           {navigation.map((item) => item.items?.length ? (
             <details className="mobile-nav-group" key={item.label}>
               <summary>{item.label}</summary>
-              <a href={item.href}>Overview</a>
               {item.items.map((subitem) => <a key={`${item.label}-${subitem.label}`} href={subitem.href}>{subitem.label}</a>)}
             </details>
           ) : (

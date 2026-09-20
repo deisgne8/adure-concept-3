@@ -52,13 +52,7 @@
       },
       {
         "label": "Our Services",
-        "href": "/#management",
-        "items": [
-          { "label": "Buy", "href": "/properties?intent=buy" },
-          { "label": "Sell", "href": "/#sell" },
-          { "label": "Leasing", "href": "/properties?intent=lease" },
-          { "label": "Property Management", "href": "/#management" }
-        ]
+        "href": "/#management"
       },
       { "label": "Contact Us", "href": "/contact" }
     ],
