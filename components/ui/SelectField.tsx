@@ -7,6 +7,7 @@ type SelectOption = {
 };
 
 type SelectFieldProps = {
+  className?: string;
   defaultValue?: string;
   id: string;
   label: string;
@@ -17,6 +18,7 @@ type SelectFieldProps = {
 };
 
 export default function SelectField({
+  className,
   defaultValue,
   id,
   label,
@@ -43,7 +45,7 @@ export default function SelectField({
   }, [initialValue, isControlled, onValueChange]);
 
   return (
-    <div className="field select-field" ref={fieldRef}>
+    <div className={["field", "select-field", className].filter(Boolean).join(" ")} ref={fieldRef}>
       <label htmlFor={id}>{label}</label>
       <Select.Root
         name={name}

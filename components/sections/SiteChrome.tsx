@@ -29,9 +29,6 @@ export default function SiteChrome({
     <>
       {showIntro && (
         <div className="site-intro" id="site-intro" hidden aria-label={`Loading ${content.brand}`}>
-          <button className="intro-skip" type="button">
-            Skip intro <span aria-hidden="true">→</span>
-          </button>
           <div className="intro-lockup">
             <div className="intro-brand" aria-hidden="true">
               <img src="/assets/adure-logo-horizontal.svg" alt="" />

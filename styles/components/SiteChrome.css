@@ -108,29 +108,6 @@ html[data-opening="handoff"] .site-header {
   z-index: 1002;
 }
 
-.intro-skip {
-  position: fixed;
-  right: clamp(20px, 4vw, 64px);
-  bottom: clamp(20px, 4vh, 42px);
-  z-index: 1003;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border: 0;
-  background: transparent;
-  color: var(--body);
-  font: 400 12px/1 var(--font-body);
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-.intro-skip span {
-  font-size: 18px;
-  color: var(--accent);
-}
-.intro-skip:hover,
-.intro-skip:focus-visible {
-  color: var(--accent);
-}
 html[data-opening] {
   overflow: hidden;
 }
@@ -146,10 +123,6 @@ html[data-opening] .hero-inner {
     margin-top: 25px;
     font-size: clamp(19px, 5.2vw, 24px);
     letter-spacing: -0.025em;
-  }
-  .intro-skip {
-    right: 18px;
-    bottom: 18px;
   }
   .hero-facts {
     padding-bottom: var(--s2);

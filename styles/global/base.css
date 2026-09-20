@@ -683,10 +683,24 @@ dialog::backdrop {
   margin-bottom: var(--s1);
 }
 .footer-grid > div > a:not(.logo) {
+  position: relative;
   display: block;
+  width: max-content;
   color: var(--muted);
   font-size: var(--text-small);
   margin-bottom: var(--s05);
+}
+.footer-grid > div > a:not(.logo)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.2rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--ease);
 }
 .footer-grid p {
   margin-top: var(--s1);
@@ -695,8 +709,12 @@ dialog::backdrop {
 }
 .footer a:hover {
   color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;
+}
+.footer-grid > div > a:not(.logo):hover::after,
+.footer-grid > div > a:not(.logo):focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 .footer-bottom {
   border-top: 1px solid var(--border-strong);

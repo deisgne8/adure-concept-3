@@ -33,7 +33,7 @@ export default function Button(props: ButtonProps) {
   const buttonClassName = [
     "btn",
     variant === "default" ? "" : variant,
-    variant === "link" ? "button-link" : "",
+    variant === "link" ? "button-link link-underline-before" : "",
     className,
   ]
     .filter(Boolean)

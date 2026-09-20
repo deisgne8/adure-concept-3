@@ -8,6 +8,7 @@ import type { PropertyFacets, PropertyImage, PropertyListResponse, PropertyTerm 
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
+import SelectField from "../ui/SelectField";
 import PropertiesFilterDialog from "./PropertiesFilterDialog";
 import { aosSequenceDelay } from "../../lib/aos";
 
@@ -185,6 +186,15 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
 
     if (!transaction) return;
 
+    const hasInventoryForIntent = properties.items.some(
+      (property) =>
+        property.transaction === transaction || property.transaction === "both",
+    );
+
+    // The current CMS payload contains lease inventory only. Keep the available
+    // results visible for a buy URL until sale inventory is published.
+    if (!hasInventoryForIntent) return;
+
     const nextFilters = { ...emptyFilters, transaction };
     const frame = window.requestAnimationFrame(() => {
       setDraftFilters(nextFilters);
@@ -192,7 +202,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
       setPage(1);
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [router.isReady, router.query.intent]);
+  }, [properties.items, router.isReady, router.query.intent]);
 
   useEffect(() => {
     const dialog = filterDialogRef.current;
@@ -333,53 +343,63 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                     );
                   })}
                 </div>
-                <label className="search-field field search-location">
-                  <span>{labels.location}</span>
-                  <select value={draftFilters.location} onChange={(event) => updateDraft("location", event.target.value)}>
-                    <option value="all">All locations</option>
-                    {locations.map((term) => (
-                      <option value={term.slug} key={term.slug}>{term.name}</option>
-                    ))}
-                  </select>
-                </label>
-                <label className="search-field field search-community">
-                  <span>{labels.building}</span>
-                  <select value={draftFilters.building} onChange={(event) => updateDraft("building", event.target.value)}>
-                    <option value="all">All buildings</option>
-                    {buildings.map((term) => (
-                      <option value={term.slug} key={term.slug}>{term.name}</option>
-                    ))}
-                  </select>
-                </label>
-                <label className="search-field field search-type">
-                  <span>{labels.unitType}</span>
-                  <select value={draftFilters.unitType} onChange={(event) => updateDraft("unitType", event.target.value)}>
-                    <option value="all">All types</option>
-                    {unitTypes.map((term) => (
-                      <option value={term.slug} key={term.slug}>{term.name}</option>
-                    ))}
-                  </select>
-                </label>
-                <label className="search-field field search-beds">
-                  <span>{labels.bedrooms}</span>
-                  <select value={draftFilters.bedrooms} onChange={(event) => updateDraft("bedrooms", event.target.value)}>
-                    <option value="all">Any bedrooms</option>
-                    <option value="0">Studio</option>
-                    <option value="1">1 bedroom</option>
-                    <option value="2">2 bedrooms</option>
-                    <option value="3">3 bedrooms</option>
-                    <option value="4">4+ bedrooms</option>
-                  </select>
-                </label>
-                <label className="search-field field search-price">
-                  <span>{labels.price}</span>
-                  <select value={draftFilters.price} onChange={(event) => updateDraft("price", event.target.value)}>
-                    <option value="all">Any price</option>
-                    <option value="under-150">Under AED 150K</option>
-                    <option value="150-250">AED 150K-250K</option>
-                    <option value="250-plus">AED 250K+</option>
-                  </select>
-                </label>
+                <SelectField
+                  className="search-field search-location"
+                  id="property-location"
+                  label={labels.location}
+                  name="location"
+                  onValueChange={(value) => updateDraft("location", value)}
+                  options={[{ label: "All locations", value: "all" }, ...locations.map((term) => ({ label: term.name, value: term.slug }))]}
+                  value={draftFilters.location}
+                />
+                <SelectField
+                  className="search-field search-community"
+                  id="property-building"
+                  label={labels.building}
+                  name="building"
+                  onValueChange={(value) => updateDraft("building", value)}
+                  options={[{ label: "All buildings", value: "all" }, ...buildings.map((term) => ({ label: term.name, value: term.slug }))]}
+                  value={draftFilters.building}
+                />
+                <SelectField
+                  className="search-field search-type"
+                  id="property-type"
+                  label={labels.unitType}
+                  name="unitType"
+                  onValueChange={(value) => updateDraft("unitType", value)}
+                  options={[{ label: "All types", value: "all" }, ...unitTypes.map((term) => ({ label: term.name, value: term.slug }))]}
+                  value={draftFilters.unitType}
+                />
+                <SelectField
+                  className="search-field search-beds"
+                  id="property-bedrooms"
+                  label={labels.bedrooms}
+                  name="bedrooms"
+                  onValueChange={(value) => updateDraft("bedrooms", value)}
+                  options={[
+                    { label: "Any bedrooms", value: "all" },
+                    { label: "Studio", value: "0" },
+                    { label: "1 bedroom", value: "1" },
+                    { label: "2 bedrooms", value: "2" },
+                    { label: "3 bedrooms", value: "3" },
+                    { label: "4+ bedrooms", value: "4" },
+                  ]}
+                  value={draftFilters.bedrooms}
+                />
+                <SelectField
+                  className="search-field search-price"
+                  id="property-price"
+                  label={labels.price}
+                  name="price"
+                  onValueChange={(value) => updateDraft("price", value)}
+                  options={[
+                    { label: "Any price", value: "all" },
+                    { label: "Under AED 150K", value: "under-150" },
+                    { label: "AED 150K-250K", value: "150-250" },
+                    { label: "AED 250K+", value: "250-plus" },
+                  ]}
+                  value={draftFilters.price}
+                />
                 <div className="more-filters">
                   <button className="mobile-filter-trigger more-filters-toggle" type="button" onClick={() => filterDialogRef.current?.showModal()}>
                     <span className="more-filters-label"><span className="more-filters-symbol" aria-hidden="true" /><span>More Filters</span></span>
