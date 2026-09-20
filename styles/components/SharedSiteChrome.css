@@ -504,8 +504,12 @@
     padding-top: 2.5rem !important;
   }
 
+  .footer.footer .logo img {
+    width: 9rem !important;
+  }
+
   .footer.footer .footer-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }
 

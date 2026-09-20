@@ -26,16 +26,21 @@
   color: var(--accent);
 }
 #journeys .journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
   padding: 0;
+  overflow: visible;
 }
 #journeys .journey-swiper {
   width: 100%;
   overflow: hidden;
 }
 #journeys .journey-card-reveal {
-  flex: 0 0 auto;
-  width: 25%;
   min-width: 0;
+}
+#journeys .journey-swiper .journey-card-reveal {
+  flex: 0 0 auto;
 }
 #journeys .journey-card {
   position: relative;
@@ -216,10 +221,10 @@
   #journeys .journey-heading {
     margin-bottom: 40px;
   }
-  #journeys .journey-grid {
+  #journeys .journey-swiper {
     overflow: hidden;
   }
-  #journeys .journey-card-reveal {
+  #journeys .journey-swiper .journey-card-reveal {
     width: min(72vw, 420px);
   }
   #journeys .journey-card {
@@ -269,10 +274,10 @@
   }
 }
 @media (max-width: 540px) {
-  #journeys .journey-grid {
+  #journeys .journey-swiper {
     overflow: hidden;
   }
-  #journeys .journey-card-reveal {
+  #journeys .journey-swiper .journey-card-reveal {
     width: 86vw;
   }
   #journeys .journey-card {
