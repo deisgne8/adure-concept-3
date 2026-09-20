@@ -24,3 +24,115 @@
   will-change:transform;
 }
 @media(prefers-reduced-motion:reduce){.guides-values[data-site-parallax]::after{transform:none!important}}
+/* Site-wide final heading scale, loaded last. */
+body main h1,
+body main h2,
+body main .customer-panel-copy h3,
+body main .customers-closing h2#closing-title{
+  font-size:clamp(32px,2.6vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+body main h1::before,
+body main h1::after,
+body main h2::before,
+body main h2::after{
+  content:none!important;
+  display:none!important;
+}
+body.contact-page main .contact-details h2{
+  font-size:20px!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+}
+@media(max-width:640px){
+  body main h1,
+  body main h2,
+  body main .customer-panel-copy h3,
+  body main .customers-closing h2#closing-title{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+  body.contact-page main .contact-details h2{
+    font-size:18px!important;
+  }
+}
+/* Strong final heading scale for legacy page-specific selectors. */
+body main .home-v2 .journey-heading h2,
+body main .home-v2 .discovery-title h2,
+body main .home-v2 .management-copy-v2 h2.management-context,
+body main .home-v2 .proof-statement h2,
+body main .home-v2 .portfolio-intro h2,
+body main .home-v2 .transition-head h2,
+body main .home-v2 .sell-copy h2,
+body main .home-v2 .trust-logo-title,
+body main .home-v2 .final-layout h2,
+body.about-page.about-page main .about-hero h1,
+body.about-page.about-page main .about-split h2,
+body.about-page.about-page main .story-tilton-section .story-tilton-card h2,
+body.about-page.about-page main .guides-section .guides-head h2,
+body.about-page.about-page main .team-intro h2,
+body.about-page.about-page main .leadership-head h2,
+body.about-page.about-page main .about-home-banner.final-v2 .final-layout h2{
+  font-size:clamp(32px,2.6vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  body main .home-v2 .journey-heading h2,
+  body main .home-v2 .discovery-title h2,
+  body main .home-v2 .management-copy-v2 h2.management-context,
+  body main .home-v2 .proof-statement h2,
+  body main .home-v2 .portfolio-intro h2,
+  body main .home-v2 .transition-head h2,
+  body main .home-v2 .sell-copy h2,
+  body main .home-v2 .trust-logo-title,
+  body main .home-v2 .final-layout h2,
+  body.about-page.about-page main .about-hero h1,
+  body.about-page.about-page main .about-split h2,
+  body.about-page.about-page main .story-tilton-section .story-tilton-card h2,
+  body.about-page.about-page main .guides-section .guides-head h2,
+  body.about-page.about-page main .team-intro h2,
+  body.about-page.about-page main .leadership-head h2,
+  body.about-page.about-page main .about-home-banner.final-v2 .final-layout h2{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+}
+/* Highest-specificity final heading scale for homepage and About legacy rules. */
+#home#home h1,
+#home#home h2,
+body.about-page.about-page.about-page.about-page main h1,
+body.about-page.about-page.about-page.about-page main h2,
+body.about-page.about-page.about-page.about-page main .about-home-banner.final-v2 .final-layout h2{
+  font-size:clamp(32px,2.6vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  #home#home h1,
+  #home#home h2,
+  body.about-page.about-page.about-page.about-page main h1,
+  body.about-page.about-page.about-page.about-page main h2,
+  body.about-page.about-page.about-page.about-page main .about-home-banner.final-v2 .final-layout h2{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+}
+/* Final About contact-title heading reduction. */
+body.about-page main #contact-title#contact-title{
+  font-size:clamp(32px,2.6vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+@media(max-width:640px){
+  body.about-page main #contact-title#contact-title{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+}

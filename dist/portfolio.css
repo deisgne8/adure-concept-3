@@ -1377,6 +1377,116 @@ body.portfolio-page .desktop-nav .nav-dropdown-menu a:focus-visible{
   box-shadow:0 .9rem 2rem rgba(0,45,83,.08)!important;
 }
 
+/* Portfolio next-step banner: align with the homepage final banner. */
+.portfolio-page .portfolio-next-step{
+  min-height:min(78vh,820px)!important;
+  display:grid!important;
+  align-items:center!important;
+  padding-block:clamp(64px,10vw,140px)!important;
+  padding-inline:0!important;
+  background:#08182e!important;
+  color:var(--ink)!important;
+  isolation:isolate!important;
+}
+.portfolio-page .portfolio-next-step>img{
+  z-index:0!important;
+  inset:-5% 0!important;
+  height:110%!important;
+  object-position:center 54%!important;
+}
+.portfolio-page .portfolio-next-step .portfolio-cta-shade{
+  z-index:1!important;
+  background:linear-gradient(90deg,rgba(3,17,34,.16),rgba(3,17,34,.04) 48%,rgba(3,17,34,.18))!important;
+}
+.portfolio-page .portfolio-next-step .portfolio-cta-grid{
+  z-index:2!important;
+  width:min(calc(100% - 2 * var(--gutter)),1540px)!important;
+  max-width:none!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  grid-template-rows:auto auto!important;
+  column-gap:clamp(60px,10vw,170px)!important;
+  row-gap:clamp(40px,6vw,86px)!important;
+  align-items:start!important;
+  padding:clamp(30px,4vw,60px)!important;
+  border:1px solid rgba(255,255,255,.42)!important;
+  border-radius:0!important;
+  background:rgba(237,242,248,.78)!important;
+  box-shadow:0 24px 70px rgba(3,17,34,.18)!important;
+  backdrop-filter:blur(22px)!important;
+  -webkit-backdrop-filter:blur(22px)!important;
+}
+.portfolio-page .portfolio-next-step h2{
+  grid-column:1!important;
+  max-width:650px!important;
+  color:var(--accent)!important;
+  font-size:clamp(42px,4.5vw,72px)!important;
+  line-height:1!important;
+  letter-spacing:-.035em!important;
+  font-weight:700!important;
+}
+.portfolio-page .portfolio-next-step .portfolio-card-intro{
+  grid-column:2!important;
+  display:block!important;
+  max-width:620px!important;
+  color:var(--muted)!important;
+}
+.portfolio-page .portfolio-next-step .portfolio-card-intro p{
+  max-width:620px!important;
+  color:var(--muted)!important;
+  font-size:var(--text-body-lg)!important;
+  line-height:var(--line-body-lg)!important;
+  font-weight:400!important;
+}
+.portfolio-page .portfolio-next-step .portfolio-card-intro .btn{
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  width:min(100%,20rem)!important;
+  min-width:0!important;
+  min-height:auto!important;
+  margin-top:clamp(2rem,4vw,4.5rem)!important;
+  padding:var(--s15) 0!important;
+  border:0!important;
+  border-top:1px solid rgba(0,71,137,.24)!important;
+  border-bottom:1px solid rgba(0,71,137,.24)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:var(--accent)!important;
+  font-family:var(--font-display)!important;
+  font-size:var(--text-body)!important;
+  line-height:var(--line-h4)!important;
+  text-transform:uppercase!important;
+}
+.portfolio-page .portfolio-next-step .portfolio-card-intro .btn:after{
+  content:'→';
+  margin-left:1rem;
+}
+@media(max-width:767.98px){
+  .portfolio-page .portfolio-next-step{
+    min-height:auto!important;
+    padding-block:var(--s4)!important;
+  }
+  .portfolio-page .portfolio-next-step .portfolio-cta-grid{
+    width:calc(100% - 2 * var(--s1))!important;
+    grid-template-columns:1fr!important;
+    row-gap:var(--s2)!important;
+    padding:var(--s2)!important;
+  }
+  .portfolio-page .portfolio-next-step h2,
+  .portfolio-page .portfolio-next-step .portfolio-card-intro{
+    grid-column:1!important;
+  }
+  .portfolio-page .portfolio-next-step h2{
+    font-size:clamp(38px,12vw,56px)!important;
+  }
+  .portfolio-page .portfolio-next-step .portfolio-card-intro .btn{
+    width:100%!important;
+    font-size:var(--text-h4)!important;
+  }
+}
+
 /* Portfolio popup close button: top-left of the card. */
 .portfolio-popup-card .portfolio-popup-close{
   top:1rem!important;
@@ -1592,4 +1702,61 @@ body.contact-page main .contact-details h2{
   body.contact-page main .contact-details h2{
     font-size:18px!important;
   }
+}
+/* Site-wide reduced heading scale. */
+body main :is(h1,h2),
+body.properties-page main :is(h1,h2,#owner-title),
+body.portfolio-page main :is(h1,h2,#portfolio-intro-title,#portfolio-explorer-title,#portfolio-cta-title),
+body.customers-page main :is(h1,h2,#customers-title,#sectors-title,#commitment-title,#perspectives-title,#closing-title),
+body.customers-page main .customer-groups .customer-panel-copy h3,
+body.about-page main :is(h1,h2),
+body.contact-page main #contact-title{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(32px,2.6vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+body main :is(h1,h2)::before,
+body main :is(h1,h2)::after{
+  content:none!important;
+  display:none!important;
+}
+body.contact-page main .contact-details h2{
+  font-family:var(--font-body,var(--body))!important;
+  font-size:20px!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+  color:var(--ink)!important;
+}
+@media(max-width:640px){
+  body main :is(h1,h2),
+  body.properties-page main :is(h1,h2,#owner-title),
+  body.portfolio-page main :is(h1,h2,#portfolio-intro-title,#portfolio-explorer-title,#portfolio-cta-title),
+  body.customers-page main :is(h1,h2,#customers-title,#sectors-title,#commitment-title,#perspectives-title,#closing-title),
+  body.customers-page main .customer-groups .customer-panel-copy h3,
+  body.about-page main :is(h1,h2),
+  body.contact-page main #contact-title{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+  body.contact-page main .contact-details h2{
+    font-size:18px!important;
+  }
+}
+/* Portfolio explorer heading alignment: keep title and paragraph top-aligned. */
+body.portfolio-page main .portfolio-explorer-section .portfolio-section-head{
+  align-items:start!important;
+}
+body.portfolio-page main .portfolio-explorer-section .portfolio-section-head > div,
+body.portfolio-page main .portfolio-explorer-section .portfolio-section-head > p{
+  align-self:start!important;
+  margin-top:0!important;
+}
+body.portfolio-page main .portfolio-explorer-section #portfolio-explorer-title{
+  margin-top:0!important;
+}
+body.portfolio-page main .portfolio-explorer-section .portfolio-section-head p:not(.portfolio-eyebrow){
+  padding-top:0!important;
 }

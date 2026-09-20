@@ -497,3 +497,45 @@ body.contact-page main .contact-details h2{
     font-size:18px!important;
   }
 }
+/* Site-wide reduced heading scale. */
+body main :is(h1,h2),
+body.properties-page main :is(h1,h2,#owner-title),
+body.portfolio-page main :is(h1,h2,#portfolio-intro-title,#portfolio-explorer-title,#portfolio-cta-title),
+body.customers-page main :is(h1,h2,#customers-title,#sectors-title,#commitment-title,#perspectives-title,#closing-title),
+body.customers-page main .customer-groups .customer-panel-copy h3,
+body.about-page main :is(h1,h2),
+body.contact-page main #contact-title{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(32px,2.6vw,44px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+body main :is(h1,h2)::before,
+body main :is(h1,h2)::after{
+  content:none!important;
+  display:none!important;
+}
+body.contact-page main .contact-details h2{
+  font-family:var(--font-body,var(--body))!important;
+  font-size:20px!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+  color:var(--ink)!important;
+}
+@media(max-width:640px){
+  body main :is(h1,h2),
+  body.properties-page main :is(h1,h2,#owner-title),
+  body.portfolio-page main :is(h1,h2,#portfolio-intro-title,#portfolio-explorer-title,#portfolio-cta-title),
+  body.customers-page main :is(h1,h2,#customers-title,#sectors-title,#commitment-title,#perspectives-title,#closing-title),
+  body.customers-page main .customer-groups .customer-panel-copy h3,
+  body.about-page main :is(h1,h2),
+  body.contact-page main #contact-title{
+    font-size:clamp(30px,8vw,38px)!important;
+  }
+  body.contact-page main .contact-details h2{
+    font-size:18px!important;
+  }
+}
