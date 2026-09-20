@@ -2510,15 +2510,6 @@
 .about-page .story-tilton-card .type-guides-heading{
   max-width:14ch!important;
 }
-body .about-page main .about-split .type-guides-heading,
-body .about-page main .story-tilton-card .type-guides-heading,
-body .about-page main .guides-head .type-guides-heading{
-  font-family:"Fira Sans",sans-serif!important;
-  font-size:clamp(3rem,4.4vw,5rem)!important;
-  font-weight:700!important;
-  line-height:1.05!important;
-  letter-spacing:-.06em!important;
-}
 .about-page .story-tilton-image.about-image-scale:hover .story-parallax-image{
   transform:translate3d(0,var(--story-parallax-offset),0) scale(1.1)!important;
 }
@@ -2779,8 +2770,8 @@ body .about-page main .about-split .type-guides-heading {
   font-family:var(--font-display,var(--display))!important;
   font-size:clamp(36px,3.2vw,54px)!important;
   font-weight:600!important;
-  line-height:1.08!important;
-  letter-spacing:-.045em!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
 }
 .about-page .story-tilton-section .story-tilton-card p:not(.story-tilton-year),
 .about-page .story-tilton-stage.is-visible .story-tilton-card p:not(.story-tilton-year) {
@@ -3170,7 +3161,7 @@ body.about-page main .guides-section .guides-values-kicker#guides-values-title {
   body .about-page main .about-split .type-guides-heading,
   body .about-page main .story-tilton-section .story-tilton-card #story-title {
     font-size:42px!important;
-    line-height:1.08!important;
+    line-height:1.05!important;
   }
 }
 

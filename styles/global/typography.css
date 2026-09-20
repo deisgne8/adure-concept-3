@@ -15,8 +15,8 @@
 
 @font-face {
   font-family: "Fira Sans";
-  src: url("/assets/fonts/fira-sans-600.ttf") format("truetype");
-  font-weight: 600;
+  src: url("/assets/fonts/fira-sans-300.ttf") format("truetype");
+  font-weight: 300;
   font-display: swap;
 }
 
@@ -106,6 +106,24 @@
   text-transform: none !important;
 }
 
+/* Match main's final About selector strength as well as its values. This keeps
+   retired, more-specific component experiments from changing the shared role. */
+body .about-page main :is(
+  #about-title,
+  #who-title,
+  #story-title,
+  #guides-title,
+  #leadership-title,
+  #contact-title
+) {
+  font-family: var(--font-display) !important;
+  font-size: clamp(36px, 3.2vw, 54px) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.04em !important;
+  text-transform: none !important;
+}
+
 /* Contact detail labels are information labels, not section headings. */
 .contact-page.contact-page main .contact-details h2 {
   color: var(--ink) !important;
@@ -121,6 +139,17 @@
   .about-page.about-page main :is(h1, h2),
   .customers-page.customers-page main :is(h1, h2),
   .contact-page.contact-page main > :is(section, div) :is(h1, h2) {
+    font-size: clamp(32px, 9vw, 42px) !important;
+  }
+
+  body .about-page main :is(
+    #about-title,
+    #who-title,
+    #story-title,
+    #guides-title,
+    #leadership-title,
+    #contact-title
+  ) {
     font-size: clamp(32px, 9vw, 42px) !important;
   }
 
