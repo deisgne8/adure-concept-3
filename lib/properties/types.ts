@@ -117,6 +117,26 @@ export type BuildingDetail = BuildingSummary & {
   units: PropertyUnit[];
 };
 
+export type BuildingListResponse = {
+  items: BuildingSummary[];
+  pagination: {
+    page: number;
+    perPage: number;
+    total: number;
+    totalPages: number;
+  };
+  facets: {
+    locations: PropertyTerm[];
+    sectors: PropertyTerm[];
+  };
+};
+
+export type BuildingFilters = {
+  page?: string;
+  per_page?: string;
+  location?: string;
+};
+
 export type PropertyFilters = {
   per_page?: string;
   page?: string;

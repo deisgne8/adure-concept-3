@@ -24,7 +24,7 @@ export type PortfolioContent = {
   explorer: { heading: string; description: string; projectsByCity: PortfolioCity[] };
   principles: {
     heading: string;
-    items: Array<{ title: string; description: string; image: string }>;
+    items: Array<{ title: string; description: string; image: string; imageAlt?: string }>;
   };
   cta: {
     heading: string;
