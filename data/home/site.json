@@ -35,10 +35,10 @@
         "label": "Portfolio",
         "href": "/portfolio",
         "items": [
-          { "label": "Abu Dhabi", "href": "/portfolio#portfolio-city-abu-dhabi" },
-          { "label": "Dubai", "href": "/portfolio#portfolio-city-dubai" },
-          { "label": "Al Ain", "href": "/portfolio#portfolio-city-al-ain" },
-          { "label": "Hidd Al Saadiyat", "href": "/portfolio#portfolio-city-hidd-al-saadiyat" }
+          { "label": "Abu Dhabi", "href": "/portfolio?location=abu-dhabi" },
+          { "label": "Dubai", "href": "/portfolio?location=dubai" },
+          { "label": "Al Ain", "href": "/portfolio?location=al-ain" },
+          { "label": "Hidd Al Saadiyat", "href": "/portfolio?location=hidd-al-saadiyat" }
         ]
       },
       {

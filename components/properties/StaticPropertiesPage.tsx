@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { HomeContent } from "../../lib/home/load-home-content";
 import type { StaticCatalogContent } from "../../lib/properties/static-types";
@@ -160,6 +161,7 @@ function UnitPropertyCard({
 }
 
 export default function StaticPropertiesPage({ content, properties, site }: Props) {
+  const router = useRouter();
   const filterDialogRef = useRef<HTMLDialogElement>(null);
   const [draftFilters, setDraftFilters] = useState({ ...emptyFilters });
   const [filters, setFilters] = useState({ ...emptyFilters });
@@ -171,6 +173,22 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
     document.body.classList.add("properties-page");
     return () => document.body.classList.remove("properties-page");
   }, []);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const intent = Array.isArray(router.query.intent)
+      ? router.query.intent[0]
+      : router.query.intent;
+    const transaction = intent === "buy" ? "sale" : intent === "lease" ? "lease" : null;
+
+    if (!transaction) return;
+
+    const nextFilters = { ...emptyFilters, transaction };
+    setDraftFilters(nextFilters);
+    setFilters(nextFilters);
+    setPage(1);
+  }, [router.isReady, router.query.intent]);
 
   useEffect(() => {
     const dialog = filterDialogRef.current;

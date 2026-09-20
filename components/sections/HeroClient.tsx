@@ -21,15 +21,7 @@ export default function HeroClient({ hasVideo }: HeroClientProps) {
     if (root.dataset.heroOpeningBooted) return;
     root.dataset.heroOpeningBooted = "true";
 
-    let shouldPlayOpening = !location.hash || location.hash === "#home";
-    try {
-      shouldPlayOpening =
-        shouldPlayOpening &&
-        sessionStorage.getItem("adure-opening-played-v2") !== "true";
-      if (shouldPlayOpening) sessionStorage.setItem("adure-opening-played-v2", "true");
-    } catch {
-      // Browser storage is optional for the opening experience.
-    }
+    const shouldPlayOpening = !location.hash || location.hash === "#home";
 
     if (shouldPlayOpening) {
       root.dataset.opening = "pending";
