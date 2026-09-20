@@ -1,7 +1,12 @@
 /* One page rhythm and one content grid. Full-bleed media remains full bleed;
    section copy and controls share the same edges. */
 #home > .section:not(.site-hero) {
+  padding-block: var(--section-space);
   margin-block: 0;
+}
+
+#home > #management {
+  padding-block: 0;
 }
 
 #home > #philosophy .section-shell,

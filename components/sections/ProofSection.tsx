@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Section from "../ui/Section";
-import Button from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type ProofSectionProps = {
@@ -116,9 +115,9 @@ export default function ProofSection({ content }: ProofSectionProps) {
           <div className="proof-statement" data-aos="fade-right">
             <h2>{content.heading}</h2>
             <p>{content.description}</p>
-            <Button className="proof-about" href={content.link.href} variant="link">
-              <span className="link-underline">{content.link.label}</span>
-            </Button>
+            <a className="proof-about" href={content.link.href}>
+              <span aria-hidden="true">↗</span>{content.link.label}
+            </a>
           </div>
           <dl className="proof-statistics" aria-label="ADURE in numbers" data-aos="fade-left">
             {content.metrics.map((metric, index) => (

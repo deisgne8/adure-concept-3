@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Section from "../ui/Section";
 import Button, { type ButtonVariant } from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
@@ -18,8 +17,6 @@ export default function TransitionSection({ content }: TransitionSectionProps) {
     const section = sectionRef.current;
     if (!section) return;
 
-    gsap.registerPlugin(ScrollTrigger);
-
     const carousel = section.querySelector<HTMLElement>(".transition-carousel");
     const panels = gsap.utils.toArray<HTMLElement>(".timeline-step", section);
     const slides = gsap.utils.toArray<HTMLElement>(
@@ -34,13 +31,19 @@ export default function TransitionSection({ content }: TransitionSectionProps) {
 
     if (!carousel || !panels.length || panels.length !== slides.length) return;
 
-    let activeIndex = -1;
-    let scrollAnimation: gsap.core.Timeline | null = null;
-    let pointerStart: { x: number; y: number } | null = null;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktop = window.matchMedia("(min-width: 768px)");
 
-    const setActive = (index: number) => {
+    let activeIndex = -1;
+    let pointerStart: { x: number; y: number } | null = null;
+    let scrollFrame = 0;
+    let scrollStep = 1;
+    let headerHeight = 0;
+
+    const setActive = (index: number, animate = true) => {
       const next = Math.max(0, Math.min(panels.length - 1, index));
       if (next === activeIndex) return;
+      const previous = activeIndex;
       activeIndex = next;
 
       panels.forEach((panel, panelIndex) => {
@@ -62,108 +65,96 @@ export default function TransitionSection({ content }: TransitionSectionProps) {
         if (active) button.setAttribute("aria-current", "step");
         else button.removeAttribute("aria-current");
       });
-    };
 
-    const showStaticStage = (index: number) => {
-      const next = Math.max(0, Math.min(panels.length - 1, index));
-      gsap.set(slides, { autoAlpha: 0, scale: 1.035 });
-      gsap.set(panels, { autoAlpha: 0, y: 24 });
-      gsap.set(slides[next], { autoAlpha: 1, scale: 1 });
-      gsap.set(panels[next], { autoAlpha: 1, y: 0 });
-      setActive(next);
+      gsap.killTweensOf([...slides, ...panels]);
+      if (!animate || reducedMotion.matches || previous < 0) {
+        gsap.set(slides, { autoAlpha: 0, scale: 1.035 });
+        gsap.set(panels, { autoAlpha: 0, y: 24 });
+        gsap.set(slides[next], { autoAlpha: 1, scale: 1 });
+        gsap.set(panels[next], { autoAlpha: 1, y: 0 });
+        return;
+      }
+
+      if (previous >= 0) {
+        gsap.to(slides[previous], {
+          autoAlpha: 0,
+          scale: 1.035,
+          duration: 0.45,
+          ease: "power1.out",
+        });
+        gsap.to(panels[previous], {
+          autoAlpha: 0,
+          y: next > previous ? -20 : 20,
+          duration: 0.22,
+          ease: "power1.out",
+        });
+      }
+      gsap.fromTo(
+        slides[next],
+        { autoAlpha: 0, scale: 1.035 },
+        { autoAlpha: 1, scale: 1, duration: 0.45, ease: "power1.out" },
+      );
+      gsap.fromTo(
+        panels[next],
+        { autoAlpha: 0, y: next > previous ? 24 : -24 },
+        { autoAlpha: 1, y: 0, duration: 0.36, ease: "power1.out" },
+      );
     };
 
     const navigate = (index: number, focus = false) => {
       const next = Math.max(0, Math.min(panels.length - 1, index));
-      const trigger = scrollAnimation?.scrollTrigger;
-
-      if (trigger) {
-        const progress = panels.length > 1 ? next / (panels.length - 1) : 0;
+      if (section.classList.contains("has-transition-scroll")) {
+        const top =
+          window.scrollY +
+          section.getBoundingClientRect().top -
+          headerHeight +
+          scrollStep * (next + 0.12);
         window.scrollTo({
-          top: trigger.start + (trigger.end - trigger.start) * progress,
-          behavior: "smooth",
+          top,
+          behavior: reducedMotion.matches ? "auto" : "smooth",
         });
       } else {
-        showStaticStage(next);
+        setActive(next);
       }
 
       if (focus) buttons[next]?.focus({ preventScroll: true });
     };
 
-    const context = gsap.context(() => {
-      showStaticStage(0);
+    const syncScroll = () => {
+      scrollFrame = 0;
+      if (!section.classList.contains("has-transition-scroll")) return;
+      const distance = headerHeight - section.getBoundingClientRect().top;
+      setActive(Math.floor((distance + scrollStep * 0.08) / scrollStep));
+    };
 
-      const media = gsap.matchMedia();
-      media.add(
-        "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          const stageDistance = () =>
-            Math.max(520, window.innerHeight - (header?.offsetHeight ?? 0));
+    const queueScroll = () => {
+      if (!scrollFrame) scrollFrame = window.requestAnimationFrame(syncScroll);
+    };
 
-          scrollAnimation = gsap.timeline({
-            defaults: { ease: "none" },
-            scrollTrigger: {
-              trigger: section,
-              start: () => `top top+=${header?.offsetHeight ?? 0}`,
-              end: () => `+=${stageDistance() * (panels.length - 1)}`,
-              pin: carousel,
-              pinSpacing: true,
-              scrub: 0.65,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-              snap:
-                panels.length > 1
-                  ? {
-                      snapTo: 1 / (panels.length - 1),
-                      duration: { min: 0.16, max: 0.42 },
-                      delay: 0.05,
-                      ease: "power1.inOut",
-                    }
-                  : undefined,
-              onUpdate: (self) => {
-                setActive(Math.round(self.progress * (panels.length - 1)));
-              },
-            },
-          });
+    const measure = () => {
+      const enabled = desktop.matches;
+      section.classList.toggle("has-transition-scroll", enabled);
+      if (!enabled) {
+        section.style.removeProperty("--transition-top");
+        section.style.removeProperty("--transition-stage-height");
+        section.style.removeProperty("--transition-scroll-distance");
+        setActive(Math.max(0, activeIndex), false);
+        return;
+      }
 
-          scrollAnimation.to({}, { duration: panels.length - 1 });
-
-          for (let index = 1; index < panels.length; index += 1) {
-            const position = index - 0.28;
-            scrollAnimation
-              .to(
-                slides[index - 1],
-                { autoAlpha: 0, scale: 1.018, duration: 0.28 },
-                position,
-              )
-              .fromTo(
-                slides[index],
-                { autoAlpha: 0, scale: 1.035 },
-                { autoAlpha: 1, scale: 1, duration: 0.45 },
-                position,
-              )
-              .to(
-                panels[index - 1],
-                { autoAlpha: 0, y: -20, duration: 0.22 },
-                position,
-              )
-              .fromTo(
-                panels[index],
-                { autoAlpha: 0, y: 24 },
-                { autoAlpha: 1, y: 0, duration: 0.36 },
-                position + 0.08,
-              );
-          }
-
-          return () => {
-            scrollAnimation = null;
-            showStaticStage(activeIndex < 0 ? 0 : activeIndex);
-          };
-        },
+      headerHeight = header?.getBoundingClientRect().height ?? 0;
+      const stageHeight = Math.max(520, window.innerHeight - headerHeight);
+      scrollStep = Math.max(300, stageHeight * 0.72);
+      section.style.setProperty("--transition-top", `${headerHeight}px`);
+      section.style.setProperty("--transition-stage-height", `${stageHeight}px`);
+      section.style.setProperty(
+        "--transition-scroll-distance",
+        `${scrollStep * panels.length}px`,
       );
+      syncScroll();
+    };
 
-      return () => media.revert();
-    }, section);
+    setActive(0, false);
 
     const buttonHandlers = buttons.map((button, index) => {
       const handler = () => navigate(index);
@@ -197,19 +188,27 @@ export default function TransitionSection({ content }: TransitionSectionProps) {
     carousel.addEventListener("pointerup", handlePointerUp);
     carousel.addEventListener("pointercancel", clearPointer);
 
-    const resizeObserver = header
-      ? new ResizeObserver(() => ScrollTrigger.refresh())
-      : null;
+    const resizeObserver = header ? new ResizeObserver(measure) : null;
     if (header) resizeObserver?.observe(header);
+    window.addEventListener("scroll", queueScroll, { passive: true });
+    window.addEventListener("resize", measure, { passive: true });
+    desktop.addEventListener("change", measure);
+    reducedMotion.addEventListener("change", measure);
+    measure();
 
     return () => {
       resizeObserver?.disconnect();
+      window.removeEventListener("scroll", queueScroll);
+      window.removeEventListener("resize", measure);
+      desktop.removeEventListener("change", measure);
+      reducedMotion.removeEventListener("change", measure);
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
       buttonHandlers.forEach((removeHandler) => removeHandler());
       carousel.removeEventListener("keydown", handleKeyDown);
       carousel.removeEventListener("pointerdown", handlePointerDown);
       carousel.removeEventListener("pointerup", handlePointerUp);
       carousel.removeEventListener("pointercancel", clearPointer);
-      context.revert();
+      gsap.killTweensOf([...slides, ...panels]);
     };
   }, [content.stages.length]);
 

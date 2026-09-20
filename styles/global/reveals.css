@@ -44,3 +44,13 @@
     transform: translate3d(0, 0, 0);
   }
 }
+
+/* AOS normally applies its hidden transform before its runtime callback runs.
+   Reduced-motion visitors must never be left with invisible page content. */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

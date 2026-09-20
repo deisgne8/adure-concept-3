@@ -73,6 +73,7 @@
   --radius-sm: 0.5rem;
   --radius-md: 1rem;
   --radius-lg: 1rem;
+  --radius-large: 1rem;
   --radius-pill: 999px;
   --image-radius: var(--radius-md);
   --control-radius: var(--radius-pill);

@@ -13,8 +13,7 @@
 .has-transition-carousel .transition-carousel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  height: calc(100svh - var(--nav-height));
-  min-height: 680px;
+  min-height: clamp(680px, 49vw, 820px);
   background: var(--surface-alt);
   isolation: isolate;
 }
@@ -85,7 +84,7 @@
   margin: 0;
   color: var(--accent);
   font: 400 var(--type-section)/1.08 var(--font-display);
-  letter-spacing: -0.035em;
+  letter-spacing: -0.035em !important;
   text-transform: uppercase;
 }
 #home #transition.has-transition-carousel .transition-head p {
@@ -233,6 +232,35 @@
   margin: 0;
   color: var(--accent);
 }
+#home > #transition.has-transition-carousel .transition-content {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  padding-bottom: clamp(86px, 8vw, 132px);
+}
+#home > #transition.has-transition-carousel .timeline-v2 {
+  min-height: 0;
+}
+#home > #transition.has-transition-carousel .timeline-step {
+  overflow: hidden;
+  border-radius: var(--radius-large, 16px);
+}
+#home > #transition.has-transition-carousel .transition-footer {
+  margin-top: clamp(52px, 5vw, 84px);
+  padding-bottom: clamp(18px, 2vw, 32px);
+}
+.has-transition-carousel.has-transition-scroll .section-shell {
+  height: calc(
+    var(--transition-stage-height) + var(--transition-scroll-distance)
+  );
+}
+.has-transition-carousel.has-transition-scroll .transition-carousel {
+  position: sticky;
+  top: var(--transition-top);
+  height: var(--transition-stage-height);
+  min-height: 0;
+}
 .has-transition-gsap .transition-visual-slide,
 .has-transition-gsap .timeline-step {
   transition: none;
@@ -262,7 +290,7 @@
     flex: none;
   }
   .has-transition-carousel .transition-content {
-    min-height: 720px;
+    min-height: 570px;
     padding: 34px 24px 32px;
   }
   .has-transition-carousel .transition-head {
@@ -309,5 +337,22 @@
   }
   .has-transition-carousel .transition-footer > .btn {
     font-size: 13px;
+  }
+  #home > #transition.has-transition-carousel .transition-content {
+    height: auto;
+    max-height: none;
+    padding-bottom: 64px;
+  }
+  #home > #transition.has-transition-carousel .transition-footer {
+    margin-top: 42px;
+    padding-bottom: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .has-transition-carousel .transition-visual-slide,
+  .has-transition-carousel .timeline-step,
+  .has-transition-carousel .transition-step-nav button,
+  .has-transition-carousel .transition-step-nav button::after {
+    transition: none;
   }
 }

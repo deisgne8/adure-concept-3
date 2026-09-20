@@ -97,6 +97,24 @@ body .about-page main .type-guides-heading {
   }
 }
 
+/* The fixed reference ends with one title-case heading role across Home.
+   Keep it page-scoped so excluded standalone Properties/Portfolio bodies do
+   not inherit the reference's broad `body main` override. */
+#home#home :is(h1, h2) {
+  font-family: var(--font-display) !important;
+  font-size: clamp(36px, 3.2vw, 54px) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.04em !important;
+  text-transform: none !important;
+}
+
+@media (max-width: 640px) {
+  #home#home :is(h1, h2) {
+    font-size: clamp(32px, 9vw, 42px) !important;
+  }
+}
+
 /* A single editorial hierarchy across every ADURE homepage section. */
 #home {
   --type-hero: clamp(56px, 6vw, 88px);

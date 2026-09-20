@@ -69,6 +69,27 @@ main {
   line-height: var(--line-body-lg);
   color: var(--inverse-muted);
 }
+
+/* Final fixed-reference hero copy width. */
+.hero-side .hero-belief {
+  max-width: 36rem;
+  margin: 0.95rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(1rem, 1.2vw, 1.18rem);
+  line-height: 1.48;
+  letter-spacing: -0.01em;
+}
+
+.hero-side .hero-belief + .hero-actions {
+  margin-top: 1.6rem;
+}
+
+@media (max-width: 767.98px) {
+  .hero-side .hero-belief {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+}
 .hero-actions {
   display: flex;
   gap: var(--s1);
@@ -1284,6 +1305,48 @@ main {
   filter: saturate(0.9) brightness(0.9) contrast(1.05);
   transform: scale(1.035);
 }
+
+/* The reference journey rail rounds only its outside edges on wide screens,
+   then treats each horizontally scrolling card as its own visual on mobile. */
+.home-v2 .journey-section .journey-grid {
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+.home-v2 .journey-section .journey-card,
+.home-v2 .journey-section .journey-media,
+.home-v2 .journey-section .journey-media img {
+  border-radius: 0 !important;
+}
+
+.home-v2 .journey-section .journey-card:first-child,
+.home-v2 .journey-section .journey-card:first-child .journey-media,
+.home-v2 .journey-section .journey-card:first-child .journey-media img {
+  border-radius: var(--radius-large, 16px) 0 0 var(--radius-large, 16px) !important;
+  overflow: hidden !important;
+}
+
+.home-v2 .journey-section .journey-card:last-child,
+.home-v2 .journey-section .journey-card:last-child .journey-media,
+.home-v2 .journey-section .journey-card:last-child .journey-media img {
+  border-radius: 0 var(--radius-large, 16px) var(--radius-large, 16px) 0 !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 760px) {
+  .home-v2 .journey-section .journey-card,
+  .home-v2 .journey-section .journey-media,
+  .home-v2 .journey-section .journey-media img,
+  .home-v2 .journey-section .journey-card:first-child,
+  .home-v2 .journey-section .journey-card:first-child .journey-media,
+  .home-v2 .journey-section .journey-card:first-child .journey-media img,
+  .home-v2 .journey-section .journey-card:last-child,
+  .home-v2 .journey-section .journey-card:last-child .journey-media,
+  .home-v2 .journey-section .journey-card:last-child .journey-media img {
+    border-radius: var(--radius-large, 16px) !important;
+    overflow: hidden !important;
+  }
+}
 .journey-section .journey-number {
   order: 1;
   padding: var(--s15) 0 0;
@@ -1824,141 +1887,85 @@ main {
   text-transform: none !important;
 }
 
-/* Discovery search: keep the complete filter inside one bordered panel at every size. */
+/* Desktop/tablet reference search panel. Compact layouts keep the reference
+   trigger-and-dialog treatment defined earlier in this file. */
 #home #discovery #filter-home {
-  width: 100%;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  width:100%;
+  border:0;
+  border-radius:0;
+  background:transparent;
 }
-
 #home #discovery #filter-home #property-search,
 #home #discovery #filter-home #property-search.is-more-open {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 5rem;
-  padding: 0.45rem;
-  border: 1px solid #d8e4f0;
-  border-radius: var(--radius-pill);
-  background: var(--white);
+  box-sizing:border-box;
+  width:100%;
+  min-height:5rem;
+  padding:.45rem;
+  border:1px solid #d8e4f0;
+  border-radius:var(--radius-pill);
+  background:var(--white);
 }
-
-@media (min-width: 1180px) {
+@media(min-width:901px) {
   #home #discovery #filter-home #property-search,
   #home #discovery #filter-home #property-search.is-more-open {
-    display: grid;
-    grid-template-columns: minmax(8.5rem, 0.8fr) repeat(4, minmax(0, 1fr)) minmax(8rem, 0.8fr) minmax(10.5rem, 0.95fr) !important;
-    align-items: center;
-    gap: 0;
+    display:grid;
+    grid-template-columns:minmax(10rem,.78fr) repeat(4,minmax(8.5rem,1fr)) minmax(8.5rem,.82fr) minmax(12rem,.92fr)!important;
+    align-items:center;
+    gap:0;
   }
-
   #home #discovery #filter-home .tabs,
-  #home #discovery #filter-home .search-box > .field,
+  #home #discovery #filter-home .search-box>.field,
   #home #discovery #filter-home .more-filters {
-    border-right: 1px solid #d8e4f0 !important;
+    border-right:1px solid #d8e4f0!important;
   }
-
   #home #discovery #filter-home .search-primary {
-    grid-column: auto;
-    align-self: stretch;
-    width: 100%;
-    min-width: 0;
-    margin: 0;
+    grid-column:auto;
+    align-self:stretch;
+    width:100%;
+    min-width:0;
+    margin:0;
   }
 }
-
-@media (min-width: 768px) and (max-width: 1179.98px) {
+@media(min-width:768px) and (max-width:900.98px) {
   #home #discovery #filter-home #property-search,
   #home #discovery #filter-home #property-search.is-more-open {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    align-items: stretch;
-    gap: 0;
-    border-radius: 1.5rem;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    align-items:stretch;
+    gap:0;
+    border-radius:1.5rem;
   }
-
   #home #discovery #filter-home .tabs {
-    grid-column: 1 / -1;
-    width: auto;
-    height: auto;
-    min-height: 3.75rem;
-    border-right: 0 !important;
-    border-bottom: 1px solid #d8e4f0;
+    grid-column:1 / -1;
+    width:auto;
+    min-height:3.75rem;
+    border-right:0!important;
+    border-bottom:1px solid #d8e4f0;
   }
-
-  #home #discovery #filter-home .search-box > .field {
-    min-width: 0;
-    border-bottom: 1px solid #d8e4f0;
+  #home #discovery #filter-home .search-box>.field {
+    min-width:0;
+    border-bottom:1px solid #d8e4f0;
   }
-
-  #home #discovery #filter-home .search-box > .field:nth-of-type(2),
-  #home #discovery #filter-home .search-box > .field:nth-of-type(4) {
-    border-right: 1px solid #d8e4f0;
+  #home #discovery #filter-home .search-box>.field:nth-of-type(2),
+  #home #discovery #filter-home .search-box>.field:nth-of-type(4) {
+    border-right:1px solid #d8e4f0;
   }
-
   #home #discovery #filter-home .more-filters,
   #home #discovery #filter-home .search-primary {
-    min-width: 0;
-    min-height: 3.75rem;
-    margin: 0;
+    min-width:0;
+    min-height:3.75rem;
+    margin:0;
   }
-
   #home #discovery #filter-home .more-filters {
-    border-right: 1px solid #d8e4f0 !important;
+    border-right:1px solid #d8e4f0!important;
   }
-
-  #home #discovery #filter-home .search-box.is-more-open > .more-filters-panel {
-    grid-column: 1 / -1;
+  #home #discovery #filter-home .search-box.is-more-open>.more-filters-panel {
+    grid-column:1 / -1;
   }
 }
-
-@media (max-width: 767.98px) {
-  #home #discovery .filter-open {
-    display: none;
-  }
-
-  #home #discovery #filter-home {
-    margin-bottom: 1rem;
-  }
-
+@media(max-width:767.98px) {
   #home #discovery #filter-home #property-search,
   #home #discovery #filter-home #property-search.is-more-open {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 0;
-    padding: 0.4rem;
-    overflow: visible;
-    border-radius: 1.25rem;
-  }
-
-  #home #discovery #filter-home .tabs {
-    width: 100%;
-    min-height: 3.5rem;
-    padding: 0.25rem;
-    border: 0;
-    border-bottom: 1px solid #d8e4f0;
-    border-radius: 1rem;
-  }
-
-  #home #discovery #filter-home .search-box > .field,
-  #home #discovery #filter-home .more-filters {
-    min-height: 4.25rem;
-    border: 0 !important;
-    border-bottom: 1px solid #d8e4f0 !important;
-  }
-
-  #home #discovery #filter-home .more-filters-toggle {
-    min-height: 4.25rem;
-  }
-
-  #home #discovery #filter-home .search-primary {
-    width: 100%;
-    min-height: 3.75rem;
-    margin: 0;
-  }
-
-  #home #discovery #filter-home .search-box.is-more-open > .more-filters-panel {
-    grid-column: 1;
-    width: 100%;
+    display:none;
   }
 }

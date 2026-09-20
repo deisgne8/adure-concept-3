@@ -250,6 +250,7 @@
 #home#home #portfolio .portfolio-type-filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 #home#home #portfolio .portfolio-home-stage,
 #home#home #portfolio .portfolio-home-stage > div:first-child { display: block; width: 100%; }
+#home#home #portfolio .portfolio-expanded-card { display:none!important; }
 #home#home #portfolio .portfolio-card-grid {
   --portfolio-card-gap: clamp(1.5rem, 2.4vw, 2.4rem);
   display: flex;
@@ -287,8 +288,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: inherit;
   transition: transform 0.45s ease;
 }
+
 #home#home #portfolio .portfolio-home-card:hover img,
 #home#home #portfolio .portfolio-home-card:focus-visible img { transform: scale(1.035); }
 #home#home #portfolio .portfolio-home-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -478,6 +481,9 @@
   line-height: 1.02;
   letter-spacing: 0;
 }
+#home#home #portfolio .portfolio-intro {
+  margin-bottom: clamp(3.6rem, 5.2vw, 5rem);
+}
 #home#home #portfolio .portfolio-intro p {
   max-width: 46rem;
   margin: 0.875rem 0 0;
@@ -542,5 +548,62 @@
   }
   #home#home #portfolio .portfolio-mosaic.swiper {
     margin-top: 3rem;
+  }
+}
+
+/* Final fixed-build intro rhythm; keep this after retired portfolio rules. */
+#home#home #portfolio .portfolio-intro h2 {
+  max-width: 50rem;
+  letter-spacing: -0.035em;
+}
+#home#home #portfolio .portfolio-intro p {
+  max-width: 48rem;
+  margin: 0 0 0.9rem;
+  line-height: 1.65;
+}
+#home#home #portfolio .portfolio-intro .btn {
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  #home#home #portfolio .portfolio-intro {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    align-items: start !important;
+    gap: 1.1rem 4rem !important;
+    margin-bottom: 4rem !important;
+    padding-right: 0 !important;
+  }
+
+  #home#home #portfolio .portfolio-intro h2 {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  #home#home #portfolio .portfolio-intro > div {
+    display: block !important;
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    max-width: 48rem !important;
+  }
+
+  #home#home #portfolio .portfolio-type-filters {
+    position: static !important;
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    align-self: start !important;
+    justify-self: start !important;
+    width: max-content !important;
+    min-width: 0 !important;
+    margin: 0.15rem 0 0 !important;
+    transform: none !important;
+  }
+
+  #home#home #portfolio .portfolio-type-filters button {
+    flex: 0 0 auto !important;
+    min-height: 2.65rem !important;
+    padding-inline: 1.22rem !important;
+    font-size: 0.78rem !important;
   }
 }

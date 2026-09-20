@@ -59,8 +59,8 @@ export default function StaticContactPage({ content, site }: Props) {
       />
 
       <main id="contact-main" className="contact-main">
-        <section className="contact-card pt_50" aria-labelledby="contact-title">
-          <div className="section-shell contact-grid">
+        <section className="contact-card" aria-labelledby="contact-title">
+          <div className="contact-grid">
             <div className="contact-copy" data-aos="fade-right">
               <h1 id="contact-title">{content.intro.heading}</h1>
               <p className="contact-lede">{content.intro.description}</p>

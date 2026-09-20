@@ -14,11 +14,14 @@
 }
 
 .contact-main {
-  padding-top: var(--nav-height);
+  padding: calc(var(--nav-height) + clamp(2rem, 4vw, 4rem)) var(--gutter) clamp(5rem, 8vw, 8rem);
   background: var(--white);
 }
 
 .contact-card {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 0;
   background: var(--white);
 }
 
@@ -27,9 +30,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.82fr);
   align-items: start;
   gap: clamp(2rem, 6vw, 5rem);
-  width: min(100%, calc(1180px + (2 * var(--gutter))));
   min-height: 500px;
-  padding-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .contact-copy {
@@ -226,7 +227,8 @@
 
 .contact-map {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin: clamp(3rem, 6vw, 5rem) 0 0 calc(50% - 50vw);
   overflow: hidden;
   background: #d8e5ee;
 }
@@ -261,6 +263,14 @@
 }
 
 @media (max-width: 900px) {
+  .contact-main {
+    padding-inline: var(--gutter);
+  }
+
+  .contact-card {
+    padding: 1.25rem;
+  }
+
   .contact-grid {
     grid-template-columns: 1fr;
     min-height: 0;

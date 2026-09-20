@@ -1,4 +1,3 @@
-:root{--font-display:var(--font-display);--font-body:var(--font-body);--weight-regular:300}
 .about-page{background:#f4f7f8;color:var(--ink)}
 .about-eyebrow,.section-kicker{display:flex;align-items:center;gap:.8rem;color:var(--accent);font-size:.72rem;line-height:1.2;letter-spacing:.22em;text-transform:uppercase}
 .about-eyebrow b,.section-kicker span:first-child{font-weight:400;color:var(--muted-light)}
@@ -261,6 +260,24 @@
 .about-page .site-logo img,
 .about-page .logo img{
   border-radius:0!important;
+}
+
+/* Reproduce the fixed build's media overscan without attaching its generic
+   transform to Swiper or the story section's custom parallax. */
+.about-page .about-hero > img,
+.about-page .about-home-banner > img,
+.about-page .guides-values-image img,
+.about-page .ceo-message-light-portrait img {
+  scale: 1.08;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page .about-hero > img,
+  .about-page .about-home-banner > img,
+  .about-page .guides-values-image img,
+  .about-page .ceo-message-light-portrait img {
+    scale: none;
+  }
 }
 
 /* About header follows the shared homepage header. */
@@ -2585,13 +2602,25 @@ body .about-page main .guides-head .type-guides-heading{
 }
 .about-page .team-controls button:hover,
 .about-page .team-controls button:focus-visible { background:var(--accent); color:#fff; }
-.about-page .team-card-grid.swiper .swiper-wrapper { gap:0!important; }
+.about-page .team-section {
+  padding-block:clamp(4.75rem,7vw,6.5rem)!important;
+}
+.about-page .team-layout {
+  gap:clamp(2.8rem,4.6vw,4.25rem)!important;
+}
+.about-page .team-card-grid.swiper .swiper-wrapper {
+  gap:clamp(1rem,1.4vw,1.4rem)!important;
+}
 .about-page .team-card-grid.swiper .swiper-slide.team-card {
-  flex:0 0 auto!important;
-  width:auto!important;
+  flex:0 0 calc((100% - (clamp(1rem,1.4vw,1.4rem) * 3)) / 4)!important;
+  width:calc((100% - (clamp(1rem,1.4vw,1.4rem) * 3)) / 4)!important;
+}
+.about-page .team-card-grid.swiper .team-card figure {
+  min-height:0!important;
+  aspect-ratio:1 / 1.39!important;
 }
 .about-page .team-card figure,
-.about-page .team-card img { border-radius:14px!important; }
+.about-page .team-card img { border-radius:16px!important; }
 .about-page .team-card p {
   display:block!important;
   width:auto!important;
@@ -2606,6 +2635,43 @@ body .about-page main .guides-head .type-guides-heading{
   .about-page .team-intro { grid-template-columns:1fr!important; }
   .about-page .team-controls { grid-column:1!important; grid-row:auto!important; justify-self:start!important; }
 }
+@media(min-width:901px) {
+  .about-page .team-intro h2,
+  .about-page .team-intro p { max-width:50%!important; }
+}
+@media(max-width:720px) {
+  .about-page .team-card-grid.swiper .swiper-wrapper { gap:1rem!important; }
+  .about-page .team-card-grid.swiper .swiper-slide.team-card {
+    flex-basis:78%!important;
+    width:78%!important;
+  }
+}
+.about-page .team-intro h2 {
+  line-height:1.04!important;
+  letter-spacing:-.045em!important;
+}
+.about-page .team-intro p {
+  margin:0!important;
+  font-size:clamp(1rem,1.1vw,1.12rem)!important;
+  line-height:1.45!important;
+}
+.about-page .team-card-grid.swiper .swiper-slide.team-card {
+  border-radius:16px!important;
+  overflow:hidden!important;
+}
+.about-page .team-card h3 {
+  margin:clamp(1rem,1.5vw,1.35rem) 0 0!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(1.15rem,1.35vw,1.35rem)!important;
+  font-weight:800!important;
+  line-height:1.18!important;
+  letter-spacing:-.025em!important;
+}
+.about-page .team-card p {
+  margin:.45rem 0 0!important;
+  font-size:clamp(.9rem,.96vw,1rem)!important;
+  line-height:1.35!important;
+}
 
 /* Fixed-reference inner-page width and shared heading scale. */
 .about-page .section-shell {
@@ -2615,10 +2681,540 @@ body .about-page main .guides-head .type-guides-heading{
   font-family:var(--font-display,var(--display))!important;
   font-size:clamp(36px,3.2vw,54px)!important;
   font-weight:600!important;
-  line-height:1.05!important;
+  line-height:1.08!important;
   letter-spacing:-.04em!important;
   text-transform:none!important;
 }
+body .about-page main .about-split .type-guides-heading {
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+}
 @media(max-width:640px) {
   .about-page main :is(h1,h2) { font-size:clamp(32px,9vw,42px)!important; }
+}
+
+.about-page #leadership-title {
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+}
+
+/*
+ * Fixed-reference parity layer.
+ *
+ * Keep this after the historical About experiments above: those rules are
+ * retained for context, while this final layer represents the approved dist
+ * composition and prevents the older large-card variants winning the cascade.
+ */
+.about-page .story-tilton-section {
+  padding:clamp(4.5rem,7vw,7rem) 0!important;
+  background:#f3f8fb!important;
+  color:var(--ink)!important;
+}
+.about-page .story-tilton-shell {
+  width:min(calc(100% - (var(--page-gutter) * 2)),1170px)!important;
+  max-width:1170px!important;
+  padding:0!important;
+}
+.about-page .story-tilton-stage,
+.about-page .story-tilton-stage.is-visible {
+  display:grid!important;
+  grid-template-columns:minmax(22rem,.72fr) minmax(0,1fr)!important;
+  gap:clamp(3rem,5vw,4.5rem)!important;
+  align-items:center!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.about-page .story-tilton-image {
+  min-height:0!important;
+  height:clamp(28rem,37vw,36.5rem)!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  overflow:hidden!important;
+  border-radius:16px!important;
+  background:#d8e2e9!important;
+}
+.about-page .story-tilton-image-left,
+.about-page .story-tilton-image img {
+  border-radius:16px!important;
+}
+.about-page .story-tilton-image img {
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:saturate(.95) contrast(1.02)!important;
+  opacity:1!important;
+}
+.about-page .story-tilton-card,
+.about-page .story-tilton-stage.is-visible .story-tilton-card {
+  display:block!important;
+  min-height:auto!important;
+  padding:clamp(2rem,4.8vw,4.6rem) clamp(1.5rem,3vw,3rem) clamp(2rem,4.8vw,4.6rem) 0!important;
+  border:0!important;
+  border-radius:16px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#12304d!important;
+  overflow:hidden!important;
+}
+.about-page .story-tilton-card .about-eyebrow,
+.about-page .story-tilton-year,
+.about-page .story-tilton-controls,
+.about-page .story-tilton-years {
+  display:none!important;
+}
+.about-page .story-tilton-section .story-tilton-card #story-title,
+.about-page .story-tilton-section .story-tilton-card h2,
+.about-page .story-tilton-stage.is-visible .story-tilton-card h2 {
+  max-width:11em!important;
+  margin:0 0 clamp(1.8rem,3vw,2.5rem)!important;
+  color:var(--accent)!important;
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+}
+.about-page .story-tilton-section .story-tilton-card p:not(.story-tilton-year),
+.about-page .story-tilton-stage.is-visible .story-tilton-card p:not(.story-tilton-year) {
+  max-width:43rem!important;
+  margin:0!important;
+  color:#40566d!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(1.04rem,1.2vw,1.22rem)!important;
+  font-weight:400!important;
+  line-height:1.55!important;
+  letter-spacing:0!important;
+}
+.about-page .story-tilton-section .story-tilton-card p:not(.story-tilton-year)+p {
+  margin-top:1.15rem!important;
+}
+
+.about-page .guides-section {
+  padding-block:clamp(4.75rem,7vw,6.75rem)!important;
+  background:#fff!important;
+}
+.about-page .guides-section .guides-shell {
+  width:min(calc(100% - (var(--page-gutter) * 2)),1216px)!important;
+  max-width:1216px!important;
+}
+.about-page .guides-section .guides-head {
+  max-width:46rem!important;
+  margin:0 0 clamp(2.2rem,3.4vw,3.2rem)!important;
+}
+body .about-page main .guides-section .guides-head h2 {
+  margin:0!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.04!important;
+  letter-spacing:-.055em!important;
+}
+.about-page .guides-section .guides-beliefs {
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:clamp(1rem,1.2vw,1.25rem)!important;
+  margin:0 0 clamp(2.6rem,4vw,3.6rem)!important;
+  border:0!important;
+  background:transparent!important;
+}
+.about-page .guides-section .guides-beliefs article {
+  display:block!important;
+  min-height:auto!important;
+  padding:clamp(2rem,3vw,2.75rem) clamp(2rem,3.6vw,3rem)!important;
+  border:1px solid #d5e4ee!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  box-shadow:0 .8rem 2rem rgba(0,45,83,.04)!important;
+}
+.about-page .guides-section .guides-beliefs article+article {
+  border-left:1px solid #d5e4ee!important;
+}
+.about-page .guides-section .guides-beliefs .guides-belief-icon {
+  display:block!important;
+  width:2.8rem!important;
+  height:2.8rem!important;
+  margin:0 0 1.1rem!important;
+  object-fit:contain!important;
+  filter:none!important;
+}
+.about-page .guides-section .guides-beliefs span {
+  display:block!important;
+  color:var(--accent)!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(1.15rem,1.35vw,1.35rem)!important;
+  font-weight:800!important;
+  line-height:1.18!important;
+  letter-spacing:-.025em!important;
+}
+.about-page .guides-section .guides-beliefs p {
+  max-width:31rem!important;
+  margin:1rem 0 0!important;
+  color:#40566d!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(1rem,1.08vw,1.12rem)!important;
+  font-weight:400!important;
+  line-height:1.48!important;
+  letter-spacing:0!important;
+}
+.about-page .guides-section .guides-values {
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(22rem,.72fr)!important;
+  column-gap:clamp(2rem,3.5vw,3.25rem)!important;
+  row-gap:.85rem!important;
+  max-width:100%!important;
+  padding:clamp(2.2rem,3.8vw,3.5rem)!important;
+  border-radius:14px!important;
+  background:#f2f8fc!important;
+  overflow:hidden!important;
+}
+body.about-page main .guides-section .guides-values-kicker#guides-values-title {
+  grid-column:1!important;
+  margin:0 0 .85rem!important;
+  color:var(--accent)!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:20px!important;
+  font-weight:600!important;
+  line-height:1.04!important;
+  letter-spacing:-.025em!important;
+}
+.about-page .guides-section .guides-values-grid {
+  grid-column:1!important;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  column-gap:clamp(1.4rem,2.3vw,2rem)!important;
+  overflow:visible!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+.about-page .guides-section .guides-values-grid article,
+.about-page .guides-section .guides-values-grid article.is-featured,
+.about-page .guides-section .guides-values-grid article.is-active {
+  display:grid!important;
+  grid-template-columns:2rem minmax(0,1fr)!important;
+  gap:.75rem!important;
+  min-height:auto!important;
+  padding:0 0 .95rem!important;
+  margin:0 0 .95rem!important;
+  border:0!important;
+  border-bottom:1px solid rgba(0,71,137,.16)!important;
+  background:transparent!important;
+  color:inherit!important;
+  transform:none!important;
+}
+.about-page .guides-section .guides-values-grid article>span.value-icon {
+  display:block!important;
+  width:2rem!important;
+  height:2rem!important;
+  min-width:2rem!important;
+  min-height:2rem!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:var(--accent)!important;
+}
+.about-page .guides-section .guides-values-grid article>span.value-icon:before,
+.about-page .guides-section .guides-values-grid article>span.value-icon:after {
+  content:none!important;
+  display:none!important;
+}
+.about-page .guides-section .guides-values-grid article>span.value-icon svg {
+  display:block!important;
+  width:2rem!important;
+  height:2rem!important;
+  color:var(--accent)!important;
+  fill:currentColor!important;
+  stroke:currentColor!important;
+}
+.about-page .guides-section .guides-values-grid h3 {
+  margin:0 0 .35rem!important;
+  color:var(--accent)!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(1.15rem,1.35vw,1.35rem)!important;
+  font-weight:800!important;
+  line-height:1.18!important;
+  letter-spacing:-.025em!important;
+}
+.about-page .guides-section .guides-values-grid p {
+  max-width:20rem!important;
+  margin:0!important;
+  color:#40566d!important;
+  font-size:clamp(.9rem,.94vw,.96rem)!important;
+  line-height:1.38!important;
+}
+.about-page .guides-section .guides-values:after {
+  display:block!important;
+  content:""!important;
+  grid-column:2!important;
+  grid-row:1 / span 2!important;
+  align-self:stretch!important;
+  min-height:clamp(18rem,23vw,24rem)!important;
+  border-radius:12px!important;
+  background:url('/assets/about/36.jpg') center/cover no-repeat!important;
+}
+
+.about-page .ceo-message-section.ceo-message-light {
+  min-height:clamp(34rem,49.5vw,46rem)!important;
+  padding:0!important;
+  background:#eef3f5 url('/assets/about/ceo-message-background.png') center/cover no-repeat!important;
+}
+.about-page .ceo-message-section.ceo-message-light:before,
+.about-page .ceo-message-section.ceo-message-light:after {
+  content:none!important;
+  display:none!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-message-light-layout {
+  min-height:inherit!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,.72fr) minmax(24rem,.9fr)!important;
+  gap:clamp(2.5rem,6vw,5.5rem)!important;
+  align-items:center!important;
+  width:min(calc(100% - (var(--page-gutter) * 2)),1216px)!important;
+  max-width:1216px!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-message-light-portrait {
+  display:none!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy {
+  display:block!important;
+  grid-column:2!important;
+  max-width:46rem!important;
+  padding:clamp(1.75rem,3vw,3.25rem)!important;
+  margin-left:auto!important;
+  border-radius:0!important;
+  background:linear-gradient(90deg,rgba(4,15,25,.28),rgba(4,15,25,.58))!important;
+  color:#fff!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy h2,
+.about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy p {
+  color:rgba(255,255,255,.9)!important;
+  text-shadow:0 1px 12px rgba(0,0,0,.32)!important;
+  font-family:var(--font-body,var(--body))!important;
+  font-size:clamp(.92rem,1vw,1.08rem)!important;
+  font-weight:400!important;
+  line-height:1.55!important;
+  letter-spacing:0!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy>p:first-of-type {
+  font-size:18px!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-signature strong {
+  color:#fff!important;
+}
+.about-page .ceo-message-section.ceo-message-light .ceo-signature span {
+  color:rgba(255,255,255,.74)!important;
+}
+
+@media(max-width:980px) {
+  .about-page .guides-section .guides-values { grid-template-columns:1fr!important; }
+  .about-page .guides-section .guides-values:after {
+    grid-column:1!important;
+    grid-row:auto!important;
+    min-height:20rem!important;
+  }
+}
+@media(max-width:900px) {
+  .about-page .story-tilton-stage {
+    grid-template-columns:1fr!important;
+    gap:1.8rem!important;
+  }
+  .about-page .story-tilton-image {
+    width:100%!important;
+    height:24rem!important;
+  }
+  .about-page .story-tilton-card { padding:0 1rem 1.5rem!important; }
+}
+@media(max-width:760px) {
+  .about-page .story-tilton-section,
+  .about-page .guides-section { padding-block:4rem!important; }
+  .about-page .guides-section .guides-beliefs,
+  .about-page .guides-section .guides-values-grid { grid-template-columns:1fr!important; }
+  .about-page .guides-section .guides-beliefs article+article {
+    border-left:1px solid #d5e4ee!important;
+  }
+  .about-page .guides-section .guides-values { padding:1.5rem!important; }
+  .about-page .ceo-message-section.ceo-message-light {
+    min-height:clamp(24rem,92vw,36rem)!important;
+    background-position:32% center!important;
+  }
+  .about-page .ceo-message-section.ceo-message-light .ceo-message-light-layout {
+    display:flex!important;
+    align-items:flex-end!important;
+    width:min(calc(100% - (var(--page-gutter) * 2)),1216px)!important;
+    padding-top:18rem!important;
+  }
+  .about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy {
+    width:100%!important;
+    max-width:none!important;
+    padding:1.4rem!important;
+    background:linear-gradient(180deg,rgba(4,15,25,.58),rgba(4,15,25,.78))!important;
+  }
+}
+
+/* Final About CTA uses the same two-column glass layout as the reference. */
+.about-page .about-home-banner .final-layout {
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  grid-template-rows:auto auto!important;
+  column-gap:clamp(60px,10vw,170px)!important;
+  row-gap:clamp(56px,8vw,110px)!important;
+  align-items:end!important;
+}
+.about-page .about-home-banner .final-layout>div:first-child {
+  display:contents!important;
+}
+.about-page .about-home-banner .final-layout h2 {
+  grid-column:1!important;
+  max-width:650px!important;
+  line-height:1.05!important;
+}
+.about-page .about-home-banner .final-layout p {
+  grid-column:2!important;
+  align-self:start!important;
+  max-width:620px!important;
+  margin:0!important;
+}
+
+/* Keep the reference's nested gutter on compact leadership layouts. */
+.about-page .team-layout {
+  width:min(calc(100% - (var(--gutter) * 2)),1216px)!important;
+  --team-swiper-gap:16px;
+}
+.about-page .team-card-grid.swiper .swiper-wrapper { gap:var(--team-swiper-gap)!important; }
+.about-page .team-card-grid.swiper .swiper-slide.team-card {
+  flex:0 0 calc((100% - (var(--team-swiper-gap) * 3)) / 4)!important;
+  width:calc((100% - (var(--team-swiper-gap) * 3)) / 4)!important;
+  margin-right:0!important;
+}
+.about-page .team-intro h2,
+.about-page .team-intro p {
+  max-width:42rem!important;
+}
+@media(min-width:901px) {
+  .about-page .team-intro h2,
+  .about-page .team-intro p { max-width:50%!important; }
+}
+@media(min-width:1024px) { .about-page .team-layout { --team-swiper-gap:20px; } }
+@media(min-width:1440px) { .about-page .team-layout { --team-swiper-gap:21px; } }
+@media(min-width:1600px) { .about-page .team-layout { --team-swiper-gap:22px; } }
+@media(max-width:720px) {
+  .about-page .team-card-grid.swiper .swiper-slide.team-card {
+    flex-basis:78%!important;
+    width:78%!important;
+  }
+}
+.about-page .about-home-banner .final-links {
+  grid-column:1!important;
+  grid-row:2!important;
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  align-content:end!important;
+  gap:0 var(--s2)!important;
+  margin:0!important;
+}
+@media(max-width:700px) {
+  .about-page .about-home-banner.final-v2 {
+    min-height:760px!important;
+    padding-block:75px!important;
+  }
+  .about-page .about-home-banner.final-v2 .section-shell {
+    width:min(100% - 36px,1280px)!important;
+  }
+  .about-page .about-home-banner .final-layout {
+    grid-template-columns:1fr!important;
+    gap:34px!important;
+  }
+  .about-page .about-home-banner .final-layout h2,
+  .about-page .about-home-banner .final-layout p,
+  .about-page .about-home-banner .final-links { grid-column:1!important; }
+  .about-page .about-home-banner .final-links {
+    grid-row:auto!important;
+    grid-template-columns:1fr!important;
+    margin-top:20px!important;
+  }
+}
+
+/* Final compact-layout parity guards. Keep these after the retired About rules
+   above so they cannot reintroduce the previous mobile geometry. */
+@media(max-width:760px) {
+  .about-page .ceo-message-section.ceo-message-light .ceo-message-light-layout {
+    width:100%!important;
+    max-width:1216px!important;
+  }
+  .about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy p {
+    margin-bottom:20px!important;
+    line-height:1.52!important;
+  }
+  .about-page .ceo-message-section.ceo-message-light .ceo-message-light-copy .ceo-signature {
+    margin:32px 0 20px!important;
+  }
+}
+@media(max-width:640px) {
+  .about-page .story-tilton-section {
+    padding-block:72px!important;
+  }
+  .about-page .story-tilton-section .story-tilton-shell {
+    width:calc(100% - 32px)!important;
+    max-width:none!important;
+    padding-inline:0!important;
+  }
+  body .about-page main .about-split .type-guides-heading,
+  body .about-page main .story-tilton-section .story-tilton-card #story-title {
+    font-size:42px!important;
+    line-height:1.08!important;
+  }
+}
+
+.about-page .guides-section .guides-values-grid article>span.value-icon {
+  grid-column:1!important;
+  grid-row:1 / span 2!important;
+  place-items:center!important;
+  font-size:0!important;
+}
+.about-page .guides-section .guides-values-grid article,
+.about-page .guides-section .guides-values-grid article.is-featured,
+.about-page .guides-section .guides-values-grid article.is-active {
+  grid-template-rows:auto 10px!important;
+}
+.about-page .guides-section .guides-values {
+  border:1px solid #c9ddeb!important;
+}
+body .about-page main .guides-section .guides-values-kicker#guides-values-title {
+  margin-bottom:.85rem!important;
+  font-size:20px!important;
+}
+@media(max-width:980px) {
+  .about-page .guides-section .guides-values:after {
+    min-height:clamp(18rem,23vw,24rem)!important;
+  }
+}
+
+ .about-page .team-controls {
+  gap:.35rem!important;
+}
+.about-page .team-controls button {
+  width:2.1rem!important;
+  height:2.1rem!important;
+}
+.about-page .team-card-grid.swiper .team-card img {
+  transform:scale(1.08);
+}
+@media(min-width:721px) {
+  .about-page .team-card-grid.swiper {
+    padding-bottom:.25rem!important;
+  }
+}
+@media(max-width:720px) {
+  .about-page .team-card-grid.swiper {
+    padding-bottom:1rem!important;
+  }
 }

@@ -42,6 +42,25 @@
   font: 400 18px/1.4 var(--font-body);
   text-decoration: none;
 }
+#proof .proof-about > span {
+  order:2;
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  color:var(--accent);
+  background:transparent;
+  font-size:0;
+  transition:transform var(--motion-base) var(--ease);
+}
+#proof .proof-about > span::before {
+  content:"→";
+  font:400 26px/1 var(--font-body);
+}
+#proof .proof-about:hover > span,
+#proof .proof-about:focus-visible > span {
+  transform:translateX(var(--space-2xs));
+}
 #proof .proof-about:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 6px;
@@ -77,6 +96,7 @@
 }
 #proof .proof-statistic dd {
   order: 1;
+  height: 1em;
   margin: 0;
   color: var(--accent);
   font: 400 clamp(64px, 6.3vw, 106px)/1 var(--font-display);
@@ -118,6 +138,7 @@
     padding: 20px 0 28px;
   }
   #proof .proof-statistic dd {
+    height: 1em;
     font-size: clamp(64px, 12vw, 88px);
   }
   #proof .proof-statistic .proof-value {

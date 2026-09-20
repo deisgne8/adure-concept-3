@@ -30,7 +30,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
             {content.clientGroups.map((group) => (
               <article className="customer-logo-panel" id={group.id} key={group.title}>
                 <div className="customer-panel-copy" data-aos="fade-up">
-                  <h2>{group.title}</h2>
+                  <h3>{group.title}</h3>
                   {group.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
                 <ul className="customer-logo-grid" aria-label={`${group.title} clients`} data-aos="fade-up" data-aos-delay="100">

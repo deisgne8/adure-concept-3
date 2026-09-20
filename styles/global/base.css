@@ -275,6 +275,21 @@ p {
   align-items: center;
   gap: var(--s075);
 }
+.map-location-action {
+  position: relative;
+}
+.map-location-action::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.15rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--ease);
+}
 .btn.link:after {
   content: "→";
   font-size: var(--s15);
@@ -473,6 +488,31 @@ select {
 .link-underline-before:hover::before,
 .link-underline-before:focus-visible::before,
 .map-location:focus-visible .link-underline-before::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.map-location:hover .map-location-action::before,
+.map-location:focus-visible .map-location-action::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.final-links a {
+  position: relative;
+}
+.final-links a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.4rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms var(--ease);
+}
+.final-links a:hover::before,
+.final-links a:focus-visible::before {
   transform: scaleX(1);
   transform-origin: left;
 }

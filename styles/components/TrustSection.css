@@ -200,3 +200,11 @@
     max-height: 54px;
   }
 }
+
+@media (max-width: 640px) {
+  #home#home #trust .trust-logo-title {
+    font-size: clamp(32px, 9vw, 42px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+  }
+}

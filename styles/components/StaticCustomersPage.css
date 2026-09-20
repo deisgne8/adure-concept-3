@@ -416,7 +416,7 @@
 }
 
 .customer-commitment .customer-section-intro h2 {
-  max-width: 9ch;
+  max-width: 14ch;
 }
 
 .customer-commitment .customer-section-intro p {
@@ -719,9 +719,9 @@
   color: var(--accent);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 980px) {
   .customer-logo-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -853,5 +853,273 @@
 
   .customers-page main .customers-closing-card h2 {
     font-size: clamp(38px, 12vw, 56px);
+  }
+}
+
+/* Fixed-reference parity: these rules intentionally follow legacy variants. */
+.customers-page .customer-group-grid {
+  gap:clamp(2.6rem,5vw,4rem)!important;
+}
+.customers-page .customer-groups {
+  padding-block:clamp(5rem,8vw,8rem)!important;
+}
+.customers-page .customer-logo-panel {
+  gap:0!important;
+  border-radius:16px!important;
+}
+.customers-page .customer-logo-grid {
+  margin-top:clamp(.9rem,1.7vw,1.35rem)!important;
+}
+.customers-page .customer-logo-grid img {
+  width:100%!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:3.8rem!important;
+  object-fit:contain!important;
+  filter:none!important;
+  opacity:1!important;
+}
+.customers-page .customer-panel-copy h2,
+.customers-page .customer-panel-copy h3 {
+  margin:0 0 .75rem!important;
+  color:var(--accent)!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  white-space:nowrap!important;
+}
+.customers-page .customer-panel-copy p {
+  max-width:43rem!important;
+  margin:0!important;
+  color:#526476!important;
+  font-size:clamp(.98rem,1.08vw,1.06rem)!important;
+  line-height:1.6!important;
+}
+.customers-page .customer-panel-copy p+p { margin-top:.55rem!important; }
+
+.customers-page .customer-commitment .customer-section-intro {
+  justify-content:flex-start!important;
+}
+.customers-page .customer-commitment .customer-section-intro h2 {
+  max-width:14ch!important;
+  font-family:var(--font-display)!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+}
+.customers-page .customer-commitment .customer-section-intro p {
+  display:block!important;
+  max-width:25rem!important;
+  margin:1.5rem 0 0!important;
+  color:#40566d!important;
+  font-size:clamp(1rem,1.18vw,1.1rem)!important;
+  line-height:1.62!important;
+}
+
+.customers-page main .customers-closing .customers-closing-card h2#closing-title {
+  grid-column:1!important;
+  max-width:650px!important;
+  margin:0!important;
+  color:var(--accent)!important;
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+.customers-page .customers-closing-card>p {
+  color:#606269!important;
+  font-size:18px!important;
+  line-height:1.55556!important;
+}
+
+@media(max-width:760px) {
+  .customers-page .customer-panel-copy h2,
+  .customers-page .customer-panel-copy h3 {
+    font-size:clamp(2.1rem,10vw,3rem)!important;
+    white-space:normal!important;
+  }
+}
+@media(max-width:640px) {
+  .customers-page .customer-logo-grid {
+    grid-template-columns:1fr!important;
+  }
+  .customers-page .customer-logo-grid li {
+    min-height:6.4rem!important;
+  }
+  .customers-page main .customer-logo-panel .customer-panel-copy h3 {
+    font-size:clamp(32px,9vw,42px)!important;
+    white-space:normal!important;
+  }
+  .customers-page main .customers-closing .customers-closing-card h2#closing-title {
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+}
+
+/* Fixed-reference parity: keep the late responsive cascade from restoring the
+   older compact carousel and expanded commitment list on small screens. */
+.customers-page .customer-sectors {
+  padding-block: clamp(5rem, 8vw, 8rem) !important;
+}
+
+.customers-page .customer-section-intro p,
+.customers-page .asset-story-feature-copy p,
+.customers-page .commitment-grid p {
+  font-size: clamp(0.98rem, 1.08vw, 1.06rem) !important;
+  line-height: 1.6 !important;
+}
+
+/* The last rules in the fixed build define the visible hero and section-copy
+   treatment; keep them after the legacy customer variants above. */
+.customers-page .customers-hero p {
+  max-width: 48rem !important;
+  margin-top: var(--s2) !important;
+  color: var(--inverse-muted) !important;
+  font-family: var(--font-body) !important;
+  font-size: clamp(1rem, 1.25vw, 1.18rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+  letter-spacing: 0 !important;
+}
+
+.customers-page .customers-hero p + p {
+  max-width: var(--reading) !important;
+  margin-top: 0.75rem !important;
+}
+
+.customers-page .customer-section-intro p {
+  font-size: clamp(1rem, 1.18vw, 1.14rem) !important;
+  line-height: 1.62 !important;
+}
+
+/* The fixed page's generic media layer enlarges these marks by 8%. Keep the
+   same visual scale without giving logos a scroll-driven transform. */
+.customers-page .customer-logo-grid img {
+  scale: 1.08;
+}
+
+.customers-page .asset-story-feature-image img {
+  border-radius: inherit !important;
+}
+
+.customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image img {
+  scale: 1.08;
+}
+
+.customers-page .customer-commitment {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+.customers-page .commitment-layout,
+.customers-page .commitment-grid {
+  --closed-row: clamp(6.35rem, 12vh, 7.25rem) !important;
+  --active-row: clamp(11rem, 23vh, 14rem) !important;
+  --stack-height: calc(var(--active-row) + var(--closed-row) + var(--closed-row) + var(--closed-row));
+  height: var(--stack-height) !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.customers-page .commitment-grid p {
+  overflow: visible !important;
+}
+
+.customers-page .commitment-grid article,
+.customers-page .commitment-grid.is-start article.is-after,
+.customers-page .commitment-grid article.is-before {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(calc(var(--stack-offset, 0) * var(--closed-row))) !important;
+}
+
+.customers-page .commitment-grid article.is-active {
+  height: auto !important;
+  min-height: 0 !important;
+  transform: translateY(calc(var(--stack-offset, 0) * var(--closed-row))) !important;
+}
+
+.customers-page .commitment-grid article.is-after {
+  height: var(--closed-row) !important;
+  min-height: 0 !important;
+  transform: translateY(calc((var(--stack-offset, 0) * var(--closed-row)) + (var(--active-row) - var(--closed-row)))) !important;
+}
+
+.customers-page .commitment-grid.is-start article.is-after {
+  transform: translateY(calc(var(--stack-offset, 0) * var(--closed-row))) !important;
+}
+
+.customers-page .commitment-grid article.is-before {
+  height: var(--closed-row) !important;
+  min-height: 0 !important;
+}
+
+.customers-page main .customer-commitment .commitment-grid article.is-active p {
+  max-height: 7rem !important;
+  margin-top: 8px !important;
+}
+
+.customers-page .customer-perspectives {
+  padding-block: clamp(5rem, 8vw, 7.5rem) !important;
+  overflow: hidden !important;
+}
+
+.customers-page .perspectives-layout {
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(25rem, 1.22fr) !important;
+  gap: clamp(3rem, 7vw, 6.5rem) !important;
+  align-items: start !important;
+}
+
+.customers-page .perspectives-intro {
+  max-width: 31rem !important;
+  align-self: start !important;
+  padding-top: 0 !important;
+}
+
+.customers-page main .customer-perspectives .perspectives-intro h2 {
+  max-width: 15ch !important;
+}
+
+.customers-page .perspectives-quote-card > p:not(.perspectives-card-kicker) {
+  max-width: 40rem !important;
+  margin-top: 1.45rem !important;
+  font-size: clamp(0.96rem, 1.04vw, 1.02rem) !important;
+  line-height: 1.58 !important;
+}
+
+@media (max-width: 760px) {
+  .customers-page .asset-story-card-feature.is-active .asset-story-feature-copy,
+  .customers-page .asset-story-card-feature.is-active .asset-story-feature-image {
+    order: initial !important;
+  }
+
+  .customers-page .asset-story-card-feature.is-active .asset-story-feature-image {
+    min-height: 14rem !important;
+  }
+
+  .customers-page .customers-closing-card > p {
+    font-size: 16px !important;
+    line-height: 22px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .customers-page main .customer-sectors .customer-section-intro h2,
+  .customers-page main .customer-commitment .customer-section-intro h2 {
+    font-size: clamp(32px, 9vw, 42px) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .customers-page .customer-logo-grid img {
+    scale: none;
+  }
+
+  .customers-page .asset-story-card-feature:not(.is-active) .asset-story-feature-image img {
+    scale: none;
   }
 }
