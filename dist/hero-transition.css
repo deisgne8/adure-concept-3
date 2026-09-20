@@ -55,6 +55,53 @@
   }
 }
 
+@media(max-width:1023.98px){
+  #home{
+    background:#fff;
+  }
+
+  #home > .site-hero{
+    position:relative;
+    top:auto;
+    height:auto;
+    min-height:calc(100svh - var(--nav-height));
+    margin-top:var(--nav-height);
+    --hero-media-y:0px!important;
+    --hero-media-scale:1!important;
+    --hero-copy-y:0px!important;
+    --hero-copy-opacity:1!important;
+  }
+
+  #home > .site-hero .hero-video,
+  #home > .site-hero .hero-inner{
+    transform:none!important;
+    opacity:1!important;
+    will-change:auto;
+  }
+
+  #home > .site-hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:0;
+    background:linear-gradient(135deg,#06223d 0%,#004789 56%,#0b5f92 100%);
+  }
+
+  #home > .site-hero::after{
+    background:linear-gradient(90deg,rgba(0,18,34,.72),rgba(0,18,34,.42));
+  }
+
+  #home > .site-hero .hero-inner{
+    min-height:calc(100svh - var(--nav-height));
+    padding-top:clamp(3rem,8vw,5rem);
+  }
+
+  #home > #journeys{
+    margin-top:0;
+    box-shadow:none;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   #home{
     background:#fff;

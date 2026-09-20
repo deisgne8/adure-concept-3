@@ -433,6 +433,47 @@ dialog::backdrop{
 
 }
 
+@media(max-width:1023.98px){
+  .site-header{
+    color:var(--ink);
+    background:rgba(255,255,255,.88);
+    border-bottom-color:rgba(231,230,227,.72);
+    box-shadow:0 .25rem 2rem rgba(0,0,0,.06);
+    -webkit-backdrop-filter:blur(.9375rem) saturate(130%);
+    backdrop-filter:blur(.9375rem) saturate(130%)
+  }
+  .site-header .site-logo img{
+    filter:none
+  }
+  .menu-toggle span{
+    background:currentColor
+  }
+}
+
+@media(min-width:768px) and (max-width:1023.98px){
+  .header-inner{
+    gap:var(--s075)
+  }
+  .site-header .site-logo img{
+    height:2.5rem
+  }
+  .desktop-nav{
+    display:flex;
+    gap:clamp(.5rem,1.4vw,.875rem);
+    margin-left:auto;
+    font-size:clamp(.75rem,1.25vw,.875rem)
+  }
+  .nav-dropdown-menu{
+    font-size:.875rem
+  }
+  .header-cta{
+    margin-left:0
+  }
+  .menu-toggle{
+    display:none
+  }
+}
+
 @media(max-width:767.98px){
   .footer{
   padding-top:2.5rem

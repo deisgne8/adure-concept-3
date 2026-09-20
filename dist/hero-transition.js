@@ -1,8 +1,9 @@
 const hero=document.querySelector('#hero');
 const nextSection=document.querySelector('#journeys');
 const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+const compactViewport=matchMedia('(max-width: 1023.98px)');
 
-if(hero&&nextSection&&!reducedMotion.matches){
+if(hero&&nextSection&&!reducedMotion.matches&&!compactViewport.matches){
   let frame=0;
 
   const clamp=value=>Math.max(0,Math.min(1,value));

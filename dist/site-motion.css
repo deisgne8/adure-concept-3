@@ -7,6 +7,14 @@
   will-change:opacity,transform;
 }
 [data-site-reveal].is-site-visible{opacity:1;transform:translate3d(0,0,0)}
+#home[data-site-reveal],
+main > section[data-site-reveal],
+#home > section[data-site-reveal]{
+  opacity:1;
+  transform:none;
+  transition:none;
+  will-change:auto;
+}
 [data-site-parallax]{
   --site-parallax-y:0px;
   transform:translate3d(0,var(--site-parallax-y),0) scale(1.08);
