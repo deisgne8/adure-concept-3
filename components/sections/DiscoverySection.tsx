@@ -26,10 +26,11 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
             className="btn filter-open"
             type="button"
             aria-haspopup="dialog"
+            data-aos="zoom-in"
           >
             Find real estate <span aria-hidden="true">⌕</span>
           </button>
-          <div id="filter-home">
+          <div id="filter-home" data-aos="fade-up" data-aos-delay="100">
             <form className="search-box" id="property-search">
               <div className="tabs" role="group" aria-label="Property intent">
                 <button
@@ -128,8 +129,8 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
             </form>
           </div>
           <p className="search-status" id="search-status" role="status" aria-live="polite"></p>
-          <div className="grid-3" id="home-properties"></div>
-          <div className="discovery-actions">
+          <div className="grid-3" id="home-properties" data-aos="fade-up"></div>
+          <div className="discovery-actions" data-aos="fade-up" data-aos-delay="100">
             <Button
               className="button-wipe discovery-view-all"
               href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"

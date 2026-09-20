@@ -2,5 +2,35 @@
   "id": "trust",
   "label": "Trusted by clients",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "groups": ["Government", "Private sector and corporates"]
+  "heading": "Trusted By Organisations That Expect More",
+  "description": "ADURE has built long-standing relationships across government, semi-government and the private sector - where integrity, excellence and innovation matter.",
+  "groups": [
+    {
+      "id": "government-semi-government",
+      "heading": "Government & Semi-Government",
+      "reverse": false,
+      "clients": [
+        { "name": "ADNOC", "logo": "/assets/clients/profile/adnoc.png" },
+        { "name": "TAQA Distribution", "logo": "/assets/clients/profile/taqa-distribution.png" },
+        { "name": "Ministry of Interior", "logo": "/assets/clients/profile/ministry-interior.png" },
+        { "name": "Mubadala", "logo": "/assets/clients/profile/mubadala.png" },
+        { "name": "Abu Dhabi Police", "logo": "/assets/clients/profile/abu-dhabi-police.png" },
+        { "name": "Abu Dhabi Investment Authority", "logo": "/assets/clients/profile/adia.png" }
+      ]
+    },
+    {
+      "id": "private-sector-corporates",
+      "heading": "Private Sector & Corporates",
+      "reverse": true,
+      "clients": [
+        { "name": "Oxy", "logo": "/assets/clients/profile/oxy.png" },
+        { "name": "Samsung", "logo": "/assets/clients/profile/samsung.png" },
+        { "name": "Schlumberger", "logo": "/assets/clients/profile/schlumberger.png" },
+        { "name": "Unicorp", "logo": "/assets/clients/profile/unicorp.png" },
+        { "name": "Total", "logo": "/assets/clients/profile/total.png" },
+        { "name": "Brighton College Abu Dhabi", "logo": "/assets/clients/profile/brighton-college.png" }
+      ]
+    }
+  ],
+  "button": { "text": "Our Clients", "href": "/customers", "variant": "link" }
 }

@@ -1,4 +1,6 @@
+import type { CSSProperties } from "react";
 import Section from "../ui/Section";
+import Button from "../ui/Button";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type SellSectionProps = {
@@ -13,17 +15,16 @@ export default function SellSection({ content }: SellSectionProps) {
         id={content.id}
         aria-labelledby="sell-title"
         spacing={content.spacing}
+        style={{
+          "--sell-background": `url("${content.background}")`,
+        } as CSSProperties}
       >
         <div className="section-shell sell-layout">
-          <div className="sell-copy">
-            <h2 id="sell-title">Sell with clarity and confidence</h2>
-            <p>
-              From positioning and presentation to qualified enquiries, ADURE
-              helps owners introduce their property to the market and sell with
-              a strategy built around value.
-            </p>
+          <div className="sell-copy" data-aos="fade-right">
+            <h2 id="sell-title">{content.heading}</h2>
+            <p>{content.description}</p>
           </div>
-          <form className="sell-form" data-sell-form>
+          <form className="sell-form" data-sell-form data-aos="fade-left">
             <div className="sell-fields">
               <label htmlFor="sell-location">
                 Property Location
@@ -37,14 +38,13 @@ export default function SellSection({ content }: SellSectionProps) {
               </label>
               <label htmlFor="sell-type">
                 Property Type
-                <select id="sell-type" name="type" required>
-                  <option value="" disabled selected>
+                <select id="sell-type" name="type" defaultValue="" required>
+                  <option value="" disabled>
                     Select property type
                   </option>
-                  <option>Residential</option>
-                  <option>Retail</option>
-                  <option>Commercial</option>
-                  <option>Other</option>
+                  {content.form.propertyTypes.map((propertyType) => (
+                    <option key={propertyType}>{propertyType}</option>
+                  ))}
                 </select>
               </label>
               <label htmlFor="sell-name">
@@ -80,13 +80,11 @@ export default function SellSection({ content }: SellSectionProps) {
                   required
                 />
               </label>
-              <button className="btn primary" type="submit">
-                Discuss My Property <span aria-hidden="true">→</span>
-              </button>
+              <Button showArrow variant="primary" type="submit">
+                {content.form.button}
+              </Button>
             </div>
-            <p className="sell-form-note">
-              Opens an email draft with your property details.
-            </p>
+            <p className="sell-form-note">{content.form.note}</p>
           </form>
         </div>
       </Section>

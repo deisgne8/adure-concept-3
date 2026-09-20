@@ -84,7 +84,7 @@ export default function PropertiesMap({
       paddingTopLeft: [80, 90],
       paddingBottomRight: [selected ? 460 : 120, 90],
       maxZoom: 7,
-      animate: !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+      animate: true,
     });
   };
 
@@ -160,7 +160,7 @@ export default function PropertiesMap({
       }).addTo(layer).on("click", () => {
         setSelectedArea(area.id);
         map.flyTo(area.coordinates, area.id === "qaryat" || area.id === "saadiyat" ? 11 : 10, {
-          animate: !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+          animate: true,
           duration: 0.75,
         });
       });

@@ -17,11 +17,11 @@ export default function StaticCustomersPage({ content, site }: Props) {
           <img src={content.hero.image} alt={content.hero.imageAlt} fetchPriority="high" />
           <div className="customers-hero-shade" />
           <div className="section-shell customers-hero-inner">
-            <h1 id="customers-title">
+            <h1 id="customers-title" data-aos="fade-up">
               {content.hero.headingLines.map((line, index) => <span key={line}>{index > 0 ? <br /> : null}{line}</span>)}
             </h1>
-            {content.hero.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            <a className="customers-hero-cta" href={content.hero.cta.href}>{content.hero.cta.label}<span aria-hidden="true">→</span></a>
+            {content.hero.paragraphs.map((paragraph, index) => <p data-aos="fade-up" data-aos-delay={100 + index * 80} key={paragraph}>{paragraph}</p>)}
+            <a className="customers-hero-cta" href={content.hero.cta.href} data-aos="fade-up" data-aos-delay="260">{content.hero.cta.label}<span aria-hidden="true">→</span></a>
           </div>
         </section>
 
@@ -29,11 +29,11 @@ export default function StaticCustomersPage({ content, site }: Props) {
           <div className="section-shell customer-group-grid">
             {content.clientGroups.map((group) => (
               <article className="customer-logo-panel" key={group.title}>
-                <div className="customer-panel-copy">
+                <div className="customer-panel-copy" data-aos="fade-up">
                   <h2>{group.title}</h2>
                   {group.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
-                <ul className="customer-logo-grid" aria-label={`${group.title} clients`}>
+                <ul className="customer-logo-grid" aria-label={`${group.title} clients`} data-aos="fade-up" data-aos-delay="100">
                   {group.logos.map((logo) => (
                     <li key={logo.name}><img src={logo.image} alt={logo.name} loading="lazy" decoding="async" /></li>
                   ))}
@@ -45,7 +45,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
 
         <section className="customer-sectors pt_100 pb_100" aria-labelledby="sectors-title">
           <div className="section-shell customer-sectors-layout">
-            <div className="customer-section-intro">
+            <div className="customer-section-intro" data-aos="fade-right">
               <h2 id="sectors-title">{content.sectors.heading}</h2>
               <p>{content.sectors.description}</p>
             </div>
@@ -55,7 +55,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
 
         <section className="customer-commitment" aria-labelledby="commitment-title">
           <div className="section-shell commitment-layout">
-            <div className="customer-section-intro">
+            <div className="customer-section-intro" data-aos="fade-right">
               <h2 id="commitment-title">{content.commitment.heading}</h2>
               <p>{content.commitment.description}</p>
             </div>
@@ -65,8 +65,8 @@ export default function StaticCustomersPage({ content, site }: Props) {
 
         <section className="customer-perspectives pt_100 pb_100" aria-labelledby="perspectives-title">
           <div className="section-shell perspectives-layout">
-            <div className="perspectives-intro"><h2 id="perspectives-title">{content.testimonial.heading}</h2></div>
-            <article className="perspectives-quote-card" aria-label="Client testimonial">
+            <div className="perspectives-intro" data-aos="fade-right"><h2 id="perspectives-title">{content.testimonial.heading}</h2></div>
+            <article className="perspectives-quote-card" aria-label="Client testimonial" data-aos="fade-left">
               <blockquote>{content.testimonial.quote}</blockquote>
               <p>{content.testimonial.description}</p>
               <div className="perspectives-customer-meta">
@@ -80,7 +80,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
         <section className="customers-closing" aria-labelledby="closing-title">
           <img src={content.closing.image} alt={content.closing.imageAlt} loading="lazy" />
           <div className="customers-closing-shade" />
-          <div className="section-shell customers-closing-card">
+          <div className="section-shell customers-closing-card" data-aos="fade-up">
             <h2 id="closing-title">{content.closing.heading}</h2>
             <p>{content.closing.description}</p>
             <div className="customers-actions">

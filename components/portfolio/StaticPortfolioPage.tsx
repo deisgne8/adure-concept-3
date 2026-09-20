@@ -36,11 +36,6 @@ function AnimatedPortfolioStat({ value, label, delay }: { value: string; label: 
       animationFrame = requestAnimationFrame(update);
     };
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      animationFrame = requestAnimationFrame(showFinalValue);
-      return () => cancelAnimationFrame(animationFrame);
-    }
-
     if (!("IntersectionObserver" in window)) {
       animationFrame = requestAnimationFrame(showFinalValue);
       return () => cancelAnimationFrame(animationFrame);

@@ -433,9 +433,3 @@
     right: 16px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .map-location,
-  .adure-map-marker > span {
-    transition: none;
-  }
-}

@@ -855,14 +855,3 @@
     font-size: clamp(38px, 12vw, 56px);
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .customer-logo-grid img,
-  .asset-carousel-track,
-  .asset-story-card-feature,
-  .asset-story-feature-image img,
-  .commitment-grid article,
-  .commitment-grid p {
-    transition: none;
-  }
-}

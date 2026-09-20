@@ -9,7 +9,7 @@ type Props = {
   site: HomeContent["site"];
 };
 
-function ContactDetailRow({ detail }: { detail: ContactDetail }) {
+function ContactDetailRow({ detail, index }: { detail: ContactDetail; index: number }) {
   const copy = detail.lines.map((line, index) => (
     <span key={line}>
       {index > 0 ? <br /> : null}
@@ -18,7 +18,7 @@ function ContactDetailRow({ detail }: { detail: ContactDetail }) {
   ));
 
   return (
-    <article>
+    <article data-aos="fade-up" data-aos-delay={index * 90}>
       <span className="contact-icon" aria-hidden="true">
         <img src={detail.icon} alt={detail.iconAlt} />
       </span>
@@ -45,16 +45,16 @@ export default function StaticContactPage({ content, site }: Props) {
       <main id="contact-main" className="contact-main">
         <section className="contact-card pt_50" aria-labelledby="contact-title">
           <div className="section-shell contact-grid">
-            <div className="contact-copy">
+            <div className="contact-copy" data-aos="fade-right">
               <h1 id="contact-title">{content.intro.heading}</h1>
               <p className="contact-lede">{content.intro.description}</p>
 
               <div className="contact-details" aria-label="ADURE contact details">
-                {content.details.map((detail) => <ContactDetailRow detail={detail} key={detail.label} />)}
+                {content.details.map((detail, index) => <ContactDetailRow detail={detail} index={index} key={detail.label} />)}
               </div>
             </div>
 
-            <form className="contact-form" action={content.form.action} method="post" encType="text/plain">
+            <form className="contact-form" action={content.form.action} method="post" encType="text/plain" data-aos="fade-left">
               <label htmlFor="contact-name">
                 {content.form.nameLabel}
                 <input id="contact-name" name="name" type="text" placeholder={content.form.namePlaceholder} autoComplete="name" required />
@@ -83,7 +83,7 @@ export default function StaticContactPage({ content, site }: Props) {
             </form>
           </div>
 
-          <section className="contact-map" aria-label={content.map.title}>
+          <section className="contact-map" aria-label={content.map.title} data-aos="fade-up">
             <iframe
               title={content.map.title}
               src={content.map.embedUrl}

@@ -393,14 +393,7 @@ main {
     display: none;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .philosophy-frame img,
-  .philosophy-stage .principle,
-  .philosophy-stage .principle > *,
-  .philosophy-progress span {
-    transition: none;
-  }
-}
+
 .journey-heading,
 .discovery-title,
 .proof-head,
@@ -1044,16 +1037,7 @@ main {
 .conversation-reveal-ready.is-conversation-visible .final-links a:nth-child(4) {
   transition-delay: 1.47s;
 }
-@media (prefers-reduced-motion: reduce) {
-  .conversation-reveal-ready .section-shell,
-  .conversation-reveal-ready .final-layout h2,
-  .conversation-reveal-ready .final-layout p,
-  .conversation-reveal-ready .final-links a {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
+
 .final-v2 + .footer {
   padding-top: var(--s35);
 }
@@ -1120,13 +1104,7 @@ main {
 .filter-dialog .search-box > .btn {
   order: 2;
 }
-@media (prefers-reduced-motion: reduce) {
-  .search-box,
-  .search-box > .search-primary,
-  .more-filters-panel {
-    transition: none;
-  }
-}
+
 .empty-results {
   grid-column: 1/-1;
   padding: var(--s2);
@@ -1835,16 +1813,7 @@ main {
     transform: none;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  .proof-tile,
-  .proof-focus,
-  .proof-focus > img,
-  .proof-carousel-head,
-  .proof-focus .proof-metrics-v2,
-  .proof-focus .proof-metrics-v2 > div {
-    transition: none;
-  }
-}
+
 
 /* Sentence case is the site-wide editorial casing. Preserve authored acronyms. */
 .site-header *,
@@ -1853,4 +1822,143 @@ main {
 .footer *,
 .filter-dialog * {
   text-transform: none !important;
+}
+
+/* Discovery search: keep the complete filter inside one bordered panel at every size. */
+#home #discovery #filter-home {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+#home #discovery #filter-home #property-search,
+#home #discovery #filter-home #property-search.is-more-open {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 5rem;
+  padding: 0.45rem;
+  border: 1px solid #d8e4f0;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+}
+
+@media (min-width: 1180px) {
+  #home #discovery #filter-home #property-search,
+  #home #discovery #filter-home #property-search.is-more-open {
+    display: grid;
+    grid-template-columns: minmax(8.5rem, 0.8fr) repeat(4, minmax(0, 1fr)) minmax(8rem, 0.8fr) minmax(10.5rem, 0.95fr) !important;
+    align-items: center;
+    gap: 0;
+  }
+
+  #home #discovery #filter-home .tabs,
+  #home #discovery #filter-home .search-box > .field,
+  #home #discovery #filter-home .more-filters {
+    border-right: 1px solid #d8e4f0 !important;
+  }
+
+  #home #discovery #filter-home .search-primary {
+    grid-column: auto;
+    align-self: stretch;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1179.98px) {
+  #home #discovery #filter-home #property-search,
+  #home #discovery #filter-home #property-search.is-more-open {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    align-items: stretch;
+    gap: 0;
+    border-radius: 1.5rem;
+  }
+
+  #home #discovery #filter-home .tabs {
+    grid-column: 1 / -1;
+    width: auto;
+    height: auto;
+    min-height: 3.75rem;
+    border-right: 0 !important;
+    border-bottom: 1px solid #d8e4f0;
+  }
+
+  #home #discovery #filter-home .search-box > .field {
+    min-width: 0;
+    border-bottom: 1px solid #d8e4f0;
+  }
+
+  #home #discovery #filter-home .search-box > .field:nth-of-type(2),
+  #home #discovery #filter-home .search-box > .field:nth-of-type(4) {
+    border-right: 1px solid #d8e4f0;
+  }
+
+  #home #discovery #filter-home .more-filters,
+  #home #discovery #filter-home .search-primary {
+    min-width: 0;
+    min-height: 3.75rem;
+    margin: 0;
+  }
+
+  #home #discovery #filter-home .more-filters {
+    border-right: 1px solid #d8e4f0 !important;
+  }
+
+  #home #discovery #filter-home .search-box.is-more-open > .more-filters-panel {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #home #discovery .filter-open {
+    display: none;
+  }
+
+  #home #discovery #filter-home {
+    margin-bottom: 1rem;
+  }
+
+  #home #discovery #filter-home #property-search,
+  #home #discovery #filter-home #property-search.is-more-open {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0;
+    padding: 0.4rem;
+    overflow: visible;
+    border-radius: 1.25rem;
+  }
+
+  #home #discovery #filter-home .tabs {
+    width: 100%;
+    min-height: 3.5rem;
+    padding: 0.25rem;
+    border: 0;
+    border-bottom: 1px solid #d8e4f0;
+    border-radius: 1rem;
+  }
+
+  #home #discovery #filter-home .search-box > .field,
+  #home #discovery #filter-home .more-filters {
+    min-height: 4.25rem;
+    border: 0 !important;
+    border-bottom: 1px solid #d8e4f0 !important;
+  }
+
+  #home #discovery #filter-home .more-filters-toggle {
+    min-height: 4.25rem;
+  }
+
+  #home #discovery #filter-home .search-primary {
+    width: 100%;
+    min-height: 3.75rem;
+    margin: 0;
+  }
+
+  #home #discovery #filter-home .search-box.is-more-open > .more-filters-panel {
+    grid-column: 1;
+    width: 100%;
+  }
 }

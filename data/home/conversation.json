@@ -2,5 +2,18 @@
   "id": "conversation",
   "label": "Start a conversation",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "contact": { "phone": "02 6457869", "email": "Inquiries@adu-re.com" }
+  "heading": "We’re Here For Your Next Step",
+  "description": "Whether you are looking to buy or rent your next property, bringing one to market or placing an asset under management, our team is ready to help.",
+  "image": {
+    "src": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "alt": "Aerial view of the Hidd Al Saadiyat beach and waterfront",
+    "width": 2400,
+    "height": 3600
+  },
+  "links": [
+    { "text": "Find a Property", "href": "/properties?intent=buy" },
+    { "text": "Sell With ADURE", "href": "/#sell" },
+    { "text": "Property Management", "href": "/#management" },
+    { "text": "Contact ADURE", "href": "/contact" }
+  ]
 }

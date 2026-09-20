@@ -651,14 +651,3 @@ html.portfolio-popup-open {
     padding: 1.75rem;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .portfolio-project-card,
-  .portfolio-project-card-image img,
-  .portfolio-principle-grid article::after,
-  .portfolio-popup,
-  .portfolio-popup-card {
-    animation: none;
-    transition: none;
-  }
-}

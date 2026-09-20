@@ -13,7 +13,8 @@
 .has-transition-carousel .transition-carousel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  min-height: clamp(680px, 49vw, 820px);
+  height: calc(100svh - var(--nav-height));
+  min-height: 680px;
   background: var(--surface-alt);
   isolation: isolate;
 }
@@ -46,6 +47,7 @@
     opacity 650ms var(--ease),
     transform 950ms var(--ease);
   pointer-events: none;
+  will-change: opacity, transform;
 }
 .has-transition-carousel .transition-visual-slide.is-current {
   z-index: 1;
@@ -115,6 +117,7 @@
   opacity: 0;
   transform: translateY(24px);
   pointer-events: none;
+  will-change: opacity, transform;
   transition:
     opacity 420ms var(--ease),
     transform 650ms var(--ease);
@@ -230,21 +233,14 @@
   margin: 0;
   color: var(--accent);
 }
-.has-transition-carousel.has-transition-scroll .section-shell {
-  height: calc(
-    var(--transition-stage-height) + var(--transition-scroll-distance)
-  );
-}
-.has-transition-carousel.has-transition-scroll .transition-carousel {
-  position: sticky;
-  top: var(--transition-top);
-  height: var(--transition-stage-height);
-  min-height: 0;
+.has-transition-gsap .transition-visual-slide,
+.has-transition-gsap .timeline-step {
+  transition: none;
 }
 @media (max-width: 1100px) and (min-width: 768px) {
   .has-transition-carousel .transition-carousel {
     grid-template-columns: 0.92fr 1.08fr;
-    min-height: 650px;
+    min-height: 680px;
   }
   .has-transition-carousel .transition-content {
     padding: 42px 128px 42px 42px;
@@ -258,6 +254,7 @@
   .has-transition-carousel .transition-carousel {
     display: flex;
     flex-direction: column;
+    height: auto;
     min-height: 0;
   }
   .has-transition-carousel .transition-visual {
@@ -265,7 +262,7 @@
     flex: none;
   }
   .has-transition-carousel .transition-content {
-    min-height: 570px;
+    min-height: 720px;
     padding: 34px 24px 32px;
   }
   .has-transition-carousel .transition-head {
@@ -312,13 +309,5 @@
   }
   .has-transition-carousel .transition-footer > .btn {
     font-size: 13px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .has-transition-carousel .transition-visual-slide,
-  .has-transition-carousel .timeline-step,
-  .has-transition-carousel .transition-step-nav button,
-  .has-transition-carousel .transition-step-nav button::after {
-    transition: none;
   }
 }

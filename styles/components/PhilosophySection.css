@@ -303,20 +303,3 @@
     height: clamp(380px, 38vw, 530px);
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  #philosophy.has-philosophy-story .philosophy-stage {
-    min-height: 0;
-  }
-  #philosophy .philosophy-sticky {
-    position: relative;
-    top: auto;
-  }
-  #philosophy .principle,
-  #philosophy .philosophy-image-pair,
-  #philosophy .philosophy-image-large,
-  #philosophy .philosophy-image-small,
-  #philosophy .philosophy-story-line span {
-    transition: none !important;
-    transform: none !important;
-  }
-}

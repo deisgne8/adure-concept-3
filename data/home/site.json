@@ -4,7 +4,7 @@
   "markets": ["Abu Dhabi", "Dubai", "Al Ain"],
   "header": {
     "logo": {
-      "href": "#home",
+      "href": "/",
       "ariaLabel": "ADURE home",
       "alt": "ADURE - Abu Dhabi United Real Estate"
     },
@@ -21,27 +21,27 @@
           {
             "label": "Overview",
             "description": "All connected capabilities",
-            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services"
+            "href": "/#management"
           },
           {
             "label": "Buy",
             "description": "Find your next property",
-            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
+            "href": "/properties?intent=buy"
           },
           {
             "label": "Sell",
             "description": "Bring a property to market",
-            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
+            "href": "/#sell"
           },
           {
             "label": "Leasing",
             "description": "Explore available properties",
-            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#properties"
+            "href": "/properties?intent=lease"
           },
           {
             "label": "Property management",
             "description": "Protect long-term asset value",
-            "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services"
+            "href": "/#management"
           }
         ]
       },
@@ -66,7 +66,7 @@
     },
     "cta": {
       "label": "List your property",
-      "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property"
+      "href": "/#sell"
     },
     "contact": {
       "markets": "Abu Dhabi - Dubai - Al Ain",

@@ -104,7 +104,7 @@ export default function SiteChrome({
             <a key={item.href} href={item.href} aria-current={item.href === currentPath ? "page" : undefined}>{item.label}</a>
           ))}
         </nav>
-        <Button href={header.cta.href} variant="primary">{header.cta.label}</Button>
+        <Button className="mobile-menu-cta" href={header.cta.href} variant="primary">{header.cta.label}</Button>
         <p className="menu-contact">
           {header.contact.markets}
           <br />

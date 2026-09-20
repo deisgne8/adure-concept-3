@@ -209,11 +209,7 @@
     font-size: 11px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  #portfolio .portfolio-item-v2 img {
-    transition: none;
-  }
-}
+
 
 /* Portfolio toolbar follows the square listing-view segmented control. */
 #home#home #portfolio .portfolio-toolbar {
@@ -310,7 +306,7 @@
   }
 }
 
-/* Horizontal card carousel with four complete cards visible on desktop. */
+/* Swiper owns the portfolio rail, filter state, looping, and autoplay. */
 #home#home #portfolio .portfolio-intro h2,
 #home#home #portfolio .portfolio-caption h3 {
   color: var(--accent) !important;
@@ -339,52 +335,103 @@
   opacity: 0.3;
   cursor: default;
 }
-#home#home #portfolio .portfolio-mosaic {
-  --portfolio-gap: clamp(16px, 2vw, 28px);
-  display: flex;
-  flex-wrap: nowrap;
-  gap: var(--portfolio-gap);
+#home#home #portfolio .portfolio-mosaic.swiper {
+  display: block;
   margin-top: var(--space-xl);
-  padding: 0 0 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  overscroll-behavior-inline: contain;
+  padding: 0;
+  overflow: hidden;
 }
-#home#home #portfolio .portfolio-mosaic {
-  cursor: grab;
-  user-select: none;
+#home#home #portfolio .portfolio-mosaic.swiper .swiper-wrapper {
+  align-items: stretch;
 }
-#home#home #portfolio .portfolio-mosaic.is-dragging {
-  cursor: grabbing;
-  scroll-snap-type: none;
-  scroll-behavior: auto;
+#home#home #portfolio .portfolio-mosaic.swiper .swiper-slide {
+  height: auto;
 }
-#home#home #portfolio .portfolio-mosaic::-webkit-scrollbar {
-  display: none;
-}
-#home#home #portfolio .portfolio-item-v2 {
-  flex: 0 0 calc((100% - 3 * var(--portfolio-gap)) / 4);
-  scroll-snap-align: start;
+#home#home #portfolio .portfolio-mosaic.swiper .portfolio-item-v2 {
+  flex: 0 0 auto;
+  width: auto;
   transform: none !important;
 }
-@media (max-width: 1023.98px) {
-  #home#home #portfolio .portfolio-item-v2 {
-    flex-basis: calc((100% - var(--portfolio-gap)) / 2);
-  }
+
+/* Portfolio editorial layout follows the approved main-branch composition. */
+#home#home #portfolio .portfolio-intro {
+  display: block;
+  margin: 0;
+}
+#home#home #portfolio .portfolio-intro > div {
+  display: block;
+}
+#home#home #portfolio .portfolio-intro h2 {
+  max-width: 58rem;
+  color: var(--accent) !important;
+  font-size: clamp(3rem, 4.6vw, 5.1rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+#home#home #portfolio .portfolio-intro p {
+  max-width: 46rem;
+  margin: 0.875rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.5;
+}
+#home#home #portfolio .portfolio-intro .btn {
+  margin-top: 2.5rem;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+}
+#home#home #portfolio .portfolio-toolbar {
+  margin-top: -3.75rem;
+}
+#home#home #portfolio .portfolio-filters {
+  padding: 0.35rem;
+  border-color: #d8e2eb;
+  border-radius: 999px;
+  background: #eef3f8;
+}
+#home#home #portfolio .portfolio-filters button {
+  min-height: 3.25rem;
+  padding-inline: 1.75rem;
+  border-radius: 999px;
+  background: transparent;
+  color: #5b6570;
+  font-weight: 600;
+}
+#home#home #portfolio .portfolio-filters button.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+#home#home #portfolio .portfolio-mosaic.swiper {
+  margin-top: clamp(4rem, 6vw, 6.5rem);
+}
+#home#home #portfolio .portfolio-image,
+#home#home #portfolio .portfolio-item-v2 img {
+  border-radius: 1.25rem;
+}
+#home#home #portfolio .portfolio-caption {
+  padding-top: 1.25rem;
+}
+#home#home #portfolio .portfolio-caption h3 {
+  color: var(--accent) !important;
+  font-size: clamp(1.35rem, 1.65vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+#home#home #portfolio .portfolio-card-meta {
+  padding-top: 0.4rem;
+  color: #68727d;
+  font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+  font-weight: 400;
 }
 @media (max-width: 767.98px) {
   #home#home #portfolio .portfolio-toolbar {
-    margin-top: 0;
+    margin-top: 2.5rem;
   }
-  #home#home #portfolio .portfolio-mosaic {
-    display: flex;
-    gap: 16px;
-    margin-top: var(--space-xl);
-  }
-  #home#home #portfolio .portfolio-item-v2 {
-    flex-basis: 82vw;
+  #home#home #portfolio .portfolio-mosaic.swiper {
+    margin-top: 3rem;
   }
 }

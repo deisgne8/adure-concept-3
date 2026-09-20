@@ -293,12 +293,3 @@
     height: 24rem;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea,
-  .contact-form .contact-submit.btn.primary {
-    transition: none;
-  }
-}

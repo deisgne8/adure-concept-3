@@ -282,7 +282,7 @@
   .properties-page .owner-actions .btn{width:100%}
 }
 
-@media(prefers-reduced-motion:reduce){.properties-page .properties-hero>img,.properties-page .property-card{animation:none}.properties-page .property-card-media img,.properties-page .property-card-body,.properties-page .map-marker{transition:none}}
+
 
 /* Global image radius update. */
 .properties-page :root{--image-radius:16px}

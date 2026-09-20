@@ -17,7 +17,7 @@
   z-index: -2;
 }
 #sell::before {
-  background: url("/assets/sell-sunset.jpg") right top/cover no-repeat;
+  background: var(--sell-background) right top/cover no-repeat;
 }
 #sell::after {
   z-index: -1;
@@ -60,7 +60,7 @@
 #sell .sell-form {
   padding: clamp(26px, 3vw, 42px);
   border: 1px solid rgba(255, 255, 255, 0.42);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.24),
@@ -91,7 +91,7 @@
   min-height: 52px;
   padding: 0 16px;
   border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.88);
   color: var(--ink);
   font: 400 var(--text-body)/1 var(--font-body);
@@ -120,7 +120,7 @@
   margin: 0;
   padding: 0 18px;
   border: 1px solid var(--accent);
-  border-radius: 0;
+  border-radius: var(--radius-pill);
   background: var(--accent);
   color: #fff;
   font-size: var(--text-small);
@@ -179,7 +179,7 @@
   }
   #sell .sell-form {
     padding: 24px 20px;
-    border-radius: 0;
+    border-radius: var(--radius-lg);
   }
 }
 @media (prefers-reduced-transparency: reduce) {

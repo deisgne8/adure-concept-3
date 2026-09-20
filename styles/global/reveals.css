@@ -18,14 +18,7 @@
 .section-copy-reveal-ready.is-copy-visible .section-copy-intro {
   transition-delay: 0.28s;
 }
-@media (prefers-reduced-motion: reduce) {
-  .section-copy-reveal-ready .section-copy-title,
-  .section-copy-reveal-ready .section-copy-intro {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
+
 
 /* Reusable entry treatment for page heroes and inner banners. */
 .page-banner-enter > * {
@@ -49,12 +42,5 @@
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .page-banner-enter > * {
-    opacity: 1;
-    transform: none;
-    animation: none;
   }
 }

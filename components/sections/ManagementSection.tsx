@@ -20,12 +20,9 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
 
     if (!layout || !root) return;
 
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
     const compact = window.matchMedia("(max-width: 800px)").matches;
 
-    if (reducedMotion || compact) {
+    if (compact) {
       root.classList.add("is-scene-expanded");
       root.style.setProperty("--management-scene-width", "100%");
       root.style.setProperty("--management-scene-height", "100%");
@@ -40,6 +37,9 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
 
     const track = root.querySelector<HTMLElement>(".management-stack-track");
     const header = document.querySelector<HTMLElement>(".site-header");
+    const sceneImage = root.querySelector<HTMLElement>(
+      ".management-visual-v2 img",
+    );
     const copy = gsap.utils.toArray<HTMLElement>(
       ".management-context-copy > h2, .management-context-copy > .intro, .management-context-copy > .management-main-cta",
       root,
@@ -59,6 +59,10 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
       root.style.setProperty(
         "--management-card-offset",
         `${stageHeight * 2.09}px`,
+      );
+      root.style.setProperty(
+        "--management-image-y",
+        `${stageHeight * 0.045}px`,
       );
       ScrollTrigger.refresh();
     };
@@ -89,6 +93,19 @@ export default function ManagementSection({ content }: ManagementSectionProps) {
           0,
         )
         .to(copy, { autoAlpha: 1, y: 0, stagger: 0.12, duration: 0.25 }, 0.72);
+
+      if (sceneImage) {
+        gsap.to(root, {
+          "--management-image-y": "0px",
+          ease: "none",
+          scrollTrigger: {
+            trigger: track,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.7,
+          },
+        });
+      }
 
       cards.forEach((card, index) => {
         const image = card.querySelector<HTMLElement>(".service-card-media img");

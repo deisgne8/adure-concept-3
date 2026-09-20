@@ -222,13 +222,7 @@
     margin-top: 30px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  #management .management-visual-v2 img,
-  #management .service-row,
-  #management .management-pagination button {
-    transition: none;
-  }
-}
+
 
 /* Full-viewport editorial scene with service cards that rise and stack over it. */
 #home #management.has-management-stack {
@@ -582,36 +576,7 @@
     font-size: clamp(25px, 7vw, 34px);
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  #management.has-management-stack .service-row,
-  #management.has-management-stack .service-row::after,
-  #management .service-card-media img,
-  #management.management-intro-ready .management-visual-v2 img,
-  #management.management-intro-ready .management-title-lead,
-  #management.management-intro-ready .management-title-main,
-  #home #management.management-intro-ready .management-stack-sticky > .intro,
-  #home
-    #management.management-intro-ready
-    .management-stack-sticky
-    > .management-main-cta {
-    transition: none;
-    will-change: auto;
-  }
-  #management.has-management-stack .service-row,
-  #management .service-card-media img {
-    transform: none;
-  }
-  #management.management-intro-ready .management-visual-v2 img,
-  #management.management-intro-ready .management-title-lead,
-  #management.management-intro-ready .management-title-main,
-  #home #management.management-intro-ready .management-stack-sticky > .intro,
-  #home
-    #management.management-intro-ready
-    .management-stack-sticky
-    > .management-main-cta {
-    opacity: 1;
-  }
-}
+
 
 /* Scroll-driven image card entrance; the service stack keeps its own motion. */
 #home #management.has-scroll-entrance {
@@ -684,29 +649,4 @@
   .management-context-copy
   > .management-main-cta {
   transition-delay: 0.55s, 0.55s, 0s;
-}
-@media (prefers-reduced-motion: reduce) {
-  #management.has-scroll-entrance
-    .management-stack-sticky
-    .management-visual-v2 {
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    transform: none;
-    border: 0;
-    border-radius: 0;
-    will-change: auto;
-  }
-  #home #management.has-scroll-entrance .management-context-copy > h2,
-  #home #management.has-scroll-entrance .management-context-copy > .intro,
-  #home
-    #management.has-scroll-entrance
-    .management-context-copy
-    > .management-main-cta {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition: none;
-    will-change: auto;
-  }
 }

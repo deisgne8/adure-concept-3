@@ -1,0 +1,13 @@
+/* Keep the closing homepage chapter aligned with the final static reference. */
+#home#home #conversation .final-layout h2 {
+  font-size: clamp(36px, 3.2vw, 54px) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.035em !important;
+}
+
+@media (max-width: 767.98px) {
+  #home#home #conversation .final-layout h2 {
+    font-size: clamp(32px, 9vw, 42px) !important;
+  }
+}

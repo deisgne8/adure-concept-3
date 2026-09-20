@@ -2,5 +2,12 @@
   "id": "sell",
   "label": "Sell your property",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "form": ["Name", "Email", "Phone", "Property details"]
+  "heading": "Unlock The Next Opportunity For Your Property",
+  "description": "We position and present your property with the attention it deserves, creating the right visibility and connecting it with serious buyers.",
+  "background": "/assets/sell-sunset.jpg",
+  "form": {
+    "button": "Discuss My Property",
+    "note": "Opens an email draft with your property details.",
+    "propertyTypes": ["Residential", "Retail", "Commercial", "Other"]
+  }
 }

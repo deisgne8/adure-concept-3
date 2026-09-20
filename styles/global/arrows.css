@@ -25,7 +25,6 @@
   content: none;
 }
 
-#home #proof .proof-about > span,
 #home #portfolio .portfolio-card-arrow,
 #home #trust .sector-arrow {
   color: var(--accent);
@@ -34,19 +33,11 @@
   font-weight: 400;
 }
 
-#home #proof .proof-about > span::before,
 #home #portfolio .portfolio-card-arrow::before,
 #home #trust .sector-arrow::before {
   content: "→";
   font-size: 26px;
   line-height: 1;
-}
-
-#home #proof .proof-about > span {
-  order: 2;
-  width: 34px;
-  height: 34px;
-  background: transparent;
 }
 
 #home #portfolio .portfolio-card-arrow::before {
@@ -81,13 +72,10 @@
 #home #discovery .map-location:focus-visible .button-arrow {
   transform: translateX(var(--space-2xs));
 }
-#home #proof .proof-about:hover > span,
-#home #proof .proof-about:focus-visible > span,
 #home #trust .sector:hover .sector-arrow {
   transform: translateX(var(--space-2xs));
 }
 
-#home #proof .proof-about > span,
 #home #trust .sector-arrow {
   transition:
     transform var(--motion-base) var(--ease),

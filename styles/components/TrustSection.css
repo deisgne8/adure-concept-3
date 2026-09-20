@@ -20,6 +20,14 @@
   color: var(--accent);
   white-space: nowrap;
 }
+
+/* Match the final homepage heading override in the static reference. */
+#home#home #trust .trust-logo-title {
+  font-size: clamp(36px, 3.2vw, 54px) !important;
+  font-weight: 600 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.035em !important;
+}
 #trust .trust-logo-intro {
   max-width: 680px;
   margin: 24px auto 0;
@@ -86,6 +94,13 @@
   border: 1px solid #dce5eb;
   border-radius: 0;
   background: #fff;
+}
+
+/* This late radius pass is also present in the final main stylesheet and must
+   win over the square-card declarations above. */
+#home #trust :is(.client-logo-group, .client-logo-viewport, .client-logo) {
+  border-radius: var(--radius-large, var(--radius-lg, 16px)) !important;
+  overflow: hidden !important;
 }
 #trust .client-logo img {
   display: block;
@@ -167,6 +182,7 @@
     margin-bottom: 42px;
   }
   #home #trust .trust-logo-title {
+    font-size: clamp(32px, 9vw, 42px) !important;
     white-space: normal;
   }
   #trust .trust-logo-intro {
@@ -182,31 +198,5 @@
   }
   #trust .client-logo img {
     max-height: 54px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  #trust .client-logo-track {
-    animation: none;
-    flex-wrap: wrap;
-    width: auto;
-    justify-content: center;
-  }
-  #trust .client-logo-run[aria-hidden="true"] {
-    display: none;
-  }
-  #trust .client-logo-viewport {
-    -webkit-mask: none;
-    mask: none;
-    padding-inline: var(--gutter);
-  }
-  #trust .client-logo,
-  #trust .client-logo-group h3,
-  #trust .client-logo-viewport,
-  .trust-logo-title,
-  .trust-logo-intro,
-  .trust-logo-cta {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 }

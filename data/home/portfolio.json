@@ -2,5 +2,39 @@
   "id": "portfolio",
   "label": "Portfolio",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "categories": ["Residential", "Commercial", "Mixed-use"]
+  "heading": "A Portfolio Built For Lasting Value",
+  "description": "From residential communities to retail assets, our portfolio reflects a long-term approach to real estate.",
+  "button": {
+    "label": "Explore Our Portfolio",
+    "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#portfolio"
+  },
+  "residential": [
+    {
+      "image": "assets/portfolio-reference/sunrise-residence-3-v2.webp",
+      "title": "Sunrise Residence 3",
+      "location": "Qaryat Al Hidd, Saadiyat Island"
+    },
+    {
+      "image": "assets/portfolio-reference/qaryat-al-hidd-v2.webp",
+      "title": "Qaryat Al Hidd",
+      "location": "Saadiyat Island"
+    },
+    {
+      "image": "assets/portfolio-reference/al-mushrif-villas-v2.webp",
+      "title": "Al Mushrif Villas",
+      "location": "Al Mushrif, Abu Dhabi"
+    },
+    {
+      "image": "assets/portfolio-reference/ghantoot-complex-v2.webp",
+      "title": "Ghantoot Complex",
+      "location": "Mohammed Bin Zayed City"
+    }
+  ],
+  "retail": [
+    {
+      "image": "assets/portfolio-reference/48-burj-gate-v2.webp",
+      "title": "48 Burj Gate",
+      "location": "Sheikh Zayed Road, Dubai"
+    }
+  ]
 }

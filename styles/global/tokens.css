@@ -128,11 +128,3 @@
     --grid-column-gap: 2rem;
   }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    --motion-control: 0ms;
-    --motion-image: 0ms;
-    --image-scale: 1;
-  }
-}

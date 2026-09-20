@@ -155,13 +155,3 @@
   }
 
 }
-
-@media (prefers-reduced-motion: reduce) {
-  #home > .site-hero .hero-video,
-  #home > .site-hero .hero-inner {
-    transform: none;
-    opacity: 1;
-    will-change: auto;
-  }
-
-}

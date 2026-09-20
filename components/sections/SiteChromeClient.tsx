@@ -26,8 +26,7 @@ export default function SiteChromeClient({ persistentGlass = false }: SiteChrome
         if (servicesMenu && !servicesMenu.classList.contains("is-open")) servicesMenu.hidden = true;
       };
 
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) finishClose();
-      else servicesCloseTimer = setTimeout(finishClose, 180);
+      servicesCloseTimer = setTimeout(finishClose, 180);
 
       if (restoreFocus) servicesToggle?.focus();
     };

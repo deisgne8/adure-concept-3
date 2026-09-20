@@ -38,7 +38,7 @@
 @media(max-width:1100px){.about-split,.leadership-head{grid-template-columns:1fr 1fr}.about-split .section-kicker,.leadership-head .about-eyebrow{grid-column:1/-1}.leader-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:900px){.about-hero h1{font-size:clamp(4rem,14vw,7rem)}.about-split,.story-grid,.vision-layout,.values-layout,.leadership-head{grid-template-columns:1fr}.values-intro{position:static}.leader-grid{grid-template-columns:repeat(2,1fr)}.story-grid figure{min-height:28rem}}
 @media(max-width:640px){.about-section,.story-section,.vision-section,.values-section,.leadership-section{padding-block:4rem}.about-hero{min-height:86svh}.about-hero-inner{padding-bottom:4rem}.about-copy-stack{font-size:1rem}.leader-grid{grid-template-columns:1fr}.values-list article{grid-template-columns:1fr;gap:.6rem}.about-cta{min-height:36rem}.cta-actions .btn{width:100%}}
-@media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}}
+
 
 /* Homepage alignment pass: inherit the same editorial restraint, sentence-case
    type language and line-based controls used on the approved homepage. */
@@ -959,13 +959,7 @@
   .about-page .story-tilton-prev,
   .about-page .story-tilton-next{margin:0}
 }
-@media(prefers-reduced-motion:reduce){
-  .about-page .story-tilton-stage,
-  .about-page .story-tilton-card,
-  .about-page .story-tilton-image img{
-    transition:none!important;
-  }
-}
+
 
 /* Vision section: United Carriers-style pinned scroll sequence using ADURE type. */
 .about-page .vision-scroll-section{
@@ -1194,12 +1188,7 @@
   .about-page .vision-scroll-panel h2{font-size:clamp(58px,18vw,88px)!important}
   .about-page .vision-scroll-panel p{font-size:clamp(1.35rem,6vw,1.8rem)!important}
 }
-@media(prefers-reduced-motion:reduce){
-  .about-page .vision-scroll-section{height:auto;min-height:auto}
-  .about-page .vision-scroll-sticky{position:relative;min-height:720px}
-  .about-page .vision-scroll-image,
-  .about-page .vision-scroll-panel{transition:none}
-}
+
 
 /* CEO message and leadership team update. */
 .about-page .ceo-message-section{
@@ -1629,14 +1618,7 @@
   background:linear-gradient(180deg,rgba(9,13,19,.08),rgba(9,13,19,.22)),linear-gradient(90deg,rgba(9,13,19,.18),transparent 34%);
   pointer-events:none;
 }
-@media(prefers-reduced-motion:reduce){
-  .about-page .values-expedition-list article,
-  .about-page .values-expedition-list article:before,
-  .about-page .values-expedition-list article>span,
-  .about-page .values-expedition-list article h3,
-  .about-page .values-expedition-list article p,
-  .about-page .values-expedition-visual img{transition:none!important;transform:none!important}
-}
+
 
 /* Keep Values side columns pinned during the scrub, matching the reference. */
 .about-page .values-expedition-grid{
@@ -2451,6 +2433,27 @@
 .about-page .team-card-grid.swiper .team-card figure{
   min-height:0!important;
   aspect-ratio:1 / 1.35!important;
+}
+.about-page .story-tilton-card .type-guides-heading{
+  max-width:14ch!important;
+}
+body .about-page main .about-split .type-guides-heading,
+body .about-page main .story-tilton-card .type-guides-heading,
+body .about-page main .guides-head .type-guides-heading{
+  font-family:"Fira Sans",sans-serif!important;
+  font-size:clamp(3rem,4.4vw,5rem)!important;
+  font-weight:700!important;
+  line-height:1.05!important;
+  letter-spacing:-.06em!important;
+}
+.about-page .story-tilton-image.about-image-scale:hover .story-parallax-image{
+  transform:translate3d(0,var(--story-parallax-offset),0) scale(1.1)!important;
+}
+.about-page .story-tilton-image .story-parallax-image{
+  --story-parallax-offset:0px;
+  transform:translate3d(0,var(--story-parallax-offset),0) scale(1.1)!important;
+  transition:transform 80ms linear!important;
+  will-change:transform;
 }
 @media(max-width:959px){
   .about-page .team-card-grid.swiper .swiper-wrapper{gap:20px!important}

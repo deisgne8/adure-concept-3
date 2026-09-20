@@ -1,6 +1,64 @@
 {
   "id": "transition",
-  "label": "Philosophy",
+  "label": "30-day transition plan",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "theme": "Creating value beyond property"
+  "heading": "Our 30-Day Transition Journey",
+  "description": [
+    "A smooth transition is essential to protecting day-to-day operations, tenant experience and property performance. At ADURE we follow a structured 30-day handover process designed to bring every part of the property under management in a clear, controlled manner.",
+    "From reviewing documents and existing arrangements to inspecting the asset, communicating with tenants and setting up reporting, each stage prepares the property for a seamless move into full management."
+  ],
+  "button": {
+    "text": "Explore property management",
+    "href": "/#management",
+    "variant": "link"
+  },
+  "stages": [
+    {
+      "week": "Week 1",
+      "title": "Review",
+      "description": "Understand the asset, review documentation and identify existing requirements.",
+      "image": {
+        "src": "/assets/transition-stages.png",
+        "alt": "Reviewing property plans and documentation",
+        "viewBox": "0 0 764 507",
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "week": "Week 2",
+      "title": "Inspect",
+      "description": "Assess the property, operations and resident needs.",
+      "image": {
+        "src": "/assets/transition-stages.png",
+        "alt": "Inspecting a managed property",
+        "viewBox": "772 0 764 507",
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "week": "Week 3",
+      "title": "Takeover",
+      "description": "Bring operations, communications and reporting into alignment.",
+      "image": {
+        "src": "/assets/hidd-al-saadiyat/transition-takeover-pool.jpg",
+        "alt": "Managed waterfront property ready for operational takeover",
+        "width": 2000,
+        "height": 1333
+      }
+    },
+    {
+      "week": "Week 4",
+      "title": "Manage",
+      "description": "Move forward with clear oversight and a focus on long-term value.",
+      "image": {
+        "src": "/assets/transition-stages.png",
+        "alt": "Ongoing property management and reporting",
+        "viewBox": "772 516 764 508",
+        "width": 1536,
+        "height": 1024
+      }
+    }
+  ]
 }

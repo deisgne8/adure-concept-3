@@ -73,7 +73,7 @@ export default function StaticPropertiesPage({ content, site }: Props) {
   const submitSearch = () => {
     setFilters(draftFilters);
     setPage(1);
-    document.querySelector("#results")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    document.querySelector("#results")?.scrollIntoView({ behavior: "smooth" });
   };
   const clearFilters = () => {
     setDraftFilters({ ...emptyStaticFilters });
@@ -101,7 +101,7 @@ export default function StaticPropertiesPage({ content, site }: Props) {
   };
   const changePage = (nextPage: number) => {
     setPage(nextPage);
-    document.querySelector(".results-toolbar")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    document.querySelector(".results-toolbar")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (

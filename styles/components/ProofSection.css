@@ -37,26 +37,10 @@
 #proof .proof-about {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--space-sm);
   color: var(--accent);
   font: 400 18px/1.4 var(--font-body);
   text-decoration: none;
-}
-#proof .proof-about span {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 25px;
-  transition:
-    background 0.25s,
-    transform 0.25s;
-}
-#proof .proof-about:hover span {
-  background: var(--accent);
-  transform: translate(2px, -2px);
 }
 #proof .proof-about:focus-visible {
   outline: 2px solid var(--accent);
@@ -138,10 +122,5 @@
   }
   #proof .proof-statistic .proof-value {
     font-size: clamp(64px, 12vw, 88px) !important;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  #proof .proof-about span {
-    transition: none;
   }
 }

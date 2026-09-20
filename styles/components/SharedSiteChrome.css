@@ -157,6 +157,11 @@
   color: var(--ink) !important;
 }
 
+.mobile-menu.mobile-menu .menu-top .site-logo img {
+  height: 4.25rem !important;
+  max-height: none !important;
+}
+
 .mobile-menu.mobile-menu nav > a,
 .mobile-menu.mobile-menu summary {
   padding: var(--s1) 0 !important;
@@ -301,19 +306,16 @@
     height: 3.25rem !important;
   }
 
+  .mobile-menu.mobile-menu .menu-top .site-logo img {
+    height: 3.25rem !important;
+    max-height: none !important;
+  }
+
   .footer.footer {
     padding-top: 2.5rem !important;
   }
 
   .footer.footer .footer-grid {
     grid-template-columns: 1fr !important;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-header.site-header,
-  .site-header.site-header .header-cta,
-  .site-header.site-header .header-cta::before {
-    transition: none !important;
   }
 }
