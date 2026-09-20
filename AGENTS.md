@@ -23,3 +23,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Content that the CMS needs to edit belongs in the relevant `data/` JSON file.
   Hero headings are rendered from JSON lines with explicit `<br />` breaks;
   hero media, copy, and button label, link, and variant are JSON-driven.
+- Every route uses the same shared `SiteChrome` header and `SiteFooter` as the
+  Home page. Do not add page-specific header/footer markup or visual overrides;
+  use the shared solid surface state only when a light first section needs
+  contrast, and keep all chrome styling in the shared chrome stylesheet.

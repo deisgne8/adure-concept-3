@@ -11,7 +11,7 @@ type Props = { content: CustomersContent; site: HomeContent["site"] };
 export default function StaticCustomersPage({ content, site }: Props) {
   return (
     <div className="customers-page">
-      <SiteChrome content={site} currentPath="/customers" headerClassName="customers-header" homeHref="/" skipTargetId="customers-main" standalone />
+      <SiteChrome content={site} currentPath="/customers" homeHref="/" skipTargetId="customers-main" standalone />
       <main id="customers-main">
         <section className="customers-hero" aria-labelledby="customers-title">
           <img src={content.hero.image} alt={content.hero.imageAlt} fetchPriority="high" />

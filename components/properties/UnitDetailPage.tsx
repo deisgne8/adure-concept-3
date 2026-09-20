@@ -36,6 +36,7 @@ export default function UnitDetailPage({
         content={site}
         homeHref="/"
         currentPath="/properties"
+        surface="solid"
         standalone
       />
       <main id="main">

@@ -26,6 +26,7 @@ export default function PropertyCatalogPage({
         content={site}
         homeHref="/"
         currentPath="/properties"
+        surface="solid"
         standalone
       />
       <main id="main">

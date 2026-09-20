@@ -2,7 +2,11 @@
 
 import { useEffect } from "react";
 
-export default function SiteChromeClient() {
+type SiteChromeClientProps = {
+  persistentGlass?: boolean;
+};
+
+export default function SiteChromeClient({ persistentGlass = false }: SiteChromeClientProps) {
   useEffect(() => {
     const header = document.querySelector<HTMLElement>(".site-header");
     const mobileMenu = document.querySelector<HTMLDialogElement>("#mobile-menu");
@@ -11,7 +15,7 @@ export default function SiteChromeClient() {
     const servicesToggle = document.querySelector<HTMLButtonElement>("#services-toggle");
     const servicesMenu = document.querySelector<HTMLElement>("#services-menu");
 
-    const updateHeader = () => header?.classList.toggle("is-glass", window.scrollY > 24);
+    const updateHeader = () => header?.classList.toggle("is-glass", persistentGlass || window.scrollY > 24);
     const closeServices = () => {
       servicesToggle?.setAttribute("aria-expanded", "false");
       if (servicesMenu) servicesMenu.hidden = true;
@@ -53,7 +57,7 @@ export default function SiteChromeClient() {
       document.removeEventListener("click", closeServicesOnOutsideClick);
       mobileLinks?.forEach((link) => link.removeEventListener("click", closeMenu));
     };
-  }, []);
+  }, [persistentGlass]);
 
   return null;
 }

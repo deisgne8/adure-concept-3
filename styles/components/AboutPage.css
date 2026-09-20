@@ -1,7 +1,5 @@
 :root{--font-display:var(--font-display);--font-body:var(--font-body);--weight-regular:300}
 .about-page{background:#f4f7f8;color:var(--ink)}
-.about-header .desktop-nav .is-current{color:var(--brand-highlight)}
-.about-header.is-glass .desktop-nav .is-current{color:var(--accent)}
 .about-eyebrow,.section-kicker{display:flex;align-items:center;gap:.8rem;color:var(--accent);font-size:.72rem;line-height:1.2;letter-spacing:.22em;text-transform:uppercase}
 .about-eyebrow b,.section-kicker span:first-child{font-weight:400;color:var(--muted-light)}
 .about-hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;background:#001f39;color:var(--white)}

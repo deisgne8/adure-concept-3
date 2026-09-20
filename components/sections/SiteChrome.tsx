@@ -6,7 +6,7 @@ type SiteChromeProps = {
   content: HomeContent["site"];
   homeHref?: string;
   currentPath?: string;
-  headerClassName?: string;
+  surface?: "overlay" | "solid";
   skipTargetId?: string;
   standalone?: boolean;
 };
@@ -15,12 +15,13 @@ export default function SiteChrome({
   content,
   homeHref = content.header.logo.href,
   currentPath,
-  headerClassName,
+  surface = "overlay",
   skipTargetId = "main",
   standalone = false,
 }: SiteChromeProps) {
   const { header } = content;
   const showIntro = !standalone;
+  const persistentGlass = surface === "solid";
 
   return (
     <>
@@ -39,11 +40,11 @@ export default function SiteChrome({
           </div>
         </div>
       )}
-      {standalone && <SiteChromeClient />}
+      {standalone && <SiteChromeClient persistentGlass={persistentGlass} />}
       <a className="skip-link" href={`#${skipTargetId}`}>
         Skip to content
       </a>
-      <header className={["site-header", headerClassName].filter(Boolean).join(" ")}>
+      <header className={`site-header${persistentGlass ? " is-glass" : ""}`}>
         <div className="container header-inner">
           <a href={homeHref} className="site-logo" aria-label={header.logo.ariaLabel}>
             <img src="/assets/adure-logo-horizontal.svg" alt={header.logo.alt} width="230" height="62" />

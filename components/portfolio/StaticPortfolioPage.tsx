@@ -85,7 +85,7 @@ export default function StaticPortfolioPage({ content, site }: Props) {
 
   return (
     <div className="portfolio-page">
-      <SiteChrome content={site} currentPath="/portfolio" headerClassName="portfolio-header" homeHref="/" skipTargetId="portfolio-main" standalone />
+      <SiteChrome content={site} currentPath="/portfolio" homeHref="/" skipTargetId="portfolio-main" standalone />
       <main id="portfolio-main">
         <section className="portfolio-hero" aria-labelledby="portfolio-title">
           <img src={content.hero.image} alt={content.hero.imageAlt} fetchPriority="high" />

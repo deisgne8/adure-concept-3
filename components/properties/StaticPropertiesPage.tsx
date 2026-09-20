@@ -106,7 +106,7 @@ export default function StaticPropertiesPage({ content, site }: Props) {
 
   return (
     <div className="properties-page properties-static-page">
-      <SiteChrome content={site} currentPath="/properties" headerClassName="properties-header" homeHref="/" skipTargetId="properties-main" standalone />
+      <SiteChrome content={site} currentPath="/properties" homeHref="/" skipTargetId="properties-main" standalone />
       <main id="properties-main">
         <section className="properties-hero" aria-labelledby="properties-title">
           <img src={content.hero.image} alt="Waterfront residences and beach at Saadiyat Island" />

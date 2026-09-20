@@ -21,66 +21,6 @@
   font-size: clamp(36px, 3.2vw, 54px);
 }
 
-.customers-page .customers-header {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: var(--z-header);
-  height: var(--nav-height);
-  color: var(--white);
-  background: transparent;
-  border-bottom-color: transparent;
-  box-shadow: none;
-}
-
-.customers-page .customers-header:not(.is-glass) .site-logo img {
-  filter: brightness(0) invert(1);
-}
-
-.customers-page .customers-header:not(.is-glass) .desktop-nav > a,
-.customers-page .customers-header:not(.is-glass) .desktop-nav > .nav-disclosure > button {
-  color: var(--white);
-}
-
-.customers-page .customers-header:not(.is-glass) .desktop-nav > a:hover,
-.customers-page .customers-header:not(.is-glass) .desktop-nav > a:focus-visible,
-.customers-page .customers-header:not(.is-glass) .desktop-nav > .nav-disclosure > button:hover,
-.customers-page .customers-header:not(.is-glass) .desktop-nav > .nav-disclosure > button:focus-visible {
-  color: var(--brand-highlight);
-}
-
-.customers-page .customers-header:not(.is-glass) .menu-toggle span {
-  background: var(--white);
-}
-
-.customers-page .customers-header.is-glass {
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.82);
-  border-bottom-color: rgba(231, 230, 227, 0.72);
-  box-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.06);
-  -webkit-backdrop-filter: blur(0.9375rem) saturate(130%);
-  backdrop-filter: blur(0.9375rem) saturate(130%);
-}
-
-.customers-page .desktop-nav > a[aria-current="page"]::after {
-  transform: scaleX(1);
-}
-
-.customers-page .customers-header .header-cta.btn.primary {
-  width: 150px;
-  height: 42px;
-  min-height: 42px;
-  padding: 0 22px;
-  border-color: var(--accent);
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0;
-  line-height: 1;
-  text-transform: none;
-}
-
 .customers-hero {
   position: relative;
   display: flex;

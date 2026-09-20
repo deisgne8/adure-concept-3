@@ -36,9 +36,9 @@ export default function StaticContactPage({ content, site }: Props) {
       <SiteChrome
         content={site}
         currentPath="/contact"
-        headerClassName="contact-header"
         homeHref="/"
         skipTargetId="contact-main"
+        surface="solid"
         standalone
       />
 

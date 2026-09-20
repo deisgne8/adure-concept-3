@@ -21,6 +21,7 @@ export default function BuildingDetailPage({
         content={site}
         homeHref="/"
         currentPath="/properties"
+        surface="solid"
         standalone
       />
       <main id="main">
