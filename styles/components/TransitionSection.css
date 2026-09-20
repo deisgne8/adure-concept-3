@@ -303,6 +303,9 @@
     min-height: 250px;
     padding-bottom: 24px;
   }
+  #home > #transition.has-transition-carousel .timeline-step {
+    overflow: visible;
+  }
   #home #transition.has-transition-carousel .timeline-step h3 {
     font-size: var(--type-feature);
     margin: 28px 0 18px;

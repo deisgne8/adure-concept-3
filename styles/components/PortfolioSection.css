@@ -567,36 +567,32 @@
 
 @media (max-width: 900px) {
   #home#home #portfolio .portfolio-intro {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto !important;
+    display: flex !important;
+    flex-direction: column !important;
     align-items: start !important;
-    gap: 1.1rem 4rem !important;
+    gap: 0 !important;
     margin-bottom: 4rem !important;
     padding-right: 0 !important;
   }
 
   #home#home #portfolio .portfolio-intro h2 {
-    grid-column: 1 !important;
-    grid-row: 1 !important;
+    order: 0 !important;
   }
 
   #home#home #portfolio .portfolio-intro > div {
     display: block !important;
-    grid-column: 1 !important;
-    grid-row: 2 !important;
+    order: 1 !important;
     max-width: 48rem !important;
   }
 
   #home#home #portfolio .portfolio-type-filters {
-    position: static !important;
-    grid-column: 1 !important;
-    grid-row: 2 !important;
+    position: relative !important;
+    order: 2 !important;
     align-self: start !important;
     justify-self: start !important;
     width: max-content !important;
     min-width: 0 !important;
-    margin: 0.15rem 0 0 !important;
+    margin: 1.5rem 0 0 !important;
     transform: none !important;
   }
 

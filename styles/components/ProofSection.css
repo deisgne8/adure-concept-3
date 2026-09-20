@@ -100,6 +100,13 @@
   font: 400 0.42em/1.2 var(--font-display);
   letter-spacing: -0.025em;
 }
+@media (max-width: 1023.98px) {
+  #proof .proof-statistic dd,
+  #proof .proof-statistic .proof-value {
+    font-size: clamp(58px, 7vw, 72px) !important;
+  }
+}
+
 @media (max-width: 800px) {
   #proof .proof-editorial-layout {
     grid-template-columns: 1fr;
@@ -120,9 +127,9 @@
   }
   #proof .proof-statistic dd {
     height: 1em;
-    font-size: clamp(64px, 12vw, 88px);
+    font-size: clamp(54px, 8vw, 64px);
   }
   #proof .proof-statistic .proof-value {
-    font-size: clamp(64px, 12vw, 88px) !important;
+    font-size: clamp(54px, 8vw, 64px) !important;
   }
 }
