@@ -1,6 +1,6 @@
 .site-hero>.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:transparent;pointer-events:none}
 .site-intro{display:contents;color:var(--accent)}
-.site-intro::before{content:"";position:fixed;inset:0;z-index:1000;background:var(--white);pointer-events:none}
+.site-intro::before{content:"";position:fixed;inset:0;z-index:1000;background:linear-gradient(90deg,rgba(2,18,32,.56),rgba(2,18,32,.22));pointer-events:none}
 .site-intro[hidden]{display:none}
 .site-intro[hidden]::before{content:none;display:none}
 html[data-opening] .site-intro[hidden]{display:contents}
@@ -15,7 +15,7 @@ html[data-opening] .site-intro[hidden]::before{content:"";display:block}
 /* Keep the media element connected and playing throughout the intro. */
 html[data-opening] #home>.site-hero{z-index:1001;background:transparent}
 html[data-opening] #home>.site-hero>.hero-video{max-width:none;transform-origin:50% 100%;will-change:clip-path,opacity,transform}
-html[data-opening="pending"] #home>.site-hero>.hero-video,html[data-opening="brand"] #home>.site-hero>.hero-video,html[data-opening="message"] #home>.site-hero>.hero-video{opacity:0;clip-path:inset(100% 0 0 0)}
+html[data-opening="pending"] #home>.site-hero>.hero-video,html[data-opening="brand"] #home>.site-hero>.hero-video,html[data-opening="message"] #home>.site-hero>.hero-video{opacity:1;clip-path:inset(0 0 0 0)}
 html[data-opening] .site-hero::after{opacity:0}
 html[data-opening="handoff"] .site-hero::after{opacity:1;transition:opacity 420ms ease-out}
 html[data-opening="handoff"] .site-header{visibility:visible;z-index:1002}

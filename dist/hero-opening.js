@@ -74,7 +74,8 @@ async function open(){
   const rings=[...intro.querySelectorAll('.intro-ring')];
   const revealDuration=3600;
   const handoffDuration=420;
-  video.style.cssText='inset:0;width:100%;height:100%;opacity:1;object-fit:cover;transform-origin:50% 50%;clip-path:inset(100% 0 0 0);border:0;border-radius:0';
+  video.style.cssText='inset:0;width:100%;height:100%;opacity:1;object-fit:cover;transform-origin:50% 50%;clip-path:inset(0 0 0 0);border:0;border-radius:0';
+  video.play().catch(()=>{});
   root.dataset.opening='brand';
 
   rings.forEach((ring,index)=>animate(ring,[
@@ -124,7 +125,7 @@ async function open(){
   // Reveal the full-size playing film in one continuous movement, without a
   // contained-card hold or a second expansion phase.
   const videoReveal=animate(video,[
-    {transform:`scale(${revealStartScale})`,clipPath:'inset(100% 0 0 0)'},
+    {transform:`scale(${revealStartScale})`,clipPath:'inset(0 0 0 0)'},
     {transform:`scale(${heroScale})`,clipPath:'inset(0 0 0 0)'}
   ],{duration:revealDuration,easing:'cubic-bezier(.4,0,.2,1)'});
   // Crossfade to the real navigation during the final part of the reveal so
