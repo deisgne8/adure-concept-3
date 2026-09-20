@@ -1,0 +1,26 @@
+/* Shared scroll reveal and subtle image parallax across ADURE pages. */
+[data-site-reveal]{
+  opacity:0;
+  transform:translate3d(0,28px,0);
+  transition:opacity .75s ease,transform .75s cubic-bezier(.2,.65,.2,1);
+  transition-delay:var(--site-reveal-delay,0ms);
+  will-change:opacity,transform;
+}
+[data-site-reveal].is-site-visible{opacity:1;transform:translate3d(0,0,0)}
+[data-site-parallax]{
+  --site-parallax-y:0px;
+  transform:translate3d(0,var(--site-parallax-y),0) scale(1.08);
+  transform-origin:center;
+  will-change:transform;
+}
+@media(prefers-reduced-motion:reduce){
+  [data-site-reveal]{opacity:1;transform:none;transition:none;transition-delay:0ms}
+  [data-site-parallax]{transform:none!important}
+}
+.guides-values[data-site-parallax]{transform:none!important}
+.guides-values[data-site-parallax]::after{
+  transform:translate3d(0,var(--site-parallax-y),0) scale(1.08);
+  transform-origin:center;
+  will-change:transform;
+}
+@media(prefers-reduced-motion:reduce){.guides-values[data-site-parallax]::after{transform:none!important}}

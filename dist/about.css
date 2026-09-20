@@ -4986,3 +4986,89 @@ body.about-page .site-header .header-cta.btn.primary:focus-visible{
   border-color:var(--accent-hover)!important;
   color:#fff!important;
 }
+
+/* Browser comment: align final CTA text colors with the reference. */
+.about-page .about-home-banner.final-v2 .final-layout h2,
+body.about-page main .about-home-banner.final-v2 .final-layout h2{
+  color:#004789!important;
+}
+.about-page .about-home-banner.final-v2 .final-layout p{
+  color:#302e2d!important;
+}
+.about-page .about-home-banner.final-v2 .final-links a,
+.about-page .about-home-banner.final-v2 .final-links a:after{
+  color:#004789!important;
+}
+/* Browser comment: update Values section display image to the requested lifestyle photo. */
+.about-page .guides-section .guides-values:after{
+  background:url('assets/about/36.jpg?v=values-image-2') center/cover no-repeat!important;
+}
+/* Heading consistency: page headings stay title case, same size and weight. */
+body main h1,
+body main h2{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+body main h1::before,
+body main h1::after,
+body main h2::before,
+body main h2::after{
+  content:none!important;
+  display:none!important;
+}
+body.contact-page main .contact-details h2{
+  font-family:var(--font-body,var(--body))!important;
+  font-size:20px!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+  color:var(--ink)!important;
+}
+@media(max-width:640px){
+  body main h1,
+  body main h2{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+  body.contact-page main .contact-details h2{
+    font-size:18px!important;
+  }
+}
+/* Final heading parity guard: override older page-specific heading rules. */
+body main :is(h1,h2),
+body.properties-page main :is(h1,h2,#owner-title),
+body.portfolio-page main :is(h1,h2,#portfolio-intro-title,#portfolio-explorer-title,#portfolio-cta-title),
+body.customers-page main :is(h1,h2,#closing-title),
+body.about-page main :is(h1,h2),
+body.contact-page main #contact-title{
+  font-family:var(--font-display,var(--display))!important;
+  font-size:clamp(36px,3.2vw,54px)!important;
+  font-weight:600!important;
+  line-height:1.05!important;
+  letter-spacing:-.04em!important;
+  text-transform:none!important;
+}
+body.contact-page main .contact-details h2{
+  font-family:var(--font-body,var(--body))!important;
+  font-size:20px!important;
+  font-weight:800!important;
+  line-height:1.2!important;
+  letter-spacing:0!important;
+  color:var(--ink)!important;
+}
+@media(max-width:640px){
+  body main :is(h1,h2),
+  body.properties-page main :is(h1,h2,#owner-title),
+  body.portfolio-page main :is(h1,h2,#portfolio-intro-title,#portfolio-explorer-title,#portfolio-cta-title),
+  body.customers-page main :is(h1,h2,#closing-title),
+  body.about-page main :is(h1,h2),
+  body.contact-page main #contact-title{
+    font-size:clamp(32px,9vw,42px)!important;
+  }
+  body.contact-page main .contact-details h2{
+    font-size:18px!important;
+  }
+}
