@@ -1988,7 +1988,8 @@ main {
   .service-panel,
   .client-logo-group,
   .client-logo-viewport,
-  .client-logo
+  .client-logo,
+  .final-v2 .section-shell
 ) {
   border-radius:var(--radius-large,16px)!important;
   overflow:hidden!important;
