@@ -110,7 +110,8 @@ async function open(){
   brand.style.transformOrigin='top left';
   animate(brand,[
     {opacity:1,transform:'translate3d(0,0,0) scale(1)'},
-    {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`}
+    {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`,offset:.74},
+    {opacity:0,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`}
   ],{duration:revealDuration,easing:'cubic-bezier(.55,0,.1,1)'});
   animate(brand.querySelector('img'),[
     {filter:'none',offset:0},
