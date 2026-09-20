@@ -1,0 +1,31 @@
+.site-hero>.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:transparent;pointer-events:none}
+.site-intro{display:contents;color:var(--accent)}
+.site-intro::before{content:"";position:fixed;inset:0;z-index:1000;background:var(--white);pointer-events:none}
+.site-intro[hidden]{display:none}
+.site-intro[hidden]::before{content:none;display:none}
+html[data-opening] .site-intro[hidden]{display:contents}
+html[data-opening] .site-intro[hidden]::before{content:"";display:block}
+.intro-lockup{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1002;width:min(1120px,94vw);display:grid;justify-items:center;pointer-events:none}
+.intro-brand{position:relative;z-index:3;width:min(520px,84vw);aspect-ratio:234/80;opacity:0;clip-path:inset(0 76% 0 0);transform:translateX(38%) scale(.96);transform-origin:17.1% 50%;will-change:clip-path,transform,opacity}
+.intro-brand img{display:block;width:100%;height:100%;object-fit:contain}
+.intro-ring{position:absolute;z-index:-1;left:17.1%;top:50%;width:34.2%;aspect-ratio:1;border:1px solid rgba(0,71,137,.28);border-radius:50%;opacity:0;transform:translate(-50%,-50%) rotate(-150deg) scale(.84);transform-origin:center;will-change:transform,opacity}
+.intro-ring-b{border-color:rgba(0,183,241,.32);transform:translate(-50%,-50%) rotate(150deg) scale(.76)}
+.intro-caption{margin:clamp(28px,4vh,44px) 0 0;font-family:var(--font-display);font-size:clamp(20px,3.6vw,52px);font-weight:400;line-height:1.06;letter-spacing:-.025em;text-align:center;text-transform:none;white-space:nowrap}
+.intro-caption span{display:inline-block;opacity:0;transform:translateY(8px);clip-path:inset(100% 0 0 0);will-change:transform,opacity,clip-path}
+/* Keep the media element connected and playing throughout the intro. */
+html[data-opening] #home>.site-hero{z-index:1001;background:transparent}
+html[data-opening] #home>.site-hero>.hero-video{max-width:none;transform-origin:50% 100%;will-change:clip-path,opacity,transform}
+html[data-opening="pending"] #home>.site-hero>.hero-video,html[data-opening="brand"] #home>.site-hero>.hero-video,html[data-opening="message"] #home>.site-hero>.hero-video{opacity:0;clip-path:inset(100% 0 0 0)}
+html[data-opening] .site-hero::after{opacity:0}
+html[data-opening="handoff"] .site-hero::after{opacity:1;transition:opacity 420ms ease-out}
+html[data-opening="handoff"] .site-header{visibility:visible;z-index:1002}
+html[data-opening="handoff"] .intro-brand{visibility:hidden}
+
+.intro-skip{position:fixed;right:clamp(20px,4vw,64px);bottom:clamp(20px,4vh,42px);z-index:1003;display:flex;align-items:center;gap:14px;border:0;background:transparent;color:var(--body);font:400 12px/1 var(--font-body);cursor:pointer;transition:color var(--transition-fast)}
+.intro-skip span{font-size:18px;color:var(--accent)}
+.intro-skip:hover,.intro-skip:focus-visible{color:var(--accent)}
+html[data-opening]{overflow:hidden}
+html[data-opening]:not([data-opening="handoff"]) .site-header,html[data-opening] .hero-inner{visibility:hidden}
+@media(max-width:767.98px){.intro-lockup{width:94vw}.intro-caption{margin-top:25px;font-size:clamp(19px,5.2vw,24px);letter-spacing:-.025em}.intro-skip{right:18px;bottom:18px}.hero-facts{padding-bottom:var(--s2)}}
+@media(max-width:430px){.intro-caption{flex-direction:column;align-items:center;gap:5px}}
+@media(prefers-reduced-motion:reduce){.site-intro{display:none}html[data-opening]{overflow:visible}html[data-opening] .site-header,html[data-opening] .hero-inner{visibility:visible}}
