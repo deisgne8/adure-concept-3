@@ -72,9 +72,9 @@ async function open(){
   const brand=intro.querySelector('.intro-brand');
   const caption=[...intro.querySelectorAll('.intro-caption span')];
   const rings=[...intro.querySelectorAll('.intro-ring')];
-  const revealDuration=3600;
-  const handoffDuration=420;
-  video.style.cssText='inset:0;width:100%;height:100%;opacity:1;object-fit:cover;transform-origin:50% 50%;clip-path:inset(0 0 0 0);border:0;border-radius:0';
+  const revealDuration=1800;
+  const handoffDuration=520;
+  video.style.cssText='inset:0;width:100%;height:100%;opacity:0;object-fit:cover;transform-origin:50% 50%;clip-path:inset(0 0 0 0);border:0;border-radius:0';
   video.play().catch(()=>{});
   root.dataset.opening='brand';
 
@@ -84,10 +84,9 @@ async function open(){
     {opacity:.22,transform:'translate(-50%,-50%) rotate(0deg) scale(1)'}
   ],{duration:900,easing:'cubic-bezier(.4,0,.16,1)'}));
   await animate(brand,[
-    {opacity:0,clipPath:'inset(0 76% 0 0)',transform:'translateX(38%) scale(.94)'},
-    {opacity:1,clipPath:'inset(0 76% 0 0)',transform:'translateX(38%) scale(1)',offset:.46},
-    {opacity:1,clipPath:'inset(0 0 0 0)',transform:'translateX(0) scale(1)'}
-  ],{duration:1500,easing:'cubic-bezier(.22,1,.36,1)'});
+    {opacity:0,clipPath:'inset(0 0 0 0)',transform:'translateY(10px) scale(.96)'},
+    {opacity:1,clipPath:'inset(0 0 0 0)',transform:'translateY(0) scale(1)'}
+  ],{duration:900,easing:'cubic-bezier(.22,1,.36,1)'});
   if(done)return;
 
   root.dataset.opening='message';
@@ -100,35 +99,22 @@ async function open(){
 
   root.dataset.opening='reveal';
   video.play().catch(()=>{});
-  const brandBox=brand.getBoundingClientRect();
-  const navLogo=document.querySelector('.site-header .site-logo img');
-  const navLogoBox=navLogo?.getBoundingClientRect();
-  const targetWidth=navLogoBox?.width||(innerWidth<=767?118:168);
-  const targetLeft=navLogoBox?.left||(innerWidth<=767?20:clamp(30,innerWidth*.045,64));
-  const targetTop=navLogoBox?.top||(innerWidth<=767?15:12);
-  const brandScale=targetWidth/brandBox.width;
-  brand.style.transformOrigin='top left';
   animate(brand,[
-    {opacity:1,transform:'translate3d(0,0,0) scale(1)'},
-    {opacity:1,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`,offset:.74},
-    {opacity:0,transform:`translate3d(${targetLeft-brandBox.left}px,${targetTop-brandBox.top}px,0) scale(${brandScale})`}
-  ],{duration:revealDuration,easing:'cubic-bezier(.55,0,.1,1)'});
-  animate(brand.querySelector('img'),[
-    {filter:'none',offset:0},
-    {filter:'none',offset:.45},
-    {filter:'brightness(0) invert(1)',offset:.78},
-    {filter:'brightness(0) invert(1)',offset:1}
-  ],{duration:revealDuration,easing:'linear'});
-  animate(intro.querySelector('.intro-caption'),[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-14px)'}],{duration:480,easing:'ease-in'});
-  rings.forEach(ring=>animate(ring,[{opacity:.22},{opacity:0}],{duration:420,easing:'ease-in'}));
+    {opacity:1,transform:'translateY(0) scale(1)'},
+    {opacity:1,transform:'translateY(-4px) scale(1)',offset:.22},
+    {opacity:0,transform:'translateY(-18px) scale(.96)'}
+  ],{duration:revealDuration,easing:'cubic-bezier(.4,0,.2,1)'});
+  animate(intro.querySelector('.intro-caption'),[{opacity:1,transform:'translateY(0)'},{opacity:0,transform:'translateY(-12px)'}],{duration:620,easing:'ease-in'});
+  rings.forEach(ring=>animate(ring,[{opacity:.22,transform:'translate(-50%,-50%) rotate(0deg) scale(1)'},{opacity:0,transform:'translate(-50%,-50%) rotate(18deg) scale(1.1)'}],{duration:620,easing:'ease-in'}));
   const heroScale=getComputedStyle(hero).getPropertyValue('--hero-media-scale').trim()||'1';
   const revealStartScale=(Number.parseFloat(heroScale)||1)+.08;
   // Reveal the full-size playing film in one continuous movement, without a
   // contained-card hold or a second expansion phase.
   const videoReveal=animate(video,[
-    {transform:`scale(${revealStartScale})`,clipPath:'inset(0 0 0 0)'},
-    {transform:`scale(${heroScale})`,clipPath:'inset(0 0 0 0)'}
-  ],{duration:revealDuration,easing:'cubic-bezier(.4,0,.2,1)'});
+    {opacity:0,transform:`scale(${revealStartScale})`,clipPath:'inset(0 0 0 0)'},
+    {opacity:1,transform:`scale(${revealStartScale * .985})`,clipPath:'inset(0 0 0 0)',offset:.38},
+    {opacity:1,transform:`scale(${heroScale})`,clipPath:'inset(0 0 0 0)'}
+  ],{duration:revealDuration,easing:'cubic-bezier(.22,1,.36,1)'});
   // Crossfade to the real navigation during the final part of the reveal so
   // the handoff does not add another pause after the video fills the screen.
   await wait(revealDuration-handoffDuration);
