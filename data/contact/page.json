@@ -30,7 +30,7 @@
     }
   ],
   "form": {
-    "action": "mailto:Inquiries@adu-re.com",
+    "action": "/api/contact",
     "nameLabel": "Full Name",
     "namePlaceholder": "Your name",
     "phoneLabel": "Phone Number",
