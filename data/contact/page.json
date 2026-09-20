@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "title": "Contact Us | ADURE",
+    "description": "Contact ADURE for property buying, leasing, selling and management enquiries across Abu Dhabi, Dubai and Al Ain."
+  },
+  "intro": {
+    "heading": "Get In Touch",
+    "description": "Start a conversation with us. From property enquiries to management support, our team is here to understand what you need and guide you with the right next step."
+  },
+  "details": [
+    {
+      "label": "Office Location",
+      "lines": ["Abu Dhabi United Real Estate", "Abu Dhabi · Dubai · Al Ain"],
+      "icon": "/assets/contact/address.svg",
+      "iconAlt": ""
+    },
+    {
+      "label": "Phone",
+      "lines": ["02 6457869"],
+      "href": "tel:+97126457869",
+      "icon": "/assets/contact/telephone.svg",
+      "iconAlt": ""
+    },
+    {
+      "label": "Email",
+      "lines": ["Inquiries@adu-re.com"],
+      "href": "mailto:Inquiries@adu-re.com",
+      "icon": "/assets/contact/emails.svg",
+      "iconAlt": ""
+    }
+  ],
+  "form": {
+    "action": "mailto:Inquiries@adu-re.com",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your name",
+    "phoneLabel": "Phone Number",
+    "phonePlaceholder": "Your phone number",
+    "inquiryLabel": "Inquiry Type",
+    "inquiryOptions": ["Buying Property", "Leasing Property", "Selling Property", "Property Management", "General Inquiry"],
+    "messageLabel": "Message",
+    "messageOptionalLabel": "(Optional)",
+    "messagePlaceholder": "Tell us more about your property request.",
+    "submitLabel": "Submit",
+    "consentLabel": "By submitting this form, I agree to the Privacy Policy."
+  },
+  "map": {
+    "title": "ADURE location map",
+    "embedUrl": "https://www.openstreetmap.org/export/embed.html?bbox=54.3400%2C24.4300%2C54.4300%2C24.5000&layer=mapnik&marker=24.4667%2C54.3667",
+    "externalUrl": "https://maps.google.com/?q=Abu%20Dhabi%20United%20Real%20Estate%20ADURE",
+    "externalLabel": "View On Google Maps"
+  }
+}

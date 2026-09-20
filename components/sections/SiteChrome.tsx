@@ -6,6 +6,8 @@ type SiteChromeProps = {
   content: HomeContent["site"];
   homeHref?: string;
   currentPath?: string;
+  headerClassName?: string;
+  skipTargetId?: string;
   standalone?: boolean;
 };
 
@@ -13,6 +15,8 @@ export default function SiteChrome({
   content,
   homeHref = content.header.logo.href,
   currentPath,
+  headerClassName,
+  skipTargetId = "main",
   standalone = false,
 }: SiteChromeProps) {
   const { header } = content;
@@ -36,10 +40,10 @@ export default function SiteChrome({
         </div>
       )}
       {standalone && <SiteChromeClient />}
-      <a className="skip-link" href="#main">
+      <a className="skip-link" href={`#${skipTargetId}`}>
         Skip to content
       </a>
-      <header className="site-header">
+      <header className={["site-header", headerClassName].filter(Boolean).join(" ")}>
         <div className="container header-inner">
           <a href={homeHref} className="site-logo" aria-label={header.logo.ariaLabel}>
             <img src="/assets/adure-logo-horizontal.svg" alt={header.logo.alt} width="230" height="62" />
@@ -65,7 +69,7 @@ export default function SiteChrome({
               </div>
             </div>
             {header.navigation.afterServices.map((item) => (
-              <a key={item.href} href={item.href}>{item.label}</a>
+              <a key={item.href} href={item.href} aria-current={item.href === currentPath ? "page" : undefined}>{item.label}</a>
             ))}
           </nav>
           <Button className="header-cta" href={header.cta.href} variant="primary">
@@ -96,7 +100,7 @@ export default function SiteChrome({
             ))}
           </details>
           {header.navigation.afterServices.map((item) => (
-            <a key={item.href} href={item.href}>{item.label}</a>
+            <a key={item.href} href={item.href} aria-current={item.href === currentPath ? "page" : undefined}>{item.label}</a>
           ))}
         </nav>
         <Button href={header.cta.href} variant="primary">{header.cta.label}</Button>

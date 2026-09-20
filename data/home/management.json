@@ -2,5 +2,41 @@
   "id": "management",
   "label": "Property management",
   "spacing": { "pt": "pt_0", "pb": "pb_0" },
-  "services": ["Asset care", "Tenant support", "Performance"]
+  "heading": "From Occupancy To Operations, We Manage It All",
+  "description": "Effective property management means more than looking after a building. It means keeping it occupied, operating efficiently, financially controlled and professionally cared for. ADURE brings leasing, operations, facility management, financial management and legal support together under one accountable team, giving owners a clearer, more coordinated way to manage the performance of their property.",
+  "button": {
+    "text": "Explore property management",
+    "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services",
+    "variant": "link"
+  },
+  "image": {
+    "src": "assets/management-beachfront-photo.webp",
+    "alt": "Beachfront residences, palm-lined promenade and turquoise sea at Hidd Al Saadiyat"
+  },
+  "cards": [
+    {
+      "title": "Leasing & Operations",
+      "image": {
+        "src": "assets/hidd-al-saadiyat/management-leasing-lobby.jpg",
+        "alt": "Hidd Al Saadiyat lobby with a sculptural chandelier and timber screen"
+      },
+      "description": "Keeping occupancy, tenant relationships and everyday performance moving forward."
+    },
+    {
+      "title": "Facility Management",
+      "image": {
+        "src": "assets/hidd-al-saadiyat/management-facility-facade.jpg",
+        "alt": "Hidd Al Saadiyat mixed-use facade and contemporary residences"
+      },
+      "description": "Maintaining spaces with the consistency, care and attention they require."
+    },
+    {
+      "title": "Financial & Legal Management",
+      "image": {
+        "src": "assets/hidd-al-saadiyat/urban-mixed-use.webp",
+        "alt": "Hidd Al Saadiyat mixed-use property and active street frontage"
+      },
+      "description": "Clear oversight, structured reporting and coordinated support around every asset."
+    }
+  ]
 }

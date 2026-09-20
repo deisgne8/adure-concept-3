@@ -1,5 +1,6 @@
 import Section from "../ui/Section";
 import type { HomeContent } from "../../lib/home/load-home-content";
+import Button from "../ui/Button";
 
 type TrustSectionProps = {
   content: HomeContent["trust"];
@@ -248,12 +249,9 @@ export default function TrustSection({ content }: TrustSectionProps) {
             </div>
           </section>
         </div>
-        <a
-          className="btn link trust-logo-cta"
-          href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers"
-        >
-          Our customers
-        </a>
+        <Button className="trust-logo-cta" href="/customers" variant="link">
+          Our Clients
+        </Button>
       </Section>
     </>
   );

@@ -243,7 +243,10 @@
 }
 #management .management-stack-track {
   position: relative;
-  min-height: calc(var(--management-card-offset, 84svh) + 238svh);
+  min-height: calc(
+    var(--management-card-offset, 84svh) +
+      var(--management-stack-length, 270svh)
+  );
   isolation: isolate;
 }
 #management .management-stack-sticky {
@@ -281,18 +284,20 @@
   );
   opacity: 0.275;
 }
-#home #management .management-stack-sticky > h2 {
+#home #management .management-context-copy {
   position: absolute;
   z-index: 4;
   top: clamp(44px, 8vh, 92px);
   left: var(--page-gutter);
-  display: flex;
-  flex-direction: column;
   width: min(44vw, 680px);
+}
+#home #management .management-context-copy > h2 {
   max-width: 15ch;
   margin: 0;
   padding: 0;
   color: #fff;
+  font-weight: 600;
+  text-transform: none;
 }
 #management .management-title-lead {
   font-size: 1em;
@@ -303,17 +308,10 @@
 #management .management-title-main {
   display: block;
 }
-#home #management .management-stack-sticky > .intro {
-  position: absolute;
-  z-index: 4;
-  top: calc(
-    clamp(44px, 8vh, 92px) + var(--management-title-height, 150px) +
-      clamp(18px, 2.4vh, 28px)
-  );
-  left: var(--page-gutter);
+#home #management .management-context-copy > .intro {
   width: min(38vw, 560px);
   max-width: 46ch;
-  margin: 0;
+  margin: clamp(48px, 5.5vh, 72px) 0 0;
   padding: 0;
   color: rgba(255, 255, 255, 0.76);
   font: 400 var(--type-body-lg)/1.6 var(--font-body);
@@ -394,6 +392,7 @@
   margin: 0 0 clamp(28px, 4vh, 44px);
   padding: 0;
   overflow: hidden;
+  border-radius: 16px;
   visibility: visible;
   opacity: 1;
   transform: scale(var(--service-scale, 1));
@@ -423,7 +422,8 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto;
   min-height: inherit;
-  padding: clamp(28px, 3.2vw, 46px);
+  padding: clamp(36px, 4vw, 56px);
+  text-align: center;
 }
 #home #management.has-management-stack .service-row h3 {
   grid-column: 1;
@@ -433,15 +433,18 @@
   color: var(--accent);
   font: 400 var(--type-card)/1.2 var(--font-display);
   letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-weight: 500;
+  text-align: center;
+  text-transform: none;
 }
 #management .service-card-media {
   grid-column: 1;
   grid-row: 2;
   width: 78%;
   aspect-ratio: 16/9;
-  margin: clamp(24px, 3.5vh, 38px) auto;
+  margin: clamp(30px, 4.5vh, 48px) auto;
   overflow: hidden;
+  border-radius: 16px;
   background: var(--surface-alt);
 }
 #management .service-card-media img {
@@ -468,37 +471,18 @@
 #management.has-management-stack .management-carousel-copy > .btn {
   display: none;
 }
-#home #management .management-stack-sticky > .management-main-cta {
-  position: absolute;
-  z-index: 4;
-  top: calc(
-    clamp(44px, 8vh, 92px) + var(--management-title-height, 150px) +
-      clamp(18px, 2.4vh, 28px) + var(--management-intro-height, 110px) + 22px
-  );
-  left: var(--page-gutter);
-  margin: 0;
+#home #management .management-context-copy > .management-main-cta {
+  position: relative;
+  z-index: 1;
+  margin: clamp(32px, 4vh, 48px) 0 0;
   color: #fff;
 }
 @media (min-width: 1600px) {
-  #home #management .management-stack-sticky > h2 {
+  #home #management .management-context-copy {
     left: max(
       var(--page-gutter),
       calc((100vw - var(--container-max)) / 2 + var(--page-gutter))
     );
-  }
-  #home #management .management-stack-sticky > .intro {
-    left: max(
-      var(--page-gutter),
-      calc((100vw - var(--container-max)) / 2 + var(--page-gutter))
-    );
-    right: auto;
-  }
-  #home #management .management-stack-sticky > .management-main-cta {
-    left: max(
-      var(--page-gutter),
-      calc((100vw - var(--container-max)) / 2 + var(--page-gutter))
-    );
-    right: auto;
   }
   #management.has-management-stack .management-carousel-copy {
     padding-right: max(
@@ -508,12 +492,12 @@
   }
 }
 @media (max-width: 1100px) and (min-width: 801px) {
-  #home #management .management-stack-sticky > h2 {
+  #home #management .management-context-copy > h2 {
     width: 44vw;
     max-width: 15ch;
     font-size: clamp(38px, 4.4vw, 52px);
   }
-  #home #management .management-stack-sticky > .intro {
+  #home #management .management-context-copy > .intro {
     width: 35vw;
     font-size: 16px;
   }
@@ -539,25 +523,23 @@
     padding: 64px var(--page-gutter);
     overflow: hidden;
   }
-  #home #management .management-stack-sticky > h2,
-  #home #management .management-stack-sticky > .intro,
-  #home #management .management-stack-sticky > .management-main-cta {
+  #home #management .management-context-copy {
     position: relative;
     inset: auto;
     width: 100%;
     max-width: none;
     transform: none;
   }
-  #home #management .management-stack-sticky > h2 {
+  #home #management .management-context-copy > h2 {
     max-width: 12ch;
     font-size: clamp(38px, 10vw, 52px);
   }
-  #home #management .management-stack-sticky > .intro {
+  #home #management .management-context-copy > .intro {
     margin-top: 24px;
     color: rgba(255, 255, 255, 0.76);
     font-size: 17px;
   }
-  #home #management .management-stack-sticky > .management-main-cta {
+  #home #management .management-context-copy > .management-main-cta {
     width: max-content;
     margin: 24px 0 0;
     color: #fff;
@@ -659,11 +641,11 @@
   transition: none;
   opacity: 1;
 }
-#home #management.has-scroll-entrance .management-stack-sticky > h2,
-#home #management.has-scroll-entrance .management-stack-sticky > .intro,
+#home #management.has-scroll-entrance .management-context-copy > h2,
+#home #management.has-scroll-entrance .management-context-copy > .intro,
 #home
   #management.has-scroll-entrance
-  .management-stack-sticky
+  .management-context-copy
   > .management-main-cta {
   opacity: 0;
   visibility: hidden;
@@ -676,15 +658,15 @@
 }
 #home
   #management.has-scroll-entrance.is-scene-expanded
-  .management-stack-sticky
+  .management-context-copy
   > h2,
 #home
   #management.has-scroll-entrance.is-scene-expanded
-  .management-stack-sticky
+  .management-context-copy
   > .intro,
 #home
   #management.has-scroll-entrance.is-scene-expanded
-  .management-stack-sticky
+  .management-context-copy
   > .management-main-cta {
   opacity: 1;
   visibility: visible;
@@ -693,13 +675,13 @@
 }
 #home
   #management.has-scroll-entrance.is-scene-expanded
-  .management-stack-sticky
+  .management-context-copy
   > .intro {
   transition-delay: 0.4s, 0.4s, 0s;
 }
 #home
   #management.has-scroll-entrance.is-scene-expanded
-  .management-stack-sticky
+  .management-context-copy
   > .management-main-cta {
   transition-delay: 0.55s, 0.55s, 0s;
 }
@@ -715,11 +697,11 @@
     border-radius: 0;
     will-change: auto;
   }
-  #home #management.has-scroll-entrance .management-stack-sticky > h2,
-  #home #management.has-scroll-entrance .management-stack-sticky > .intro,
+  #home #management.has-scroll-entrance .management-context-copy > h2,
+  #home #management.has-scroll-entrance .management-context-copy > .intro,
   #home
     #management.has-scroll-entrance
-    .management-stack-sticky
+    .management-context-copy
     > .management-main-cta {
     opacity: 1;
     visibility: visible;

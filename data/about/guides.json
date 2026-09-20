@@ -1,0 +1,20 @@
+{
+  "heading": "What Guides Us",
+  "beliefs": [
+    { "title": "Our Vision", "description": "To be the most trusted real estate partner in the UAE, setting the benchmark for occupancy, transparency and long-term asset value.", "icon": "/assets/about/vision.svg" },
+    { "title": "Our Mission", "description": "To deliver specialist, technology-driven property solutions that protect every owner's investment and earn every tenant's loyalty.", "icon": "/assets/about/mountain.svg" }
+  ],
+  "values": {
+    "heading": "Our Values",
+    "image": "/assets/about/36.jpg",
+    "imageAlt": "Family walking through a residential community",
+    "items": [
+      { "heading": "Customer Centric", "description": "Our clients drive every decision; we listen, anticipate and go beyond expectations to earn their trust and loyalty.", "icon": "target-audience" },
+      { "heading": "Integrity", "description": "We act with honesty and transparency at every level, earning the trust of clients, partners and communities.", "icon": "honesty" },
+      { "heading": "Excellence", "description": "We settle for nothing less than the highest quality in our properties, our service and our conduct.", "icon": "excellence" },
+      { "heading": "Partnership", "description": "We serve owners, tenants and communities with equal care and commitment.", "icon": "handshake" },
+      { "heading": "Innovation", "description": "We embrace new ideas and technologies to raise the standard of what we deliver.", "icon": "idea" },
+      { "heading": "Sustainability", "description": "We manage assets with long-term environmental, social and economic responsibility in mind.", "icon": "integration" }
+    ]
+  }
+}

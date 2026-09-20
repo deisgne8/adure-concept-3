@@ -25,18 +25,18 @@ export default function SiteFooter({ homeHref = "#home" }: SiteFooterProps) {
               <Link href="/about">
                 About ADURE
               </Link>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers">
-                Our customers
-              </a>
+              <Link href="/customers">
+                Our Clients
+              </Link>
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#media">
                 Media and gallery
               </a>
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#careers">
                 Careers
               </a>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#contact">
+              <Link href="/contact">
                 Contact
-              </a>
+              </Link>
             </div>
             <div>
               <h3>Properties</h3>
@@ -49,9 +49,9 @@ export default function SiteFooter({ homeHref = "#home" }: SiteFooterProps) {
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#list-property">
                 List your property
               </a>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#portfolio">
+              <Link href="/portfolio">
                 Portfolio
-              </a>
+              </Link>
             </div>
             <div>
               <h3>Services</h3>
@@ -70,9 +70,9 @@ export default function SiteFooter({ homeHref = "#home" }: SiteFooterProps) {
             </div>
             <div>
               <h3>Explore</h3>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#projects">
-                Upcoming projects
-              </a>
+              <Link href="/portfolio">
+                Portfolio
+              </Link>
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#project-detail">
                 Qaryat Al Hidd
               </a>

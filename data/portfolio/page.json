@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "Portfolio | ADURE",
+    "description": "Explore ADURE's managed portfolio of completed buildings and communities across Abu Dhabi, Dubai, Al Ain and Hidd Al Saadiyat."
+  },
+  "hero": {
+    "headingLines": ["Places With Purpose,", "Value That Lasts"],
+    "description": "Explore the buildings and communities within ADURE’s managed portfolio across Abu Dhabi, Dubai, Al Ain and Hidd Al Saadiyat.",
+    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "imageAlt": "Aerial view across Saadiyat waterfront"
+  },
+  "introduction": {
+    "heading": "A Portfolio Shaped By Experience",
+    "paragraphs": [
+      "Across Abu Dhabi, Dubai and Al Ain, ADURE manages a diverse portfolio of residential, commercial and mixed-use assets.",
+      "From communities and office towers to retail, hospitality and government properties, each asset is supported by connected expertise across leasing, operations, facilities, financial and legal management, with a consistent focus on performance and long-term value."
+    ],
+    "stats": [
+      { "value": "1800+", "label": "Units Managed" },
+      { "value": "3", "label": "Cities of Operations" },
+      { "value": "2002", "label": "Established" }
+    ]
+  },
+  "explorer": {
+    "heading": "Our Work Across The UAE",
+    "description": "Explore the properties and communities within our portfolio reflecting the breadth of assets and experience we manage today.",
+    "projectsByCity": [
+      {
+        "city": "Abu Dhabi",
+        "projects": [
+          { "name": "Al Salam Tower", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-reference/48-burj-gate-v2.webp", "description": "A managed Abu Dhabi asset supported by ADURE’s connected approach to operations, leasing, facility management and long-term performance." },
+          { "name": "Hili Tower B", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-waterfront-tower-v2.png" },
+          { "name": "Al Manhal Tower", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-reference/qaryat-al-hidd-v2.webp" },
+          { "name": "Jasmine Tower", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/enhanced/proof-jasmine.webp" },
+          { "name": "Al Mushrif Compound", "type": "Residential", "location": "Al Mushrif, Abu Dhabi", "image": "/assets/portfolio-reference/al-mushrif-villas-v2.webp", "description": "A residential compound in Abu Dhabi where day-to-day operations, tenant support and facility coordination come together through one accountable team." },
+          { "name": "Sahara Complex", "type": "Residential", "location": "Abu Dhabi", "image": "/assets/portfolio-reference/ghantoot-complex-v2.webp" },
+          { "name": "19 Villas Compound", "type": "Residential", "location": "Abu Dhabi", "image": "/assets/portfolio-modern-villa-v2.png" },
+          { "name": "Al Ghadeer", "type": "Residential", "location": "Abu Dhabi", "image": "/assets/hidd-al-saadiyat/landscaped-community.webp" },
+          { "name": "Julphar Residence, Al Reem", "type": "Residential", "location": "Al Reem, Abu Dhabi", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp" },
+          { "name": "Park View, Al Reem", "type": "Residential", "location": "Al Reem, Abu Dhabi", "image": "/assets/hidd-al-saadiyat/waterfront-view.webp" },
+          { "name": "Al Raha Gardens", "type": "Residential", "location": "Al Raha, Abu Dhabi", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp", "description": "A residential community where ADURE’s management approach supports comfort, continuity and reliable everyday service." },
+          { "name": "Hidd Saadiyat Villas", "type": "Residential", "location": "Saadiyat Island", "image": "/assets/portfolio-reference/qaryat-al-hidd-v2.webp", "description": "A villa community within Hidd Al Saadiyat, supported by coordinated operations and a clear focus on resident experience." },
+          { "name": "Electra Tower", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-waterfront-tower-v2.png" },
+          { "name": "C1 Building", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-reference/48-burj-gate-v2.webp" },
+          { "name": "Jubail Villa", "type": "Residential", "location": "Abu Dhabi", "image": "/assets/portfolio-modern-villa-v2.png" },
+          { "name": "Al Raha", "type": "Residential", "location": "Abu Dhabi", "image": "/assets/hidd-al-saadiyat/waterfront-view.webp" }
+        ]
+      },
+      {
+        "city": "Dubai",
+        "projects": [
+          { "name": "48 Burj Gate", "type": "Retail", "location": "Sheikh Zayed Road, Dubai", "image": "/assets/portfolio-reference/48-burj-gate-v2.webp", "description": "A Dubai address on Sheikh Zayed Road, supported through structured property oversight and the service standards expected from an ADURE-managed asset." },
+          { "name": "Park Square", "type": "Commercial", "location": "Dubai", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp" },
+          { "name": "Park View", "type": "Residential", "location": "Dubai", "image": "/assets/portfolio-reference/qaryat-al-hidd-v2.webp" },
+          { "name": "Sheikha Maitha", "type": "Residential", "location": "Dubai", "image": "/assets/portfolio-reference/al-mushrif-villas-v2.webp" }
+        ]
+      },
+      {
+        "city": "Al Ain",
+        "projects": [
+          { "name": "Sheikh Saeed Bin Zayed", "type": "Residential", "location": "Al Ain", "image": "/assets/portfolio-reference/ghantoot-complex-v2.webp" },
+          { "name": "Sheikh Nahayan Bin Zayed", "type": "Residential", "location": "Al Ain", "image": "/assets/hidd-al-saadiyat/landscaped-community.webp" },
+          { "name": "Sheikha Maitha Bint Zayed", "type": "Residential", "location": "Al Ain", "image": "/assets/portfolio-reference/al-mushrif-villas-v2.webp" },
+          { "name": "Sheikha Sheikha Bin Zayed", "type": "Residential", "location": "Al Ain", "image": "/assets/portfolio-modern-villa-v2.png" },
+          { "name": "Sheikh Diab Bin Zayed", "type": "Residential", "location": "Al Ain", "image": "/assets/hidd-al-saadiyat/waterfront-view.webp" },
+          { "name": "Aisha Ali Saif Al Darma", "type": "Residential", "location": "Al Ain", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp" },
+          { "name": "Aisha – Al Jimi Complex", "type": "Residential", "location": "Al Jimi, Al Ain", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp" }
+        ]
+      },
+      {
+        "city": "Hidd Al Saadiyat",
+        "projects": [
+          { "name": "Sunset Residence 1–4", "type": "Residential", "location": "Hidd Al Saadiyat", "image": "/assets/hidd-al-saadiyat/saadiyat-beach.webp" },
+          { "name": "Garden Residence 5–6", "type": "Residential", "location": "Hidd Al Saadiyat", "image": "/assets/hidd-al-saadiyat/golden-waterfront.webp" },
+          { "name": "Sunrise Residence 1–6", "type": "Residential", "location": "Hidd Al Saadiyat", "image": "/assets/portfolio-reference/sunrise-residence-3-v2.webp", "description": "A Hidd Al Saadiyat residential collection shaped around waterfront living, community experience and long-term asset care." }
+        ]
+      }
+    ]
+  },
+  "principles": {
+    "heading": "More Than A Collection Of Buildings",
+    "items": [
+      { "title": "Place-Led", "description": "Every building is understood in the context of its community, its people and its operational needs.", "image": "/assets/portfolio-reference/sunrise-residence-3-v2.webp" },
+      { "title": "Performance-Minded", "description": "Management is designed to protect the quality, consistency and long-term potential of each asset.", "image": "/assets/journeys/sell.jpg" },
+      { "title": "One Connected Team", "description": "Leasing, operations, facilities and financial oversight come together through one accountable relationship.", "image": "/assets/journeys/manage.jpg" }
+    ]
+  },
+  "cta": {
+    "heading": "Looking For A Property Available Today",
+    "description": "Visit Properties to see currently available homes, offices and retail spaces. For a conversation about an ADURE-managed building, contact our team directly.",
+    "buttonLabel": "Explore Properties",
+    "buttonHref": "/properties",
+    "buttonVariant": "primary",
+    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "imageAlt": "Aerial view of the Hidd Al Saadiyat beach and waterfront"
+  }
+}

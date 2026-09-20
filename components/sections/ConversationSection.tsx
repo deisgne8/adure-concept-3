@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Section from "../ui/Section";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
@@ -42,9 +43,9 @@ export default function ConversationSection({
               <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#services">
                 Property management
               </a>
-              <a href="https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#contact">
+              <Link href="/contact">
                 Contact ADURE
-              </a>
+              </Link>
             </div>
           </div>
         </div>

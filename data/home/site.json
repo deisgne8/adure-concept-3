@@ -52,15 +52,15 @@
         },
         {
           "label": "Portfolio",
-          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#portfolio"
+          "href": "/portfolio"
         },
         {
-          "label": "Our customers",
-          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#customers"
+          "label": "Our Clients",
+          "href": "/customers"
         },
         {
           "label": "Contact",
-          "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#contact"
+          "href": "/contact"
         }
       ]
     },

@@ -2,5 +2,17 @@
   "id": "proof",
   "label": "Proof",
   "spacing": { "pt": "pt_100", "pb": "pb_100" },
-  "metrics": ["Properties", "Years of experience", "Markets"]
+  "heading": "Success Proven in Numbers",
+  "description": "The strongest measure of experience is what it continues to deliver.",
+  "link": {
+    "label": "About ADURE",
+    "href": "https://deisgne8.github.io/adure-wireframe-v2.0/dist/index.html?v=7e31062-final#about"
+  },
+  "metrics": [
+    { "title": 2002, "label": "Established" },
+    { "title": 3000, "label": "Units managed", "suffix": "+" },
+    { "title": 200, "label": "Professionals", "suffix": "+" },
+    { "title": 98, "label": "Occupancy rate", "suffix": "%" },
+    { "title": 2, "label": "Average vacancy", "suffix": "weeks", "range": true }
+  ]
 }

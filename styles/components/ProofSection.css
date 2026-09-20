@@ -100,7 +100,18 @@
   font-variant-numeric: lining-nums tabular-nums;
   white-space: nowrap;
 }
-#proof .proof-statistic dd small {
+#proof .proof-statistic .proof-value {
+  display: block;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(64px, 6.3vw, 106px) !important;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+}
+#proof .proof-statistic .proof-value small {
   font: 400 0.42em/1.2 var(--font-display);
   letter-spacing: -0.025em;
 }
@@ -124,6 +135,9 @@
   }
   #proof .proof-statistic dd {
     font-size: clamp(64px, 12vw, 88px);
+  }
+  #proof .proof-statistic .proof-value {
+    font-size: clamp(64px, 12vw, 88px) !important;
   }
 }
 @media (prefers-reduced-motion: reduce) {

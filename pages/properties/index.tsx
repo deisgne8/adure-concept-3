@@ -1,58 +1,29 @@
-import type { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
-import PropertyCatalogPage from "../../components/properties/PropertyCatalogPage";
+import StaticPropertiesPage from "../../components/properties/StaticPropertiesPage";
+import catalog from "../../data/properties/catalog.json";
 import site from "../../data/home/site.json";
-import type { PropertyFilters } from "../../lib/properties/types";
-import { loadProperties } from "../../lib/properties/wordpress";
+import type { StaticCatalogContent } from "../../lib/properties/static-types";
 
-const filterKeys: (keyof PropertyFilters)[] = [
-  "page",
-  "sector",
-  "location",
-  "building",
-  "unit_type",
-  "bedrooms",
-  "transaction",
-  "min_price",
-  "max_price",
-  "min_area",
-  "max_area",
-];
-
-export const getServerSideProps = (async ({ query, res }) => {
-  const filters: PropertyFilters = {};
-  filterKeys.forEach((key) => {
-    const value = query[key];
-    if (typeof value === "string") filters[key] = value;
-  });
-  filters.sector ??= "residential";
-  filters.transaction ??= "lease";
-  res.setHeader(
-    "Cache-Control",
-    "public, s-maxage=60, stale-while-revalidate=300",
-  );
-  return { props: { content: await loadProperties(filters), filters, site } };
-}) satisfies GetServerSideProps;
+export const getStaticProps = (async () => ({
+  props: { content: catalog as StaticCatalogContent, site },
+})) satisfies GetStaticProps;
 
 export default function PropertiesRoute({
   content,
-  filters,
   site: siteContent,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
         <title>Properties | ADURE</title>
         <meta
           name="description"
-          content="Explore available residential and retail properties from ADURE."
+          content="Explore selected properties for sale and lease across Abu Dhabi, Dubai and Al Ain with ADURE."
         />
+        <meta name="theme-color" content="#004789" />
       </Head>
-      <PropertyCatalogPage
-        content={content}
-        filters={filters}
-        site={siteContent}
-      />
+      <StaticPropertiesPage content={content} site={siteContent} />
     </>
   );
 }

@@ -16,8 +16,6 @@ import {
   getWordPressMediaUrl,
   loadWordPressHomePage,
 } from "./wordpress";
-import { loadHomeProperties } from "../properties/wordpress";
-import type { PropertyListResponse } from "../properties/types";
 
 const emptyJourneys = {
   id: "journeys",
@@ -37,21 +35,11 @@ const emptyJourneys = {
   }[],
 };
 
-const emptyProperties: PropertyListResponse = {
-  items: [],
-  pagination: { page: 1, perPage: 12, total: 0, totalPages: 0 },
-  facets: { sectors: [], locations: [], unitTypes: [], buildings: [] },
-  facetsBySector: {
-    residential: { sectors: [], locations: [], unitTypes: [], buildings: [] },
-    retail: { sectors: [], locations: [], unitTypes: [], buildings: [] },
-  },
-};
-
 const localHomeContent = {
   site,
   hero,
   journeys: emptyJourneys,
-  discovery: { ...discovery, properties: emptyProperties },
+  discovery,
   management,
   proof,
   portfolio,
@@ -147,11 +135,7 @@ function applyWordPressJourneys(
 }
 
 export async function loadHomeContent() {
-  const properties = await loadHomeProperties();
-  const homeContent = {
-    ...localHomeContent,
-    discovery: { ...localHomeContent.discovery, properties },
-  };
+  const homeContent = localHomeContent;
   try {
     const page = await loadWordPressHomePage();
     return applyWordPressJourneys(applyWordPressHero(homeContent, page), page);

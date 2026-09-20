@@ -13,6 +13,8 @@
   border: 1px solid var(--line);
   padding: var(--space-2xs);
   gap: var(--space-2xs);
+  overflow: hidden;
+  border-radius: var(--radius-pill);
 }
 .property-view-switch button {
   display: flex;
@@ -26,6 +28,8 @@
   font-size: var(--text-small);
   color: var(--ink);
   cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
   transition:
     background var(--motion-base) var(--ease),
     color var(--motion-base) var(--ease);
@@ -93,6 +97,8 @@
   box-shadow: 0 24px 70px rgba(3, 17, 34, 0.18);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
+  overflow: hidden;
+  border-radius: 16px;
 }
 .map-list-heading {
   display: flex;
@@ -319,6 +325,8 @@
   font: inherit;
   font-size: 13px;
   cursor: pointer;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
 }
 .map-fit:disabled {
   opacity: 0.5;

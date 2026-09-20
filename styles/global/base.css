@@ -214,6 +214,33 @@ p {
   border-color: var(--accent);
   color: var(--white);
 }
+.btn.button-wipe {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: transparent;
+  color: var(--ink);
+  transition:
+    color var(--motion-control) var(--ease),
+    border-color var(--motion-control) var(--ease),
+    box-shadow var(--motion-base) var(--ease);
+}
+.btn.button-wipe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--accent);
+  transition: width 700ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.btn.button-wipe > span {
+  position: relative;
+  z-index: 1;
+}
 .btn.dark {
   background: var(--ink);
   border-color: var(--ink);
@@ -223,6 +250,16 @@ p {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
   color: var(--white);
+}
+.btn.button-wipe:hover,
+.btn.button-wipe:focus-visible {
+  border-color: var(--accent);
+  background: transparent;
+  color: var(--white);
+}
+.btn.button-wipe:hover::before,
+.btn.button-wipe:focus-visible::before {
+  width: 100%;
 }
 .btn.link,
 .text-link {

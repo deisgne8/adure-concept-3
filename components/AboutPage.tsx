@@ -1,12 +1,4 @@
-import {
-  AboutContactSection,
-  InnerBanner,
-  AboutIntroductionSection,
-  AboutLeadershipSection,
-  AboutStorySection,
-  AboutValuesSection,
-  AboutVisionSection,
-} from "./about/AboutSections";
+import { AboutCeoMessageSection, AboutContactSection, AboutGuidesSection, AboutIntroductionSection, AboutLeadershipSection, AboutStorySection, InnerBanner } from "./about/AboutSections";
 import SiteChrome from "./sections/SiteChrome";
 import SiteFooter from "./sections/SiteFooter";
 import type { AboutContent } from "../lib/about/load-about-content";
@@ -25,8 +17,8 @@ export default function AboutPage({ siteContent, content }: AboutPageProps) {
         <InnerBanner innerBanner={content.innerBanner} />
         <AboutIntroductionSection introduction={content.introduction} />
         <AboutStorySection story={content.story} />
-        <AboutVisionSection vision={content.vision} />
-        <AboutValuesSection values={content.values} />
+        <AboutGuidesSection guides={content.guides} />
+        <AboutCeoMessageSection ceo={content.ceo} />
         <AboutLeadershipSection leadership={content.leadership} />
         <AboutContactSection contact={content.contact} />
       </main>

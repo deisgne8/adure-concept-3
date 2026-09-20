@@ -70,11 +70,12 @@
   --heading-copy-gap: 1.5rem;
   --grid-gap: 1.5rem;
   --grid-column-gap: clamp(3rem, 7vw, 8rem);
-  --radius-sm: 0;
-  --radius-md: 0;
-  --radius-lg: 0;
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1rem;
+  --radius-pill: 999px;
   --image-radius: var(--radius-md);
-  --control-radius: var(--radius-sm);
+  --control-radius: var(--radius-pill);
   --panel-radius: var(--radius-lg);
   --border-width: 1px;
   --border-subtle: 1px solid var(--border);

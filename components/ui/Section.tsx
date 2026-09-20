@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import { forwardRef, type ComponentPropsWithoutRef, type ReactNode } from "react";
 import { getSpacingClassName } from "../../lib/ui/spacing";
 
 type SectionProps = ComponentPropsWithoutRef<"section"> & {
@@ -7,21 +7,24 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
   spacing?: Record<string, unknown>;
 };
 
-export default function Section({
-  children,
-  className,
-  fullViewport = false,
-  spacing,
-  ...props
-}: SectionProps) {
+const Section = forwardRef<HTMLElement, SectionProps>(function Section(
+  {
+    children,
+    className,
+    fullViewport = false,
+    spacing,
+    ...props
+  },
+  ref,
+) {
   const spacingClassName = fullViewport ? "" : getSpacingClassName(spacing);
-  const sectionClassName = [className, spacingClassName]
-    .filter(Boolean)
-    .join(" ");
+  const sectionClassName = [className, spacingClassName].filter(Boolean).join(" ");
 
   return (
-    <section className={sectionClassName} {...props}>
+    <section className={sectionClassName} ref={ref} {...props}>
       {children}
     </section>
   );
-}
+});
+
+export default Section;

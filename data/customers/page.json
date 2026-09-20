@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "Our Clients | ADURE",
+    "description": "ADURE works with government, semi-government and private-sector organisations across the UAE."
+  },
+  "hero": {
+    "headingLines": ["Trust, Built Over Time"],
+    "paragraphs": [
+      "Our relationships span government, semi-government and private-sector organisations, built on a consistent approach to real estate: thoughtful management, reliable support and a long-term view of value.",
+      "By understanding each asset in context, we bring together the right expertise to support its people, strengthen its performance and realise its potential."
+    ],
+    "image": "/assets/hidd-al-saadiyat/golden-waterfront.webp",
+    "imageAlt": "Waterfront residences managed by ADURE",
+    "cta": { "label": "Talk to Our Team", "href": "/contact" }
+  },
+  "clientGroups": [
+    {
+      "title": "Government & Semi-Government",
+      "paragraphs": ["ADURE's experience includes work with organisations across government and semi-government sectors, supporting real estate requirements through structured management, operational oversight and a clear focus on building strong partnerships."],
+      "logos": [
+        { "name": "Ministry of Interior", "image": "/assets/clients/profile/ministry-interior.png" },
+        { "name": "Office of the Minister of Foreign Affairs and International Cooperation", "image": "/assets/clients/profile/foreign-affairs-office.png" },
+        { "name": "Abu Dhabi Media", "image": "/assets/clients/profile/abu-dhabi-media.png" },
+        { "name": "Total", "image": "/assets/clients/profile/total.png" },
+        { "name": "Al Hosn Gas", "image": "/assets/clients/profile/al-hosn-gas.png" },
+        { "name": "ADCO", "image": "/assets/clients/profile/adco.png" },
+        { "name": "Central Bank of the UAE", "image": "/assets/clients/profile/central-bank-uae.png" },
+        { "name": "Department of Finance", "image": "/assets/clients/profile/department-finance.png" },
+        { "name": "Abu Dhabi Investment Authority", "image": "/assets/clients/profile/adia.png" },
+        { "name": "National Drilling Company", "image": "/assets/clients/profile/national-drilling-company.png" },
+        { "name": "Schlumberger", "image": "/assets/clients/profile/schlumberger.png" },
+        { "name": "Fertil", "image": "/assets/clients/profile/fertil.png" },
+        { "name": "Abu Dhabi Police", "image": "/assets/clients/profile/abu-dhabi-police.png" },
+        { "name": "Abu Dhabi Municipality", "image": "/assets/clients/profile/abu-dhabi-municipality.png" },
+        { "name": "Mubadala", "image": "/assets/clients/profile/mubadala.png" },
+        { "name": "ADNOC", "image": "/assets/clients/profile/adnoc.png" },
+        { "name": "TAQA Distribution", "image": "/assets/clients/profile/taqa-distribution.png" },
+        { "name": "ZADCO", "image": "/assets/clients/profile/zadco.png" },
+        { "name": "Judicial Department", "image": "/assets/clients/profile/judicial-department.png" },
+        { "name": "Health Authority Abu Dhabi", "image": "/assets/clients/profile/health-authority-abu-dhabi.png" },
+        { "name": "SEHA", "image": "/assets/clients/profile/seha.png" },
+        { "name": "GASCO", "image": "/assets/clients/profile/gasco.png" },
+        { "name": "Takaful Emarat", "image": "/assets/clients/profile/takaful-emarat.png" },
+        { "name": "ADGAS", "image": "/assets/clients/profile/adgas.png" },
+        { "name": "Abu Dhabi Education Council", "image": "/assets/clients/profile/abu-dhabi-education-council.png" },
+        { "name": "Al Wahda Investment", "image": "/assets/clients/profile/al-wahda-investment.png" },
+        { "name": "SEHA Dialysis Services", "image": "/assets/clients/profile/seha-dialysis-services.png" },
+        { "name": "TAKREER", "image": "/assets/clients/profile/takreer.png" },
+        { "name": "Abu Dhabi Retirement Pensions and Benefits Fund", "image": "/assets/clients/profile/abu-dhabi-retirement-fund.png" },
+        { "name": "Emirates Identity Authority", "image": "/assets/clients/profile/emirates-identity-authority.png" }
+      ]
+    },
+    {
+      "title": "Private Sector & Corporates",
+      "paragraphs": [
+        "Our portfolio also extends across private-sector and corporate organisations, where different assets, operational requirements and business priorities call for a flexible and accountable approach.",
+        "From day-to-day operations to facility performance, financial and legal oversight and customer service, ADURE brings together the specialist capabilities required to support each asset over the long term."
+      ],
+      "logos": [
+        { "name": "Samsung", "image": "/assets/clients/profile/samsung.png" },
+        { "name": "Khalidiya Palace Rayhaan by Rotana Abu Dhabi", "image": "/assets/clients/profile/khalidiya-palace-rayhaan.png" },
+        { "name": "Paris-Sorbonne Abu Dhabi", "image": "/assets/clients/profile/paris-sorbonne-abu-dhabi.png" },
+        { "name": "OXY", "image": "/assets/clients/profile/oxy.png" },
+        { "name": "American Community School of Abu Dhabi", "image": "/assets/clients/profile/american-community-school.png" },
+        { "name": "Rockwell Automation", "image": "/assets/clients/profile/rockwell-automation.png" },
+        { "name": "Citiscape", "image": "/assets/clients/profile/citiscape.png" },
+        { "name": "British Council", "image": "/assets/clients/profile/british-council.png" },
+        { "name": "The British School Al Khubairat Abu Dhabi", "image": "/assets/clients/profile/british-school-al-khubairat.png" },
+        { "name": "Turner & Townsend", "image": "/assets/clients/profile/turner-townsend.png" },
+        { "name": "ADMA-OPCO", "image": "/assets/clients/profile/adma-opco.png" },
+        { "name": "Borouge", "image": "/assets/clients/profile/borouge.png" },
+        { "name": "Royal Business Center", "image": "/assets/clients/profile/royal-business-center.png" },
+        { "name": "Zayed University", "image": "/assets/clients/profile/zayed-university.png" },
+        { "name": "Brighton College Abu Dhabi", "image": "/assets/clients/profile/brighton-college.png" },
+        { "name": "Embassy of Japan", "image": "/assets/clients/profile/embassy-japan.png" },
+        { "name": "Unicorp", "image": "/assets/clients/profile/unicorp.png" },
+        { "name": "Punj Lloyd", "image": "/assets/clients/profile/punj-lloyd.png" },
+        { "name": "Tabreed", "image": "/assets/clients/profile/tabreed.png" },
+        { "name": "Higher Colleges of Technology", "image": "/assets/clients/profile/higher-colleges-technology.png" },
+        { "name": "Al Gharbia Hospitals", "image": "/assets/clients/profile/al-gharbia-hospitals.png" },
+        { "name": "Lifeline Medicare Hospitals", "image": "/assets/clients/profile/lifeline-medicare.png" },
+        { "name": "Gulf Piping Company", "image": "/assets/clients/profile/gulf-piping-company.png" },
+        { "name": "Arabian Power Company", "image": "/assets/clients/profile/arabian-power-company.png" }
+      ]
+    }
+  ],
+  "sectors": {
+    "heading": "Across Every Asset",
+    "description": "Every asset is supported by connected expertise across operations, facilities, financial management, legal oversight and customer service - all working towards long-term performance and value.",
+    "items": [
+      { "title": "Residential Communities", "description": "Supporting residential communities through coordinated leasing, operations, facility management and tenant services.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed residential community" },
+      { "title": "Commercial Buildings", "description": "Taking care of the day-to-day requirements that help commercial assets operate consistently.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed commercial building" },
+      { "title": "Office Towers", "description": "Managing facility, maintenance and operational needs across workplaces.", "image": "/assets/architecture-city.webp", "imageAlt": "Office tower exterior" },
+      { "title": "Retail Shops", "description": "Supporting reliable, well-managed spaces for retail operations and their customers.", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp", "imageAlt": "Retail frontage within a mixed-use development" },
+      { "title": "Hotels", "description": "Applying facility and operational management capabilities to the hospitality sector.", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "imageAlt": "Hospitality-style lobby managed by ADURE" },
+      { "title": "Government Buildings", "description": "Delivering structured support with a focus on reliability, compliance and accountability.", "image": "/assets/trust/abu-dhabi-institutions.jpg", "imageAlt": "Institutional building in Abu Dhabi" },
+      { "title": "Mixed-Use Developments", "description": "Coordinating multiple operational requirements within one integrated management approach.", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp", "imageAlt": "Mixed-use waterfront development" }
+    ]
+  },
+  "commitment": {
+    "heading": "Our Commitment",
+    "description": "The requirements may change from one client to another. The approach behind ADURE’s work remains connected.",
+    "items": [
+      { "title": "Integrated Expertise", "description": "Leasing and operations, facility management, financial management and legal support work together rather than isolated services." },
+      { "title": "Operational Accountability", "description": "Routine inspections, maintenance, vendor management, compliance and 24/7 customer support are structured around consistent asset performance." },
+      { "title": "Financial Transparency", "description": "Budgeting, financial reporting, owner reporting and financial controls provide clearer visibility into asset performance." },
+      { "title": "Technology & Reporting", "description": "ERP and digital facility-management tools support reporting, work orders, inspections, asset monitoring and better-informed decisions." }
+    ]
+  },
+  "testimonial": {
+    "heading": "Relationships, In Their Own Words",
+    "quote": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Their team brings clarity, consistency and attention to detail across every stage of property management.”",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "client": "Client Name / Organisation",
+    "location": "Abu Dhabi"
+  },
+  "closing": {
+    "heading": "The Right Expertise Around Every Asset",
+    "description": "Whether you are responsible for a single asset or a wider portfolio, ADURE brings together the expertise required to support operations, performance and the experience around your property.",
+    "image": "/assets/saadiyat-aerial-contact.png",
+    "imageAlt": "Aerial view across Saadiyat Island",
+    "actions": [
+      { "label": "Talk to Us", "href": "/contact", "variant": "primary" },
+      { "label": "Explore Our Services", "href": "/#management", "variant": "default" }
+    ]
+  }
+}
