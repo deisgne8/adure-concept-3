@@ -6,9 +6,9 @@
   "description": "We position and present your property with the attention it deserves, creating the right visibility and connecting it with serious buyers.",
   "background": "/assets/sell-sunset.webp",
   "form": {
-    "action": "mailto:Inquiries@adu-re.com",
+    "action": "/api/contact",
     "button": "Discuss My Property",
-    "note": "Opens an email draft with your property details.",
+    "note": "Your property details will be sent securely to the ADURE team.",
     "propertyTypes": ["Residential", "Retail", "Commercial", "Other"]
   }
 }
