@@ -5,8 +5,13 @@ import portfolio from "../data/portfolio/page.json";
 import site from "../data/home/site.json";
 import type { PortfolioContent } from "../lib/portfolio/types";
 import { loadWordPressPortfolioContent } from "../lib/portfolio/wordpress";
-import type { BuildingListResponse } from "../lib/properties/types";
-import { loadBuildings } from "../lib/properties/wordpress";
+import type {
+  BuildingFilters,
+  BuildingListResponse,
+  BuildingSummary,
+  PropertyTerm,
+} from "../lib/properties/types";
+import { loadAllBuildings } from "../lib/properties/wordpress";
 
 const emptyBuildings: BuildingListResponse = {
   items: [],
@@ -16,6 +21,67 @@ const emptyBuildings: BuildingListResponse = {
 
 function readQueryValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
+}
+
+function positiveInteger(value: string | undefined, fallback: number) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? Math.floor(parsed) : fallback;
+}
+
+function hasResidentialSector(building: BuildingSummary) {
+  return building.sectors.some((sector) => sector.slug === "residential");
+}
+
+function collectBuildingTerms(
+  items: BuildingSummary[],
+  key: "amenities" | "locations" | "sectors",
+) {
+  const terms = new Map<string, PropertyTerm>();
+
+  items.forEach((item) => {
+    item[key].forEach((term) => {
+      terms.set(term.slug, term);
+    });
+  });
+
+  return [...terms.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function buildResidentialPortfolioList(
+  buildings: BuildingListResponse,
+  filters: BuildingFilters,
+): BuildingListResponse {
+  const residentialItems = buildings.items.filter(hasResidentialSector);
+  const location = filters.location;
+  const filteredItems = location
+    ? residentialItems.filter((building) =>
+        building.locations.some((term) => term.slug === location),
+      )
+    : residentialItems;
+  const page = positiveInteger(filters.page, 1);
+  const perPage = positiveInteger(filters.per_page, 21);
+  const total = filteredItems.length;
+  const totalPages = total ? Math.ceil(total / perPage) : 0;
+  const safePage = totalPages ? Math.min(page, totalPages) : 1;
+  const start = (safePage - 1) * perPage;
+
+  return {
+    items: filteredItems.slice(start, start + perPage),
+    pagination: {
+      page: safePage,
+      perPage,
+      total,
+      totalPages,
+    },
+    facets: {
+      amenities: collectBuildingTerms(residentialItems, "amenities"),
+      locations: collectBuildingTerms(residentialItems, "locations"),
+      sectors: collectBuildingTerms(residentialItems, "sectors").filter(
+        (sector) => sector.slug === "residential",
+      ),
+      unitTypes: buildings.facets.unitTypes ?? [],
+    },
+  };
 }
 
 export const getServerSideProps = (async ({ query, res }) => {
@@ -30,7 +96,8 @@ export const getServerSideProps = (async ({ query, res }) => {
   let content = portfolio as PortfolioContent;
 
   try {
-    buildings = await loadBuildings(filters);
+    const allBuildings = await loadAllBuildings({ per_page: "200" });
+    buildings = buildResidentialPortfolioList(allBuildings, filters);
   } catch (error) {
     console.warn("WordPress buildings are unavailable.", error);
   }

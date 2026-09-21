@@ -77,10 +77,10 @@ function termNames(terms: PropertyTerm[], fallback = "Not specified") {
 
 function propertyImage(property: ListingPropertyUnit) {
   return (
-    property.cardImage?.card ||
-    property.cardImage?.full ||
     property.building?.cardImage?.card ||
     property.building?.cardImage?.full ||
+    property.cardImage?.card ||
+    property.cardImage?.full ||
     fallbackImage
   );
 }
@@ -118,7 +118,7 @@ function UnitPropertyCard({
       <div className="property-card-media">
         <img
           src={image}
-          alt={image === fallbackImage ? "ADURE placeholder" : property.cardImage?.alt || property.title}
+          alt={image === fallbackImage ? "ADURE placeholder" : property.building?.cardImage?.alt || property.cardImage?.alt || property.title}
           loading="lazy"
           decoding="async"
         />

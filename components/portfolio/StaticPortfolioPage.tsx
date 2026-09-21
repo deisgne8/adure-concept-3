@@ -27,6 +27,13 @@ function firstTermName(terms: PropertyTerm[], fallback: string) {
   return terms[0]?.name || fallback;
 }
 
+function residentialSectorName(terms: PropertyTerm[], fallback: string) {
+  return (
+    terms.find((term) => term.slug === "residential")?.name ||
+    firstTermName(terms, fallback)
+  );
+}
+
 function activeLocationName(locations: PropertyTerm[], slug?: string) {
   if (!slug) return "All";
   return locations.find((location) => location.slug === slug)?.name ?? "Selected";
@@ -45,7 +52,7 @@ function portfolioPageHref(filters: BuildingFilters, page: number) {
 function PortfolioBuildingCard({ building }: { building: BuildingSummary }) {
   const image = building.cardImage?.card || building.cardImage?.full || fallbackImage;
   const location = firstTermName(building.locations, "Location unavailable");
-  const sector = firstTermName(building.sectors, "Sector unavailable");
+  const sector = residentialSectorName(building.sectors, "Sector unavailable");
 
   return (
     <Link className="portfolio-project-card" href={`/properties/${building.slug}`}>
