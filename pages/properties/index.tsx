@@ -5,7 +5,8 @@ import StaticPropertiesPage from "../../components/properties/StaticPropertiesPa
 import catalog from "../../data/properties/catalog.json";
 import site from "../../data/home/site.json";
 import type { StaticCatalogContent } from "../../lib/properties/static-types";
-import { loadAllProperties } from "../../lib/properties/wordpress";
+import type { BuildingSummary, PropertyTerm } from "../../lib/properties/types";
+import { loadAllBuildings, loadAllProperties } from "../../lib/properties/wordpress";
 
 const emptyListingProperties: ListingPropertyListResponse = {
   facets: { buildings: [], locations: [], sectors: [], unitTypes: [] },
@@ -13,21 +14,55 @@ const emptyListingProperties: ListingPropertyListResponse = {
   pagination: { page: 1, perPage: 21, total: 0, totalPages: 0 },
 };
 
+function buildingTerm(building: BuildingSummary): PropertyTerm {
+  return {
+    id: building.id,
+    name: building.name,
+    slug: building.slug,
+  };
+}
+
+function byTermName(left: PropertyTerm, right: PropertyTerm) {
+  return left.name.localeCompare(right.name, "en", {
+    numeric: true,
+    sensitivity: "base",
+  });
+}
+
+function residentialBuildingTerms(buildings: BuildingSummary[] = []) {
+  return buildings
+    .filter((building) =>
+      building.sectors.some((sector) => sector.slug === "residential"),
+    )
+    .map(buildingTerm)
+    .sort(byTermName);
+}
+
 export const getStaticProps = (async () => {
   const content = catalog as StaticCatalogContent;
-  const [propertiesResult] = await Promise.allSettled([
+  const [propertiesResult, buildingsResult] = await Promise.allSettled([
     loadAllProperties({ per_page: "200" }),
+    loadAllBuildings({ per_page: "200" }),
   ]);
   const properties =
     propertiesResult.status === "fulfilled" ? propertiesResult.value : null;
+  const buildings =
+    buildingsResult.status === "fulfilled" ? buildingsResult.value : null;
+  const filterBuildings = residentialBuildingTerms(buildings?.items);
 
   if (propertiesResult.status === "rejected") {
     console.warn("WordPress properties endpoint is unavailable.", propertiesResult.reason);
   }
+  if (buildingsResult.status === "rejected") {
+    console.warn("WordPress buildings endpoint is unavailable.", buildingsResult.reason);
+  }
 
   const listingProperties: ListingPropertyListResponse = properties
     ? {
-        facets: properties.facets,
+        facets: {
+          ...properties.facets,
+          buildings: filterBuildings,
+        },
         items: properties.items.map((property) => ({
           amenities: property.amenities,
           annualRent: property.annualRent,
@@ -65,7 +100,16 @@ export const getStaticProps = (async () => {
     : emptyListingProperties;
 
   return {
-    props: { content, properties: listingProperties, site },
+    props: {
+      content,
+      properties: properties
+        ? listingProperties
+        : {
+            ...emptyListingProperties,
+            facets: { ...emptyListingProperties.facets, buildings: filterBuildings },
+          },
+      site,
+    },
     revalidate: 60,
   };
 }) satisfies GetStaticProps;

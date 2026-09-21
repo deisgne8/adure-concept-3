@@ -68,7 +68,13 @@ export default function SelectField({
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content className="select-field-content" position="popper">
+          <Select.Content
+            className={[
+              "select-field-content",
+              `select-field-content-${name}`,
+            ].join(" ")}
+            position="popper"
+          >
             <Select.Viewport className="select-field-viewport">
               {options.map((option) => (
                 <Select.Item

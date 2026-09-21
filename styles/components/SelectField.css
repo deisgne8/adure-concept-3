@@ -50,8 +50,19 @@
   box-shadow: 0 0.75rem 2rem rgba(3, 17, 34, 0.14);
 }
 
+.select-field-content-building {
+  max-height: min(24rem, var(--radix-select-content-available-height, 24rem));
+}
+
 .select-field-viewport {
   padding: var(--s025);
+}
+
+.select-field-content-building .select-field-viewport {
+  max-height: inherit;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .select-field-option {

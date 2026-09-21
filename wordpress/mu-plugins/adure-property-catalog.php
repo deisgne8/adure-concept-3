@@ -221,6 +221,9 @@ function adure_property_update_value( $name, $value, $post_id ) {
 }
 
 function adure_property_image( $attachment_id ) {
+	if ( is_array( $attachment_id ) ) {
+		$attachment_id = $attachment_id['ID'] ?? $attachment_id['id'] ?? 0;
+	}
 	$attachment_id = (int) $attachment_id;
 	if ( ! $attachment_id ) {
 		return null;
@@ -245,6 +248,19 @@ function adure_property_terms( $post_id, $taxonomy ) {
 		},
 		$terms
 	);
+}
+
+function adure_property_first_image_id( $post_id, $field_names ) {
+	foreach ( $field_names as $field_name ) {
+		$image_id = adure_property_value( $field_name, $post_id );
+		if ( is_array( $image_id ) ) {
+			$image_id = $image_id['ID'] ?? $image_id['id'] ?? 0;
+		}
+		if ( $image_id ) {
+			return $image_id;
+		}
+	}
+	return get_post_thumbnail_id( $post_id );
 }
 
 function adure_property_terms_for_taxonomy( $taxonomy ) {
@@ -307,7 +323,7 @@ function adure_format_building( $building_id, $include_gallery = true ) {
 		'locations'   => adure_property_terms( $building_id, 'adure_location' ),
 		'amenities'   => adure_property_terms( $building_id, 'adure_amenity' ),
 		'features'    => array_values( array_filter( array_map( 'trim', preg_split( '/\r?\n/', (string) adure_property_value( 'building_features', $building_id ) ) ) ) ),
-		'cardImage'   => adure_property_image( adure_property_value( 'card_image', $building_id ) ?: get_post_thumbnail_id( $building_id ) ),
+		'cardImage'   => adure_property_image( adure_property_first_image_id( $building_id, array( 'card_image', 'card_thumbnail', 'building_card_image', 'building_card_thumbnail' ) ) ),
 		'heroImage'   => adure_property_image( adure_property_value( 'hero_image', $building_id ) ),
 		'gallery'     => $include_gallery ? adure_property_gallery( $building_id ) : array(),
 		'seo'         => array(

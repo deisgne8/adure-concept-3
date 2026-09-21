@@ -2541,3 +2541,10 @@
   cursor:not-allowed!important;
   pointer-events:none!important;
 }
+
+/* Residential building selector added to the desktop search rail. */
+@media(min-width:901px){
+  .properties-page.properties-static-page .hero-property-search > .hero-search-box.search-box{
+    grid-template-columns:minmax(10.75rem,.9fr) minmax(7.8rem,.72fr) minmax(10rem,.92fr) minmax(7.7rem,.72fr) minmax(8.1rem,.76fr) minmax(7.6rem,.68fr) minmax(8.9rem,.78fr) minmax(10rem,.86fr) minmax(4rem,4rem)!important;
+  }
+}

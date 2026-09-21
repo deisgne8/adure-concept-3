@@ -81,10 +81,10 @@ function termNames(terms: PropertyTerm[], fallback = "Not specified") {
 
 function propertyImage(property: ListingPropertyUnit) {
   return (
-    property.cardImage?.card ||
-    property.cardImage?.full ||
     property.building?.cardImage?.card ||
     property.building?.cardImage?.full ||
+    property.cardImage?.card ||
+    property.cardImage?.full ||
     fallbackImage
   );
 }
@@ -124,7 +124,7 @@ function UnitPropertyCard({
       <div className="property-card-media">
         <img
           src={image}
-          alt={image === fallbackImage ? "ADURE placeholder" : property.cardImage?.alt || property.title}
+          alt={image === fallbackImage ? "ADURE placeholder" : property.building?.cardImage?.alt || property.cardImage?.alt || property.title}
           loading="lazy"
           decoding="async"
         />
@@ -235,6 +235,12 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
   const locations = properties.facets.locations ?? [];
   const sectors = properties.facets.sectors ?? [];
   const unitTypes = properties.facets.unitTypes ?? [];
+  const buildings = [...(properties.facets.buildings ?? [])].sort((left, right) =>
+    left.name.localeCompare(right.name, "en", {
+      numeric: true,
+      sensitivity: "base",
+    }),
+  );
   const updateDraft = (key: keyof typeof emptyFilters, value: string) => {
     setDraftFilters((current) => ({ ...current, [key]: value }));
   };
@@ -370,6 +376,21 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                   onValueChange={(value) => updateDraft("location", value)}
                   options={[{ label: "All locations", value: "all" }, ...locations.map((term) => ({ label: term.name, value: term.slug }))]}
                   value={draftFilters.location}
+                />
+                <SelectField
+                  className="search-field search-building"
+                  id="property-building"
+                  label={labels.building}
+                  name="building"
+                  onValueChange={(value) => updateDraft("building", value)}
+                  options={[
+                    { label: "All buildings", value: "all" },
+                    ...buildings.map((term) => ({
+                      label: term.name,
+                      value: term.slug,
+                    })),
+                  ]}
+                  value={draftFilters.building}
                 />
                 <SelectField className="search-field search-community" id="property-sector" label={labels.sector} name="sector" onValueChange={(value) => updateDraft("sector", value)} options={[{ label: "All property types", value: "all" }, ...sectors.map((term) => ({ label: term.name, value: term.slug }))]} value={draftFilters.sector} />
                 <SelectField

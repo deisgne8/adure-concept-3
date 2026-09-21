@@ -181,6 +181,43 @@ export async function loadBuildings(filters: BuildingFilters = {}) {
   return normalizeBuildingList(response, filters);
 }
 
+export async function loadAllBuildings(filters: BuildingFilters = {}) {
+  const firstPage = await loadBuildings({
+    ...filters,
+    page: filters.page ?? "1",
+    per_page: filters.per_page ?? "200",
+  });
+  const totalPages = firstPage.pagination.totalPages;
+
+  if (totalPages <= 1) {
+    return firstPage;
+  }
+
+  const remainingPages = await Promise.all(
+    Array.from({ length: totalPages - 1 }, (_, index) =>
+      loadBuildings({
+        ...filters,
+        page: String(index + 2),
+        per_page: filters.per_page ?? "200",
+      }),
+    ),
+  );
+
+  return {
+    ...firstPage,
+    items: [
+      ...firstPage.items,
+      ...remainingPages.flatMap((page) => page.items),
+    ],
+    pagination: {
+      ...firstPage.pagination,
+      page: 1,
+      total: firstPage.pagination.total,
+      totalPages,
+    },
+  };
+}
+
 export async function loadHomeProperties() {
   try {
     return await loadProperties({ per_page: "12" });
