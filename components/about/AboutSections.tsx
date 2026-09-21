@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
+import { Keyboard } from "swiper/modules";
 import "swiper/css";
 import { aosSequenceDelay } from "../../lib/aos";
 
@@ -43,65 +44,42 @@ export function AboutIntroductionSection({ introduction }: { introduction: Intro
 }
 
 export function AboutStorySection({ story }: { story: StoryContent }) {
-  const imageRef = useRef<HTMLImageElement>(null);
-  const imageFrameRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const image = imageRef.current;
-    const frame = imageFrameRef.current;
-
-    if (!image || !frame) return undefined;
-
-    let frameId = 0;
-    let isInView = frame.getBoundingClientRect().bottom > 0 && frame.getBoundingClientRect().top < window.innerHeight;
-
-    const updateParallax = () => {
-      frameId = 0;
-      if (!isInView) return;
-
-      const bounds = frame.getBoundingClientRect();
-      const frameCenter = bounds.top + bounds.height / 2;
-      const viewportCenter = window.innerHeight / 2;
-      const travelRange = (window.innerHeight + bounds.height) / 2;
-      const progress = Math.max(-1, Math.min(1, (viewportCenter - frameCenter) / travelRange));
-      const offset = progress * 42;
-      image.style.setProperty("--story-parallax-offset", `${offset}px`);
-    };
-
-    const requestUpdate = () => {
-      if (isInView && !frameId) frameId = window.requestAnimationFrame(updateParallax);
-    };
-
-    const observer = new IntersectionObserver(([entry]) => {
-      isInView = entry.isIntersecting;
-      if (isInView) requestUpdate();
-    }, { rootMargin: "15% 0px" });
-
-    observer.observe(frame);
-    requestUpdate();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    return () => {
-      observer.disconnect();
-      window.cancelAnimationFrame(frameId);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      image.style.removeProperty("--story-parallax-offset");
-    };
-  }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const storySwiperRef = useRef<SwiperInstance | null>(null);
+  const headingLines = story.heading.replace(" of ", "\nof ").split("\n");
+  const select = (index: number) => storySwiperRef.current?.slideTo(index);
 
   return (
-    <section className="story-section story-tilton-section" aria-labelledby="story-title">
-      <div className="section-shell story-tilton-shell">
-        <div className="story-tilton-stage">
-          <figure ref={imageFrameRef} className="story-tilton-image story-tilton-image-left about-image-scale"><img ref={imageRef} className="story-parallax-image" src={story.image} alt={story.imageAlt} /></figure>
-          <article className="story-tilton-card" data-aos="fade-left">
-            <span className="about-eyebrow">{story.eyebrow}</span>
-            <p className="story-tilton-year">{story.year}</p>
-            <h2 id="story-title" className="type-guides-heading">{story.heading}</h2>
-            {story.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-          </article>
+    <section className="story-history-section" id="story-title" aria-labelledby="story-history-title">
+      <div className="section-shell story-history-intro" data-aos="fade-up">
+        <div className="story-history-title"><h2 id="story-history-title">{headingLines.map((line) => <span key={line}>{line}</span>)}</h2></div>
+        <div className="story-history-copy">{story.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+      </div>
+      <div className="section-shell story-history-shell" data-aos="fade-up" data-aos-delay="100">
+        <Swiper
+          className="story-history-swiper"
+          modules={[Keyboard]}
+          keyboard={{ enabled: true }}
+          slidesPerView="auto"
+          spaceBetween={18}
+          speed={620}
+          breakpoints={{ 760: { spaceBetween: 28 }, 1100: { spaceBetween: 48 } }}
+          onSwiper={(swiper) => { storySwiperRef.current = swiper; }}
+          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        >
+          {story.milestones.map((milestone) => (
+            <SwiperSlide className="story-history-slide" key={milestone.year}>
+              <article className="story-history-card">
+                <figure><img src={milestone.image} alt={milestone.imageAlt} loading="lazy" decoding="async" /></figure>
+                <div className="story-history-card-copy"><p className="story-history-year">{milestone.year}</p><h3>{milestone.heading}</h3><p>{milestone.description}</p></div>
+              </article>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+        <div className="story-history-controls" aria-label="Timeline controls">
+          <button type="button" aria-label="Previous milestone" disabled={activeIndex === 0} onClick={() => storySwiperRef.current?.slidePrev()}>←</button>
+          <ol className="story-history-years" aria-label="Select timeline year">{story.milestones.map((milestone, index) => <li className={index === activeIndex ? "is-active" : undefined} key={milestone.year}><button type="button" aria-current={index === activeIndex ? "step" : undefined} onClick={() => select(index)}><strong>{milestone.year}</strong><small>{milestone.summary}</small></button></li>)}</ol>
+          <button type="button" aria-label="Next milestone" disabled={activeIndex === story.milestones.length - 1} onClick={() => storySwiperRef.current?.slideNext()}>→</button>
         </div>
       </div>
     </section>
@@ -191,11 +169,15 @@ export function AboutGuidesSection({ guides }: { guides: GuidesContent }) {
 
 export function AboutCeoMessageSection({ ceo }: { ceo: CeoContent }) {
   return (
-    <section className="ceo-message-section ceo-message-light" aria-label="Chief executive message">
+    <section
+      className="ceo-message-section ceo-message-light"
+      aria-labelledby="ceo-message-title"
+      style={{ "--ceo-message-background": `url("${ceo.backgroundImage}")` } as CSSProperties}
+    >
       <div className="section-shell ceo-message-light-layout">
         <figure className="ceo-message-light-portrait about-image-scale" data-aos="fade-right"><img src={ceo.image} alt={ceo.imageAlt} /></figure>
         <div className="ceo-message-light-copy" data-aos="fade-left">
-          <span id="ceo-message-title" className="ceo-message-anchor" aria-hidden="true" />
+          <h2 id="ceo-message-title">{ceo.heading}</h2>
           {ceo.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <p className="ceo-signature"><strong>{ceo.name}</strong><span>{ceo.position}</span></p>
         </div>

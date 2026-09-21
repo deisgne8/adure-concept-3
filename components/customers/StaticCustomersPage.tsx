@@ -3,9 +3,8 @@ import type { CustomersContent } from "../../lib/customers/types";
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
-import CustomerAssetCarousel from "./CustomerAssetCarousel";
-import CustomerCommitmentStack from "./CustomerCommitmentStack";
 import { aosSequenceDelay } from "../../lib/aos";
+import TestimonialsCarousel from "../ui/TestimonialsCarousel";
 
 type Props = { content: CustomersContent; site: HomeContent["site"] };
 
@@ -44,39 +43,7 @@ export default function StaticCustomersPage({ content, site }: Props) {
           </div>
         </section>
 
-        <section className="customer-sectors pt_100 pb_100" aria-labelledby="sectors-title">
-          <div className="section-shell customer-sectors-layout">
-            <div className="customer-section-intro" data-aos="fade-right">
-              <h2 id="sectors-title">{content.sectors.heading}</h2>
-              <p>{content.sectors.description}</p>
-            </div>
-            <CustomerAssetCarousel items={content.sectors.items} />
-          </div>
-        </section>
-
-        <section className="customer-commitment" aria-labelledby="commitment-title">
-          <div className="section-shell commitment-layout">
-            <div className="customer-section-intro" data-aos="fade-right">
-              <h2 id="commitment-title">{content.commitment.heading}</h2>
-              <p>{content.commitment.description}</p>
-            </div>
-            <CustomerCommitmentStack items={content.commitment.items} />
-          </div>
-        </section>
-
-        <section className="customer-perspectives pt_100 pb_100" aria-labelledby="perspectives-title">
-          <div className="section-shell perspectives-layout">
-            <div className="perspectives-intro" data-aos="fade-right"><h2 id="perspectives-title">{content.testimonial.heading}</h2></div>
-            <article className="perspectives-quote-card" aria-label="Client testimonial" data-aos="fade-left">
-              <blockquote>{content.testimonial.quote}</blockquote>
-              <p>{content.testimonial.description}</p>
-              <div className="perspectives-customer-meta">
-                <span className="perspectives-logo-placeholder" aria-hidden="true" />
-                <div><strong>{content.testimonial.client}</strong><span>{content.testimonial.location}</span></div>
-              </div>
-            </article>
-          </div>
-        </section>
+        <TestimonialsCarousel content={content.testimonials} id="testimonials" variant="customers" />
 
         <section className="customers-closing" aria-labelledby="closing-title">
           <img src={content.closing.image} alt={content.closing.imageAlt} loading="lazy" />

@@ -1,4 +1,5 @@
 import type { ButtonVariant } from "../../components/ui/Button";
+import portfolioFallback from "../../data/portfolio/page.json";
 import { getWordPressEndpoint } from "../config/endpoints";
 import { getHeadingLines, getWordPressMediaUrl } from "../home/wordpress";
 import type { PortfolioContent } from "./types";
@@ -118,6 +119,7 @@ export async function loadWordPressPortfolioContent() {
     acf.portfolio_cta_button ?? acf.portfolio_cta_button_link ?? acf.portfolio_cta_link,
     acf.portfolio_cta_button_label ?? "",
   );
+  const approvedAssetSupport = (portfolioFallback as PortfolioContent).assetSupport;
 
   return {
     meta: {
@@ -149,17 +151,7 @@ export async function loadWordPressPortfolioContent() {
       description: acf.portfolio_explorer_description ?? "",
       projectsByCity: [],
     },
-    principles: {
-      heading: acf.portfolio_principles_heading ?? "",
-      items: getRows(acf.portfolio_principles)
-        .map((item) => ({
-          title: item.title ?? "",
-          description: item.description ?? "",
-          image: getMediaUrl(item.image) ?? "",
-          imageAlt: item.image_alt || getMediaAlt(item.image),
-        }))
-        .filter((item) => item.title || item.description || item.image),
-    },
+    assetSupport: approvedAssetSupport,
     cta: {
       heading: acf.portfolio_cta_heading ?? "",
       description: acf.portfolio_cta_description ?? "",

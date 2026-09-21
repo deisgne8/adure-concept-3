@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import Button, { type ButtonVariant } from "../ui/Button";
 import Section from "../ui/Section";
 import useBannerEntrance from "../ui/useBannerEntrance";
@@ -50,12 +50,7 @@ export default function HeroSection({ content }: HeroSectionProps) {
             <div>
               {content.heading.length > 0 && (
                 <h1>
-                  {content.heading.map((line, index) => (
-                    <Fragment key={line}>
-                      {index > 0 && <br />}
-                      {line}
-                    </Fragment>
-                  ))}
+                  {content.heading.map((line) => <span key={line}>{line}</span>)}
                 </h1>
               )}
             </div>

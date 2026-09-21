@@ -32,7 +32,7 @@
         ]
       },
       {
-        "label": "Portfolio",
+        "label": "Our Portfolio",
         "href": "/portfolio",
         "items": [
           { "label": "Abu Dhabi", "href": "/portfolio?location=abu-dhabi" },
@@ -45,9 +45,9 @@
         "label": "Our Customer",
         "href": "/customers",
         "items": [
-          { "label": "Government", "href": "/customers#government" },
-          { "label": "Semi Government", "href": "/customers#government" },
-          { "label": "Private Sector", "href": "/customers#private-sector" }
+          { "label": "Government and Semi-Government", "href": "/customers#government" },
+          { "label": "Private Sector & Corporates", "href": "/customers#private-sector" },
+          { "label": "Testimonials", "href": "/customers#testimonials" }
         ]
       },
       {
@@ -80,7 +80,7 @@
           { "label": "Buy", "href": "/properties?intent=buy" },
           { "label": "Lease", "href": "/properties?intent=lease" },
           { "label": "List your property", "href": "/#sell" },
-          { "label": "Portfolio", "href": "/portfolio" }
+          { "label": "Our Portfolio", "href": "/portfolio" }
         ]
       },
       {
@@ -95,7 +95,7 @@
       {
         "heading": "Explore",
         "links": [
-          { "label": "Portfolio", "href": "/portfolio" },
+          { "label": "Our Portfolio", "href": "/portfolio" },
           { "label": "Available properties", "href": "/properties" }
         ]
       }

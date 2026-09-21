@@ -12,6 +12,7 @@ import SiteChrome from "./sections/SiteChrome";
 import SiteFooter from "./sections/SiteFooter";
 import TransitionSection from "./sections/TransitionSection";
 import TrustSection from "./sections/TrustSection";
+import TestimonialsCarousel from "./ui/TestimonialsCarousel";
 import type { HomeContent } from "../lib/home/load-home-content";
 
 type HomePageProps = {
@@ -33,6 +34,7 @@ export default function HomePage({ content }: HomePageProps) {
           <ProofSection content={content.proof} />
           <PortfolioSection content={content.portfolio} />
           <TransitionSection content={content.transition} />
+          <TestimonialsCarousel content={content.testimonials} id="home-testimonials" variant="home" />
           <SellSection content={content.sell} />
           <TrustSection content={content.trust} />
           <ConversationSection content={content.conversation} />

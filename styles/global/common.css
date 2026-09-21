@@ -1,5 +1,6 @@
 @import "./tokens.css";
 @import "./base.css";
+@import "./typography.css";
 @import "../components/ImageParallax.css";
 @import "../components/ManagementSection.css";
 @import "../components/PortfolioSection.css";
@@ -23,5 +24,7 @@
 @import "../components/SiteChrome.css";
 @import "../components/SellSection.css";
 @import "../components/AboutPage.css";
+@import "../components/AboutStoryTimeline.css";
 @import "../components/PropertyCatalog.css";
 @import "../components/StaticPropertiesPage.css";
+@import "../components/TestimonialsCarousel.css";

@@ -1,0 +1,124 @@
+.about-page .story-history-section {
+  --history-card-width: min(clamp(51.25rem, 64vw, 65.625rem), calc(100vw - (clamp(3rem, 5vw, 6rem) * 2) - 13.125rem));
+  margin: 0;
+  padding: clamp(5rem, 7vw, 7rem) 0;
+  overflow: hidden;
+  background: #f2f7fa;
+}
+
+.about-page .story-history-intro,
+.about-page .story-history-shell {
+  width: min(calc(100% - (var(--gutter, 56px) * 2)), var(--container));
+  max-width: var(--container);
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.about-page .story-history-intro {
+  display: grid;
+  grid-template-columns: minmax(18rem, 26rem) minmax(26rem, 41rem);
+  gap: clamp(4rem, 9vw, 10.5rem);
+  align-items: start;
+  margin-bottom: clamp(2.8rem, 5vw, 4.8rem);
+}
+
+.about-page .story-history-title h2 {
+  margin: 0;
+  color: var(--accent);
+  font: 600 clamp(2.75rem, 4vw, 4.75rem)/.96 var(--font-display);
+  letter-spacing: 0;
+}
+.about-page .story-history-title h2 span { display: block; }
+.about-page .story-history-copy { max-width: 41rem; color: #3d5063; font-size: clamp(1.05rem, 1.05vw, 1.25rem); line-height: 1.55; }
+.about-page .story-history-copy p { margin: 0; color: inherit; font: inherit; }
+.about-page .story-history-copy p + p { margin-top: 1.35rem; }
+.about-page .story-history-shell,
+.about-page .story-history-swiper { overflow: visible; }
+.about-page .story-history-slide { width: var(--history-card-width); height: auto; }
+
+.about-page .story-history-card {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: clamp(30rem, 33vw, 34rem);
+  overflow: hidden;
+  border: 0;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: none;
+}
+.about-page .story-history-card figure { min-width: 0; height: 100%; margin: 0; overflow: hidden; }
+.about-page .story-history-card figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.about-page .story-history-card-copy { display: flex; min-width: 0; height: 100%; flex-direction: column; padding: clamp(2.25rem, 3vw, 3.25rem); color: #24384a; }
+.about-page .story-history-year { margin: 0; color: var(--accent); font: 300 clamp(4.8rem, 7vw, 8.4rem)/.88 var(--font-display); letter-spacing: 0; }
+.about-page .story-history-card-copy h3 { max-width: 10em; margin: auto 0 .75rem; color: var(--accent); font: 600 clamp(1.9rem, 2.2vw, 2.5rem)/1.02 var(--font-display); letter-spacing: 0; }
+.about-page .story-history-card-copy > p:last-child { max-width: 30rem; margin: 0; color: #24384a; font-size: clamp(1rem, .95vw, 1.125rem); line-height: 1.45; }
+
+.about-page .story-history-controls { width: var(--history-card-width); margin-top: clamp(3.1rem, 4.6vw, 4.5rem); }
+.about-page .story-history-controls > button { display: none; }
+.about-page .story-history-years {
+  --timeline-year-dot-x: 1.02em;
+  --timeline-label-top: -4px;
+  --timeline-dot-top: 30px;
+  --timeline-line-top: 38.5px;
+  display: grid;
+  grid-template-columns: 16.32px 1fr 16.32px 1fr 16.32px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  list-style: none;
+}
+.about-page .story-history-years li { color: rgba(0, 71, 137, .48); }
+.about-page .story-history-years li.is-active { color: var(--accent); }
+.about-page .story-history-years li:nth-child(1) { grid-column: 1 / 3; }
+.about-page .story-history-years li:nth-child(2) { grid-column: 3 / 5; }
+.about-page .story-history-years li:nth-child(3) { grid-column: 5 / 6; }
+.about-page .story-history-years button { position: relative; display: block; width: 100%; height: 4.3rem; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; color: inherit; text-align: left; cursor: pointer; }
+.about-page .story-history-years strong { position: absolute; top: var(--timeline-label-top); left: 0; display: block; color: inherit; font: 400 clamp(1.05rem, 1.45vw, 1.35rem)/1 var(--font-body); letter-spacing: -.035em; }
+.about-page .story-history-years small { display: none; }
+.about-page .story-history-years button::after { position: absolute; top: calc(var(--timeline-line-top) - 4px); left: var(--timeline-year-dot-x); width: 8px; height: 8px; border-radius: 50%; background: #7fa2c5; content: ""; transform: translateX(-50%); }
+.about-page .story-history-years button::before { position: absolute; top: var(--timeline-line-top); right: 0; left: calc(var(--timeline-year-dot-x) + 1.2rem); height: 1px; background: rgba(0, 71, 137, .28); content: ""; }
+.about-page .story-history-years li.is-active button::after { top: calc(var(--timeline-line-top) - 9px); width: 18px; height: 18px; background: var(--accent); box-shadow: 0 0 0 8px rgba(0, 71, 137, .1); }
+.about-page .story-history-years li:nth-child(3) button { width: 16.32px; }
+.about-page .story-history-years li:nth-child(3) button::before { display: none; }
+.about-page .story-history-years li:nth-child(3) strong { left: var(--timeline-year-dot-x); transform: translateX(-50%); text-align: center; }
+
+@media (max-width: 900px) {
+  .about-page .story-history-section { padding-block: 4rem; }
+  .about-page .story-history-intro,
+  .about-page .story-history-shell { width: 100%; padding-inline: 1.25rem; }
+  .about-page .story-history-intro { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-page .story-history-section { --history-card-width: calc(100vw - 2.5rem); }
+  .about-page .story-history-card { grid-template-columns: 1fr; height: auto; }
+  .about-page .story-history-card figure { height: clamp(13rem, 52vw, 20rem); min-height: 0; }
+  .about-page .story-history-card-copy { min-height: 14rem; padding: 1.5rem; }
+  .about-page .story-history-year { font-size: clamp(2.75rem, 12vw, 4.5rem); }
+  .about-page .story-history-controls { width: 100%; padding-inline: .25rem; }
+  .about-page .story-history-years {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    overflow: visible;
+    padding: .2rem 0 .5rem;
+  }
+  .about-page .story-history-years strong { max-width: calc(100% - .5rem); font-size: clamp(.82rem, 3.5vw, 1rem); white-space: nowrap; }
+  .about-page .story-history-years li:nth-child(n) { grid-column: auto; }
+  .about-page .story-history-years li:nth-child(3) button { width: 100%; }
+  .about-page .story-history-years li:nth-child(3) button::before { display: block; }
+  .about-page .story-history-years li:nth-child(3) strong { left: 0; transform: none; text-align: left; }
+}
+
+@media (max-width: 480px) {
+  .about-page .story-history-intro,
+  .about-page .story-history-shell { padding-inline: 1rem; }
+  .about-page .story-history-section { --history-card-width: calc(100vw - 2rem); }
+  .about-page .story-history-card figure { height: clamp(12rem, 50vw, 15rem); }
+  .about-page .story-history-card-copy { min-height: 12.5rem; padding: 1.25rem; }
+  .about-page .story-history-year { font-size: clamp(2.5rem, 11vw, 3.5rem); }
+  .about-page .story-history-card-copy h3 { font-size: clamp(1.45rem, 7vw, 1.8rem); }
+  .about-page .story-history-controls { margin-top: 2.25rem; padding-inline: 0; }
+  .about-page .story-history-years { --timeline-year-dot-x: .7em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page .story-history-swiper .swiper-wrapper { transition-duration: 0ms !important; }
+}

@@ -1,10 +1,12 @@
 import type { HomeContent } from "../../lib/home/load-home-content";
-import type { ContactContent, ContactDetail } from "../../lib/contact/types";
+import type { ContactContent } from "../../lib/contact/types";
 import { useFormik } from "formik";
+import { useEffect, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
-import { aosSequenceDelay } from "../../lib/aos";
+import ContactLocationMap from "./ContactLocationMap";
 
 type Props = {
   content: ContactContent;
@@ -23,24 +25,125 @@ type ContactFormErrors = Partial<Record<keyof ContactFormValues | "form", string
 
 const phonePattern = /^[+()\d\s-]{7,20}$/;
 
-function ContactDetailRow({ detail, index }: { detail: ContactDetail; index: number }) {
-  const copy = detail.lines.map((line, index) => (
-    <span key={line}>
-      {index > 0 ? <br /> : null}
-      {line}
-    </span>
-  ));
+type InquirySelectProps = {
+  describedBy?: string;
+  invalid: boolean;
+  onChange: (value: string) => void;
+  onTouched: () => void;
+  options: string[];
+  value: string;
+};
+
+function InquirySelect({ describedBy, invalid, onChange, onTouched, options, value }: InquirySelectProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const selectedIndex = Math.max(0, options.indexOf(value));
+  const [activeIndex, setActiveIndex] = useState(selectedIndex);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) {
+        setIsOpen(false);
+        onTouched();
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [isOpen, onTouched]);
+
+  const selectOption = (index: number) => {
+    const option = options[index];
+    if (!option) return;
+    onChange(option);
+    onTouched();
+    setIsOpen(false);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      if (!isOpen) {
+        setIsOpen(true);
+        setActiveIndex(selectedIndex);
+      } else {
+        setActiveIndex((current) => (current + direction + options.length) % options.length);
+      }
+      return;
+    }
+
+    if (event.key === "Home" || event.key === "End") {
+      event.preventDefault();
+      setIsOpen(true);
+      setActiveIndex(event.key === "Home" ? 0 : options.length - 1);
+      return;
+    }
+
+    if ((event.key === "Enter" || event.key === " ") && isOpen) {
+      event.preventDefault();
+      selectOption(activeIndex);
+      return;
+    }
+
+    if (event.key === "Escape" && isOpen) {
+      event.preventDefault();
+      setIsOpen(false);
+      onTouched();
+    }
+
+    if (event.key === "Tab" && isOpen) {
+      setIsOpen(false);
+      onTouched();
+    }
+  };
 
   return (
-    <article data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)}>
-      <span className="contact-icon" aria-hidden="true">
-        <img src={detail.icon} alt={detail.iconAlt} />
-      </span>
-      <div>
-        <h2>{detail.label}</h2>
-        <p>{detail.href ? <a href={detail.href}>{copy}</a> : copy}</p>
-      </div>
-    </article>
+    <div className={`contact-inquiry-select${isOpen ? " is-open" : ""}`} ref={rootRef}>
+      <input name="inquiry" type="hidden" value={value} />
+      <button
+        aria-activedescendant={isOpen ? `contact-type-option-${activeIndex}` : undefined}
+        aria-controls="contact-type-options"
+        aria-describedby={describedBy}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-invalid={invalid}
+        className="contact-inquiry-trigger"
+        id="contact-type"
+        role="combobox"
+        type="button"
+        onClick={() => {
+          setActiveIndex(selectedIndex);
+          setIsOpen((open) => !open);
+        }}
+        onKeyDown={handleKeyDown}
+      >
+        <span>{value}</span>
+        <span className="contact-inquiry-chevron" aria-hidden="true" />
+      </button>
+      {isOpen ? (
+        <div className="contact-inquiry-options" id="contact-type-options" role="listbox" aria-label="Inquiry type">
+          {options.map((option, index) => (
+            <button
+              aria-selected={option === value}
+              className={`contact-inquiry-option${index === activeIndex ? " is-active" : ""}`}
+              id={`contact-type-option-${index}`}
+              key={option}
+              role="option"
+              tabIndex={-1}
+              type="button"
+              onClick={() => selectOption(index)}
+              onMouseEnter={() => setActiveIndex(index)}
+            >
+              <span>{option}</span>
+              <span className="contact-inquiry-check" aria-hidden="true" />
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -143,8 +246,20 @@ export default function StaticContactPage({ content, site }: Props) {
               <h1 id="contact-title">{content.intro.heading}</h1>
               <p className="contact-lede">{content.intro.description}</p>
 
-              <div className="contact-details" aria-label="ADURE contact details">
-                {content.details.map((detail, index) => <ContactDetailRow detail={detail} index={index} key={detail.label} />)}
+              <div className="contact-details contact-location-list" aria-label="ADURE contact locations">
+                {content.locations.map((location) => (
+                  <article className={`contact-location-card${location.name === "General Inquiries" ? " contact-location-card-general" : ""}`} key={location.name}>
+                    <span className="contact-icon" aria-hidden="true">
+                      <img src={location.name === "General Inquiries" ? "/assets/contact/emails.svg" : "/assets/contact/address.svg"} alt="" />
+                    </span>
+                    <div>
+                      <h2>{location.name}</h2>
+                      <p className="contact-address">{location.address}</p>
+                      <p><a href={`tel:${location.phone.replace(/\s/g, "")}`}>{location.phone}</a></p>
+                      <p><a href={`mailto:${location.email}`}>{location.email}</a></p>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
 
@@ -183,17 +298,14 @@ export default function StaticContactPage({ content, site }: Props) {
               </label>
               <label htmlFor="contact-type">
                 {content.form.inquiryLabel}
-                <select
-                  aria-invalid={Boolean(getFieldError("inquiry"))}
-                  aria-describedby={getFieldError("inquiry") ? "contact-type-error" : undefined}
-                  id="contact-type"
-                  name="inquiry"
+                <InquirySelect
+                  describedBy={getFieldError("inquiry") ? "contact-type-error" : undefined}
+                  invalid={Boolean(getFieldError("inquiry"))}
+                  onChange={(value) => formik.setFieldValue("inquiry", value)}
+                  onTouched={() => formik.setFieldTouched("inquiry", true, false)}
+                  options={content.form.inquiryOptions}
                   value={formik.values.inquiry}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                >
-                  {content.form.inquiryOptions.map((option) => <option key={option}>{option}</option>)}
-                </select>
+                />
                 {getFieldError("inquiry") ? <span className="field-error" id="contact-type-error">{getFieldError("inquiry")}</span> : null}
               </label>
               <label className="message-label" htmlFor="contact-message">
@@ -212,7 +324,7 @@ export default function StaticContactPage({ content, site }: Props) {
                 />
                 {getFieldError("message") ? <span className="field-error" id="contact-message-error">{getFieldError("message")}</span> : null}
               </label>
-              <Button className="button-wipe contact-submit" disabled={formik.isSubmitting} type="submit">
+              <Button className="button-wipe contact-submit" disabled={formik.isSubmitting} type="submit" variant="primary">
                 <span>{formik.isSubmitting ? "Sending..." : content.form.submitLabel}</span>
               </Button>
               <label className="contact-consent">
@@ -232,17 +344,7 @@ export default function StaticContactPage({ content, site }: Props) {
             </form>
           </div>
 
-          <section className="contact-map" aria-label={content.map.title} data-aos="fade-up">
-            <iframe
-              title={content.map.title}
-              src={content.map.embedUrl}
-              loading="eager"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-            <a className="contact-map-link" href={content.map.externalUrl} target="_blank" rel="noopener noreferrer">
-              {content.map.externalLabel}
-            </a>
-          </section>
+          <ContactLocationMap content={content.map} locations={content.locations} />
         </section>
       </main>
 
