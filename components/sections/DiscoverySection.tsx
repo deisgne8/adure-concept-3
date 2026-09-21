@@ -1,6 +1,7 @@
 import Section from "../ui/Section";
 import SelectField from "../ui/SelectField";
 import Button from "../ui/Button";
+import { Search } from "lucide-react";
 import type { HomeContent } from "../../lib/home/load-home-content";
 
 type DiscoverySectionProps = {
@@ -119,7 +120,15 @@ export default function DiscoverySection({ content }: DiscoverySectionProps) {
                   </div>
                 </div>
               </div>
-              <Button className="search-primary" type="submit" variant="dark">{content.submitButton}</Button>
+              <Button
+                aria-label={content.submitButton}
+                className="search-primary home-search-icon-button"
+                title={content.submitButton}
+                type="submit"
+                variant="dark"
+              >
+                <Search aria-hidden="true" className="home-search-icon" />
+              </Button>
             </form>
           </div>
           <p className="search-status" id="search-status" role="status" aria-live="polite"></p>

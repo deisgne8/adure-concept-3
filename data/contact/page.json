@@ -7,27 +7,12 @@
     "heading": "Get In Touch",
     "description": "Start a conversation with us. From property enquiries to management support, our team is here to understand what you need and guide you with the right next step."
   },
-  "details": [
-    {
-      "label": "Office Location",
-      "lines": ["Abu Dhabi United Real Estate", "Abu Dhabi · Dubai · Al Ain"],
-      "icon": "/assets/contact/address.svg",
-      "iconAlt": ""
-    },
-    {
-      "label": "Phone",
-      "lines": ["02 6457869"],
-      "href": "tel:+97126457869",
-      "icon": "/assets/contact/telephone.svg",
-      "iconAlt": ""
-    },
-    {
-      "label": "Email",
-      "lines": ["Inquiries@adu-re.com"],
-      "href": "mailto:Inquiries@adu-re.com",
-      "icon": "/assets/contact/emails.svg",
-      "iconAlt": ""
-    }
+  "locations": [
+    { "name": "Abu Dhabi Office", "address": "Abu Dhabi, United Arab Emirates", "phone": "+971 50 532 1440", "email": "abudhabileasing@adu-re.com", "coordinates": [24.4539, 54.3773], "mapUrl": "https://maps.google.com/?q=Abu%20Dhabi%20United%20Arab%20Emirates" },
+    { "name": "Al Ain Office", "address": "Al Ain, Abu Dhabi, United Arab Emirates", "phone": "+971 50 442 5135", "email": "alainleasing@adu-re.com", "coordinates": [24.2075, 55.7447], "mapUrl": "https://maps.google.com/?q=Al%20Ain%20Abu%20Dhabi%20United%20Arab%20Emirates" },
+    { "name": "Hidd Al Saadiyat", "address": "Abu Dhabi, United Arab Emirates", "phone": "+971 56 680 5125", "email": "alhiddleasing@adu-re.com", "coordinates": [24.548, 54.452], "mapUrl": "https://maps.google.com/?q=Hidd%20Al%20Saadiyat%20Abu%20Dhabi" },
+    { "name": "Dubai Office", "address": "Dubai, United Arab Emirates", "phone": "+971 50 917 1060", "email": "dubaileasing@adu-re.com", "coordinates": [25.2048, 55.2708], "mapUrl": "https://maps.google.com/?q=Dubai%20United%20Arab%20Emirates" },
+    { "name": "General Inquiries", "address": "UAE-wide customer support", "phone": "+971 56 680 5125", "email": "inquiries@adu-re.com", "mapUrl": "https://maps.google.com/?q=United%20Arab%20Emirates" }
   ],
   "form": {
     "action": "/api/contact",
@@ -44,9 +29,10 @@
     "consentLabel": "By submitting this form, I agree to the Privacy Policy."
   },
   "map": {
-    "title": "ADURE location map",
-    "embedUrl": "https://www.openstreetmap.org/export/embed.html?bbox=54.3400%2C24.4300%2C54.4300%2C24.5000&layer=mapnik&marker=24.4667%2C54.3667",
-    "externalUrl": "https://maps.google.com/?q=Abu%20Dhabi%20United%20Real%20Estate%20ADURE",
-    "externalLabel": "View On Google Maps"
+    "eyebrow": "ADURE locations",
+    "heading": "Find Us Across The UAE",
+    "description": "Four location teams support leasing and customer inquiries across Abu Dhabi, Al Ain, Hidd Al Saadiyat and Dubai.",
+    "ariaLabel": "Map of the UAE with markers for Abu Dhabi, Al Ain, Hidd Al Saadiyat and Dubai",
+    "failureMessage": "Map imagery is unavailable. Office locations are still listed above."
   }
 }

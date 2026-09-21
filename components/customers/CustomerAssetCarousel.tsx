@@ -17,9 +17,11 @@ export default function CustomerAssetCarousel({ items }: Props) {
   useEffect(() => {
     const syncOffset = () => setOffset(cardRefs.current[activeIndex]?.offsetLeft ?? 0);
     const frame = requestAnimationFrame(syncOffset);
+    const settledFrame = window.setTimeout(syncOffset, 560);
     window.addEventListener("resize", syncOffset, { passive: true });
     return () => {
       cancelAnimationFrame(frame);
+      window.clearTimeout(settledFrame);
       window.removeEventListener("resize", syncOffset);
     };
   }, [activeIndex]);

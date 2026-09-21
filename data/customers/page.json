@@ -86,35 +86,15 @@
       ]
     }
   ],
-  "sectors": {
-    "heading": "Across Every Asset",
-    "description": "Every asset is supported by connected expertise across operations, facilities, financial management, legal oversight and customer service - all working towards long-term performance and value.",
+  "testimonials": {
+    "heading": "What Our Clients Value",
+    "description": "How we work is best understood through the experience of those we work with. Here’s a closer view of the relationships, service and expertise behind ADURE’s approach to real estate.",
     "items": [
-      { "title": "Residential Communities", "description": "Supporting residential communities through coordinated leasing, operations, facility management and tenant services.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed residential community" },
-      { "title": "Commercial Buildings", "description": "Taking care of the day-to-day requirements that help commercial assets operate consistently.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed commercial building" },
-      { "title": "Office Towers", "description": "Managing facility, maintenance and operational needs across workplaces.", "image": "/assets/architecture-city.webp", "imageAlt": "Office tower exterior" },
-      { "title": "Retail Shops", "description": "Supporting reliable, well-managed spaces for retail operations and their customers.", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp", "imageAlt": "Retail frontage within a mixed-use development" },
-      { "title": "Hotels", "description": "Applying facility and operational management capabilities to the hospitality sector.", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "imageAlt": "Hospitality-style lobby managed by ADURE" },
-      { "title": "Government Buildings", "description": "Delivering structured support with a focus on reliability, compliance and accountability.", "image": "/assets/trust/abu-dhabi-institutions.jpg", "imageAlt": "Institutional building in Abu Dhabi" },
-      { "title": "Mixed-Use Developments", "description": "Coordinating multiple operational requirements within one integrated management approach.", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp", "imageAlt": "Mixed-use waterfront development" }
+      { "quote": "From the professionalism and responsiveness of the staff to the quality of communication and overall service, everything has been handled smoothly and efficiently.", "name": "Abdel Karim Adra", "avatar": "/assets/testimonials/avatar-silhouette-transparent.png" },
+      { "quote": "We have had a very good experience with the leasing team, who have been professional, responsive, and supportive throughout the leasing process… We would also like to recognize the maintenance team for their cooperation and prompt support whenever assistance is required.", "name": "Sawsan Jumah", "avatar": "/assets/testimonials/avatar-silhouette-transparent.png" },
+      { "quote": "Since returning, my experience with the team has been extremely positive. What I have appreciated most is that the relationship has never felt purely transactional. There has always been a genuine effort to listen, communicate, accommodate where possible, and build a good long-term relationship with tenants.", "name": "Eng. Hamza Farooq", "avatar": "/assets/testimonials/avatar-silhouette-transparent.png" },
+      { "quote": "The beach is stunning and perfectly equipped, the surroundings are breathtaking, and the entire team is incredibly attentive and caring. The management is also always helpful, responsive, and genuinely committed to making residents feel at home.", "name": "Zainab Asrawi", "avatar": "/assets/testimonials/avatar-silhouette-transparent.png" }
     ]
-  },
-  "commitment": {
-    "heading": "Our Commitment",
-    "description": "The requirements may change from one client to another. The approach behind ADURE’s work remains connected.",
-    "items": [
-      { "title": "Integrated Expertise", "description": "Leasing and operations, facility management, financial management and legal support work together rather than isolated services." },
-      { "title": "Operational Accountability", "description": "Routine inspections, maintenance, vendor management, compliance and 24/7 customer support are structured around consistent asset performance." },
-      { "title": "Financial Transparency", "description": "Budgeting, financial reporting, owner reporting and financial controls provide clearer visibility into asset performance." },
-      { "title": "Technology & Reporting", "description": "ERP and digital facility-management tools support reporting, work orders, inspections, asset monitoring and better-informed decisions." }
-    ]
-  },
-  "testimonial": {
-    "heading": "Relationships, In Their Own Words",
-    "quote": "“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Their team brings clarity, consistency and attention to detail across every stage of property management.”",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "client": "Client Name / Organisation",
-    "location": "Abu Dhabi"
   },
   "closing": {
     "heading": "The Right Expertise Around Every Asset",

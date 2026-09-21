@@ -1,10 +1,13 @@
-export type ContactDetail = {
-  label: string;
-  lines: string[];
-  href?: string;
-  icon: string;
-  iconAlt: string;
+export type ContactLocation = {
+  name: string;
+  address: string;
+  phone: string;
+  email: string;
+  coordinates?: [number, number];
+  mapUrl: string;
 };
+
+export type ContactMapContent = { eyebrow: string; heading: string; description: string; ariaLabel: string; failureMessage: string };
 
 export type ContactContent = {
   meta: {
@@ -15,7 +18,7 @@ export type ContactContent = {
     heading: string;
     description: string;
   };
-  details: ContactDetail[];
+  locations: ContactLocation[];
   form: {
     action: string;
     nameLabel: string;
@@ -30,10 +33,5 @@ export type ContactContent = {
     submitLabel: string;
     consentLabel: string;
   };
-  map: {
-    title: string;
-    embedUrl: string;
-    externalUrl: string;
-    externalLabel: string;
-  };
+  map: ContactMapContent;
 };

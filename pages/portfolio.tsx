@@ -4,7 +4,6 @@ import StaticPortfolioPage from "../components/portfolio/StaticPortfolioPage";
 import portfolio from "../data/portfolio/page.json";
 import site from "../data/home/site.json";
 import type { PortfolioContent } from "../lib/portfolio/types";
-import { loadWordPressPortfolioContent } from "../lib/portfolio/wordpress";
 import type { BuildingListResponse } from "../lib/properties/types";
 import { loadBuildings } from "../lib/properties/wordpress";
 
@@ -27,18 +26,12 @@ export const getServerSideProps = (async ({ query, res }) => {
     per_page: "21",
   };
   let buildings = emptyBuildings;
-  let content = portfolio as PortfolioContent;
+  const content = portfolio as PortfolioContent;
 
   try {
     buildings = await loadBuildings(filters);
   } catch (error) {
     console.warn("WordPress buildings are unavailable.", error);
-  }
-
-  try {
-    content = await loadWordPressPortfolioContent();
-  } catch (error) {
-    console.warn("WordPress portfolio content is unavailable.", error);
   }
 
   res.setHeader(

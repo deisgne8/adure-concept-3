@@ -11,6 +11,7 @@ import Button from "../ui/Button";
 import SelectField from "../ui/SelectField";
 import PropertiesFilterDialog from "./PropertiesFilterDialog";
 import { aosSequenceDelay } from "../../lib/aos";
+import LivePropertiesMap, { hasMappableProperty } from "./LivePropertiesMap";
 
 type Props = {
   content: StaticCatalogContent;
@@ -27,7 +28,9 @@ export type ListingPropertyUnit = {
   building: {
     cardImage: PropertyImage | null;
     id: number;
+    latitude: number | string | null;
     locations: PropertyTerm[];
+    longitude: number | string | null;
     name: string;
     slug: string;
   } | null;
@@ -62,6 +65,7 @@ const emptyFilters = {
   building: "all",
   location: "all",
   price: "all",
+  sector: "all",
   transaction: "lease",
   unitType: "all",
 };
@@ -106,6 +110,8 @@ function UnitPropertyCard({
   const image = propertyImage(property);
   const href = building ? `/properties/${building.slug}/${property.slug}` : "/properties";
   const reference = `REF # ADU-${property.id}`;
+  const areaSqm = property.areaSqm;
+  const hasArea = typeof areaSqm === "number" && Number.isFinite(areaSqm) && areaSqm > 0;
 
   return (
     <article
@@ -134,7 +140,7 @@ function UnitPropertyCard({
         <h3>{property.title}</h3>
         <p className="property-building">{[building?.name, property.unitCode].filter(Boolean).join(" · ")}</p>
         <div className="property-price">{formatPropertyPrice(property)}</div>
-        <div className="property-facts" aria-label="Property facts">
+        <div className={`property-facts${hasArea ? "" : " has-two-facts"}`} aria-label="Property facts">
           <span>
             <BedDouble aria-hidden="true" />
             {property.bedrooms === null
@@ -147,12 +153,12 @@ function UnitPropertyCard({
             <Bath aria-hidden="true" />
             {property.bathrooms === null ? "--" : `${property.bathrooms} Bath`}
           </span>
-          <span>
-            <Maximize2 aria-hidden="true" />
-            {property.areaSqm === null
-              ? "--"
-              : `${property.areaSqm.toLocaleString("en-US")} sqm`}
-          </span>
+          {hasArea ? (
+            <span>
+              <Maximize2 aria-hidden="true" />
+              {areaSqm.toLocaleString("en-US")} sqm
+            </span>
+          ) : null}
         </div>
         <div className="property-card-footer">
           <span>{reference}</span>
@@ -227,7 +233,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
     unitType: content.filterLabels?.unitType || "Property type",
   };
   const locations = properties.facets.locations ?? [];
-  const buildings = properties.facets.buildings ?? [];
+  const sectors = properties.facets.sectors ?? [];
   const unitTypes = properties.facets.unitTypes ?? [];
   const updateDraft = (key: keyof typeof emptyFilters, value: string) => {
     setDraftFilters((current) => ({ ...current, [key]: value }));
@@ -250,6 +256,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
         ]).some((term) => term.slug === filters.location),
       )
       .filter((property) => filters.building === "all" || property.building?.slug === filters.building)
+      .filter((property) => filters.sector === "all" || property.sectors.some((term) => term.slug === filters.sector))
       .filter((property) => filters.unitType === "all" || property.unitTypes.some((term) => term.slug === filters.unitType))
       .filter((property) => {
         if (filters.bedrooms === "all") return true;
@@ -364,24 +371,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                   options={[{ label: "All locations", value: "all" }, ...locations.map((term) => ({ label: term.name, value: term.slug }))]}
                   value={draftFilters.location}
                 />
-                <SelectField
-                  className="search-field search-community"
-                  id="property-building"
-                  label={labels.building}
-                  name="building"
-                  onValueChange={(value) => updateDraft("building", value)}
-                  options={[
-                    { label: "All buildings", value: "all" },
-                    ...buildings
-                      .filter((term) => !removedBuildingSlugs.has(term.slug))
-                      .map((term) => ({
-                        disabled: disabledBuildingSlugs.has(term.slug),
-                        label: term.name,
-                        value: term.slug,
-                      })),
-                  ]}
-                  value={draftFilters.building}
-                />
+                <SelectField className="search-field search-community" id="property-sector" label={labels.sector} name="sector" onValueChange={(value) => updateDraft("sector", value)} options={[{ label: "All property types", value: "all" }, ...sectors.map((term) => ({ label: term.name, value: term.slug }))]} value={draftFilters.sector} />
                 <SelectField
                   className="search-field search-type"
                   id="property-type"
@@ -466,11 +456,11 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                 </div>
                 <div className="view-switch" role="group" aria-label="Results view">
                   <button className={view === "grid" ? "is-active" : ""} type="button" onClick={() => setView("grid")} aria-label="List view" aria-pressed={view === "grid"}><span className="view-icon view-icon-list" aria-hidden="true" /><span>List</span></button>
-                  <button className="is-disabled" type="button" disabled aria-label="Map view is temporarily unavailable" title="Map view is temporarily unavailable"><span className="view-icon view-icon-map" aria-hidden="true" /><span>Map</span></button>
+                  <button className={!hasMappableProperty(results) ? "is-disabled" : view === "map" ? "is-active" : ""} type="button" disabled={!hasMappableProperty(results)} onClick={() => setView("map")} aria-label={hasMappableProperty(results) ? "Map view" : "No mappable properties"} aria-pressed={view === "map"}><span className="view-icon view-icon-map" aria-hidden="true" /><span>Map</span></button>
                 </div>
               </div>
             </div>
-            <div className="results-layout" id="grid-view">
+            <div className="results-layout" id="grid-view" hidden={view === "map"}>
               <div className="results-column">
                 {pageItems.length ? <div className="property-grid" aria-live="polite">{pageItems.map((property, index) => <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={property.id}><UnitPropertyCard index={(currentPage - 1) * pageSize + index + 1} property={property} /></div>)}</div> : (
                   <div className="empty-state" data-aos="fade-up"><span className="properties-eyebrow">No results</span><h3>No Properties Match This Location</h3><p>Try another location, or speak with our team and we’ll help you continue your property search.</p><div><Button type="button" variant="primary" onClick={clearFilters}>Clear filters</Button><Button href="/contact">Contact ADURE</Button></div></div>
@@ -478,6 +468,7 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                 {totalPages > 1 ? <nav className="pagination" aria-label="Property result pages" data-aos="fade-up"><button type="button" onClick={() => changePage(Math.max(1, currentPage - 1))} aria-label="Previous page">←</button>{Array.from({ length: totalPages }, (_, index) => index + 1).map((number) => <button type="button" key={number} onClick={() => changePage(number)} aria-current={number === currentPage ? "page" : undefined}>{String(number).padStart(2, "0")}</button>)}<button type="button" onClick={() => changePage(Math.min(totalPages, currentPage + 1))} aria-label="Next page">→</button></nav> : null}
               </div>
             </div>
+            <LivePropertiesMap active={view === "map"} properties={results} />
           </div>
         </section>
 
@@ -496,16 +487,17 @@ export default function StaticPropertiesPage({ content, properties, site }: Prop
                 ) : null}
                 {content.ownerCta.buttons.length ? (
                   <nav className="owner-actions" aria-label="Next step actions">
-                    {content.ownerCta.buttons.map((button, index) => (
+                    {content.ownerCta.buttons.map((button) => (
                       <Button
-                        className={index === 0 ? undefined : "owner-secondary"}
+                        className="owner-action-link"
                         href={button.href}
                         key={`${button.href}-${button.label}`}
                         rel={button.target === "_blank" ? "noreferrer" : undefined}
                         target={button.target ?? undefined}
-                        variant={index === 0 ? "primary" : "default"}
+                        variant="link"
+                        showArrow={false}
                       >
-                        {button.label}
+                        <span>{button.label}</span><span aria-hidden="true">→</span>
                       </Button>
                     ))}
                   </nav>

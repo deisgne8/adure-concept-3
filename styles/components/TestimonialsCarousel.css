@@ -1,0 +1,58 @@
+.home-testimonials,
+.customer-perspectives { padding: 0; overflow: hidden; background: #fff; }
+.home-testimonials-layout,
+.perspectives-layout { width: 100%; max-width: none; min-height: clamp(420px, 36vw, 520px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; padding: clamp(4rem, 6vw, 5.5rem) clamp(1.5rem, 4.5vw, 5rem); }
+.home-testimonials-intro,
+.perspectives-intro { width: 100%; max-width: none; padding-right: clamp(2rem, 5vw, 5rem); }
+.home-testimonials-intro h2,
+.perspectives-intro h2 { margin: 0; color: var(--accent); font: 700 clamp(2.6rem, 4.2vw, 4.5rem)/1.02 var(--font-display); letter-spacing: 0; }
+.home-testimonials-intro h2 span,
+.perspectives-intro h2 span { display: block; }
+.home-testimonials-intro p,
+.perspectives-intro p { max-width: 30rem; margin: 1.55rem 0 0; color: #526476; font-size: clamp(1rem, 1.1vw, 1.12rem); line-height: 1.58; }
+.home-testimonials-stage,
+.perspectives-stage { position: relative; width: 100%; min-height: 20rem; padding-left: clamp(2rem, 5vw, 5rem); color: var(--accent); }
+.home-testimonials-quote-mark,
+.perspectives-quote-mark { display: block; margin: 0 0 1.35rem; color: var(--accent); font: 700 clamp(4.8rem, 7vw, 7rem)/.55 Georgia, serif; }
+.home-testimonials-slides,
+.perspectives-slides { position: relative; max-width: min(100%, 52rem); }
+.home-testimonial,
+.perspectives-testimonial { display: none; }
+.home-testimonial.is-active,
+.perspectives-testimonial.is-active { display: block; }
+.home-testimonial blockquote,
+.perspectives-testimonial blockquote { max-width: 46rem; margin: 0; color: var(--accent); font: italic 400 18px/1.55 var(--font-body); letter-spacing: 0; }
+.home-testimonial-meta,
+.perspectives-customer-meta { margin: clamp(2rem, 3.5vw, 3.25rem) 0 0; color: var(--accent); }
+.home-testimonial-meta strong,
+.perspectives-customer-meta strong { display: block; color: var(--accent); font: 700 clamp(1.1rem, 1.45vw, 1.35rem)/1.1 var(--font-display); letter-spacing: 0; }
+.home-testimonials-controls,
+.perspectives-controls { position: absolute; right: clamp(1rem, 5vw, 5.5rem); bottom: clamp(5.1rem, 6vw, 6.6rem); display: flex; gap: .85rem; z-index: 3; }
+.home-testimonials-arrow,
+.perspectives-arrow { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid rgba(0,71,137,.14); border-radius: 12px; background: #eef4f7; color: var(--accent); font: inherit; font-size: 1.2rem; cursor: pointer; }
+.home-testimonials-arrow.is-primary,
+.perspectives-arrow.is-primary { border-color: var(--accent); background: var(--accent); color: #fff; }
+.home-testimonials-thumbs,
+.perspectives-thumbs { display: flex; margin-top: clamp(2rem, 3vw, 2.8rem); }
+.home-testimonials-thumb:not(.is-active),
+.perspectives-thumb:not(.is-active) { display: none; }
+.home-testimonials-thumb.is-active,
+.perspectives-thumb.is-active { width: 58px; height: 58px; display: grid; place-items: center; padding: 0; border: 1px solid rgba(0,71,137,.16); border-radius: 12px; background: #fff; overflow: hidden; cursor: pointer; }
+.home-testimonials-thumb img,
+.perspectives-thumb img { display: block; width: 100%; height: 100%; border-radius: 10px; object-fit: cover; object-position: center top; opacity: .42; }
+@media (max-width: 980px) {
+  .home-testimonials-layout,
+  .perspectives-layout { grid-template-columns: 1fr; gap: 2.75rem; padding-block: 3.5rem; }
+  .home-testimonials-intro,
+  .perspectives-intro,
+  .home-testimonials-stage,
+  .perspectives-stage { padding-inline: 0; }
+  .home-testimonials-controls,
+  .perspectives-controls { position: static; margin-top: 1.75rem; }
+}
+@media (max-width: 620px) {
+  .home-testimonials-intro h2,
+  .perspectives-intro h2 { font-size: clamp(2.25rem, 12vw, 3.4rem); }
+  .home-testimonial blockquote,
+  .perspectives-testimonial blockquote { font-size: clamp(1.05rem, 5vw, 1.35rem); }
+}
