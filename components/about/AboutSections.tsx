@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperInstance } from "swiper";
 import "swiper/css";
@@ -191,11 +191,15 @@ export function AboutGuidesSection({ guides }: { guides: GuidesContent }) {
 
 export function AboutCeoMessageSection({ ceo }: { ceo: CeoContent }) {
   return (
-    <section className="ceo-message-section ceo-message-light" aria-label="Chief executive message">
+    <section
+      className="ceo-message-section ceo-message-light"
+      aria-labelledby="ceo-message-title"
+      style={{ "--ceo-message-background": `url("${ceo.backgroundImage}")` } as CSSProperties}
+    >
       <div className="section-shell ceo-message-light-layout">
         <figure className="ceo-message-light-portrait about-image-scale" data-aos="fade-right"><img src={ceo.image} alt={ceo.imageAlt} /></figure>
         <div className="ceo-message-light-copy" data-aos="fade-left">
-          <span id="ceo-message-title" className="ceo-message-anchor" aria-hidden="true" />
+          <h2 id="ceo-message-title">{ceo.heading}</h2>
           {ceo.description.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <p className="ceo-signature"><strong>{ceo.name}</strong><span>{ceo.position}</span></p>
         </div>
