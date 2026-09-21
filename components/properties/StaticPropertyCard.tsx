@@ -30,6 +30,10 @@ function ShareIcon() {
   );
 }
 
+function hasValidArea(area: number) {
+  return typeof area === "number" && Number.isFinite(area) && area > 0;
+}
+
 function PropertyFacts({ property }: { property: StaticProperty }) {
   return (
     <>
@@ -45,10 +49,12 @@ function PropertyFacts({ property }: { property: StaticProperty }) {
         <img src="/assets/property-icons/bath.svg" alt="" aria-hidden="true" />
         {property.baths} Bath
       </span>
-      <span>
-        <img src="/assets/property-icons/area.svg" alt="" aria-hidden="true" />
-        {property.area} m²
-      </span>
+      {hasValidArea(property.area) ? (
+        <span>
+          <img src="/assets/property-icons/area.svg" alt="" aria-hidden="true" />
+          {property.area} m²
+        </span>
+      ) : null}
     </>
   );
 }
@@ -141,7 +147,7 @@ export default function StaticPropertyCard({
         <h3>{property.title}</h3>
         <p className="property-building">{property.building} · {property.unit}</p>
         <div className="property-price">{propertyPrice(property)}</div>
-        <div className="property-facts"><PropertyFacts property={property} /></div>
+        <div className={`property-facts${hasValidArea(property.area) ? "" : " has-two-facts"}`}><PropertyFacts property={property} /></div>
         <div className="property-card-footer">
           <span>{reference}</span>
           <span className="view-property">

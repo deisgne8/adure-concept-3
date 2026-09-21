@@ -110,6 +110,8 @@ function UnitPropertyCard({
   const image = propertyImage(property);
   const href = building ? `/properties/${building.slug}/${property.slug}` : "/properties";
   const reference = `REF # ADU-${property.id}`;
+  const areaSqm = property.areaSqm;
+  const hasArea = typeof areaSqm === "number" && Number.isFinite(areaSqm) && areaSqm > 0;
 
   return (
     <article
@@ -138,7 +140,7 @@ function UnitPropertyCard({
         <h3>{property.title}</h3>
         <p className="property-building">{[building?.name, property.unitCode].filter(Boolean).join(" · ")}</p>
         <div className="property-price">{formatPropertyPrice(property)}</div>
-        <div className="property-facts" aria-label="Property facts">
+        <div className={`property-facts${hasArea ? "" : " has-two-facts"}`} aria-label="Property facts">
           <span>
             <BedDouble aria-hidden="true" />
             {property.bedrooms === null
@@ -151,12 +153,12 @@ function UnitPropertyCard({
             <Bath aria-hidden="true" />
             {property.bathrooms === null ? "--" : `${property.bathrooms} Bath`}
           </span>
-          <span>
-            <Maximize2 aria-hidden="true" />
-            {property.areaSqm === null
-              ? "--"
-              : `${property.areaSqm.toLocaleString("en-US")} sqm`}
-          </span>
+          {hasArea ? (
+            <span>
+              <Maximize2 aria-hidden="true" />
+              {areaSqm.toLocaleString("en-US")} sqm
+            </span>
+          ) : null}
         </div>
         <div className="property-card-footer">
           <span>{reference}</span>
