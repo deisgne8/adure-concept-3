@@ -86,19 +86,6 @@
       ]
     }
   ],
-  "sectors": {
-    "heading": "Across Every Asset",
-    "description": "Every asset is supported by connected expertise across operations, facilities, financial management, legal oversight and customer service - all working towards long-term performance and value.",
-    "items": [
-      { "title": "Residential Communities", "description": "Supporting residential communities through coordinated leasing, operations, facility management and tenant services.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed residential community" },
-      { "title": "Commercial Buildings", "description": "Taking care of the day-to-day requirements that help commercial assets operate consistently.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed commercial building" },
-      { "title": "Office Towers", "description": "Managing facility, maintenance and operational needs across workplaces.", "image": "/assets/architecture-city.webp", "imageAlt": "Office tower exterior" },
-      { "title": "Retail Shops", "description": "Supporting reliable, well-managed spaces for retail operations and their customers.", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp", "imageAlt": "Retail frontage within a mixed-use development" },
-      { "title": "Hotels", "description": "Applying facility and operational management capabilities to the hospitality sector.", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "imageAlt": "Hospitality-style lobby managed by ADURE" },
-      { "title": "Government Buildings", "description": "Delivering structured support with a focus on reliability, compliance and accountability.", "image": "/assets/trust/abu-dhabi-institutions.jpg", "imageAlt": "Institutional building in Abu Dhabi" },
-      { "title": "Mixed-Use Developments", "description": "Coordinating multiple operational requirements within one integrated management approach.", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp", "imageAlt": "Mixed-use waterfront development" }
-    ]
-  },
   "commitment": {
     "heading": "Our Commitment",
     "description": "The requirements may change from one client to another. The approach behind ADURE’s work remains connected.",

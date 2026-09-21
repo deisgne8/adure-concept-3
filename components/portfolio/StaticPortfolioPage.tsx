@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { CSSProperties } from "react";
 import type { HomeContent } from "../../lib/home/load-home-content";
 import type { PortfolioContent } from "../../lib/portfolio/types";
 import type {
@@ -12,6 +11,7 @@ import type {
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
+import CustomerAssetCarousel from "../customers/CustomerAssetCarousel";
 import { aosSequenceDelay } from "../../lib/aos";
 
 type Props = {
@@ -165,8 +165,10 @@ export default function StaticPortfolioPage({
   const hasExplorerHead = Boolean(
     content.explorer.heading || content.explorer.description,
   );
-  const hasPrinciples = Boolean(
-    content.principles.heading || content.principles.items.length,
+  const hasAssetSupport = Boolean(
+    content.assetSupport.heading ||
+      content.assetSupport.description ||
+      content.assetSupport.items.length,
   );
   const hasCta = Boolean(
     content.cta.image ||
@@ -303,36 +305,20 @@ export default function StaticPortfolioPage({
           </div>
         </section>
 
-        {hasPrinciples ? (
+        {hasAssetSupport ? (
           <section
-            className="portfolio-principles pt_100 pb_100"
-            aria-labelledby={content.principles.heading ? "portfolio-principles-title" : undefined}
+            className="portfolio-asset-support customer-sectors pt_100 pb_100"
+            aria-labelledby={content.assetSupport.heading ? "portfolio-asset-support-title" : undefined}
           >
-            <div className="section-shell">
-              {content.principles.heading ? (
-                <h2 id="portfolio-principles-title" data-aos="fade-up">{content.principles.heading}</h2>
-              ) : null}
-              {content.principles.items.length ? (
-                <div className="portfolio-principle-grid">
-                  {content.principles.items.map((item, index) => (
-                    <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={`${item.title}-${index}`}>
-                    <article
-                      style={
-                        item.image
-                          ? ({ "--principle-image": `url('${item.image}')` } as CSSProperties)
-                          : undefined
-                      }
-                    >
-                      {item.title || item.description ? (
-                        <div>
-                          {item.title ? <h3>{item.title}</h3> : null}
-                          {item.description ? <p>{item.description}</p> : null}
-                        </div>
-                      ) : null}
-                    </article>
-                    </div>
-                  ))}
-                </div>
+            <div className="section-shell customer-sectors-layout">
+              <div className="customer-section-intro" data-aos="fade-right">
+                {content.assetSupport.heading ? (
+                  <h2 id="portfolio-asset-support-title">{content.assetSupport.heading}</h2>
+                ) : null}
+                {content.assetSupport.description ? <p>{content.assetSupport.description}</p> : null}
+              </div>
+              {content.assetSupport.items.length ? (
+                <CustomerAssetCarousel items={content.assetSupport.items} />
               ) : null}
             </div>
           </section>

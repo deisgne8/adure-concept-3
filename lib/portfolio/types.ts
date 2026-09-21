@@ -1,4 +1,5 @@
 import type { ButtonVariant } from "../../components/ui/Button";
+import type { CustomerSector } from "../customers/types";
 
 export type PortfolioProject = {
   name: string;
@@ -22,9 +23,10 @@ export type PortfolioContent = {
     stats: Array<{ value: string; label: string }>;
   };
   explorer: { heading: string; description: string; projectsByCity: PortfolioCity[] };
-  principles: {
+  assetSupport: {
     heading: string;
-    items: Array<{ title: string; description: string; image: string; imageAlt?: string }>;
+    description: string;
+    items: CustomerSector[];
   };
   cta: {
     heading: string;

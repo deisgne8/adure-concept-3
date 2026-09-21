@@ -1952,6 +1952,60 @@ main {
   }
 }
 
+/* Keep the primary property search action compact while preserving the shared
+   Button surface, hover, focus and pseudo-element behavior. */
+#home #discovery .home-search-icon-button {
+  width: 4.1rem;
+  min-width: 4.1rem;
+  max-width: 4.1rem;
+  padding: 0;
+  border-radius: 999px;
+  justify-self: center;
+}
+
+#home #discovery #filter-home .home-search-icon-button::after,
+#filter-dialog #property-search .home-search-icon-button::after {
+  content: none;
+  display: none;
+}
+
+#home #discovery .home-search-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+  stroke-width: 2.25;
+}
+
+@media(min-width:901px) {
+  #home #discovery #filter-home #property-search,
+  #home #discovery #filter-home #property-search.is-more-open {
+    grid-template-columns: minmax(10rem, .78fr) repeat(4, minmax(8.5rem, 1fr)) minmax(8.5rem, .82fr) 5rem !important;
+  }
+
+  #home #discovery #filter-home .home-search-icon-button {
+    width: 4.1rem;
+    min-width: 4.1rem;
+    max-width: 4.1rem;
+  }
+}
+
+@media(min-width:768px) and (max-width:900.98px) {
+  #home #discovery #filter-home .home-search-icon-button {
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+#filter-dialog .home-search-icon-button {
+  align-self: flex-end;
+  width: 3.75rem;
+  min-width: 3.75rem;
+  max-width: 3.75rem;
+  min-height: 3.75rem;
+  padding: 0;
+  border-radius: 999px;
+}
+
 /* Final fixed-reference surface contract. Keep this page-scoped and after the
    legacy Home rules so card rounding cannot be reset by older experiments. */
 #home.home-v2 :is(

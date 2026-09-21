@@ -3,7 +3,6 @@ import type { CustomersContent } from "../../lib/customers/types";
 import SiteChrome from "../sections/SiteChrome";
 import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
-import CustomerAssetCarousel from "./CustomerAssetCarousel";
 import CustomerCommitmentStack from "./CustomerCommitmentStack";
 import { aosSequenceDelay } from "../../lib/aos";
 
@@ -41,16 +40,6 @@ export default function StaticCustomersPage({ content, site }: Props) {
                 </ul>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section className="customer-sectors pt_100 pb_100" aria-labelledby="sectors-title">
-          <div className="section-shell customer-sectors-layout">
-            <div className="customer-section-intro" data-aos="fade-right">
-              <h2 id="sectors-title">{content.sectors.heading}</h2>
-              <p>{content.sectors.description}</p>
-            </div>
-            <CustomerAssetCarousel items={content.sectors.items} />
           </div>
         </section>
 

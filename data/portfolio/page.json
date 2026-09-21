@@ -77,12 +77,17 @@
       }
     ]
   },
-  "principles": {
-    "heading": "More Than A Collection Of Buildings",
+  "assetSupport": {
+    "heading": "Support Across Every Asset",
+    "description": "Every asset is supported by connected expertise across operations, facilities, financial management, legal oversight and customer service - all working towards long-term performance and value.",
     "items": [
-      { "title": "Place-Led", "description": "Every building is understood in the context of its community, its people and its operational needs.", "image": "/assets/portfolio-reference/sunrise-residence-3-v2.webp" },
-      { "title": "Performance-Minded", "description": "Management is designed to protect the quality, consistency and long-term potential of each asset.", "image": "/assets/journeys/sell.jpg" },
-      { "title": "One Connected Team", "description": "Leasing, operations, facilities and financial oversight come together through one accountable relationship.", "image": "/assets/journeys/manage.jpg" }
+      { "title": "Residential Communities", "description": "Supporting residential communities through coordinated leasing, operations, facility management and tenant services.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed residential community" },
+      { "title": "Commercial Buildings", "description": "Taking care of the day-to-day requirements that help commercial assets operate consistently.", "image": "/assets/management-beachfront-community.webp", "imageAlt": "Managed commercial building" },
+      { "title": "Office Towers", "description": "Managing facility, maintenance and operational needs across workplaces.", "image": "/assets/architecture-city.webp", "imageAlt": "Office tower exterior" },
+      { "title": "Retail Shops", "description": "Supporting reliable, well-managed spaces for retail operations and their customers.", "image": "/assets/hidd-al-saadiyat/urban-mixed-use.webp", "imageAlt": "Retail frontage within a mixed-use development" },
+      { "title": "Hotels", "description": "Applying facility and operational management capabilities to the hospitality sector.", "image": "/assets/hidd-al-saadiyat/management-leasing-lobby.jpg", "imageAlt": "Hospitality-style lobby managed by ADURE" },
+      { "title": "Government Buildings", "description": "Delivering structured support with a focus on reliability, compliance and accountability.", "image": "/assets/trust/abu-dhabi-institutions.jpg", "imageAlt": "Institutional building in Abu Dhabi" },
+      { "title": "Mixed-Use Developments", "description": "Coordinating multiple operational requirements within one integrated management approach.", "image": "/assets/hidd-al-saadiyat/promenade-mixed-use.webp", "imageAlt": "Mixed-use waterfront development" }
     ]
   },
   "cta": {
