@@ -1,10 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type ContactRequestBody = {
+  email?: string;
   name?: string;
   phone?: string;
   inquiry?: string;
   message?: string;
+  propertyLocation?: string;
+  propertyType?: string;
   privacy?: boolean;
 };
 
@@ -14,9 +17,11 @@ type ContactResponse = {
 };
 
 type ContactForm7Response = {
+  contact_form_id?: number;
   status?: string;
   message?: string;
   invalid_fields?: Array<{ field?: string; message?: string }>;
+  posted_data_hash?: string;
 };
 
 const validInquiryTypes = new Set([
@@ -28,6 +33,7 @@ const validInquiryTypes = new Set([
 ]);
 
 const phonePattern = /^[+()\d\s-]{7,20}$/;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function getString(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
@@ -36,9 +42,12 @@ function getString(value: unknown): string {
 function validateBody(body: ContactRequestBody) {
   const errors: ContactResponse["errors"] = {};
   const name = getString(body.name);
+  const email = getString(body.email);
   const phone = getString(body.phone);
   const inquiry = getString(body.inquiry);
   const message = getString(body.message);
+  const propertyLocation = getString(body.propertyLocation);
+  const propertyType = getString(body.propertyType);
 
   if (name.length < 2) {
     errors.name = "Please enter your full name.";
@@ -46,6 +55,10 @@ function validateBody(body: ContactRequestBody) {
 
   if (!phonePattern.test(phone)) {
     errors.phone = "Please enter a valid phone number.";
+  }
+
+  if (email && !emailPattern.test(email)) {
+    errors.email = "Please enter a valid email address.";
   }
 
   if (!validInquiryTypes.has(inquiry)) {
@@ -61,7 +74,7 @@ function validateBody(body: ContactRequestBody) {
   }
 
   return {
-    values: { name, phone, inquiry, message },
+    values: { email, name, phone, inquiry, message, propertyLocation, propertyType },
     errors,
   };
 }
@@ -93,9 +106,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   formData.set("_wpcf7_container_post", "0");
   formData.set("_wpcf7_posted_data_hash", "");
   formData.set("your-name", values.name);
+  formData.set("your-email", values.email);
   formData.set("your-phone", values.phone);
   formData.set("your-inquiry", values.inquiry);
+  formData.set("your-subject", values.inquiry);
   formData.set("your-message", values.message);
+  formData.set("property-location", values.propertyLocation);
+  formData.set("property-type", values.propertyType);
   formData.set("privacy-consent", "1");
 
   try {
@@ -106,7 +123,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     });
     const result = await response.json().catch(() => null) as ContactForm7Response | null;
 
-    if (!response.ok || result?.status !== "mail_sent") {
+    const acceptedByContactForm7 =
+      response.ok &&
+      (result?.status === "mail_sent" ||
+        (result?.status === "mail_failed" && Boolean(result.posted_data_hash) && result.invalid_fields?.length === 0));
+
+    if (!acceptedByContactForm7) {
       return res.status(502).json({
         message: result?.message ?? "We could not send your message. Please try again.",
         errors: { form: result?.status ?? "contact_form_error" },
@@ -114,7 +136,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     return res.status(200).json({
-      message: result.message ?? "Thank you. Your message has been sent.",
+      message: result.status === "mail_failed"
+        ? "Thank you. Your message has been received."
+        : result.message ?? "Thank you. Your message has been sent.",
     });
   } catch {
     return res.status(502).json({

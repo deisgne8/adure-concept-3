@@ -7,7 +7,7 @@
   "button": { "label": "Explore Our Portfolio", "href": "/portfolio", "variant": "link" },
   "filters": ["All", "Residential", "Retail"],
   "cities": ["Abu Dhabi", "Dubai", "Al Ain", "Hidd Al Saadiyat"],
-  "enquiry": { "heading": "Contact ADURE", "action": "mailto:Inquiries@adu-re.com", "submitLabel": "Send Enquiry" },
+  "enquiry": { "heading": "Contact ADURE", "action": "/api/contact", "submitLabel": "Send Enquiry" },
   "projects": [
     { "id": "al-salam-tower", "title": "Al Salam Tower", "city": "Abu Dhabi", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-reference/48-burj-gate-v2.webp", "alt": "Al Salam Tower high-rise facade against a blue sky", "description": "A concise two- to three-line introduction for Al Salam Tower will appear here once ADURE confirms the final project description." },
     { "id": "hili-tower-b", "title": "Hili Tower B", "city": "Abu Dhabi", "type": "Commercial", "location": "Abu Dhabi", "image": "/assets/portfolio-waterfront-tower-v2.webp", "alt": "Contemporary waterfront tower facade", "description": "A concise two- to three-line introduction for Hili Tower B will appear here once ADURE confirms the final project description." },
