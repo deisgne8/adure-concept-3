@@ -2099,13 +2099,17 @@
   gap:0 clamp(2rem,3vw,2.5rem)!important;
   max-width:34rem!important;
 }
-.properties-page .owner-actions a{
+.properties-page .owner-actions .owner-action-link.btn.link.button-link{
   display:flex!important;
   align-items:center!important;
   justify-content:space-between!important;
   gap:1rem!important;
+  width:100%!important;
+  min-width:0!important;
+  height:auto!important;
   min-height:4.5rem!important;
   padding:.2rem 0!important;
+  border:0!important;
   border-top:1px solid #b7cce0!important;
   color:var(--accent)!important;
   background:transparent!important;
@@ -2115,13 +2119,27 @@
   letter-spacing:0!important;
   text-transform:none!important;
   text-decoration:none!important;
+  border-radius:0!important;
+  overflow:visible!important;
+  box-shadow:none!important;
+  text-transform:none!important;
 }
-.properties-page .owner-actions a:nth-last-child(-n+2){
+.properties-page .owner-actions .owner-action-link.btn.link.button-link:nth-last-child(-n+2){
   border-bottom:1px solid #b7cce0!important;
 }
-.properties-page .owner-actions a span{
+.properties-page .owner-actions .owner-action-link.btn.link.button-link span{
   font-size:1.35rem!important;
   line-height:1!important;
+  border:0!important;
+  border-radius:0!important;
+}
+.properties-page .owner-actions .owner-action-link.btn.link.button-link span:first-child{
+  font-size:inherit!important;
+}
+.properties-page .owner-actions .owner-action-link.btn.link.button-link::before,
+.properties-page .owner-actions .owner-action-link.btn.link.button-link::after{
+  content:none!important;
+  display:none!important;
 }
 @media(max-width:900px){
   .properties-page .owner-cta-layout{
@@ -2135,10 +2153,10 @@
   .properties-page .owner-actions{
     grid-template-columns:1fr!important;
   }
-  .properties-page .owner-actions a:nth-last-child(-n+2){
+  .properties-page .owner-actions .owner-action-link.btn.link.button-link:nth-last-child(-n+2){
     border-bottom:0!important;
   }
-  .properties-page .owner-actions a:last-child{
+  .properties-page .owner-actions .owner-action-link.btn.link.button-link:last-child{
     border-bottom:1px solid #b7cce0!important;
   }
 }

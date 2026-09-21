@@ -1,4 +1,5 @@
 import type { ButtonVariant } from "../../components/ui/Button";
+import type { TestimonialsContent } from "../testimonials/types";
 
 export type CustomerLogo = { name: string; image: string };
 export type CustomerSector = { title: string; description: string; image: string; imageAlt: string };
@@ -13,8 +14,7 @@ export type CustomersContent = {
     cta: { label: string; href: string };
   };
   clientGroups: Array<{ id: string; title: string; paragraphs: string[]; logos: CustomerLogo[] }>;
-  commitment: { heading: string; description: string; items: Array<{ title: string; description: string }> };
-  testimonial: { heading: string; quote: string; description: string; client: string; location: string };
+  testimonials: TestimonialsContent;
   closing: {
     heading: string;
     description: string;

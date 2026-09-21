@@ -1,13 +1,22 @@
 {
   "hero": {
     "eyebrow": "Properties",
-    "title": ["Find The Right Place", "For Your Next Chapter"],
+    "title": ["Properties"],
     "description": "Find a place to call home or grow your business.",
-    "locations": "Abu Dhabi · Dubai · Al Ain",
-    "image": "/assets/hidd-al-saadiyat/saadiyat-aerial-beach.webp",
+    "locations": "Abu Dhabi · Dubai · Al Ain · Hidd Al Saadiyat",
+    "image": "/assets/properties/properties-header-banner.jpg",
     "imageAlt": "Waterfront residences and beach at Saadiyat Island"
   },
   "filtersTitle": "Search Available Properties",
+  "filterLabels": {
+    "transaction": "Looking to",
+    "location": "Location",
+    "sector": "Property type",
+    "unitType": "Residence type",
+    "bedrooms": "Bedrooms",
+    "price": "Price range",
+    "building": "Building / Community"
+  },
   "availableTitle": "Available Properties",
   "ownerCta": {
     "title": ["We’re Here For Your", "Next Step"],

@@ -56,8 +56,16 @@ export default function PortfolioProjectModal({ city, project, onClose }: Props)
           <span className="portfolio-detail-line" aria-hidden="true" />
           <p>{description}</p>
           <div className="portfolio-detail-actions">
-            <Button href="/properties" variant="primary">Explore properties</Button>
-            <Button href="/contact">Contact ADURE</Button>
+            <div className="portfolio-contact-block" aria-label="Abu Dhabi Office contact details">
+              <h4>Abu Dhabi Office</h4>
+              <p>Abu Dhabi,<br />United Arab Emirates</p>
+              <p><a href="tel:+971505321440">+971 50 532 1440</a></p>
+              <p><a href="mailto:abudhabileasing@adu-re.com">abudhabileasing@adu-re.com</a></p>
+            </div>
+            <div className="portfolio-action-buttons">
+              <Button href="/properties" variant="primary">Explore properties</Button>
+              <Button className="portfolio-contact-button" href="/contact">Contact ADURE</Button>
+            </div>
           </div>
         </div>
         <figure className="portfolio-popup-image">

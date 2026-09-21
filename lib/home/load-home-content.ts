@@ -9,6 +9,7 @@ import sell from "../../data/home/sell.json";
 import site from "../../data/home/site.json";
 import transition from "../../data/home/transition.json";
 import trust from "../../data/home/trust.json";
+import testimonials from "../../data/home/testimonials.json";
 const localHomeContent = {
   site,
   hero,
@@ -18,6 +19,7 @@ const localHomeContent = {
   proof,
   portfolio,
   transition,
+  testimonials,
   sell,
   trust,
   conversation,

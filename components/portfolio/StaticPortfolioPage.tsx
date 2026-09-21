@@ -13,6 +13,8 @@ import SiteFooter from "../sections/SiteFooter";
 import Button from "../ui/Button";
 import CustomerAssetCarousel from "../customers/CustomerAssetCarousel";
 import { aosSequenceDelay } from "../../lib/aos";
+import PortfolioProjectModal from "./PortfolioProjectModal";
+import type { PortfolioProject } from "../../lib/portfolio/types";
 
 type Props = {
   buildingFilters: BuildingFilters;
@@ -42,13 +44,13 @@ function portfolioPageHref(filters: BuildingFilters, page: number) {
   return { pathname: "/portfolio", query };
 }
 
-function PortfolioBuildingCard({ building }: { building: BuildingSummary }) {
+function PortfolioBuildingCard({ building, onSelect }: { building: BuildingSummary; onSelect: (building: BuildingSummary) => void }) {
   const image = building.cardImage?.card || building.cardImage?.full || fallbackImage;
   const location = firstTermName(building.locations, "Location unavailable");
   const sector = firstTermName(building.sectors, "Sector unavailable");
 
   return (
-    <Link className="portfolio-project-card" href={`/properties/${building.slug}`}>
+    <button className="portfolio-project-card" type="button" onClick={() => onSelect(building)}>
       <span className="portfolio-project-card-image">
         <img
           alt={building.cardImage?.alt || building.name}
@@ -63,7 +65,7 @@ function PortfolioBuildingCard({ building }: { building: BuildingSummary }) {
           {sector} · {location}
         </small>
       </span>
-    </Link>
+    </button>
   );
 }
 
@@ -140,6 +142,8 @@ export default function StaticPortfolioPage({
   content,
   site,
 }: Props) {
+  const [selectedProject, setSelectedProject] = useState<PortfolioProject | null>(null);
+  const [selectedProjectCity, setSelectedProjectCity] = useState("Abu Dhabi");
   const activeLocation = buildingFilters.location;
   const buildingItems = buildings.items ?? [];
   const buildingLocations = buildings.facets?.locations ?? [];
@@ -176,6 +180,19 @@ export default function StaticPortfolioPage({
       content.cta.description ||
       (content.cta.buttonHref && content.cta.buttonLabel),
   );
+  const referenceProjects = content.explorer.projectsByCity.flatMap((group) => group.projects);
+  const openProject = (building: BuildingSummary) => {
+    const location = firstTermName(building.locations, "Abu Dhabi");
+    const referenceProject = referenceProjects.find((project) => project.name === building.name);
+    setSelectedProjectCity(location);
+    setSelectedProject({
+      name: building.name,
+      type: firstTermName(building.sectors, "Managed property"),
+      location,
+      image: building.cardImage?.full || building.cardImage?.card || fallbackImage,
+      description: referenceProject?.description,
+    });
+  };
 
   return (
     <div className="portfolio-page">
@@ -267,7 +284,7 @@ export default function StaticPortfolioPage({
                 </p>
                 <div id="portfolio-projects">
                   {buildingItems.map((building, index) => (
-                    <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={building.id}><PortfolioBuildingCard building={building} /></div>
+                    <div className="aos-card-reveal" data-aos="fade-up" data-aos-delay={aosSequenceDelay(index)} key={building.id}><PortfolioBuildingCard building={building} onSelect={openProject} /></div>
                   ))}
                 </div>
                 {!buildingItems.length ? (
@@ -307,7 +324,7 @@ export default function StaticPortfolioPage({
 
         {hasAssetSupport ? (
           <section
-            className="portfolio-asset-support customer-sectors pt_100 pb_100"
+            className="portfolio-asset-support customer-sectors portfolio-asset-sectors"
             aria-labelledby={content.assetSupport.heading ? "portfolio-asset-support-title" : undefined}
           >
             <div className="section-shell customer-sectors-layout">
@@ -326,13 +343,13 @@ export default function StaticPortfolioPage({
 
         {hasCta ? (
           <section
-            className="portfolio-cta portfolio-next-step pt_100 pb_100"
+            className="portfolio-cta portfolio-next-step"
             aria-labelledby={content.cta.heading ? "portfolio-cta-title" : undefined}
           >
             {content.cta.image ? <img src={content.cta.image} alt={content.cta.imageAlt} loading="lazy" /> : null}
             {content.cta.image ? <div className="portfolio-cta-shade" /> : null}
             <div className="section-shell portfolio-cta-grid">
-              {content.cta.heading ? <h2 id="portfolio-cta-title" data-aos="fade-right">{content.cta.heading}</h2> : null}
+              {content.cta.heading ? <div data-aos="fade-right"><h2 id="portfolio-cta-title">{content.cta.heading}</h2></div> : null}
               {content.cta.description || (content.cta.buttonHref && content.cta.buttonLabel) ? (
                 <div className="portfolio-card-intro" data-aos="fade-left">
                   {content.cta.description ? <p>{content.cta.description}</p> : null}
@@ -352,6 +369,7 @@ export default function StaticPortfolioPage({
           </section>
         ) : null}
       </main>
+      <PortfolioProjectModal city={selectedProjectCity} project={selectedProject} onClose={() => setSelectedProject(null)} />
       <SiteFooter content={site} homeHref="/" />
     </div>
   );

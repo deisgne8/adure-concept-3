@@ -1,12 +1,13 @@
 {
   "eyebrow": "Our Story",
-  "year": "2002",
-  "heading": "Over Two Decades Of Excellence",
+  "heading": "Over Two Decades of Excellence",
   "description": [
-    "Since 2002, ADURE has built its real estate experience around the professional management of properties and the day-to-day operations that protect their performance.",
-    "That foundation now brings together leasing and operations, facility management, and financial and legal management, alongside buying and selling - allowing ADURE to support more of the real estate journey through one company.",
-    "Across Abu Dhabi, Dubai and Al Ain, we have grown around one consistent idea: understand the asset and create value across its journey through the way it is managed, occupied and positioned."
+    "ADURE began in 2002 with a small number of buildings in Abu Dhabi and a straightforward commitment to the owners who trusted us with them. Looking after the asset as though it were our own. That foundation now brings together leasing and operations, facility management, and financial and legal management, alongside buying and selling - allowing ADURE to support more of the real estate journey through one company.",
+    "Two decades on, our portfolio spreads across Abu Dhabi, Hidd Al Saadiyat, Al Ain and Dubai, and the commitment has not changed. We have grown around one consistent idea: understand the asset and create value across its journey through the way it is managed, occupied and positioned."
   ],
-  "image": "/assets/about/dsc06453.webp",
-  "imageAlt": "Managed waterfront residences"
+  "milestones": [
+    { "year": "2002", "heading": "Laying The Foundation", "summary": "Established in Abu Dhabi", "description": "Established in Abu Dhabi to manage and operate residential and commercial property.", "image": "/assets/about/timeline-foundation-building.webp", "imageAlt": "ADURE's early managed property in Abu Dhabi" },
+    { "year": "2021", "heading": "Growing Our Portfolio", "summary": "Hidd Al Saadiyat added", "description": "Added Hidd Al Saadiyat, a waterfront residential community.", "image": "/assets/about/timeline-growing-portfolio-building.webp", "imageAlt": "Hidd Al Saadiyat waterfront residences" },
+    { "year": "2026", "heading": "Staying True To Our Promise", "summary": "1800+ units managed", "description": "Continue to expand across the region, managing over 1800+ units, and staying true to our commitment of creating value that goes beyond property.", "image": "/assets/about/timeline-promise-building.webp", "imageAlt": "A contemporary property in ADURE's growing portfolio" }
+  ]
 }

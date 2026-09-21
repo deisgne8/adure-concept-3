@@ -15,6 +15,14 @@
 
 @font-face {
   font-family: "Fira Sans";
+  src: url("/assets/fonts/fira-sans-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fira Sans";
   src: url("/assets/fonts/fira-sans-300.ttf") format("truetype");
   font-weight: 300;
   font-display: swap;
@@ -90,10 +98,8 @@
   }
 }
 
-/* Final reference heading contract. This file is loaded after all page CSS so
-   older page-local heading experiments cannot change the approved role. Keep
-   the contract scoped to the synchronized routes; standalone Properties and
-   Portfolio retain their own typography. */
+/* Final reference heading contract. Component styles can size each role while
+   the shared font family and real 600 face remain defined here. */
 #home#home :is(h1, h2),
 .about-page.about-page main :is(h1, h2),
 .customers-page.customers-page main :is(h1, h2),

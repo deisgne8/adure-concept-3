@@ -8,7 +8,6 @@ import "../styles/global/common.css";
 import "../styles/components/StaticPortfolioPage.css";
 import "../styles/components/StaticCustomersPage.css";
 import "../styles/components/StaticContactPage.css";
-import "../styles/global/typography.css";
 import "../styles/components/SharedSiteChrome.css";
 
 export default function App({ Component, pageProps }: AppProps) {

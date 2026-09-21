@@ -4,7 +4,6 @@ import type { ListingPropertyListResponse } from "../../components/properties/St
 import StaticPropertiesPage from "../../components/properties/StaticPropertiesPage";
 import catalog from "../../data/properties/catalog.json";
 import site from "../../data/home/site.json";
-import { loadPropertiesPageContent } from "../../lib/properties/load-properties-page-content";
 import type { StaticCatalogContent } from "../../lib/properties/static-types";
 import { loadAllProperties } from "../../lib/properties/wordpress";
 
@@ -15,14 +14,10 @@ const emptyListingProperties: ListingPropertyListResponse = {
 };
 
 export const getStaticProps = (async () => {
-  const [contentResult, propertiesResult] = await Promise.allSettled([
-    loadPropertiesPageContent(catalog as StaticCatalogContent),
+  const content = catalog as StaticCatalogContent;
+  const [propertiesResult] = await Promise.allSettled([
     loadAllProperties({ per_page: "200" }),
   ]);
-  const content =
-    contentResult.status === "fulfilled"
-      ? contentResult.value
-      : (catalog as StaticCatalogContent);
   const properties =
     propertiesResult.status === "fulfilled" ? propertiesResult.value : null;
 
@@ -43,7 +38,9 @@ export const getStaticProps = (async () => {
             ? {
                 cardImage: property.building.cardImage,
                 id: property.building.id,
+                latitude: property.building.latitude,
                 locations: property.building.locations,
+                longitude: property.building.longitude,
                 name: property.building.name,
                 slug: property.building.slug,
               }

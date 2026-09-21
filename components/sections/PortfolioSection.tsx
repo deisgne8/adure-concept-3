@@ -10,20 +10,19 @@ type PortfolioSectionProps = {
 };
 
 export default function PortfolioSection({ content }: PortfolioSectionProps) {
-  const [activeFilter, setActiveFilter] = useState(content.filters[0]);
+  const [activeCity, setActiveCity] = useState(content.cities[0]);
   const [activeProjectId, setActiveProjectId] = useState(content.projects[0]?.id ?? "");
   const railRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ active: false, moved: false, startX: 0, scrollLeft: 0 });
   const pausedRef = useRef(false);
   const projects = useMemo(() => {
-    if (activeFilter === content.filters[0]) return content.projects;
-    return content.projects.filter((project) => project.type === activeFilter);
-  }, [activeFilter, content.filters, content.projects]);
+    return content.projects.filter((project) => project.city === activeCity);
+  }, [activeCity, content.projects]);
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? projects[0];
 
   useEffect(() => {
     railRef.current?.scrollTo({ left: 0, behavior: "smooth" });
-  }, [activeFilter]);
+  }, [activeCity]);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -73,33 +72,21 @@ export default function PortfolioSection({ content }: PortfolioSectionProps) {
               {content.button.label}
             </Button>
           </div>
-          <div className="portfolio-type-filters" role="group" aria-label="Filter portfolio projects" data-aos="fade-up" data-aos-delay="200">
-            {content.filters.map((filter) => (
-              <button
-                key={filter}
-                className={activeFilter === filter ? "is-active" : undefined}
-                type="button"
-                aria-pressed={activeFilter === filter}
-                onClick={() => {
-                  setActiveFilter(filter);
-                  const nextProject = filter === content.filters[0]
-                    ? content.projects[0]
-                    : content.projects.find((project) => project.type === filter);
-                  setActiveProjectId(nextProject?.id ?? "");
-                }}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
+        </div>
+        <div className="portfolio-city-tabs" role="tablist" aria-label="Portfolio locations" data-aos="fade-up" data-aos-delay="200">
+          {content.cities.map((city) => (
+            <button key={city} className={activeCity === city ? "is-active" : undefined} type="button" role="tab" aria-selected={activeCity === city} aria-controls="portfolio-card-grid" onClick={() => { setActiveCity(city); setActiveProjectId(content.projects.find((project) => project.city === city)?.id ?? ""); }}>{city}</button>
+          ))}
         </div>
         <div className="portfolio-home-stage" data-aos="fade-up" data-aos-delay="100">
           <div>
+            <p className="portfolio-city-kicker">{activeCity.toUpperCase()}</p>
             <div
               className="portfolio-card-grid"
+              id="portfolio-card-grid"
               ref={railRef}
-              role="region"
-              aria-label="Portfolio projects"
+              role="tabpanel"
+              aria-label={`${activeCity} portfolio projects`}
               tabIndex={0}
               onPointerDown={beginDrag}
               onPointerMove={moveDrag}

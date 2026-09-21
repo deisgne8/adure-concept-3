@@ -1,0 +1,26 @@
+{
+  "heading": "What Our Clients Value",
+  "description": "How we work is best understood through the experience of those we work with. Here’s a closer view of the relationships, service and expertise behind ADURE’s approach to real estate.",
+  "items": [
+    {
+      "quote": "From the professionalism and responsiveness of the staff to the quality of communication and overall service, everything has been handled smoothly and efficiently.",
+      "name": "Abdel Karim Adra",
+      "avatar": "/assets/testimonials/avatar-silhouette-transparent.png"
+    },
+    {
+      "quote": "We have had a very good experience with the leasing team, who have been professional, responsive, and supportive throughout the leasing process… We would also like to recognize the maintenance team for their cooperation and prompt support whenever assistance is required.",
+      "name": "Sawsan Jumah",
+      "avatar": "/assets/testimonials/avatar-silhouette-transparent.png"
+    },
+    {
+      "quote": "Since returning, my experience with the team has been extremely positive. What I have appreciated most is that the relationship has never felt purely transactional. There has always been a genuine effort to listen, communicate, accommodate where possible, and build a good long-term relationship with tenants.",
+      "name": "Eng. Hamza Farooq",
+      "avatar": "/assets/testimonials/avatar-silhouette-transparent.png"
+    },
+    {
+      "quote": "The beach is stunning and perfectly equipped, the surroundings are breathtaking, and the entire team is incredibly attentive and caring. The management is also always helpful, responsive, and genuinely committed to making residents feel at home.",
+      "name": "Zainab Asrawi",
+      "avatar": "/assets/testimonials/avatar-silhouette-transparent.png"
+    }
+  ]
+}
